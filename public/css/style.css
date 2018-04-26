@@ -1,0 +1,143 @@
+body{
+    background-color: grey;
+}
+
+
+#container{
+    margin-left:auto;
+    margin-right:auto;
+    width:1000px;
+    border:solid;
+    height: 2000px;
+}
+
+
+.logReg{
+    float:right;
+    margin-right: 10px;
+    margin-top: 2px;
+}
+
+#logRegBar{
+    width:100%;
+    height: 30px;
+    border-bottom:solid;
+    position:relative;
+}
+
+#logo{
+    width: 100%;
+    border-bottom:solid;
+    height:120px;
+}
+
+.navButton:first-child{
+    margin-left:50px;
+    border-left:solid 1px;
+}
+.navButton:last-child{
+    margin-right:50px;
+    border:none;
+}
+
+
+#nav{
+    width:100%;
+    height:30px;
+    border-bottom:solid;
+    bottom:0;
+}
+.navButton{
+
+    float:left;
+    height:30px;
+    width:180px;
+    border-right:solid 1px;
+
+}
+
+#profile{
+    height:1820px;
+    width:100%;
+}
+
+#photo{
+    margin-top: 40px;
+    margin-left: 40px;
+    height: 200px;
+    width: 170px;
+    border: solid;
+    float: left;
+}
+
+#twoSections{
+    float:left;
+}
+
+#informations{
+    background: lightgrey;
+    height: 180px;
+    width: 150px;
+    float:left;
+    clear:both;
+    margin-top: 40px;
+    margin-left: 40px;
+    padding: 10px;
+
+}
+
+#profileContent{
+    margin-left: 30px;
+    margin-top: 40px;
+    margin-right: 140px;
+    background-color: lightgrey;
+    height:1700px;
+    width:610px;
+    float:left;
+    border:solid;
+}
+
+#profileNav{
+    width:610px;
+    height:30px;
+
+
+}
+
+.profileNavButton
+{
+    float:left;
+    width: 121px;
+    height: 30px;
+    border-right:solid 1px;
+    border-bottom:solid 1px;
+    background-color: floralwhite;
+}
+.profileNavButton:last-child{
+    border:none;
+}
+
+.profileBlock{
+    height:auto;
+    width:580px;
+    padding:15px;
+    margin-top:15px;
+    border-top: dashed 1px;
+
+}
+.profileBlock:last-child{
+    border-bottom: dashed 1px;
+}
+
+#editForm{
+    height:1820px;
+    width:100%;
+}
+
+.sticky{
+
+    width:100%;
+    position: fixed;
+    top:0;
+    z-index:100;
+}
