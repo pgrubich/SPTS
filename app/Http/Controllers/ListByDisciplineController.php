@@ -53,7 +53,7 @@ class ListByDisciplineController extends Controller
 
         return Trainer::whereHas('TrDisc',function($query) use($id)
         {
-            $query->where('discipline_id', '=', $id);
+            $query->where('discipline_url_name', '=', $id);
         })->with('TrDisc','trLoc','trPl')->get();
     }
 
