@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ListByDiscipline\Trainer;
 use App\Models\ListByDiscipline\TrDiscipline;
-use App\Models\ListByDiscipline\Disciplines;
+use App\Models\ListByDiscipline\TrLocation;
+use App\Models\ListByDiscipline\TrPlace;
 
 
 class ListByDisciplineController extends Controller
@@ -49,9 +50,11 @@ class ListByDisciplineController extends Controller
      */
     public function show($id)
     {
-        return TrDiscipline::with('Trainer')
-                        ->where('discipline_id','=',$id)
-                        ->get()->toJson(JSON_PRETTY_PRINT);
+
+        return Trainer::whereHas('TrDisc',function($query) use($id)
+        {
+            $query->where('discipline_id', '=', $id);
+        })->with('TrDisc','trLoc','trPl')->get();
     }
 
     /**

@@ -10,7 +10,15 @@ class Trainer extends Model
     protected $hidden = ['password','gender','phone','email','rating','registerDate'];
 
     public function trDisc(){
-        return $this->hasMany('TrDiscipline');
+        return $this->hasMany('App\Models\ListByDiscipline\TrDiscipline');
+    }
+
+    public function trLoc(){
+        return $this->hasMany('App\Models\ListByDiscipline\TrLocation');
+    }
+
+    public function trPl(){
+        return $this->hasMany('App\Models\ListByDiscipline\TrPlace');
     }
 
 }

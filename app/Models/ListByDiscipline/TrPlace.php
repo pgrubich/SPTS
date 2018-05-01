@@ -4,12 +4,12 @@ namespace App\Models\ListByDiscipline;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TrDiscipline extends Model
+class TrPlace extends Model
 {
-    protected $table = 'trainers_disciplines';
+    protected $table = 'trainers_places';
     protected $hidden = ['id','trainer_id'];
 
     public function trainer(){
-        return $this->belongsTo('App\Models\ListByDiscipline\Trainer');
+        return $this->belongsTo('Trainer');
     }
 }
