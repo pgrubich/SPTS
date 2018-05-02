@@ -12,4 +12,5 @@
 */
 
 Route::get('/profile', 'TrainersController@profile');
+Route::view('/searching','searching');
 

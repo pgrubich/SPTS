@@ -5,16 +5,15 @@ $(function(){
         $.getJSON('http://pri.me/profiles/1.json')
         .done (function(data){
             var msg = "";
-            var description = "<h4>Profil</h4>"
-            var offert = "<h4>Oferta :</h4> "
+            var description = "<h2 id='profile-info'>Profil</h2>"
+            var offert = "<h2 id='prices-info'>Cennik</h2> "
             $.each(data, function(index, element) {
-                msg+= "<p>"+element.name+"</p>";
-                msg+= "<p>"+element.surname+"</p>";
-                msg+= "<p>"+element.phone+"</p>";
-                msg+= "<p>"+element.email+"</p>";
+                msg+= "<li>"+element.name+" "+element.surname+"</li>";
+                msg+= "<li>"+element.phone+"</li>";
+                msg+= "<li>"+element.email+"</li>";
 
                 $.each(element.tr_loc,function(ind,ele){
-                    msg+= "<p>"+ele.city+", "+ele.voivodeship+"</p>";
+                    msg+= "<li>"+ele.city+", "+ele.voivodeship+"</li>";
                 });
                 description += element.description;
                 $.each(element.tr_cert, function(ind,ele){
@@ -32,9 +31,9 @@ $(function(){
                 });
              });
         
-            $("#cennik").html(offert);
-            $("#informations").html(msg);
-            $("#profil1").html(description);
+            $(".categories:eq(2)").html(offert);
+            $(".detail-list").html(msg);
+            $(".categories:first").html(description);
             
         
         });    

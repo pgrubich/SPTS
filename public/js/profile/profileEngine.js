@@ -4,11 +4,11 @@ jQuery(function($)
 
     $.scrollTo(0);
 
-    $('#link1').click(function() { $.scrollTo($('#profil1'),500); });
-    $('#link2').click(function() { $.scrollTo($('#kalendarz'), 500); });
-    $('#link3').click(function() { $.scrollTo($('#cennik'), 500); });
-    $('#link4').click(function() { $.scrollTo($('#xyz'), 500); });
-    $('#link5').click(function() { $.scrollTo($('#opinie'), 500); });
+    $('#link1').click(function() { $.scrollTo($('#profile-info'),500); });
+    $('#link2').click(function() { $.scrollTo($('#calendar-info'), 500); });
+    $('#link3').click(function() { $.scrollTo($('#prices-info'), 500); });
+    $('#link4').click(function() { $.scrollTo($('#gallery-info'), 500); });
+    $('#link5').click(function() { $.scrollTo($('#reviews-info'), 500); });
 
 
 
@@ -17,15 +17,15 @@ jQuery(function($)
 
 
 $(document).ready(function() {
-    var NavY = $('#profileNav').offset().top;
+    var NavY = $('#section-nav').offset().top;
 
     var stickyNav = function(){
         var ScrollY = $(window).scrollTop();
 
         if (ScrollY > NavY) {
-            $('#profileNav').addClass('sticky');
+            $('#section-nav').addClass('sticky');
         } else {
-            $('#profileNav').removeClass('sticky');
+            $('#section-nav').removeClass('sticky');
         }
     };
 

@@ -1,143 +1,198 @@
-body{
-    background-color: grey;
+body
+{
+	margin: 0;
+	background-color: #2F3336;
+	color: #efefef;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
 }
 
 
-#container{
+#logBar
+{
+    width:100%;
+    height: 30px;
+}
+
+#logBar > button
+{
+    float:right;
+    margin-left: 15px;
+    margin-top: 15px;
+
+}
+
+#logBar > button:first-child
+{
+    margin-right: 15px;
+
+}
+
+h1.logo
+{
+    font-size: 44px;
+    font-weight: 700;
+    color: #ddd;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+nav
+{
+    background-color: #1c74b2;
+    text-align: center;
+}
+
+.menu
+{
+    list-style-type: none;
+    margin: 0px;
+    padding: 10px;
+    font-size: 18px;
+    min-height: 38px;
+    line-height: 200%;
+}
+
+.menu > li 
+{
+    display: inline-block;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-right: 1px dashed #0a2b42;
+}
+
+.menu > li:first-child
+{
+    border-left: 1px dashed #0a2b42;
+}
+
+.menu a
+{
+    color: white;
+    text-decoration: none;
+}
+
+.menu a:hover
+{
+    color: #0a2b42;
+}
+
+#content
+{
     margin-left:auto;
     margin-right:auto;
-    width:1000px;
-    border:solid;
-    height: 2000px;
+    width:1100px;
+    background-color:rgb(141, 134, 134);
 }
 
-
-.logReg{
-    float:right;
-    margin-right: 10px;
-    margin-top: 2px;
+.categories
+{
+    width:630px;
+    padding: 20px;
+    background-color:rgb(255, 255, 255);
+    color: black;
+    margin: 15px;
+    border-radius:3px;
 }
 
-#logRegBar{
-    width:100%;
-    height: 30px;
-    border-bottom:solid;
-    position:relative;
-}
-
-#logo{
-    width: 100%;
-    border-bottom:solid;
-    height:120px;
-}
-
-.navButton:first-child{
-    margin-left:50px;
-    border-left:solid 1px;
-}
-.navButton:last-child{
-    margin-right:50px;
-    border:none;
-}
-
-
-#nav{
-    width:100%;
-    height:30px;
-    border-bottom:solid;
-    bottom:0;
-}
-.navButton{
-
+#mainInfo
+{
+    width: 250px;
     float:left;
-    height:30px;
-    width:180px;
-    border-right:solid 1px;
-
+    height: 300px;
 }
 
-#profile{
-    height:1820px;
-    width:100%;
-}
-
-#photo{
-    margin-top: 40px;
-    margin-left: 40px;
-    height: 200px;
-    width: 170px;
-    border: solid;
-    float: left;
-}
-
-#twoSections{
-    float:left;
-}
-
-#informations{
-    background: lightgrey;
-    height: 180px;
-    width: 150px;
-    float:left;
-    clear:both;
-    margin-top: 40px;
-    margin-left: 40px;
-    padding: 10px;
-
-}
-
-#profileContent{
-    margin-left: 30px;
-    margin-top: 40px;
-    margin-right: 140px;
-    background-color: lightgrey;
-    height:1700px;
-    width:610px;
-    float:left;
-    border:solid;
-}
-
-#profileNav{
-    width:610px;
-    height:30px;
-
-
-}
-
-.profileNavButton
+#mainSect
 {
     float:left;
-    width: 121px;
-    height: 30px;
-    border-right:solid 1px;
-    border-bottom:solid 1px;
-    background-color: floralwhite;
-}
-.profileNavButton:last-child{
-    border:none;
 }
 
-.profileBlock{
-    height:auto;
-    width:580px;
-    padding:15px;
-    margin-top:15px;
-    border-top: dashed 1px;
-
-}
-.profileBlock:last-child{
-    border-bottom: dashed 1px;
+#ads
+{
+    height: 1000px;
+    width: 150px;
+    background-color: rgba(255, 255, 255, 0.596);
+    float:left;
 }
 
-#editForm{
-    height:1820px;
-    width:100%;
+.profilePic
+{
+    width:150px;
+    height:150px;
+    background-color:white;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 50px;
+    border-radius:3px;
+
+}
+.trener-details
+{
+    width:150px;
+    height:150px;
+    background-color:white;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 30px;
+    border-radius:3px;
+}
+.detail-list
+{
+    list-style-type: none;
+    color: black;
+    margin: 0px;
+    padding: 10px;
+    font-size: 12px;
+    min-height: 38px;
+    line-height: 200%;
+}
+
+.detail-list > li
+{
+    margin-top: 5px;
+}
+
+.section-menu
+{
+    list-style-type: none;
+    margin: 0px;
+    text-align: center;
+    padding:0px;
+}
+
+.section-menu > li 
+{
+    display: inline-block;
+    border-right: 1px dashed #0a2b42;
+    cursor:pointer;
+    padding: 5px 35px 0px 35px;
+}
+
+.section-menu > li:first-child
+{
+    border-left: 1px dashed #0a2b42;
+
+}
+
+#section-nav
+{
+    height:30px;
+    width:670px;
+    background-color:rgb(255, 255, 255);
+    color: black;
+    border-radius:3px;
+    margin:5px 15px 20px 15px;
 }
 
 .sticky{
 
+    
     width:100%;
     position: fixed;
     top:0;
     z-index:100;
+    margin:0px;
 }
