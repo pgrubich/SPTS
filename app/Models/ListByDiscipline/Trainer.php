@@ -8,7 +8,7 @@ class Trainer extends Model
 {
     protected $table = 'trainers';
     protected $hidden = ['password','gender','phone','email','registerDate'];
-
+    
     public function trDisc(){
         return $this->hasMany('App\Models\ListByDiscipline\TrDiscipline');
     }
