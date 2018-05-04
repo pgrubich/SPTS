@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Search;
 use Illuminate\Http\Request;
 use DB;
-use App\Models\Trainer\Trainer;
+use App\Models\ListByDiscipline\Trainer;
 
 class SearchController extends Controller
 {
@@ -48,9 +48,20 @@ class SearchController extends Controller
      */
     public function show($search)
     {
-        $result = DB::select('call search(?)', [$search]);
+        $replaced = str_replace('_', ' ', $search);
 
-        return json_encode($result);
+        return Trainer::whereHas('TrDisc',function($query) use($replaced)
+        {
+            $query->where('discipline_name', '=', $replaced);
+        })->orWhereHas('trLoc',function($query) use($replaced)
+        {
+            $query->where('city', 'LIKE', '%'.$replaced.'%')
+            ->orWhere('voivodeship', 'LIKE', '%'.$replaced.'%');
+        })->orWhereHas('trPl',function($query) use($replaced)
+        {
+            $query->where('place', 'LIKE', '%'.$replaced.'%');
+        })->with('TrDisc','trLoc','trPl')->get();
+
     }
 
     /**
