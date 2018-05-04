@@ -17,7 +17,9 @@ function search()
             var newContent = '';
             for (var i = 0; i < responseObject.length; i++) // Iteracja przez obiekt.
             { 
-              newContent += '<p>'+" " + responseObject[i].id+" " + responseObject[i].name +" "+ responseObject[i].surname+'</p>';
+              newContent += '<p>'+" " + responseObject[i].id+" " + responseObject[i].name +" "+ responseObject[i].surname;
+              newContent += '<a href="profiles/'+responseObject[i].id+'">Profil</a>';
+
             }
             document.getElementById('search-result').innerHTML = newContent;  // Uaktualnienie strony nową zawartością.
         }else{

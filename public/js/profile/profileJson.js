@@ -1,8 +1,10 @@
+
+
 $(function(){
 
     function loadRates() {
-
-        $.getJSON('http://pri.me/profiles/1.json')
+        var id = window.location.href.slice(-1);
+        $.getJSON('http://pri.me/api/profiles/'+id)
         .done (function(data){
             var msg = "";
             var description = "<h2 id='profile-info'>Profil</h2>"

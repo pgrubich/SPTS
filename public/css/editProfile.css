@@ -10,3 +10,26 @@
 
 }
 
+.editMenu-option:hover{
+    cursor:pointer;
+    color:rgb(23, 23, 230);
+}
+
+#basic-edit{
+    display: block;
+}
+
+#specific-edit{
+    display: none;
+}
+#calendar-edit{
+    display: none;
+}
+
+#gallery-edit{
+    display:none;
+}
+
+#password-edit{
+    display:none;
+}
