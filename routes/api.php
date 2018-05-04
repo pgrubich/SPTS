@@ -24,8 +24,10 @@ Route::get('profile/{id}', function($id){
 });
 */
 
-Route::resource('profiles','TrainersController');
+//Route::resource('profiles','TrainersController');
 
 Route::resource('dyscyplina','ListByDisciplineController');
 
 Route::resource('search','SearchController');
+
+Route::get('api/profiles/{id}','TrainersController@show');
