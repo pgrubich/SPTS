@@ -48,7 +48,9 @@
             <div id="content">
                 
                 <div id="search-section">
-                       sdad
+                    <label>Wpisz frazę <input type="text" id="inputValue"></label>
+                    <button id="search-button">Wyszukaj</button>
+                    <div id="search-result"></div>
                 </div>
 
                 <div id="ads">
@@ -62,6 +64,6 @@
         </article>
     </main>
     
-
+    <script type="text/javascript" src="{{asset('js/profile/search.js')}}"></script>
 </body>
 </html>

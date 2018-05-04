@@ -98,14 +98,14 @@ nav
     border-radius:3px;
 }
 
-#mainInfo
+.leftColumn
 {
     width: 250px;
     float:left;
     height: 300px;
 }
 
-#mainSect
+.middleColumn
 {
     float:left;
 }

@@ -46,7 +46,7 @@
         <article>
             <div id="content">
 
-                <div id="mainInfo">
+                <div class="leftColumn">
                     <section>
                         <div class="profilePic"></div>
 
@@ -61,7 +61,7 @@
                     </section>
                 </div>
                 
-                <div id="mainSect">
+                <div class="middleColumn">
                         <section>
                                 <div id="section-nav">
                                     <ul class="section-menu">
