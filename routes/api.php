@@ -31,3 +31,7 @@ Route::resource('dyscyplina','ListByDisciplineController');
 Route::resource('search','SearchController');
 
 Route::get('api/profiles/{id}','TrainersController@show');
+
+Route::get('api/dyscyplina/{id}','ListByDisciplineController@show');
+
+Route::get('api/search/{id}','SearchController@show');
