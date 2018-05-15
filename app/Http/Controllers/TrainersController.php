@@ -51,6 +51,8 @@ class TrainersController extends Controller
         return Trainer::with('TrDisc','trCert','trUni','trLoc','trPl','trOff','trOp','trTr')
                         ->where('id','=',$id)
                         ->get()->toJson(JSON_PRETTY_PRINT);
+
+        //return json_encode($result, JSON_UNESCAPED_UNICODE);
     }
 
     /**

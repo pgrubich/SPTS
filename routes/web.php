@@ -12,6 +12,9 @@
 */
 
 //Route::get('/profile', 'TrainersController@profile');
+
 Route::view('/searching','searching');
+
 Route::view('/editProfile','editProfile');
+
 Route::view('/profiles/{id}', 'profile');

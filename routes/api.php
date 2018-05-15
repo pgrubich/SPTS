@@ -26,12 +26,11 @@ Route::get('profile/{id}', function($id){
 
 //Route::resource('profiles','TrainersController');
 
-Route::resource('dyscyplina','ListByDisciplineController');
-
-Route::resource('search','SearchController');
 
 Route::get('api/profiles/{id}','TrainersController@show');
 
 Route::get('api/dyscyplina/{id}','ListByDisciplineController@show');
 
 Route::get('api/search/{id}','SearchController@show');
+
+Route::get('api/{discipline}/{location}','DisciplineAndLocationController@show');
