@@ -18,3 +18,5 @@ Route::view('/searching','searching');
 Route::view('/editProfile','editProfile');
 
 Route::view('/profiles/{id}', 'profile');
+
+Route::view('/{dycyplina}/{miasto}', 'earchDisciplineAndLocationResult');
