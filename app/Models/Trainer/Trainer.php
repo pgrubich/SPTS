@@ -3,11 +3,15 @@
 namespace App\Models\Trainer;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Auth\Authenticatable;
 
-class Trainer extends Model
+class Trainer extends Authenticable
 {
     protected $table = 'trainers';
     protected $hidden = ['password','id'];
+    protected $fillable = ['password','email'];
+    const CREATED_AT = 'registerDate';
+    public $timestamps = false;
 
     public function trDisc(){
         return $this->hasMany('App\Models\Trainer\TrDiscipline');

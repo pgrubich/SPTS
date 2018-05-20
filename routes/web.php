@@ -20,3 +20,7 @@ Route::view('/editProfile','editProfile');
 Route::view('/profiles/{id}', 'profile');
 
 Route::view('/{dycyplina}/{miasto}', 'earchDisciplineAndLocationResult');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
