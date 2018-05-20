@@ -10,7 +10,8 @@
 	
 	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
 	
-	<link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/searching.css')}}" type="text/css" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -26,19 +27,22 @@
     <header>
 
         <div id="logBar">
-            <button>Zaloguj się</button>
-            <button> Zarejerstruj się</button>
+            <span>
+            <a href="#">Zaloguj się</a>
+            /
+            <a href="#">Zarejerstruj się</a>
+            </span>
         </div>
 
-        <h1 class="logo">Znajdź swojego trenera</h1>
+        
 
         <nav>
             <ul class="menu">
-              <li><a href="#">Navigacja1</a></li>
-              <li><a href="#">Navigacja2</a></li>
-              <li><a href="#">Navigacja3</a></li>
-              <li><a href="#">Navigacja4</a></li>
-              <li><a href="#">Navigacja5</a></li>
+              <li><a href="#">Nawigacja1</a></li>/
+              <li><a href="#">Nawigacja2</a></li>/
+              <li><a href="#">Nawigacja3</a></li>/
+              <li><a href="#">Nawigacja4</a></li>/
+              <li><a href="#">Nawigacja5</a></li>
             </ul>
         </nav>
     </header>
@@ -46,11 +50,86 @@
     <main>
         <article>
             <div id="content">
+
+
+                <div id="dyscpiline-list" class="overlay">
+                    <div class="overlay-content">
+                        <a href="#" id="hide-dyscyplines" class="closebtn">&times;</a>
+                        <div class="column">
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        </div>
+                        <div class="column">
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        </div>
+                        <div class="column">
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        </div>
+                        <div class="column">
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        <a class="dyscypline-record" href="#"></a>
+                        </div>
+                        <div style="clear:both;"></div>
+
+
+                       
+                        
+                    </div>
+                </div>
+
+
+
                 
                 <div id="search-section">
-                    <label>Wpisz frazę <input type="text" id="inputValue"></label>
-                    <button id="search-button">Wyszukaj</button>
-                    <div id="search-result"></div>
+                    <div id="search-options">
+                            <ul class="search-list">
+                                <li id="dyscypline-box">Dyscyplina <i id="show-dyscyplines" class="icon-down"></i></li>
+                                <li class="input-px-diff"><input id="city-input" class="input-search" type="text" value="Miasto"></li>        
+                            </ul>
+                        <button id="search-button">Wyszukaj</button>
+                    </div>
                 </div>
 
                 <div id="ads">
@@ -65,5 +144,6 @@
     </main>
     
     <script type="text/javascript" src="{{asset('js/profile/search.js')}}"></script>
+    
 </body>
 </html>

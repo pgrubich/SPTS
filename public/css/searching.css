@@ -1,13 +1,133 @@
 #search-section{
-    width:950px;
+    height:100%;
+    width:90%;
     float:left;
-    background-color: white;
     color: black;
 }
 
-#search-result
+#search-options
 {
-    width:100%;
-    height:200px;
-    background-color: grey;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 10%;
+    width: 600px;
+}
+
+.search-list{
+    list-style-type: none;
+    
+}
+
+.search-list > li{
+    display: inline-block;
+    font-size: 20px;
+    background-color: white;
+    padding: 5px 5px 5px 10px;
+    width: 200px;
+    text-align: left;
+    margin-left:15px;
+    border-radius: 4px;
+    height: 40px;
+
+}
+
+
+
+#search-button{
+    display: block;
+    margin-left: 215px;
+    width: 150px;
+    height: 40px;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+.input-search{
+    border: none;
+    height:30px;
+    font-size:20px;
+    width:150px;
+}
+
+.input-search:focus{
+    outline:none;
+}
+
+.input-px-diff{
+    top:1px;
+    position:relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* overlay  */
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 0.8);
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 10%;
+    width: 50%;
+    margin-top: 30px;
+    background-color: rgba(230, 219, 219, 0.9);
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    color: #818181;
+    transition: 0.3s;
+    display:block;
+    width:0%;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: -100px;
+    right: 0px;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+    }
+  }
+
+
+
+.column{
+    float:left;
+    width:25%;
+    
 }

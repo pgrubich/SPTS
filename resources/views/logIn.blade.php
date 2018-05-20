@@ -20,7 +20,7 @@
 <div>
 			<form action="log_in/login.php" method="post">
 			E-mail:
-			<input type="email" name="login"><br>
+			<input type="email" name="userEmail"><br>
 			Hasło: <br>
 			<input type="password" name="password"><br>
 
