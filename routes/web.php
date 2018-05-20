@@ -19,7 +19,7 @@ Route::view('/editProfile','editProfile');
 
 Route::view('/profiles/{id}', 'profile');
 
-Route::view('/{dycyplina}/{miasto}', 'earchDisciplineAndLocationResult');
+Route::view('/{dycyplina}/{miasto}', 'searchDisciplineAndLocationResult');
 
 Auth::routes();
 

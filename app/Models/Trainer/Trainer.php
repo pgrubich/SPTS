@@ -5,7 +5,7 @@ namespace App\Models\Trainer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
 
-class Trainer extends Authenticable
+class Trainer extends Model
 {
     protected $table = 'trainers';
     protected $hidden = ['password','id'];
