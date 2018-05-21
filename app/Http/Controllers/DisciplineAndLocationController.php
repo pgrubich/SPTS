@@ -62,12 +62,17 @@ class DisciplineAndLocationController extends Controller
 
         return Trainer::
         whereHas('TrDisc',function($query) use($discipline)
-        {
+        { 
             $query->where('discipline_url_name', '=', $discipline);
         })
         ->whereHas('trLoc',function($query) use($location) 
         {
-            $query->where($this->transliterateString('city'), '=', $location);
+            // zrobic Jsona z miastami
+            $transliterationTable = array('Poznan' => 'Poznań');
+            
+            $lacation_url = str_replace(array_keys($transliterationTable), array_values($transliterationTable), $location);
+
+            $query->where('city', '=', $lacation_url);
         })
         ->with('TrDisc','trLoc','trPl')->get();
     }
