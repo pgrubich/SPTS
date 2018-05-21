@@ -27,9 +27,9 @@
 
         <div id="logBar">
             <span>
-            <a href="#">Zaloguj się</a>
+            <a href="/login">Zaloguj się</a>
             /
-            <a href="#">Zarejerstruj się</a>
+            <a href="/register">Zarejerstruj się</a>
             </span>
         </div>
 

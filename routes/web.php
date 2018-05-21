@@ -13,7 +13,7 @@
 
 //Route::get('/profile', 'TrainersController@profile');
 
-Route::view('/searching','searching');
+Route::view('','searching');
 
 Route::view('/editProfile','editProfile');
 

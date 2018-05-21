@@ -28,9 +28,9 @@
 
         <div id="logBar">
             <span>
-            <a href="#">Zaloguj się</a>
+            <a href="/login">Zaloguj się</a>
             /
-            <a href="#">Zarejerstruj się</a>
+            <a href="/register">Zarejerstruj się</a>
             </span>
         </div>
 
@@ -139,11 +139,11 @@
                 <div style="clear:both;"></div>
             
             </div>
-           
+
         </article>
     </main>
-    
+
     <script type="text/javascript" src="{{asset('js/profile/search.js')}}"></script>
-    
+
 </body>
 </html>
