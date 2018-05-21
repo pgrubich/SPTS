@@ -23,4 +23,4 @@ Route::view('/{dycyplina}/{miasto}', 'searchDisciplineAndLocationResult');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
