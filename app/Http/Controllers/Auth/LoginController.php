@@ -27,10 +27,7 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/searching';
 
-    protected function redirectTo()
-    {
-        return redirect('/searching')->with('success', 'You are successfully logged in');
-    }
+
     /**
      * Create a new controller instance.
      *
