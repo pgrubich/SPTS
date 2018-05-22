@@ -28,7 +28,7 @@ var xhr = new XMLHttpRequest();
 xhr.onload = function() {                       
   if(xhr.status === 200) {
     responseObject = JSON.parse(xhr.responseText);  
-    
+
     var singleRecord = document.getElementsByClassName("dyscypline-record");                    
     for (var i = 0; i < 12; i++){
         var column1 ='';
@@ -50,17 +50,6 @@ xhr.onload = function() {
         column4 += responseObject.Dysciplines[i].Name;
         singleRecord[i].textContent = column4;
     }   
-    /*
-    var columns = document.getElementsByClassName("column");
-    columns[0].innerHTML= column1;
-    columns[1].innerHTML= column2;
-    columns[2].innerHTML= column3;
-    columns[3].innerHTML= column4;
-    console.log(column4);
-    console.log(responseObject.Dysciplines.length);
-
-    */
-
 
   }
 };
@@ -90,8 +79,10 @@ var searchButton = document.getElementById("search-button");
 searchButton.addEventListener('click',searchResult,false);
 var cityInput = document.getElementById("city-input");
 function searchResult(){
-    var dysc = dyscyplineBox.firstChild.textContent.split(' ').join('');
+    var dysc = dyscyplineBox.firstChild.textContent.split(' ').join('_');
     var city = cityInput.value;
+    localStorage.setItem("discipline",  dyscyplineBox.firstChild.textContent); 
+    localStorage.setItem("city", city); 
     document.location.href = "/"+dysc+"/"+city;
 }
 

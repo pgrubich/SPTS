@@ -11,6 +11,7 @@
 	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
 	
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/profilesResults.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -50,11 +51,13 @@
     <main>
         <article>
             <div id="content">
-                
-                <div id="search-section">
-                    <label>Wpisz frazę <input type="text" id="inputValue"></label>
-                    <button id="search-button">Wyszukaj</button>
-                    <div id="search-result"></div>
+                <div id="filter-section">
+                </div>
+                <div id="trainers-container">
+                    <div id="header-section">
+                    </div>
+                    <div id="trainers-box">
+                    </div>
                 </div>
 
                 <div id="ads">
@@ -68,6 +71,6 @@
         </article>
     </main>
     
-    <script type="text/javascript" src="{{asset('js/profile/search.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/profile/profilesResult.js')}}"></script>
 </body>
 </html>

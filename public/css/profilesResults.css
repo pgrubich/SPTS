@@ -1,0 +1,63 @@
+#filter-section{
+    height: 500px;
+    width: 14%;
+    background-color:grey;
+    float:left;
+    margin-left:1%;
+    margin-top:10px;
+    border-radius:3px;
+}
+
+
+#header-section{
+
+    height: 40px;
+    width: 87%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:10px;
+    background-color:grey;
+    border-radius:3px;
+    font-size: 21px;
+    padding: 4px 0px 0px 3% ;
+    letter-spacing: 1px;
+    word-spacing: 10px;
+    
+
+}
+
+#trainers-box{
+    width: 90%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:10px;
+    
+    height: 530px;
+
+}
+#trainers-container{
+
+    float:left;
+    width: 75%;
+}
+
+
+.single-trainer-result{
+    height: 150px;
+    background-color:grey;
+    border-radius:3px;
+}
+
+.profile-picture{
+    float:left;
+    height:120px;
+    width: 110px;
+    background-color:white;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.profile-info{
+    float:left;
+    font-size: 13px;
+    margin-left: 20px;
+}
