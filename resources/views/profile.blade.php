@@ -11,6 +11,7 @@
 	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
 	
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/profile.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -107,7 +108,20 @@
                         <div class="categories">
                             <h2 id="reviews-info">Opinie</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porttitor, ex eu tincidunt rhoncus, ex diam placerat felis, eu rhoncus ex libero vestibulum risus. Integer mattis suscipit sem at suscipit. Proin scelerisque lectus efficitur ipsum luctus venenatis. Aliquam ultricies vehicula magna, ac facilisis odio tempor eu. Duis ut varius tellus. Vivamus tristique vitae sapien nec imperdiet. Quisque ac elit lectus. Praesent tempus tincidunt libero quis pretium. Maecenas id eros ut enim maximus molestie. Praesent elit velit, tincidunt eu nibh id, pharetra venenatis purus. Pellentesque a consectetur dui. In ultricies orci vitae sodales viverra.</p>
-                        </div>
+							<form action="#" id="usrform">
+                            Imię: <input type="text" name="usrname"></br>
+                            Nazwisko: <input type="text" name="usrsurname"></br>
+                            E-mail: <input type="email" name="email"></br>
+                            <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
+                            <span><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
+                            <span><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
+                            <span><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
+                            <span><input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
+                            <textarea name="comment" form="usrform" rows="10" cols="70">Opinia</textarea>
+                            <input type="submit">
+                            </form>
+
+						</div>
                     </section>
                 </div>
 
