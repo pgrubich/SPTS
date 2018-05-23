@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/searching';
+    //protected $redirectTo = '';
 
 
     /**
@@ -36,5 +36,17 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function logout()
+    {
+      auth()->logout();
+      return redirect('/');
+    }
+
+    public function redirectTo()
+    {
+        session()->flash('success', "Zostałeś zalogowany!" );
+        return '/';
     }
 }

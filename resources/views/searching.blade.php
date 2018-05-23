@@ -26,15 +26,25 @@
 
     <header>
 
+        @if (Auth::check())
         <div id="logBar">
             <span>
-            <a href="#">Zaloguj się</a>
+            <a href="/logout" >Wyloguj się</a>
+             /
+             <a href="/login">Zaloguj się</a>
             /
-            <a href="#">Zarejerstruj się</a>
+            <a href="/register">Zarejerstruj się</a>
             </span>
         </div>
-
-        
+         @else
+            <div id="logBar">
+            <span>
+            <a href="/login">Zaloguj się</a>
+            /
+            <a href="/register">Zarejerstruj się</a>
+            </span>
+            </div>
+        @endif
 
         <nav>
             <ul class="menu">
@@ -139,7 +149,13 @@
                 <div style="clear:both;"></div>
             
             </div>
-           
+            @if (session('success'))
+                <div class="alert alert-info" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <p style="color:White">  {{ session('success') }} </p>
+                </div>
+            @endif
+
         </article>
     </main>
     
