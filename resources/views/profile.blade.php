@@ -107,21 +107,43 @@
                     <section>
                         <div class="categories">
                             <h2 id="reviews-info">Opinie</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porttitor, ex eu tincidunt rhoncus, ex diam placerat felis, eu rhoncus ex libero vestibulum risus. Integer mattis suscipit sem at suscipit. Proin scelerisque lectus efficitur ipsum luctus venenatis. Aliquam ultricies vehicula magna, ac facilisis odio tempor eu. Duis ut varius tellus. Vivamus tristique vitae sapien nec imperdiet. Quisque ac elit lectus. Praesent tempus tincidunt libero quis pretium. Maecenas id eros ut enim maximus molestie. Praesent elit velit, tincidunt eu nibh id, pharetra venenatis purus. Pellentesque a consectetur dui. In ultricies orci vitae sodales viverra.</p>
-							<form action="#" id="usrform">
-                            Imię: <input type="text" name="usrname"></br>
-                            Nazwisko: <input type="text" name="usrsurname"></br>
-                            E-mail: <input type="email" name="email"></br>
-                            <span><input type="radio" name="rating" id="str5" value="5"><label for="str5"></label></span>
-                            <span><input type="radio" name="rating" id="str4" value="4"><label for="str4"></label></span>
-                            <span><input type="radio" name="rating" id="str3" value="3"><label for="str3"></label></span>
-                            <span><input type="radio" name="rating" id="str2" value="2"><label for="str2"></label></span>
-                            <span><input type="radio" name="rating" id="str1" value="1"><label for="str1"></label></span>
-                            <textarea name="comment" form="usrform" rows="10" cols="70">Opinia</textarea>
-                            <input type="submit">
-                            </form>
+                            <form action='/profiles/addOpinion' method = 'GET'>
 
-						</div>
+                            <label>
+                                Imię 
+                                <input name='name' type='text' required pattern=".{3,}">
+                            </label>
+                            <br>
+                            <label>
+                                Nazwisko 
+                                <input name='surname' type='text' required pattern=".{3,}">
+                            </label>
+                            <br>
+                            <label>
+                                Email 
+                                <input name='email' type='email' required>
+                            </label>
+                            <br>
+                                Ocena
+                                <input type="radio" name="rating" id="str1" value="1"><label for="str1"></label>
+                                <input type="radio" name="rating" id="str2" value="2"><label for="str2"></label>
+                                <input type="radio" name="rating" id="str3" value="3"><label for="str3"></label>
+                                <input type="radio" name="rating" id="str4" value="4"><label for="str4"></label>
+                                <input type="radio" name="rating" id="str5" value="5"><label for="str5"></label>
+                            <br>
+                            <label>
+                                Opinia 
+                                <br>
+                                <textarea name="description" cols="70" rows="10" required pattern=".{10,}"></textarea>
+                            </label>
+                            <br>
+                                <input type='hidden' name='trainer_id' value='{!! Request::segment(2) !!}'/>
+                            <input type="submit">
+                            </form> 
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porttitor, ex eu tincidunt rhoncus, ex diam placerat felis, eu rhoncus ex libero vestibulum risus. Integer mattis suscipit sem at suscipit. Proin scelerisque lectus efficitur ipsum luctus venenatis. Aliquam ultricies vehicula magna, ac facilisis odio tempor eu. Duis ut varius tellus. Vivamus tristique vitae sapien nec imperdiet. Quisque ac elit lectus. Praesent tempus tincidunt libero quis pretium. Maecenas id eros ut enim maximus molestie. Praesent elit velit, tincidunt eu nibh id, pharetra venenatis purus. Pellentesque a consectetur dui. In ultricies orci vitae sodales viverra.</p>
+
+
+						</div>  
                     </section>
                 </div>
 
@@ -136,7 +158,6 @@
         </article>
     </main>
     
-
 <script type="text/javascript" src="{{asset('js/profile/profileJson.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/profile/profileEngine.js')}}"></script>
 </body>

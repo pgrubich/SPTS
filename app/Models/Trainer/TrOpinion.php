@@ -9,6 +9,8 @@ class TrOpinion extends Model
     protected $table = 'trainers_opinions';
     protected $hidden = ['id','trainer_id'];
 
+    protected $fillable = ['name','surname', 'email', 'rating', 'description', 'trainer_id'];
+
     public function trainer(){
         return $this->belongsTo('Trainer');
     }

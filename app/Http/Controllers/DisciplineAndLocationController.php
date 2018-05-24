@@ -59,6 +59,8 @@ class DisciplineAndLocationController extends Controller
 
     public function show($discipline, $location)
     {
+        $discipline = Str::lower($discipline);
+        $location = Str::lower($location);
 
         return Trainer::
         whereHas('TrDisc',function($query) use($discipline)
@@ -68,7 +70,7 @@ class DisciplineAndLocationController extends Controller
         ->whereHas('trLoc',function($query) use($location) 
         {
             // zrobic Jsona z miastami
-            $transliterationTable = array('Poznan' => 'Poznań');
+            $transliterationTable = array('poznan' => 'Poznań');
             
             $lacation_url = str_replace(array_keys($transliterationTable), array_values($transliterationTable), $location);
 

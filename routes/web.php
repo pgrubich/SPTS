@@ -17,6 +17,8 @@ Route::view('','searching');
 
 Route::view('/editProfile','editProfile')->middleware('auth');
 
+Route::get('/profiles/addOpinion', ['uses' =>'OpinionController@create']);
+
 Route::view('/profiles/{id}', 'profile');
 
 Route::view('/{dycyplina}/{miasto}', 'searchDisciplineAndLocationResult');
@@ -24,6 +26,5 @@ Route::view('/{dycyplina}/{miasto}', 'searchDisciplineAndLocationResult');
 Auth::routes();
 
 Route::get('/logout', 'Auth\LoginController@logout');
-
 
 
