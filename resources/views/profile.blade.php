@@ -134,7 +134,7 @@
                             <label>
                                 Opinia 
                                 <br>
-                                <textarea name="description" cols="70" rows="10" required pattern=".{10,}"></textarea>
+                                <textarea name="description" cols="70" rows="10" required maxlength="500" minlength="5"></textarea>
                             </label>
                             <br>
                                 <input type='hidden' name='trainer_id' value='{!! Request::segment(2) !!}'/>
