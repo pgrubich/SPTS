@@ -54,7 +54,7 @@
                    <p><span id="editMenu-option2" class="editMenu-option"> 2. Informacje szczegółowe</span></p>
                    <p><span id="editMenu-option3" class="editMenu-option"> 3. Mój kalendarz</span></p>
                    <p><span id="editMenu-option4" class="editMenu-option"> 4. Galeria zdjęć</span></p>
-                   <p><span id="editMenu-option5" class="editMenu-option"> 5. Zmiana hasła lub e-mail</span></p>
+                   <p><span id="editMenu-option5" class="editMenu-option"> 5. Zmiana adresu e-mail</span></p>
                 </div>
                 
             </div> 
@@ -63,16 +63,29 @@
 
                     <div id="basic-edit">
                         <fieldset>
-                            <legend>Informacje podstawowe</legend>
-                            <form>
+                            <legend>Informacje podstawowe dla </legend>
+                            
+                            <form action='editPrimaryInfo' method = 'GET'>
+                                
                                 <p>
-                                        Imię: <input type="text" />
+                                <label>
+                                        Imię: 
+                                        <input name='name' type='text' pattern=".{3,}">
+                                </label>
                                 </p>
+
                                 <p>
-                                        Nazwisko: <input type="text" />
+                                <label>
+                                        Nazwisko: 
+                                        <input name='surname' type='text' pattern=".{3,}">
+                                </label>
                                 </p>
+
                                 <p>
-                                        Data urodzenia: <input type="date" />
+                                <label>
+                                        Data urodzenia:
+                                        <input name='bdate' type="date"/>
+                                <label>
                                 </p>
                                 
                                 <p>
@@ -82,18 +95,34 @@
                                         <input type="radio" name="gender" value="m">
                                         <label for="male">mężczyzna</label>
                                 </p>
+
                                 <p>
-                                        Adres e-mail: <input type="text" />
+                                <label>
+                                    Telefon: 
+                                    <input name='phone' type='tel'>
+                                </label>
                                 </p>
+                                
                                 <p>
-                                        Telefon komórkowy: <input type="text" />
-                                </p>
-                                <p>
-                                        Telefon: <input type="text" />
+                                <label>
+                                    Instagram: 
+                                    <input name='instagram' type='text' pattern=".{3,}">
+                                </label>
                                 </p>
 
+                                <p>
+                                <label>
+                                    Facebook: 
+                                    <input name='facebook' type='text' pattern=".{3,}">
+                                </label>
+                                </p>
+
+                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+
                                 <input type="submit" value="Zapisz">
+
                             </form>
+
                         </fieldset>
                     </div>
                     <div id="specific-edit">
@@ -179,13 +208,38 @@
                             </form>
                         </fieldset>
                     </div>
+
                     <div id="password-edit">
-                        <fieldset>
-                            <legend>Zmiana hasła lub e-mail</legend>
-                                <button> Resetuj hasło </button> </br>
-                                <button> Resetuj e-mail </button>
+
+                    <form action='editEmailInfo' method = 'GET'>
+                         <fieldset>
+                            <legend>Zmiana email</legend>
+
+                                <p>
+                                <label>
+                                        Aktualny adres email: 
+                                        <input name='current_email' type='email' pattern="{{ Auth::user()->email }}" required>
+                                </label>
+                                </p>
+
+                                <p>
+                                <label>
+                                        Nowy adres email: 
+                                        <input name='new_email' type='email' required>
+                                </label>
+                                </p>
+
+                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+
+                                <input type="submit" value="Zmień">
+                                </br>
                         </fieldset>
+
+                    <form>
+
                     </div>
+
+
                 </div>
                   
             </div>
