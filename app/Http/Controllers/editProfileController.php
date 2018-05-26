@@ -11,15 +11,16 @@ class editProfileController extends Controller
     {
 
         $trainer = Trainer::find($request['id']);
-        $trainer->name = $request['name'];
-        $trainer->surname = $request['surname'];
-        $trainer->gender = $request['gender'];
-        $trainer->phone = $request['phone'];
-        $trainer->facebook = $request['facebook'];
-        $trainer->instagram = $request['instagram'];
+        if ($request['name'] != '')        $trainer->name = $request['name'];
+        if ($request['surname'] != '')     $trainer->surname = $request['surname'];
+        if ($request['gender'] != '')      $trainer->gender = $request['gender'];
+        if ($request['bdate'] != '')       $trainer->bdate = $request['bdate'];
+        if ($request['phone'] != '')       $trainer->phone = $request['phone'];
+        if ($request['facebook'] != '')    $trainer->facebook = $request['facebook'];
+        if ($request['instagram'] != '')   $trainer->instagram = $request['instagram'];
         $trainer->save();
 
-        return $request;
+        return redirect('/editProfile');
     } 
 
     protected function updateEmailInfo(Request $request)
@@ -27,8 +28,8 @@ class editProfileController extends Controller
         $trainer = Trainer::find($request['id']);
         $trainer->email = $request['new_email'];
         $trainer->save();
-        
-        return $request;
+
+        return redirect('/editProfile');
     } 
 
 }

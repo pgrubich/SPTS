@@ -70,21 +70,21 @@
                                 <p>
                                 <label>
                                         Imię: 
-                                        <input name='name' type='text' pattern=".{3,}">
+                                        <input name='name' type='text' placeholder='{{ Auth::user()->name }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
                                 <label>
                                         Nazwisko: 
-                                        <input name='surname' type='text' pattern=".{3,}">
+                                        <input name='surname' type='text' placeholder='{{ Auth::user()->surname }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
                                 <label>
                                         Data urodzenia:
-                                        <input name='bdate' type="date"/>
+                                        <input name='bdate' type="date" placeholder='{{ Auth::user()->bdate }}' >
                                 <label>
                                 </p>
                                 
@@ -99,21 +99,21 @@
                                 <p>
                                 <label>
                                     Telefon: 
-                                    <input name='phone' type='tel'>
+                                    <input name='phone' type='tel' placeholder='{{ Auth::user()->phone }}'>
                                 </label>
                                 </p>
                                 
                                 <p>
                                 <label>
                                     Instagram: 
-                                    <input name='instagram' type='text' pattern=".{3,}">
+                                    <input name='instagram' type='text' placeholder='{{ Auth::user()->instagram }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
                                 <label>
                                     Facebook: 
-                                    <input name='facebook' type='text' pattern=".{3,}">
+                                    <input name='facebook' type='text' placeholder='{{ Auth::user()->facebook }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
