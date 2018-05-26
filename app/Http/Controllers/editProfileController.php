@@ -32,4 +32,12 @@ class editProfileController extends Controller
         return redirect('/editProfile');
     } 
 
+    protected function updateSpecificInfo(Request $request)
+    {
+        $trainer = Trainer::find($request['id']);
+        if ($request['description'] != '')        $trainer->description = $request['description'];
+        $trainer->save();
+
+        return redirect('/editProfile');
+    }
 }

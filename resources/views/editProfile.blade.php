@@ -126,11 +126,15 @@
                         </fieldset>
                     </div>
                     <div id="specific-edit">
+
+                    <form action='editSpecificInfo' method = 'GET'>
                         <fieldset>
                             <legend>Informacje szczegółowe</legend>
-                            <form>
                                 <p>
-                                        Opis trenera:</br> <textarea name="message" rows="10" cols="30"></textarea>
+                                        <label>
+                                        Opis trenera:
+                                        <textarea name="description" placeholder='{{ Auth::user()->description }}' cols="70" rows="10" required maxlength="500" minlength="5"></textarea>
+                                        </label>
                                 </p>
                                 <p>
 
@@ -182,10 +186,13 @@
                                 <p>Cennik: <input type="text" /> </p>
                                 <p>
                                 Certyfikaty: </br> <textarea name="message" rows="10" cols="30"></textarea>
-                                </p>        
+                                </p> 
+
+                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+
                                 <input type="submit" value="Zapisz">
-                            </form>
                         </fieldset>
+                        </form>
                     </div>
 
                     <div id="calendar-edit">
@@ -201,11 +208,17 @@
                     <div id="gallery-edit">
                         <fieldset>
                             <legend>Moja galeria</legend>
-                            <form>
-                            <p> Zdjęcie profilowe: <input type="file" /> </p>
-                            <p> Galeria zdjęć: <input type="file" /> </p>
-                                <input type="submit" value="Zapisz">
-                            </form>
+                            
+
+                        <form action='updateProfilePhoto' method = 'GET'>
+                        <label>Dodaj zdjęcie profilowe</label>
+                            <input type='file' name='file' id='file'>
+                            <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                            <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                            <input type='submit' value='Dodaj zdjęcie' name='submit'>
+                        </form>
+
+
                         </fieldset>
                     </div>
 

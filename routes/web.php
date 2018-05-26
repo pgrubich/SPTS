@@ -30,4 +30,8 @@ Route::get('editPrimaryInfo', ['uses' =>'editProfileController@updatePrimaryInfo
 
 Route::get('editEmailInfo', ['uses' =>'editProfileController@updateEmailInfo']);
 
+Route::get('editSpecificInfo', ['uses' =>'editProfileController@updateSpecificInfo']);
+
+Route::get('updateProfilePhoto', ['uses' => 'TrainersController@updateProfilePhoto']);
+
 
