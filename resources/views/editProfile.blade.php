@@ -183,7 +183,13 @@
 
                                         <br />
                                 </p>
-                                <p>Cennik: <input type="text" /> </p>
+                                <p>Cennik: <input type="text" /> 
+                                
+                                </p>
+
+
+
+
                                 <p>
                                 Certyfikaty: </br> <textarea name="message" rows="10" cols="30"></textarea>
                                 </p> 
