@@ -139,15 +139,19 @@
                         </fieldset>
                     </div>
                     <div id="specific-edit">
+                    
+                    <form id="editSpecificInfo" action='editSpecificInfo' method = 'GET'></form>
+                    <form id="addCourse" action='addCourse' method = 'GET'></form>
+                    <form id="addUni" action='addUni' method = 'GET'></form>
+                    <form id="addTrainerOffer" action='addTrainerOffer' method = 'GET'></form>
 
-                    <form action='editSpecificInfo' method = 'GET'>
                         <fieldset>
                             <legend>Informacje szczegółowe</legend>
                                 <p>
                                         <label>
                                         Opis trenera:
                                         <br />
-                                        <textarea name="description" placeholder='{{ Auth::user()->description }}' cols="70" rows="10" required maxlength="500" minlength="5"></textarea>
+                                        <textarea form="editSpecificInfo" name="description" placeholder='{{ Auth::user()->description }}' cols="70" rows="10" maxlength="500" minlength="5"></textarea>
                                         </label>
                                 </p>
                                 <p>
@@ -204,26 +208,26 @@
                                 Certyfikaty:
                                 <br> </br>
                                     <span id="show-course" >+ Dodaj certyfikat</span>: </br></br>
+    
                                     <div id="edit-course">
                                         <p>
                                             Nazwa placówki:
-                                            <input name='place' type="text">
+                                            <input form="addCourse" name='place' type="text" pattern=".{3,}" required>
                                         </p>
                                         <p>
                                             Nazwa kursu:
-                                            <input name='name' type="text">
+                                            <input form="addCourse" name='name' type="text" pattern=".{3,}">
                                         </p>
                                         <p>
                                             Data rozpoczęcia:
-                                            <input name='begin_date' type="date">
+                                            <input form="addCourse" name='begin_date' type="date">
                                         </p>
                                         <p>
                                             Data zakończenia:
-                                            <input name='end_date' type="date">
+                                            <input form="addCourse" name='end_date' type="date">
                                         </p>
-
-                                        <input type="submit" value="Dodaj certyfikat">
-
+                                        <input type='hidden' form="addCourse" name='id' value='{{ Auth::user()->id }}'/>
+                                        <input type="submit" value="Dodaj certyfikat" form="addCourse">
                                     </div>
                                 </label>
 
@@ -236,26 +240,26 @@
                                     <div id="edit-uni">
                                         <p>
                                             Nazwa uczelni:
-                                            <input name='name' type="text">
+                                            <input form="addUni" name='name' type="text" pattern=".{3,}" required>
                                         </p>
                                         <p>
                                             Kierunek:
-                                            <input name='degree' type="text">
+                                            <input form="addUni" name='course' type="text" pattern=".{3,}" required>
                                         </p>
                                         <p>
                                             Tytuł:
-                                            <input name='qualification' type="text">
+                                            <input form="addUni" name='degree' type="text" pattern=".{3,}">
                                         </p>
                                         <p>
                                             Data rozpoczęcia:
-                                            <input name='begin_date' type="date">
+                                            <input form="addUni" name='begin_date' type="date">
                                         </p>
                                         <p>
                                             Data zakończenia:
-                                            <input name='end_date' type="date">
+                                            <input form="addUni" name='end_date' type="date">
                                         </p>
-
-                                        <input type="submit" value="Dodaj uczelnię wyższą">
+                                        <input type='hidden' form="addUni" name='id' value='{{ Auth::user()->id }}'/>
+                                        <input type="submit" value="Dodaj uczelnię wyższą" form="addUni" >
 
                                     </div>
                                 </label>
@@ -269,28 +273,27 @@
                                     <div id="edit-price">
                                         <p>
                                             Nazwa zajęć:
-                                            <input name='classesName' type="text">
+                                            <input form="addTrainerOffer" name='classes_name' type="text" pattern=".{3,}" required>
                                         </p>
                                         <p>
                                             Cena:
-                                            <input name='price' type="number">
+                                            <input form="addTrainerOffer" name='price' type="number">
                                         </p>
                                         <p>
                                             Liczba uczestników:
-                                            <input name='numbesrOfMembers' type="number">
+                                            <input form="addTrainerOffer" name='numbers_of_members' type="number" required>
                                         </p>
-
-                                        <input type="submit" value="Dodaj ofertę do cennika">
+                                        <input form="addTrainerOffer" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                                        <input type="submit" value="Dodaj ofertę do cennika" form="addTrainerOffer">
                                     </div>
                                 </label>
 
-                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                                <input form="editSpecificInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
 
                                 <br />
                                 <br />
-                                <input type="submit" value="Zapisz">
+                                <input type="submit" value="Zapisz" form="editSpecificInfo">
                         </fieldset>
-                        </form>
                     </div>
 
                     <div id="calendar-edit">

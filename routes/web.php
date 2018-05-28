@@ -28,12 +28,14 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('editPrimaryInfo', ['uses' =>'editProfileController@updatePrimaryInfo']);
 
+Route::get('editSpecificInfo', ['uses' =>'editProfileController@updateSpecificInfo']);
+
+Route::get('addCourse', ['uses' =>'editProfileController@addCourse']);
+
+Route::get('addUni', ['uses' =>'editProfileController@addUni']);
+
+Route::get('addTrainerOffer', ['uses' =>'editProfileController@addTrainerOffer']);
+
 Route::get('editEmailInfo', ['uses' =>'editProfileController@updateEmailInfo']);
 
 Route::post('editPasswordInfo', ['uses' =>'editProfileController@editPasswordInfo']);
-
-Route::get('editSpecificInfo', ['uses' =>'editProfileController@updateSpecificInfo']);
-
-Route::get('updateProfilePhoto', ['uses' => 'TrainersController@updateProfilePhoto']);
-
-
