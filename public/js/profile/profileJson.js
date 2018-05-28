@@ -7,6 +7,7 @@ $(function(){
         $.getJSON('http://pri.me/api/profiles/'+id)
         .done (function(data){
             var msg = "";
+            var reviews = "<h2 id='reviews-info'>Opinie</h2>";
             var description = "<h2 id='profile-info'>Profil</h2>"
             var offert = "<h2 id='prices-info'>Cennik</h2> "
             $.each(data, function(index, element) {
@@ -30,10 +31,21 @@ $(function(){
                 });
                 $.each(element.tr_off,function(ind,ele){
                     offert+= "<p>"+ele.name+" - "+ele.price+" zł"+"</p>";
+                    
+                });
+                $.each(element.tr_op,function(ind,ele){
+                    reviews+= "<div class='review-record'>";
+                    reviews+= ele.name+" "+ele.surname;
+                    reviews+= "<span> Ocena: "+ele.rating+ "</span>";
+                    reviews+= "<p>"+"Treść: "+ele.description+ "</p>";
+                    reviews+= "</div>";
+                    
+                    
                 });
              });
-        
+             console.log(reviews);
             $(".categories:eq(2)").html(offert);
+            $(".categories:eq(4)").prepend(reviews);
             $(".detail-list").html(msg);
             $(".categories:first").html(description);
             

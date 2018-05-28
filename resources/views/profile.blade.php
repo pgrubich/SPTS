@@ -11,7 +11,7 @@
 	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
 	
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
-    <link rel="stylesheet" href="{{asset('css/profile.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/profiles.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -106,7 +106,7 @@
                     </section>
                     <section>
                         <div class="categories">
-                            <h2 id="reviews-info">Opinie</h2>
+
                             <form action='/profiles/addOpinion' method = 'GET'>
 
                             <label>
@@ -140,7 +140,7 @@
                                 <input type='hidden' name='trainer_id' value='{!! Request::segment(2) !!}'/>
                             <input type="submit">
                             </form> 
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porttitor, ex eu tincidunt rhoncus, ex diam placerat felis, eu rhoncus ex libero vestibulum risus. Integer mattis suscipit sem at suscipit. Proin scelerisque lectus efficitur ipsum luctus venenatis. Aliquam ultricies vehicula magna, ac facilisis odio tempor eu. Duis ut varius tellus. Vivamus tristique vitae sapien nec imperdiet. Quisque ac elit lectus. Praesent tempus tincidunt libero quis pretium. Maecenas id eros ut enim maximus molestie. Praesent elit velit, tincidunt eu nibh id, pharetra venenatis purus. Pellentesque a consectetur dui. In ultricies orci vitae sodales viverra.</p>
+                          
 
 
 						</div>  
