@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Trainer\Trainer;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 class editProfileController extends Controller
 {
@@ -23,14 +26,6 @@ class editProfileController extends Controller
         return redirect('/editProfile');
     } 
 
-    protected function updateEmailInfo(Request $request)
-    {
-        $trainer = Trainer::find($request['id']);
-        $trainer->email = $request['new_email'];
-        $trainer->save();
-
-        return redirect('/editProfile');
-    } 
 
     protected function updateSpecificInfo(Request $request)
     {
@@ -40,4 +35,32 @@ class editProfileController extends Controller
 
         return redirect('/editProfile');
     }
+
+    protected function updateEmailInfo(Request $request)
+    {
+        $trainer = Trainer::find($request['id']);
+        $trainer->email = $request['new_email'];
+        $trainer->save();
+
+        return redirect('/editProfile');
+    } 
+
+
+    protected function editPasswordInfo(Request $request)
+    {
+        if (Hash::check($request['current_password'], Auth::user()->password))
+        {
+            $trainer = Trainer::find($request['id']);
+            if ($request['new_password'] != '') $trainer->password = Hash::make($request['new_password']);
+            $trainer->save();
+
+            return redirect('/editProfile');
+        }
+        else
+        {
+            return ('Podano złe hasło.');
+        }
+    } 
+
+
 }

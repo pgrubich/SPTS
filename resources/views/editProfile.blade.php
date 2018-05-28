@@ -271,14 +271,14 @@
                     </div>
                     <div id="password-edit">
 
-                    <form action='editPasswordInfo' method = 'GET'>
+                    <form action='editPasswordInfo' method = 'POST'>
                          <fieldset>
                             <legend>Zmiana hasła</legend>
 
                                 <p>
                                 <label>
                                         Stare hasło: 
-                                        <input name='current_password' type='password' pattern="{{ Auth::user()->email }}" required>
+                                        <input name='current_password' type='password' required>
                                 </label>
                                 </p>
 
@@ -289,7 +289,9 @@
                                 </label>
                                 </p>
 
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+
 
                                 <input type="submit" value="Zmień">
                                 </br>
