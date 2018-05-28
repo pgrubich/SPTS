@@ -146,6 +146,7 @@
                                 <p>
                                         <label>
                                         Opis trenera:
+                                        <br />
                                         <textarea name="description" placeholder='{{ Auth::user()->description }}' cols="70" rows="10" required maxlength="500" minlength="5"></textarea>
                                         </label>
                                 </p>
@@ -196,81 +197,97 @@
 
                                         <br />
                                 </p>
+                                
+                                <br />
+
                                 <label>
-                                    <span id="show-course" >+ Certyfikaty</span>: </br></br>
-                            
+                                Certyfikaty:
+                                <br> </br>
+                                    <span id="show-course" >+ Dodaj certyfikat</span>: </br></br>
                                     <div id="edit-course">
                                         <p>
                                             Nazwa placówki:
-                                            <input name='coursePlace' type="text" placeholder='{{ Auth::user()->coursePlace }}' >
+                                            <input name='place' type="text">
                                         </p>
                                         <p>
                                             Nazwa kursu:
-                                            <input name='courseName' type="text" placeholder='{{ Auth::user()->courseName }}' >
+                                            <input name='name' type="text">
                                         </p>
                                         <p>
                                             Data rozpoczęcia:
-                                            <input name='courseBegin' type="date" placeholder='{{ Auth::user()->courseBegin }}' >
+                                            <input name='begin_date' type="date">
                                         </p>
                                         <p>
                                             Data zakończenia:
-                                            <input name='courseEnd' type="date" placeholder='{{ Auth::user()->courseEnd }}' >
+                                            <input name='end_date' type="date">
                                         </p>
 
-                                    </div>
+                                        <input type="submit" value="Dodaj certyfikat">
 
+                                    </div>
                                 </label>
 
+                                <br />
+
                                 <label>
-                                <span id="show-uni">+ Uniwersytety</span>:</br></br>
-                            
+                                Uczelnie wyższe:
+                                <br> </br>
+                                    <span id="show-uni">+ Dodaj uczelnię wyższą</span>:</br></br>
                                     <div id="edit-uni">
                                         <p>
                                             Nazwa uczelni:
-                                            <input name='uniName' type="text" placeholder='{{ Auth::user()->uniName }}' >
+                                            <input name='name' type="text">
                                         </p>
                                         <p>
                                             Kierunek:
-                                            <input name='degreeCourse' type="text" placeholder='{{ Auth::user()->degreeCourse }}' >
+                                            <input name='degree' type="text">
                                         </p>
                                         <p>
                                             Tytuł:
-                                            <input name='qualification' type="text" placeholder='{{ Auth::user()->qualification }}' >
+                                            <input name='qualification' type="text">
                                         </p>
                                         <p>
                                             Data rozpoczęcia:
-                                            <input name='uniBegin' type="date" placeholder='{{ Auth::user()->uniBegin }}' >
+                                            <input name='begin_date' type="date">
                                         </p>
                                         <p>
                                             Data zakończenia:
-                                            <input name='uniEnd' type="date" placeholder='{{ Auth::user()->uniEnd }}' >
+                                            <input name='end_date' type="date">
                                         </p>
 
-                                    </div>
+                                        <input type="submit" value="Dodaj uczelnię wyższą">
 
+                                    </div>
                                 </label>
+
+                                <br />
+
                                 <label>
-                                    <span id="show-price">+ Cennik</span>:</br></br>
-                            
+                                Cennik:
+                                <br> </br>
+                                    <span id="show-price">+ Dodaj cennik</span>:</br></br>
                                     <div id="edit-price">
                                         <p>
                                             Nazwa zajęć:
-                                            <input name='classesName' type="text" placeholder='{{ Auth::user()->classesName }}' >
+                                            <input name='classesName' type="text">
                                         </p>
                                         <p>
                                             Cena:
-                                            <input name='price' type="number" placeholder='{{ Auth::user()->price }}' >
+                                            <input name='price' type="number">
                                         </p>
                                         <p>
                                             Liczba uczestników:
-                                            <input name='numbesrOfMembers' type="number" placeholder='{{ Auth::user()->numbesrOfMembers }}' >
+                                            <input name='numbesrOfMembers' type="number">
                                         </p>
-                                    </div>
 
+                                        <input type="submit" value="Dodaj ofertę do cennika">
+                                    </div>
                                 </label>
 
                                 <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
 
+                                <br />
+                                <br />
                                 <input type="submit" value="Zapisz">
                         </fieldset>
                         </form>
