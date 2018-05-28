@@ -49,3 +49,11 @@
     float:left;
     width:70%;
 }
+
+#show-uni ,#show-course ,#show-price{
+    cursor:pointer;
+}
+#edit-uni ,#edit-course ,#edit-price {
+    display: none;
+
+}

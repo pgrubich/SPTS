@@ -75,3 +75,51 @@ function show(a){
     
 
 }
+
+
+// show and hide price, course and uni
+
+
+var course = document.getElementById("edit-course");
+var uni = document.getElementById("edit-uni");
+var price = document.getElementById("edit-price");
+
+course.style.display = "none";
+uni.style.display = "none";
+price.style.display = "none";
+
+var click1 = document.getElementById("show-course");
+var click2 = document.getElementById("show-uni");
+var click3 = document.getElementById("show-price");
+
+click1.addEventListener('click',function(){showHide(1);},false);
+click2.addEventListener('click',function(){showHide(2);},false);
+click3.addEventListener('click',function(){showHide(3);},false);
+
+function showHide(a){
+    switch(a){
+        case 1:
+            if(course.style.display=="none"){
+                course.style.display = "block";
+            }else{
+                course.style.display = "none";
+            }
+            break;
+        case 2:
+            if(uni.style.display=="none"){
+                uni.style.display = "block";
+            }else{
+                uni.style.display = "none";
+            }
+            break;
+        case 3:
+            if(price.style.display=="none"){
+                price.style.display = "block";
+            }else{
+                price.style.display = "none";
+            }
+            break;
+  
+    }
+    
+}

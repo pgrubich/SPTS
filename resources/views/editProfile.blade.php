@@ -196,16 +196,78 @@
 
                                         <br />
                                 </p>
-                                <p>Cennik: <input type="text" /> 
-                                
-                                </p>
+                                <label>
+                                    <span id="show-course" >+ Certyfikaty</span>: </br></br>
+                            
+                                    <div id="edit-course">
+                                        <p>
+                                            Nazwa placówki:
+                                            <input name='coursePlace' type="text" placeholder='{{ Auth::user()->coursePlace }}' >
+                                        </p>
+                                        <p>
+                                            Nazwa kursu:
+                                            <input name='courseName' type="text" placeholder='{{ Auth::user()->courseName }}' >
+                                        </p>
+                                        <p>
+                                            Data rozpoczęcia:
+                                            <input name='courseBegin' type="date" placeholder='{{ Auth::user()->courseBegin }}' >
+                                        </p>
+                                        <p>
+                                            Data zakończenia:
+                                            <input name='courseEnd' type="date" placeholder='{{ Auth::user()->courseEnd }}' >
+                                        </p>
 
+                                    </div>
 
+                                </label>
 
+                                <label>
+                                <span id="show-uni">+ Uniwersytety</span>:</br></br>
+                            
+                                    <div id="edit-uni">
+                                        <p>
+                                            Nazwa uczelni:
+                                            <input name='uniName' type="text" placeholder='{{ Auth::user()->uniName }}' >
+                                        </p>
+                                        <p>
+                                            Kierunek:
+                                            <input name='degreeCourse' type="text" placeholder='{{ Auth::user()->degreeCourse }}' >
+                                        </p>
+                                        <p>
+                                            Tytuł:
+                                            <input name='qualification' type="text" placeholder='{{ Auth::user()->qualification }}' >
+                                        </p>
+                                        <p>
+                                            Data rozpoczęcia:
+                                            <input name='uniBegin' type="date" placeholder='{{ Auth::user()->uniBegin }}' >
+                                        </p>
+                                        <p>
+                                            Data zakończenia:
+                                            <input name='uniEnd' type="date" placeholder='{{ Auth::user()->uniEnd }}' >
+                                        </p>
 
-                                <p>
-                                Certyfikaty: </br> <textarea name="message" rows="10" cols="30"></textarea>
-                                </p> 
+                                    </div>
+
+                                </label>
+                                <label>
+                                    <span id="show-price">+ Cennik</span>:</br></br>
+                            
+                                    <div id="edit-price">
+                                        <p>
+                                            Nazwa zajęć:
+                                            <input name='classesName' type="text" placeholder='{{ Auth::user()->classesName }}' >
+                                        </p>
+                                        <p>
+                                            Cena:
+                                            <input name='price' type="number" placeholder='{{ Auth::user()->price }}' >
+                                        </p>
+                                        <p>
+                                            Liczba uczestników:
+                                            <input name='numbesrOfMembers' type="number" placeholder='{{ Auth::user()->numbesrOfMembers }}' >
+                                        </p>
+                                    </div>
+
+                                </label>
 
                                 <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
 
@@ -271,14 +333,14 @@
                     </div>
                     <div id="password-edit">
 
-                    <form action='editPasswordInfo' method = 'POST'>
+                    <form action='editPasswordInfo' method = 'GET'>
                          <fieldset>
                             <legend>Zmiana hasła</legend>
 
                                 <p>
                                 <label>
                                         Stare hasło: 
-                                        <input name='current_password' type='password' required>
+                                        <input name='current_password' type='password' pattern="{{ Auth::user()->email }}" required>
                                 </label>
                                 </p>
 
@@ -289,9 +351,7 @@
                                 </label>
                                 </p>
 
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
-
 
                                 <input type="submit" value="Zmień">
                                 </br>
