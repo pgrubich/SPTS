@@ -3,18 +3,21 @@ var option2 = document.getElementById("editMenu-option2");
 var option3 = document.getElementById("editMenu-option3");
 var option4 = document.getElementById("editMenu-option4");
 var option5 = document.getElementById("editMenu-option5");
+var option6 = document.getElementById("editMenu-option6");
 
 var block1 = document.getElementById("basic-edit");
 var block2 = document.getElementById("specific-edit");
 var block3 = document.getElementById("calendar-edit");
 var block4 = document.getElementById("gallery-edit");
-var block5 = document.getElementById("password-edit");
+var block5 = document.getElementById("email-edit");
+var block6 = document.getElementById("password-edit");
 
 option1.addEventListener('click',function(){show(1);},false)
 option2.addEventListener('click',function(){show(2);},false)
 option3.addEventListener('click',function(){show(3);},false)
 option4.addEventListener('click',function(){show(4);},false)
 option5.addEventListener('click',function(){show(5);},false)
+option6.addEventListener('click',function(){show(6);},false)
 
 
 function show(a){
@@ -25,6 +28,7 @@ function show(a){
             block3.style.display = "none";
             block4.style.display = "none";
             block5.style.display = "none";
+            block6.style.display = "none";
             break;
         case 2:
             block1.style.display = "none";
@@ -32,6 +36,7 @@ function show(a){
             block3.style.display = "none";
             block4.style.display = "none";
             block5.style.display = "none";
+            block6.style.display = "none";
             break;
         case 3:
             block1.style.display = "none";
@@ -39,6 +44,7 @@ function show(a){
             block3.style.display = "block";
             block4.style.display = "none";
             block5.style.display = "none";
+            block6.style.display = "none";
         break;
         case 4:
             block1.style.display = "none";
@@ -46,6 +52,7 @@ function show(a){
             block3.style.display = "none";
             block4.style.display = "block";
             block5.style.display = "none";
+            block6.style.display = "none";
         break;
         case 5:
             block1.style.display = "none";
@@ -53,6 +60,15 @@ function show(a){
             block3.style.display = "none";
             block4.style.display = "none";
             block5.style.display = "block";
+            block6.style.display = "none";
+            break;
+        case 6:
+            block1.style.display = "none";
+            block2.style.display = "none";
+            block3.style.display = "none";
+            block4.style.display = "none";
+            block5.style.display = "none";
+            block6.style.display = "block";
             break;
     }
     

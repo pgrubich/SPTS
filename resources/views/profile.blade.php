@@ -38,11 +38,9 @@
 
         <nav>
             <ul class="menu">
-              <li><a href="#">Nawigacja1</a></li>/
-              <li><a href="#">Nawigacja2</a></li>/
-              <li><a href="#">Nawigacja3</a></li>/
-              <li><a href="#">Nawigacja4</a></li>/
-              <li><a href="#">Nawigacja5</a></li>
+            <li><a href="/dyscyplina/trenerzy_personalni">Trenerzy personalni</a></li>/
+              <li><a href="#">Trenerzy sportu</a></li>/
+              <li><a href="/dyscyplina/dietetycy">Dietetycy</a></li>
             </ul>
         </nav>
     </header>
@@ -80,7 +78,6 @@
                     <section>
                         <div class="categories">
                             <h2 id="profile-info">Profil</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porttitor, ex eu tincidunt rhoncus, ex diam placerat felis, eu rhoncus ex libero vestibulum risus. Integer mattis suscipit sem at suscipit. Proin scelerisque lectus efficitur ipsum luctus venenatis. Aliquam ultricies vehicula magna, ac facilisis odio tempor eu. Duis ut varius tellus. Vivamus tristique vitae sapien nec imperdiet. Quisque ac elit lectus. Praesent tempus tincidunt libero quis pretium. Maecenas id eros ut enim maximus molestie. Praesent elit velit, tincidunt eu nibh id, pharetra venenatis purus. Pellentesque a consectetur dui. In ultricies orci vitae sodales viverra.</p>
                         </div>
                     </section>
 
@@ -94,7 +91,6 @@
                     <section>
                         <div class="categories">
                             <h2 id="prices-info">Cennik</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porttitor, ex eu tincidunt rhoncus, ex diam placerat felis, eu rhoncus ex libero vestibulum risus. Integer mattis suscipit sem at suscipit. Proin scelerisque lectus efficitur ipsum luctus venenatis. Aliquam ultricies vehicula magna, ac facilisis odio tempor eu. Duis ut varius tellus. Vivamus tristique vitae sapien nec imperdiet. Quisque ac elit lectus. Praesent tempus tincidunt libero quis pretium. Maecenas id eros ut enim maximus molestie. Praesent elit velit, tincidunt eu nibh id, pharetra venenatis purus. Pellentesque a consectetur dui. In ultricies orci vitae sodales viverra.</p>
                         </div>
                     </section>
 

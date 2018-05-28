@@ -18,23 +18,31 @@ $(function(){
                 $.each(element.tr_loc,function(ind,ele){
                     msg+= "<li>"+ele.city+", "+ele.voivodeship+"</li>";
                 });
-                description += element.description;
+                description +="<p>"+ element.description+"</p>";
                 $.each(element.tr_cert, function(ind,ele){
-                    description+= "</br>certyfikaty : </br>"
+                    description+= "Certyfikaty : </br>"
                     description+= ele.name_of_institution;
                     description+= " - "+(ele.name_of_course);
                     description+= " :  "+(ele.begin_date);
                     description+= " - "+(ele.end_date);
                 });
                 $.each(element.tr_pl,function(ind,ele){
-                    description+= "</br> Lokaliacja : "+ele.place;
+
+                    description+= "</br> </br> Lokaliacja : "+ele.place;
+                });
+                $.each(element.tr_uni,function(ind,ele){
+                    description+= "</br></br>  Wykształcenie : "+ele.university;
+                    description+= " - "+ele.course;
+                    description+= " - "+(ele.degree);
+                    description+= " :  "+(ele.begin_date);
+                    description+= " - "+(ele.end_date);
                 });
                 $.each(element.tr_off,function(ind,ele){
                     offert+= "<p>"+ele.name+" - "+ele.price+" zł"+"</p>";
                     
                 });
                 $.each(element.tr_op,function(ind,ele){
-                    reviews+= "<div class='review-record'>";
+                    reviews+= "<div class='small-container'>";
                     reviews+= ele.name+" "+ele.surname;
                     reviews+= "<span> Ocena: "+ele.rating+ "</span>";
                     reviews+= "<p>"+"Treść: "+ele.description+ "</p>";
@@ -43,7 +51,6 @@ $(function(){
                     
                 });
              });
-             console.log(reviews);
             $(".categories:eq(2)").html(offert);
             $(".categories:eq(4)").prepend(reviews);
             $(".detail-list").html(msg);

@@ -110,18 +110,18 @@
 }
 
 
-.review-record{
+.small-container{
     border-style: ridge;
     margin-bottom: 10px;
     font-size: 11px;
     position: relative;
 }
-.review-record > span{
+.small-container > span{
     position: absolute;
     top: 5px;
     right:5px;
 }
 
-.review-record > p{
+.small-container > p{
     font-size: 13px;
 }

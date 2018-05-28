@@ -9,8 +9,8 @@
 	<meta name="author" content="">
 	
 	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
-	
-	<link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/editProfile.css')}}" type="text/css" />
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -25,20 +25,32 @@
 
     <header>
 
+        @if (Auth::check())
         <div id="logBar">
-            <button>Zaloguj się</button>
-            <button> Zarejerstruj się</button>
+            <span>
+            <a href="/logout" >Wyloguj się</a>
+             /
+             <a href="/login">Zaloguj się</a>
+            /
+            <a href="/register">Zarejerstruj się</a>
+            </span>
         </div>
-
-        <h1 class="logo">Znajdź swojego trenera</h1>
+         @else
+            <div id="logBar">
+            <span>
+            <a href="/login">Zaloguj się</a>
+            /
+            <a href="/register">Zarejerstruj się</a>
+            </span>
+            </div>
+        @endif
 
         <nav>
             <ul class="menu">
-              <li><a href="#">Navigacja1</a></li>
-              <li><a href="#">Navigacja2</a></li>
-              <li><a href="#">Navigacja3</a></li>
-              <li><a href="#">Navigacja4</a></li>
-              <li><a href="#">Navigacja5</a></li>
+              <li><a href="/dyscyplina/trenerzy_personalni">Trenerzy personalni</a></li>/
+              <li><a href="#">Trenerzy sportu</a></li>/
+              <li><a href="/dyscyplina/dietetycy">Dietetycy</a></li>
+
             </ul>
         </nav>
     </header>
@@ -55,6 +67,7 @@
                    <p><span id="editMenu-option3" class="editMenu-option"> 3. Mój kalendarz</span></p>
                    <p><span id="editMenu-option4" class="editMenu-option"> 4. Galeria zdjęć</span></p>
                    <p><span id="editMenu-option5" class="editMenu-option"> 5. Zmiana adresu e-mail</span></p>
+                   <p><span id="editMenu-option6" class="editMenu-option"> 6. Zmiana hasła</span></p>
                 </div>
                 
             </div> 
@@ -228,7 +241,7 @@
                         </fieldset>
                     </div>
 
-                    <div id="password-edit">
+                    <div id="email-edit">
 
                     <form action='editEmailInfo' method = 'GET'>
                          <fieldset>
@@ -254,8 +267,35 @@
                                 </br>
                         </fieldset>
 
-                    <form>
+                    </form>
+                    </div>
+                    <div id="password-edit">
 
+                    <form action='editPasswordInfo' method = 'GET'>
+                         <fieldset>
+                            <legend>Zmiana hasła</legend>
+
+                                <p>
+                                <label>
+                                        Stare hasło: 
+                                        <input name='current_password' type='password' pattern="{{ Auth::user()->email }}" required>
+                                </label>
+                                </p>
+
+                                <p>
+                                <label>
+                                        Nowe hasło: 
+                                        <input name='new_password' type='password' required>
+                                </label>
+                                </p>
+
+                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+
+                                <input type="submit" value="Zmień">
+                                </br>
+                        </fieldset>
+
+                    </form>
                     </div>
 
 

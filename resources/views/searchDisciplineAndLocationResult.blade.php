@@ -38,11 +38,9 @@
 
         <nav>
             <ul class="menu">
-              <li><a href="#">Nawigacja1</a></li>/
-              <li><a href="#">Nawigacja2</a></li>/
-              <li><a href="#">Nawigacja3</a></li>/
-              <li><a href="#">Nawigacja4</a></li>/
-              <li><a href="#">Nawigacja5</a></li>
+              <li><a href="#">Trenerzy personalni</a></li>/
+              <li><a href="#">Trenerzy sportu</a></li>/
+              <li><a href="#">Dietetycy</a></li>
             </ul>
         </nav>
     </header>

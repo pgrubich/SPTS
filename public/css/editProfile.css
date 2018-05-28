@@ -33,3 +33,19 @@
 #password-edit{
     display:none;
 }
+#email-edit{
+    display:none;
+}
+
+.leftColumn
+{
+    width: 20%;
+    float:left;
+    height: 300px;
+}
+
+.middleColumn
+{
+    float:left;
+    width:70%;
+}

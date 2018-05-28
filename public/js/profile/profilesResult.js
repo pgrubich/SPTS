@@ -5,6 +5,9 @@ var discipline = localStorage.getItem("discipline");
 var headerSection = document.getElementById("header-section");
 headerSection.textContent = discipline + " w " + city;
 
+localStorage.removeItem("city");
+localStorage.removeItem("discipline");
+
 
 // trainers profiles
 
