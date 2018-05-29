@@ -8,6 +8,7 @@ class TrLocation extends Model
 {
     protected $table = 'trainers_location';
     protected $hidden = ['id','trainer_id'];
+    protected $fillable = ['city','voivodeship', 'trainer_id'];
 
     public function trainer(){
         return $this->belongsTo('Trainer');

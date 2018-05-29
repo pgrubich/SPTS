@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Trainer\Trainer;
+use App\Models\Trainer\TrLocation;
 use App\Models\Trainer\TrCertificate;
 use App\Models\Trainer\TrUniversity;
 use App\Models\Trainer\Troffer;
@@ -27,7 +28,26 @@ class editProfileController extends Controller
         $trainer->save();
 
         return redirect('/editProfile');
+        
     } 
+
+    protected function addCity(Request $request)
+    {
+        if (TrLocation::where('city', '=', $request['city'])->where('voivodeship', '=', $request['voivodeship'])->where('trainer_id', '=', $request['id'])->exists()) 
+        {
+            return ('Podane miasto i województwo już się znajduję w profilu.');
+        }
+        else
+        {
+            TrLocation::create([
+                'city' => $request['city'],
+                'voivodeship' => $request['voivodeship'],
+                'trainer_id' => $request['id'],
+            ]);
+
+            return redirect('/editProfile');
+        }
+    }
 
 
     protected function updateSpecificInfo(Request $request)

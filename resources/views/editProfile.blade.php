@@ -78,61 +78,82 @@
                         <fieldset>
                             <legend>Informacje podstawowe dla </legend>
                             
-                            <form action='editPrimaryInfo' method = 'GET'>
+                            <form id="editPrimaryInfo" action='editPrimaryInfo' method = 'GET'></form>
+                            <form id="addCity" action='addCity' method = 'GET'></form>
                                 
                                 <p>
                                 <label>
                                         Imię: 
-                                        <input name='name' type='text' placeholder='{{ Auth::user()->name }}' pattern=".{3,}">
+                                        <input form="editPrimaryInfo" name='name' type='text' placeholder='{{ Auth::user()->name }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
                                 <label>
                                         Nazwisko: 
-                                        <input name='surname' type='text' placeholder='{{ Auth::user()->surname }}' pattern=".{3,}">
+                                        <input form="editPrimaryInfo" name='surname' type='text' placeholder='{{ Auth::user()->surname }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
                                 <label>
                                         Data urodzenia:
-                                        <input name='bdate' type="date" placeholder='{{ Auth::user()->bdate }}' >
+                                        <input form="editPrimaryInfo" name='bdate' type="date" placeholder='{{ Auth::user()->bdate }}' >
                                 <label>
                                 </p>
                                 
                                 <p>
                                         Płeć
-                                        <input type="radio" name="gender" value="f">
+                                        <input form="editPrimaryInfo" type="radio" name="gender" value="f">
                                         <label for="female">kobieta</label>
-                                        <input type="radio" name="gender" value="m">
+                                        <input form="editPrimaryInfo" type="radio" name="gender" value="m">
                                         <label for="male">mężczyzna</label>
                                 </p>
 
                                 <p>
                                 <label>
                                     Telefon: 
-                                    <input name='phone' type='tel' placeholder='{{ Auth::user()->phone }}'>
+                                    <input form="editPrimaryInfo" name='phone' type='tel' placeholder='{{ Auth::user()->phone }}'>
                                 </label>
                                 </p>
                                 
                                 <p>
                                 <label>
                                     Instagram: 
-                                    <input name='instagram' type='text' placeholder='{{ Auth::user()->instagram }}' pattern=".{3,}">
+                                    <input form="editPrimaryInfo" name='instagram' type='text' placeholder='{{ Auth::user()->instagram }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
                                 <label>
                                     Facebook: 
-                                    <input name='facebook' type='text' placeholder='{{ Auth::user()->facebook }}' pattern=".{3,}">
+                                    <input form="editPrimaryInfo" name='facebook' type='text' placeholder='{{ Auth::user()->facebook }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
-                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                                <label>
+                                Cennik:
+                                <br> </br>
+                                    <span id="show-cities">+ Dodaj miasto</span>:</br></br>
+                                    <div id="edit-cities">
+                                        <p>
+                                            Miasto:
+                                            <input form="addCity" name='city' type="text" pattern=".{3,}" required>
+                                        </p>
+                                        <p>
+                                            Województwo:
+                                            <input form="addCity" name='voivodeship' type="text" pattern=".{3,}" required>
+                                        </p>
+                                        <input form="addCity" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                                        <input type="submit" value="Dodaj miasto" form="addCity">
+                                    </div>
+                                </label>
 
-                                <input type="submit" value="Zapisz">
+
+
+                                <input form="editPrimaryInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+
+                                <input type="submit" value="Zapisz" form="editPrimaryInfo">
 
                             </form>
 

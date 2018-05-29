@@ -83,18 +83,22 @@ function show(a){
 var course = document.getElementById("edit-course");
 var uni = document.getElementById("edit-uni");
 var price = document.getElementById("edit-price");
+var cities = document.getElementById("edit-cities");
 
 course.style.display = "none";
 uni.style.display = "none";
 price.style.display = "none";
+cities.style.display = "none";
 
 var click1 = document.getElementById("show-course");
 var click2 = document.getElementById("show-uni");
 var click3 = document.getElementById("show-price");
+var click4 = document.getElementById("show-cities");
 
 click1.addEventListener('click',function(){showHide(1);},false);
 click2.addEventListener('click',function(){showHide(2);},false);
 click3.addEventListener('click',function(){showHide(3);},false);
+click4.addEventListener('click',function(){showHide(4);},false);
 
 function showHide(a){
     switch(a){
@@ -117,6 +121,13 @@ function showHide(a){
                 price.style.display = "block";
             }else{
                 price.style.display = "none";
+            }
+            break;
+        case 4:
+            if(cities.style.display=="none"){
+                cities.style.display = "block";
+            }else{
+                cities.style.display = "none";
             }
             break;
   

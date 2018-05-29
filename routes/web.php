@@ -28,6 +28,8 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('editPrimaryInfo', ['uses' =>'editProfileController@updatePrimaryInfo']);
 
+Route::get('addCity', ['uses' =>'editProfileController@addCity']);
+
 Route::get('editSpecificInfo', ['uses' =>'editProfileController@updateSpecificInfo']);
 
 Route::get('addCourse', ['uses' =>'editProfileController@addCourse']);
