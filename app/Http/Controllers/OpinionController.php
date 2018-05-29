@@ -19,7 +19,7 @@ class OpinionController extends Controller
             'trainer_id' => $request['trainer_id'],
         ]);
 
-
-        return redirect('/');
+        $id = $request['trainer_id'];
+        return redirect('/profiles/'.$id);
     } 
 }
