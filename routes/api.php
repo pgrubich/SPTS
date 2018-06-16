@@ -29,6 +29,7 @@ Route::get('profile/{id}', function($id){
 
 Route::get('api/dyscyplines.json','DisciplinesList@show');
 
+
 Route::get('api/profiles/{id}','TrainersController@show');
 
 Route::get('api/dyscyplina/{id}','ListByDisciplineController@show');

@@ -138,6 +138,7 @@
                                     <div id="edit-cities">
                                         <p>
                                             Miasto:
+                                            {{ Auth::user()->id }}
                                             <input form="addCity" name='city' type="text" pattern=".{3,}" required>
                                         </p>
                                         <p>
