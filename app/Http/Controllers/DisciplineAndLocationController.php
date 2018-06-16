@@ -59,8 +59,8 @@ class DisciplineAndLocationController extends Controller
 
     public function show($discipline, $location)
     {
-        //$discipline = Str::lower($discipline);
-        //$location = Str::lower($location);
+        $discipline = Str::lower($discipline);
+        $location = Str::lower($location);
 
         return Trainer::
         whereHas('TrDisc',function($query) use($discipline)
