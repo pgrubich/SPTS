@@ -1,12 +1,14 @@
-// header
-var city = localStorage.getItem("city");
-var discipline = localStorage.getItem("discipline");
+﻿// header
 
+
+var n = decodeURI(window.location.href).split("/");
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 var headerSection = document.getElementById("header-section");
-headerSection.textContent = discipline + " w " + city;
+headerSection.textContent = capitalizeFirstLetter(n[n.length - 2]) + " w " + capitalizeFirstLetter(n[n.length - 1]);
 
-localStorage.removeItem("city");
-localStorage.removeItem("discipline");
 
 
 // trainers profiles
@@ -39,5 +41,5 @@ xhr.onload = function() {
   }
 };
 
-xhr.open('GET', 'http://pri.me/api/'+discipline+'/'+city, true);        
+xhr.open('GET', 'http://pri.me/api/'+n[n.length - 2]+'/'+n[n.length - 1], true);        
 xhr.send(null);                                 
