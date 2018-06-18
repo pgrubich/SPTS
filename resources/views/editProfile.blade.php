@@ -73,7 +73,6 @@
             </div> 
             <div class="middleColumn">
                 <div class="categories">
-
                     <div id="basic-edit">
                         <fieldset>
                             <legend>Informacje podstawowe dla </legend>
@@ -177,51 +176,20 @@
                                         </label>
                                 </p>
                                 <p>
-
-                                       Dyscypliny:
-                                        <br />
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-
-                                        <br />
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-
-                                        <br />
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-
-                                        <br />
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-
-                                        <br />
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-
-                                        <br />
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-                                        <input type="checkbox" /> dyscyplina
-
-                                        <br />
+                                        Dyscypliny:
+                                        <div id="dyscypline-list-editprofile">
+                                            <div class="dyscypline-column-editprofile">
+                                            </div>
+                                            <div class="dyscypline-column-editprofile">
+                                            </div>
+                                            <div class="dyscypline-column-editprofile">
+                                            </div>
+                                            <div class="dyscypline-column-editprofile">
+                                            </div>
+                                            <div class="dyscypline-column-editprofile">
+                                            </div>
+                                            <div style="clear:both;"></div>
+                                        </div>
                                 </p>
                                 
                                 <br />
@@ -417,7 +385,8 @@
            
         </article>
     </main>
-    
+
+    <input id="username-id" type="hidden" value='{{ Auth::user()->id }}' />
     <script type="text/javascript" src="{{asset('js/profile/editProfile.js')}}"></script>
 </body>
 </html>

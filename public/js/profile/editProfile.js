@@ -1,3 +1,5 @@
+
+
 var option1 = document.getElementById("editMenu-option1");
 var option2 = document.getElementById("editMenu-option2");
 var option3 = document.getElementById("editMenu-option3");
@@ -134,3 +136,85 @@ function showHide(a){
     }
     
 }
+
+
+// dyscyplines from json
+
+var xhr = new XMLHttpRequest();                 
+
+xhr.onload = function() {                       
+  if(xhr.status === 200) {
+    responseObject = JSON.parse(xhr.responseText);  
+    var column1 ='';
+    var column2 ='';
+    var column3 ='';
+    var column4 ='';
+    var column5 ='';
+    var column6 ='';
+    var record = document.getElementsByClassName("dyscypline-column-editprofile");                    
+    for (var i = 0; i < 10; i++){
+        column1 += '<label><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
+        column1 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
+        column1 += responseObject.Dysciplines[i].Name + '</label></br>';
+        
+    }
+    for (var i = 10; i < 20; i++){
+        column2 += '<label><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
+        column2 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
+        column2 += responseObject.Dysciplines[i].Name + '</label></br>';
+    }
+    for (var i = 20; i < 30; i++){
+        column3 += '<label><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
+        column3 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
+        column3 += responseObject.Dysciplines[i].Name + '</label></br>';
+
+    }
+    for (var i = 30; i < 40; i++){
+
+        column4 += '<label><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
+        column4 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
+        column4 += responseObject.Dysciplines[i].Name + '</label></br>';
+    }   
+
+    for (var i = 40; i < responseObject.Dysciplines.length; i++){
+
+        column5 += '<label><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
+        column5 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
+        column5 += responseObject.Dysciplines[i].Name + '</label></br>';
+
+    }   
+    record[0].innerHTML = column1;   
+    record[1].innerHTML = column2;  
+    record[2].innerHTML = column3;  
+    record[3].innerHTML = column4;  
+    record[4].innerHTML = column5;  
+
+  }
+};
+
+xhr.open('GET', 'http://pri.me/api/dyscyplines.json', true);        
+xhr.send(null);
+
+//checked dyscyplinesi i use
+
+
+var xhr2 = new XMLHttpRequest();  
+var loggedUserId = document.getElementById("username-id").value;
+xhr2.onload = function() {                       
+    if(xhr2.status === 200) {
+      responseObject2 = JSON.parse(xhr2.responseText);
+      
+      for(var i = 0; i < responseObject2[0].tr_disc.length; i++ ){
+          var dysciplineName = responseObject2[0].tr_disc[i].discipline_name.replace(" ","_");
+          if(document.getElementById(dysciplineName)){
+            document.getElementById(dysciplineName).checked = true;
+          }
+      }
+
+      
+      
+  }
+};
+
+xhr2.open('GET', 'http://pri.me/api/profiles/'+loggedUserId, true);        
+xhr2.send(null);
