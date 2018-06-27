@@ -29,10 +29,6 @@
         <div id="logBar">
             <span>
             <a href="/logout" >Wyloguj się</a>
-             /
-             <a href="/login">Zaloguj się</a>
-            /
-            <a href="/register">Zarejerstruj się</a>
             </span>
         </div>
          @else
