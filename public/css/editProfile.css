@@ -62,3 +62,18 @@
     float:left;
     width:20%;
 }
+
+.edit-single-ofert, .edit-single-uni, .edit-single-cer{
+    padding: 5px;
+    margin: 2px;
+    border: 1px solid #0a2b42;
+    
+}
+
+.single-ofert, .single-uni, .single-cer{
+    padding: 5px;
+    margin: 2px;
+    border: 1px solid #0a2b42;
+    cursor:pointer;
+}
+

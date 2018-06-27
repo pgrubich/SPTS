@@ -23,11 +23,14 @@ xhr.onload = function() {
       content += '<div class="single-trainer-result" id="trainer_record_';
       content += responseObject[i].id+'"><div class="profile-picture">';
       content += '</div><div class="profile-info">'
-      content += "<p>"+ responseObject[i].name + " " + responseObject[i].surname +"</p>";
-        content += "<p>"+ responseObject[i].tr_disc[0].discipline_name +"</p>";
+      content += "<p>"+ responseObject[i].name + " " + responseObject[i].surname +"</p><p>";
+      for(var j=0 ;j<responseObject[i].tr_disc.length;j++){
+        content +=  responseObject[i].tr_disc[j].discipline_name+ "  ";
 
+      }
+      
       if(typeof responseObject[i].tr_pl[0] != "undefined"){
-        content += "<p> Miejsca: "+ responseObject[i].tr_pl[0].place+"</p>";
+        content += "</p><p> Miejsca: "+ responseObject[i].tr_pl[0].place+"</p>";
       }
       content += "<p> Opis: "+ responseObject[i].description+"</p>";
       content += '</div><div style="clear:both;"></div></div></br>';

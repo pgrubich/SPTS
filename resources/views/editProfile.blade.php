@@ -29,6 +29,10 @@
         <div id="logBar">
             <span>
             <a href="/logout" >Wyloguj się</a>
+             /
+             <a href="/login">Zaloguj się</a>
+            /
+            <a href="/register">Zarejerstruj się</a>
             </span>
         </div>
          @else
@@ -214,7 +218,10 @@
                                         </p>
                                         <input type='hidden' form="addCourse" name='id' value='{{ Auth::user()->id }}'/>
                                         <input type="submit" value="Dodaj certyfikat" form="addCourse">
+
+                                        
                                     </div>
+                                    <div id="cer-container"></div>
                                 </label>
 
                                 <br />
@@ -246,14 +253,16 @@
                                         </p>
                                         <input type='hidden' form="addUni" name='id' value='{{ Auth::user()->id }}'/>
                                         <input type="submit" value="Dodaj uczelnię wyższą" form="addUni" >
-
+                                        
                                     </div>
+                                    <div id="uni-container"></div>
                                 </label>
 
                                 <br />
 
                                 <label>
                                 Cennik:
+                                <div>
                                 <br> </br>
                                     <span id="show-price">+ Dodaj cennik</span>:</br></br>
                                     <div id="edit-price">
@@ -271,6 +280,9 @@
                                         </p>
                                         <input form="addTrainerOffer" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                         <input type="submit" value="Dodaj ofertę do cennika" form="addTrainerOffer">
+                                    </div>
+                                    <div id="offers-container"></div>
+                                        
                                     </div>
                                 </label>
 

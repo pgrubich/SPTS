@@ -195,7 +195,7 @@ xhr.onload = function() {
 xhr.open('GET', 'http://pri.me/api/dyscyplines.json', true);        
 xhr.send(null);
 
-//checked dyscyplinesi i use
+//checked dyscyplines
 
 
 var xhr2 = new XMLHttpRequest();  
@@ -210,11 +210,152 @@ xhr2.onload = function() {
             document.getElementById(dysciplineName).checked = true;
           }
       }
+//show offers
+        var offers = '';
+       for(var i = 0; i<responseObject2[0].tr_off.length; i++){
+          offers +=  "<div class='single-ofert' id='single-ofert-"+responseObject2[0].tr_off[i].id+"'>";
+          offers +=  responseObject2[0].tr_off[i].name+" - "+ responseObject2[0].tr_off[i].price+"zł - ";
+          offers +=  "Maks. liczba klientów: "+responseObject2[0].tr_off[i].max_no_of_clients+ "</div>";
+          offers += "<div class='edit-single-ofert' id='edit-single-ofert-"+responseObject2[0].tr_off[i].id;
+          offers += "'><form><label>Nazwa zajęć: <input type='text' name='name'></label>";
+          offers += "<label>Cena: <input type='text' name='price'></label>";
+          offers += "<label>Maksymalna liczba osób: <input type='text' name='price'></label><input type='submit' value='Edytuj'></form></div>";
+      }
+      var offersContainer = document.getElementById("offers-container");
+      offersContainer.innerHTML = offers;
 
-      
+
+    //hide edit offers
+    var y = document.getElementsByClassName("single-ofert");
+
+    for(var i=0; i<y.length;i++){
+        document.getElementsByClassName("edit-single-ofert")[i].style.display="none";
+    }
+     //show edit offers
+
+  
+    for(var i=0; i<y.length;i++){
+        document.getElementById("single-ofert-"+responseObject2[0].tr_off[i].id).addEventListener('click',function(){
+                let idSplit = event.target.id.split("-");
+                if(document.getElementById("edit-single-ofert-"+idSplit[2]).style.display == "none"){
+                    document.getElementById("edit-single-ofert-"+idSplit[2]).style.display = "block";
+                }else{
+                    document.getElementById("edit-single-ofert-"+idSplit[2]).style.display = "none";
+                }
+                
+        },false);
+    }
+   
+/// UNI
+
+    var unis = '';
+    for(var i = 0; i<responseObject2[0].tr_uni.length; i++){
+       unis +=  "<div class='single-uni' id='single-uni-"+responseObject2[0].tr_uni[i].id+"'>";
+       unis +=  responseObject2[0].tr_uni[i].university+" - "+ responseObject2[0].tr_uni[i].course+" - ";
+       unis +=  responseObject2[0].tr_uni[i].degree+"</br> Data: "+responseObject2[0].tr_uni[i].begin_date;
+       unis += " : "+responseObject2[0].tr_uni[i].end_date+"</div>";
+       unis += "<div class='edit-single-uni' id='edit-single-uni-"+responseObject2[0].tr_uni[i].id;
+       unis += "'><form><label>Nazwa uniwersytetu: <input type='text' name='university'></label>";
+       unis += "<label>Kierunek: <input type='text' name='course'></label>";
+       unis += "<label>Stopień: <input type='text' name='degree'></label></br>";
+       unis += "<label>Data rozpoczęcia: <input type='date' name='begin_date'></label>";
+       unis += "<label>Data zakończenia: <input type='date' name='end_date'></label><input type='submit' value='Edytuj'></form></div>";
+
+   }
+   var uniContainer = document.getElementById("uni-container");
+   uniContainer.innerHTML = unis;
+
+
+ //hide edit uni
+ var yy = document.getElementsByClassName("single-uni");
+
+ for(var i=0; i<yy.length;i++){
+     document.getElementsByClassName("edit-single-uni")[i].style.display="none";
+ }
+  //show edit uni
+
+
+ for(var i=0; i<yy.length;i++){
+     document.getElementById("single-uni-"+responseObject2[0].tr_uni[i].id).addEventListener('click',function(){
+             var idSplitUni = event.target.id.split("-");
+
+             console.log(document.getElementById("edit-single-uni-6"));
+             if(document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display == "none"){
+                 document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display = "block";
+             }else{
+                 document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display = "none";
+             }
+             
+     },false);
+ }
+
+
+
+
+
+/// CER
+
+var cers = '';
+for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
+    cers +=  "<div class='single-cer' id='single-cer-"+responseObject2[0].tr_cert[i].id+"'>";
+    cers +=  responseObject2[0].tr_cert[i].name_of_institution+" - "+ responseObject2[0].tr_cert[i].name_of_course;
+    cers +=  "</br>Data: "+responseObject2[0].tr_cert[i].begin_date;
+    cers += " : "+responseObject2[0].tr_cert[i].end_date+"</div>";
+    cers += "<div class='edit-single-cer' id='edit-single-cer-"+responseObject2[0].tr_cert[i].id;
+    cers += "'><form><label>Nazwa instytucji: <input type='text' name='name_of_institution></label>";
+    cers += "<label>Nawa kursu: <input type='text' name='name_of_course'></label>";
+    cers += "<label>Data rozpoczęcia: <input type='date' name='begin_date'></label>";
+    cers += "<label>Data zakończenia: <input type='date' name='end_date'></label><input type='submit' value='Edytuj'></form></div>";
+
+}
+var cerContainer = document.getElementById("cer-container");
+cerContainer.innerHTML = cers;
+
+
+//hide edit cer
+var yyy = document.getElementsByClassName("single-cer");
+
+for(var i=0; i<yyy.length;i++){
+ document.getElementsByClassName("edit-single-cer")[i].style.display="none";
+}
+//show edit cer
+
+
+for(var i=0; i<yyy.length;i++){
+ document.getElementById("single-cer-"+responseObject2[0].tr_cert[i].id).addEventListener('click',function(){
+         var idSplitCer = event.target.id.split("-");
+
+         if(document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display == "none"){
+             document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display = "block";
+         }else{
+             document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display = "none";
+         }
+         
+ },false);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       
   }
 };
 
 xhr2.open('GET', 'http://pri.me/api/profiles/'+loggedUserId, true);        
 xhr2.send(null);
+
+
+
+// edit existing information
+
