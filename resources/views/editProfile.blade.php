@@ -178,6 +178,7 @@
                                 <p>
                                         Dyscypliny:
                                         <div id="dyscypline-list-editprofile">
+                                            <form>
                                             <div class="dyscypline-column-editprofile">
                                             </div>
                                             <div class="dyscypline-column-editprofile">
@@ -189,6 +190,8 @@
                                             <div class="dyscypline-column-editprofile">
                                             </div>
                                             <div style="clear:both;"></div>
+                                            <input type="submit" value="zmien dyscypline" >
+                                            </form>
                                         </div>
                                 </p>
                                 
