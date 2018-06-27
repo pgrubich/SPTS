@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Trainer\Trainer;
+use App\Models\Trainer\TrDiscipline;
 use App\Models\Trainer\TrLocation;
 use App\Models\Trainer\TrCertificate;
 use App\Models\Trainer\TrUniversity;
 use App\Models\Trainer\Troffer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 
 class editProfileController extends Controller
@@ -55,6 +57,28 @@ class editProfileController extends Controller
         $trainer = Trainer::find($request['id']);
         if ($request['description'] != '')        $trainer->description = $request['description'];
         $trainer->save();
+
+        return redirect('/editProfile');
+    }
+
+    protected function updateDisciplines(Request $request)
+    {
+        $deletedRows = TrDiscipline::where('trainer_id', $request['trainer_id'])->delete();
+
+        $data = $request->except('trainer_id');
+        foreach($data as $discipline_url_name => $value)
+        {
+            $discipline_url_name = Str::lower($discipline_url_name);
+            $discipline_name = str_replace('_', ' ', $discipline_url_name);
+            $discipline_name = ucfirst($discipline_name);
+
+
+            TrDiscipline::create([
+                'trainer_id' => $request['trainer_id'],
+                'discipline_name' => $discipline_name,
+                'discipline_url_name' => $discipline_url_name,
+            ]);   
+        }
 
         return redirect('/editProfile');
     }

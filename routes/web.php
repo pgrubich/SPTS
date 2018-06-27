@@ -32,6 +32,8 @@ Route::get('addCity', ['uses' =>'editProfileController@addCity']);
 
 Route::get('editSpecificInfo', ['uses' =>'editProfileController@updateSpecificInfo']);
 
+Route::get('updateDisciplines', ['uses' =>'editProfileController@updateDisciplines']);
+
 Route::get('addCourse', ['uses' =>'editProfileController@addCourse']);
 
 Route::get('editCourse', ['uses' =>'editProfileController@editCourse']);
