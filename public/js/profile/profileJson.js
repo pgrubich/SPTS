@@ -14,6 +14,14 @@ $(function(){
                 msg+= "<li>"+element.name+" "+element.surname+"</li>";
                 msg+= "<li>"+element.phone+"</li>";
                 msg+= "<li>"+element.email+"</li>";
+                if(element.facebook){
+                    msg+= "<li>Fb: "+element.facebook+"</li>";
+                }
+                if(element.instagram){
+                    msg+= "<li>Inst:"+element.instagram+"</li>";
+                }
+
+
 
                 $.each(element.tr_loc,function(ind,ele){
                     msg+= "<li>"+ele.city+", "+ele.voivodeship+"</li>";

@@ -7,7 +7,7 @@ function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 var headerSection = document.getElementById("header-section");
-headerSection.textContent = capitalizeFirstLetter(n[n.length - 2]) + " w " + capitalizeFirstLetter(n[n.length - 1]);
+headerSection.textContent = capitalizeFirstLetter(n[n.length - 2]).replace("_", " ") + " w " + capitalizeFirstLetter(n[n.length - 1]);
 
 
 
@@ -24,10 +24,13 @@ xhr.onload = function() {
       content += responseObject[i].id+'"><div class="profile-picture">';
       content += '</div><div class="profile-info">'
       content += "<p>"+ responseObject[i].name + " " + responseObject[i].surname +"</p>";
-      content += "<p>"+ responseObject[i].tr_disc[i].discipline_name +"</p>";
-      content += "<p> Miejsca: "+ responseObject[i].tr_pl[i].place+"</p>";
+        content += "<p>"+ responseObject[i].tr_disc[0].discipline_name +"</p>";
+
+      if(typeof responseObject[i].tr_pl[0] != "undefined"){
+        content += "<p> Miejsca: "+ responseObject[i].tr_pl[0].place+"</p>";
+      }
       content += "<p> Opis: "+ responseObject[i].description+"</p>";
-      content += '</div><div style="clear:both;"></div></div>';
+      content += '</div><div style="clear:both;"></div></div></br>';
       
     }
     var trainerBox = document.getElementById("trainers-box");
