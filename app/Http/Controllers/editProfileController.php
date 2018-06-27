@@ -80,6 +80,20 @@ class editProfileController extends Controller
         }
     }
 
+    protected function editCourse(Request $request)
+    {
+
+        $trCertificate = TrCertificate::find($request['id']);
+        if ($request['name_of_institution'] != '')  $trCertificate->name_of_institution = $request['name_of_institution'];
+        if ($request['name_of_course'] != '')       $trCertificate->name_of_course = $request['name_of_course'];
+        if ($request['begin_date'] != '')           $trCertificate->begin_date = $request['begin_date'];
+        if ($request['end_date'] != '')             $trCertificate->end_date = $request['end_date'];
+        $trCertificate->save();
+
+        return redirect('/editProfile');
+
+    }
+
 
     protected function addUni(Request $request)
     {
@@ -103,6 +117,21 @@ class editProfileController extends Controller
         }
     }
 
+    protected function editUni(Request $request)
+    {
+
+        $trUniversity = TrUniversity::find($request['id']);
+        if ($request['university'] != '')   $trUniversity->university = $request['university'];
+        if ($request['course'] != '')       $trUniversity->course = $request['course'];
+        if ($request['degree'] != '')       $trUniversity->degree = $request['degree'];
+        if ($request['begin_date'] != '')   $trUniversity->begin_date = $request['begin_date'];
+        if ($request['end_date'] != '')     $trUniversity->end_date = $request['end_date'];
+        $trUniversity->save();
+
+        return redirect('/editProfile');
+
+    }
+
 
     protected function addTrainerOffer(Request $request)
     {
@@ -122,6 +151,19 @@ class editProfileController extends Controller
 
             return redirect('/editProfile');
         }
+    }
+
+    protected function editTrainerOffer(Request $request)
+    {
+
+        $trOffer = TrOffer::find($request['id']);
+        if ($request['name'] != '')     $trOffer->name = $request['name'];
+        if ($request['price'] != '')    $trOffer->price = $request['price'];
+        if ($request['members'] != '')  $trOffer->max_no_of_clients = $request['members'];
+        $trOffer->save();
+
+        return redirect('/editProfile');
+
     }
 
 

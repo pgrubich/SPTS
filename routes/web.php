@@ -34,9 +34,15 @@ Route::get('editSpecificInfo', ['uses' =>'editProfileController@updateSpecificIn
 
 Route::get('addCourse', ['uses' =>'editProfileController@addCourse']);
 
+Route::get('editCourse', ['uses' =>'editProfileController@editCourse']);
+
 Route::get('addUni', ['uses' =>'editProfileController@addUni']);
 
+Route::get('editUni', ['uses' =>'editProfileController@editUni']);
+
 Route::get('addTrainerOffer', ['uses' =>'editProfileController@addTrainerOffer']);
+
+Route::get('editTrainerOffer', ['uses' =>'editProfileController@editTrainerOffer']);
 
 Route::get('editEmailInfo', ['uses' =>'editProfileController@updateEmailInfo']);
 
