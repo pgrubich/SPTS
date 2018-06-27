@@ -304,7 +304,7 @@ for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
     cers +=  "</br>Data: "+responseObject2[0].tr_cert[i].begin_date;
     cers += " : "+responseObject2[0].tr_cert[i].end_date+"</div>";
     cers += "<div class='edit-single-cer' id='edit-single-cer-"+responseObject2[0].tr_cert[i].id;
-    cers += "'><form><label>Nazwa instytucji: <input type='text' name='name_of_institution></label>";
+    cers += "'><form><label>Nazwa instytucji: <input type='text' name='name_of_institution'></label>";
     cers += "<label>Nawa kursu: <input type='text' name='name_of_course'></label>";
     cers += "<label>Data rozpoczęcia: <input type='date' name='begin_date'></label>";
     cers += "<label>Data zakończenia: <input type='date' name='end_date'></label>";
