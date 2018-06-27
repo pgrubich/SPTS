@@ -219,7 +219,8 @@ xhr2.onload = function() {
           offers += "<div class='edit-single-ofert' id='edit-single-ofert-"+responseObject2[0].tr_off[i].id;
           offers += "'><form><label>Nazwa zajęć: <input type='text' name='name'></label>";
           offers += "<label>Cena: <input type='text' name='price'></label>";
-          offers += "<label>Maksymalna liczba osób: <input type='text' name='price'></label><input type='submit' value='Edytuj'></form></div>";
+          offers += "<label>Maksymalna liczba osób: <input type='text' name='price'></label>";
+          offers += "<label><input name='id' type='hidden' value="+responseObject2[0].tr_off[i].id+"></label></label><input type='submit' value='Edytuj'></form></div>";
       }
       var offersContainer = document.getElementById("offers-container");
       offersContainer.innerHTML = offers;
@@ -259,7 +260,8 @@ xhr2.onload = function() {
        unis += "<label>Kierunek: <input type='text' name='course'></label>";
        unis += "<label>Stopień: <input type='text' name='degree'></label></br>";
        unis += "<label>Data rozpoczęcia: <input type='date' name='begin_date'></label>";
-       unis += "<label>Data zakończenia: <input type='date' name='end_date'></label><input type='submit' value='Edytuj'></form></div>";
+       unis += "<label>Data zakończenia: <input type='date' name='end_date'></label>";
+       unis += "<label><input name='id' type='hidden' value="+responseObject2[0].tr_uni[i].id+"></label></label><input type='submit' value='Edytuj'></form></div>";
 
    }
    var uniContainer = document.getElementById("uni-container");
@@ -305,7 +307,8 @@ for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
     cers += "'><form><label>Nazwa instytucji: <input type='text' name='name_of_institution></label>";
     cers += "<label>Nawa kursu: <input type='text' name='name_of_course'></label>";
     cers += "<label>Data rozpoczęcia: <input type='date' name='begin_date'></label>";
-    cers += "<label>Data zakończenia: <input type='date' name='end_date'></label><input type='submit' value='Edytuj'></form></div>";
+    cers += "<label>Data zakończenia: <input type='date' name='end_date'></label>";
+    cers += "<label><input name='id' type='hidden' value="+responseObject2[0].tr_cert[i].id+"></label></label><input type='submit' value='Edytuj'></form></div>";
 
 }
 var cerContainer = document.getElementById("cer-container");
