@@ -309,9 +309,9 @@
                             <legend>Moja galeria</legend>
                             
 
-                        <form action='updateProfilePhoto' method = 'GET'>
-                        <label>Dodaj zdjęcie profilowe</label>
-                            <input type='file' name='file' id='file'>
+                        <form action='store' enctype="multipart/form-data" method = 'POST'>
+                        <label>Dodaj zdjęcie</label>
+                            <input type='file' name='photo_name' id='file'>
                             <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
                             <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                             <input type='submit' value='Dodaj zdjęcie' name='submit'>

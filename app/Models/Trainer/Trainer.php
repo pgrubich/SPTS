@@ -45,4 +45,8 @@ class Trainer extends Authenticatable
         return $this->hasMany('App\Models\Trainer\TrTraining');
     }
 
+    public function trPh(){
+        return $this->hasMany('App\Models\Trainer\TrPhotos');
+    }
+
 }

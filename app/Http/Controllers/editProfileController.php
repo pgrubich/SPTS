@@ -8,7 +8,7 @@ use App\Models\Trainer\TrDiscipline;
 use App\Models\Trainer\TrLocation;
 use App\Models\Trainer\TrCertificate;
 use App\Models\Trainer\TrUniversity;
-use App\Models\Trainer\Troffer;
+use App\Models\Trainer\TrOffer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -37,7 +37,7 @@ class editProfileController extends Controller
     {
         if (TrLocation::where('city', '=', $request['city'])->where('voivodeship', '=', $request['voivodeship'])->where('trainer_id', '=', $request['id'])->exists()) 
         {
-            return ('Podane miasto i województwo już się znajduję w profilu.');
+            return ('Podane miasto i województwo już znajdują się w profilu.');
         }
         else
         {
