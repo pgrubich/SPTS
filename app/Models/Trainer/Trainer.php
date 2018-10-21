@@ -42,7 +42,7 @@ class Trainer extends Authenticatable
     }
 
     public function trTr(){
-        return $this->hasMany('App\Models\Trainer\TrTraining');
+        return $this->hasMany('App\Models\Trainer\TrTraining')->where('status', "wolne");
     }
 
     public function trOrdTr(){
