@@ -49,3 +49,5 @@ Route::get('editTrainerOffer', ['uses' =>'editProfileController@editTrainerOffer
 Route::get('editEmailInfo', ['uses' =>'editProfileController@updateEmailInfo']);
 
 Route::post('editPasswordInfo', ['uses' =>'editProfileController@editPasswordInfo']);
+
+Route::post('orderTraining', ['uses' =>'CalendarController@orderTraining']);
