@@ -1,56 +1,30 @@
-// show dyscipline list
+//cities search-input
 
-var arrow = document.getElementById("show-dyscyplines");
-var sharp = document.getElementById("hide-dyscyplines");
+function inputSearchCities(){
+    var options = {
+        types: ['(cities)'],
+        componentRestrictions: {country: "pl"}
+       };
 
-arrow.addEventListener('click',openList,false);
-sharp.addEventListener('click',closeList,false);
-
-
-function openList(){
-
-    document.getElementById("dyscpiline-list").style.width = "100%";
-}
-
-function closeList(){
-    document.getElementById("dyscpiline-list").style.width = "0%";
+    let input = document.getElementById('city-search');
+    let autocomplete = new google.maps.places.Autocomplete(input, options);
 }
 
 
 //insert dysciplines to overlay from json file
-
-
-
-
 
 var xhr = new XMLHttpRequest();                 
 
 xhr.onload = function() {                       
   if(xhr.status === 200) {
     responseObject = JSON.parse(xhr.responseText);  
-
-    var singleRecord = document.getElementsByClassName("dyscypline-record");                    
-    for (var i = 0; i < 12; i++){
-        var column1 ='';
-        column1 += responseObject.Dysciplines[i].Name;
-        singleRecord[i].textContent = column1;
-    }
-    for (var i = 12; i < 24; i++){
-        var column2 ='';
-        column2 += responseObject.Dysciplines[i].Name;
-        singleRecord[i].textContent = column2;
-    }
-    for (var i = 24; i < 36; i++){
-        var column3 ='';
-        column3 += responseObject.Dysciplines[i].Name;
-        singleRecord[i].textContent = column3;
-    }
-    for (var i = 36; i < responseObject.Dysciplines.length; i++){
-        var column4 ='';
-        column4 += responseObject.Dysciplines[i].Name;
-        singleRecord[i].textContent = column4;
-    }   
-
+    let disciplineSelect = document.getElementById("disciplines-select");
+    let disciplinesContent = ' <option selected>Dyscyplina</option>';
+    
+    responseObject.Dysciplines.map(function(obj){
+        disciplinesContent+= '<option value="'+ obj.Name +'">'+obj.Name+'</option>'
+    })
+    disciplineSelect.innerHTML = disciplinesContent;
   }
 };
 
@@ -58,30 +32,16 @@ xhr.onload = function() {
 xhr.send(null);                                 
 
 
-
-//picking dyscyplines
-
-var dysciplinesList = document.getElementsByClassName("dyscypline-record");
-var dyscyplineBox = document.getElementById("dyscypline-box");
-for (var i = 0; i < dysciplinesList.length; i++) {
-    dysciplinesList[i].addEventListener('click',pickDyscypline,false)
-}
-
-function pickDyscypline(){
-    dyscyplineBox.firstChild.textContent = this.textContent;
-    document.getElementById("dyscpiline-list").style.width = "0%";
-}
-
-
 //going to searchresults
 
 var searchButton = document.getElementById("search-button");
 searchButton.addEventListener('click',searchResult,false);
-var cityInput = document.getElementById("city-input");
+var cityInput = document.getElementById("city-search");
+var disciplinesSelect = document.getElementById("disciplines-select");
 function searchResult(){
-    var dysc = dyscyplineBox.firstChild.textContent.split(' ').join('_');
+    var dysc = disciplinesSelect.value.split(' ').join('_');
     var city = cityInput.value;
-    localStorage.setItem("discipline",  dyscyplineBox.firstChild.textContent); 
+    localStorage.setItem("discipline",  disciplinesSelect.value); 
     localStorage.setItem("city", city); 
     document.location.href = "/"+dysc+"/"+city;
 }

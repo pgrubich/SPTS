@@ -1,23 +1,31 @@
 #search-section{
-    height:100%;
-    width:90%;
-    float:left;
+    flex-wrap: wrap;
+    display:flex;
+    justify-content: center;
+    align-items: center;
     color: black;
+    height: 130px;
+    justify-content: center;
+    margin-top:50px;
+    width:100%;
+    background-color: rgba(204, 204, 204, .5);
 }
-
-#search-options
-{
-    margin-left:auto;
-    margin-right:auto;
-    margin-top: 10%;
-    width: 600px;
+#content{
+    padding:0px;
 }
-
 .search-list{
+    display: inline-block;
     list-style-type: none;
     
 }
-
+.search-title{
+    padding-top: 70px;
+    text-align:center;
+    width:70%;
+    color:white;
+    margin-right:auto;
+    margin-left:auto;
+}
 .search-list > li{
     display: inline-block;
     font-size: 20px;
@@ -28,106 +36,39 @@
     margin-left:15px;
     border-radius: 4px;
     height: 40px;
+    margin-top:45px;
+    opacity: 1;
 
 }
-
-
-
 #search-button{
-    display: block;
-    margin-left: 215px;
+    opacity: 1;
     width: 150px;
-    height: 40px;
-    margin-top: 20px;
-    border-radius: 4px;
+    height: 55px;
+    border: 1px;
 }
-
 .input-search{
     border: none;
     height:30px;
     font-size:20px;
     width:150px;
 }
-
 .input-search:focus{
     outline:none;
 }
-
 .input-px-diff{
     top:1px;
     position:relative;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-/* overlay  */
-
-.overlay {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0, 0.8);
-    overflow-x: hidden;
-    transition: 0.5s;
+#disciplines-select{
+    width:350px;
+    margin-right:20px;
+    height: 55px;
 }
-
-.overlay-content {
-    position: relative;
-    top: 10%;
-    width: 50%;
-    margin-top: 30px;
-    background-color: rgba(230, 219, 219, 0.9);
-    margin-left:auto;
-    margin-right:auto;
-}
-
-.overlay a {
-    padding: 8px;
-    text-decoration: none;
-    font-size: 13px;
-    color: #818181;
-    transition: 0.3s;
-    display:block;
-    width:0%;
-}
-
-.overlay a:hover, .overlay a:focus {
-    color: #f1f1f1;
-}
-
-.overlay .closebtn {
-    position: absolute;
-    top: -100px;
-    right: 0px;
-    font-size: 60px;
-}
-
-@media screen and (max-height: 450px) {
-    .overlay a {font-size: 20px}
-    .overlay .closebtn {
-      font-size: 40px;
-      top: 15px;
-      right: 35px;
-    }
-  }
-
-
-
-.column{
-    float:left;
-    width:25%;
-    
+#city-search{
+    width:350px;
+    height: 55px;
+    margin-right:20px;
+    border: 1px;
+    padding: 6px 12px 6px 12px;
 }
