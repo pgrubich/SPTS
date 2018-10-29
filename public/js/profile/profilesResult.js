@@ -21,7 +21,6 @@ xhr.onload = function() {
     responseObject = JSON.parse(xhr.responseText);
     var content = '';
     for(var i = 0; i < responseObject.length; i++) {
-      console.log(responseObject[i].rating)
       content += '<div class="single-trainer-result" id="trainer_record_';
       content += responseObject[i].id+'"><div class="profile-picture">';
       content += '</div><div class="profile-info">'

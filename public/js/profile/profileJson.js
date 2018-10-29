@@ -6,63 +6,156 @@ $(function(){
         var id = window.location.href.slice(-1);
         $.getJSON('http://pri.me/api/profiles/'+id)
         .done (function(data){
-            var msg = "";
-            var reviews = "<h2 id='reviews-info'>Opinie</h2>";
-            var description = "<h2 id='profile-info'>Profil</h2>"
-            var offert = "<h2 id='prices-info'>Cennik</h2> "
+            var name = "";
+            var city = "";
+            var stars ="";
+            var phone ="";
+            var email ="";
+            var facebook ="";
+            var instagram ="";
+            var reviews = "";
+            var description = "";
+            var certificates = "";
+            var education = "";
+            var offert = ""
             $.each(data, function(index, element) {
-                msg+= "<li>"+element.name+" "+element.surname+"</li>";
-                msg+= "<li>"+element.phone+"</li>";
-                msg+= "<li>"+element.email+"</li>";
+                console.log(element)
+                //gwiazdki
+                for( var j = 0; j < element.rating ; j++ ){
+                  stars += '<span class="fa fa-star green-star-checked"></span>';
+                }
+                for(var k = 0; k < (5-element.rating); k++){
+                  stars += '<span class="fa fa-star green-star"></span>';
+                }
+                stars +="<span class='rating-info'>("+element.rating+"/5)</span>";
+
+                //imię + nazwisko
+                if(element.name && element.surname){
+                    name+= element.name +" "+element.surname;
+                }else{
+                    name+= "Brak danych"
+                }
+                //miasto + województwo
+                if(element.tr_loc){
+                    $.each(element.tr_loc,function(ind,ele){
+                        city+= ele.city+ ", "+ele.voivodeship;
+                    });
+                }else{
+                    city+= "Brak danych"
+                }
+                //telefon
+                if(element.phone){
+                    phone+= element.phone;
+                }else{
+                    phone+= "Brak danych"
+                }
+                //email
+                if(element.email){
+                    email+= element.email;
+                }else{
+                    email+= "Brak danych"
+                }
+                //facebook
                 if(element.facebook){
-                    msg+= "<li>Fb: "+element.facebook+"</li>";
+                    facebook+= "<a href='http://"+element.facebook+"' target='_blank'>Zobacz profil</a>";
+                }else{
+                    facebook += "Brak danych";
                 }
+                //instagram
                 if(element.instagram){
-                    msg+= "<li>Inst:"+element.instagram+"</li>";
+                    instagram+= "<a href='http://"+element.instagram+"' target='_blank'>Zobacz profil</a>";;
+                }else{
+                    instagram += "Brak danych";
                 }
 
-
-
-                $.each(element.tr_loc,function(ind,ele){
-                    msg+= "<li>"+ele.city+", "+ele.voivodeship+"</li>";
-                });
-                description +="<p>"+ element.description+"</p>";
+                //Doświadczenie i umiejętności
+                if(element.description){
+                    description+= element.description;
+                }else{
+                    description += "Brak danych";
+                }
+                // certyfikaty
                 $.each(element.tr_cert, function(ind,ele){
-                    description+= "Certyfikaty : </br>"
-                    description+= ele.name_of_institution;
-                    description+= " - "+(ele.name_of_course);
-                    description+= " :  "+(ele.begin_date);
-                    description+= " - "+(ele.end_date);
+                    if(ele.name_of_institution){
+                        certificates+= "<p>"+ele.name_of_institution+ " - ";
+                    }
+                    if(ele.name_of_course){
+                        certificates+= ele.name_of_course+ " - ";
+                    }
+                    if(ele.begin_date){
+                        certificates+=" :  "+(ele.begin_date);
+                    }
+                    if(ele.end_date){
+                        certificates+= " - "+(ele.end_date)+ "</p>";
+                    }
                 });
-                $.each(element.tr_pl,function(ind,ele){
 
-                    description+= "</br> </br> Lokaliacja : "+ele.place;
+                // Wykształcenie
+                $.each(element.tr_uni, function(ind,ele){
+                    if(ele.university){
+                        education+= "<p>"+ele.university+ " - ";
+                    }
+                    if(ele.course){
+                        education+= ele.course;
+                    }
+                    if(ele.degree){
+                        education+=" -  "+(ele.degree);
+                    }
+                    if(ele.begin_date){
+                        education+= " - "+(ele.begin_date);
+                    }
+                    if(ele.end_date){
+                        education+= " : "+(ele.end_date)+ "</p>";
+                    }
                 });
-                $.each(element.tr_uni,function(ind,ele){
-                    description+= "</br></br>  Wykształcenie : "+ele.university;
-                    description+= " - "+ele.course;
-                    description+= " - "+(ele.degree);
-                    description+= " :  "+(ele.begin_date);
-                    description+= " - "+(ele.end_date);
-                });
+                // $.each(element.tr_pl,function(ind,ele){
+
+                //     description+= "</br> </br> Lokaliacja : "+ele.place;
+                // });
+
+                // Cennik
                 $.each(element.tr_off,function(ind,ele){
-                    offert+= "<p>"+ele.name+" - "+ele.price+" zł"+"</p>";
+                    offert+= "<tr><td>"+ele.name+"</td><td> "+ele.max_no_of_clients+" os.</td><td>"+ele.price+" zł</td>";
                     
                 });
+
+                //Opinie
                 $.each(element.tr_op,function(ind,ele){
-                    reviews+= "<div class='small-container'>";
-                    reviews+= ele.name+" "+ele.surname;
-                    reviews+= "<span> Ocena: "+ele.rating+ "</span>";
-                    reviews+= "<p>"+"Treść: "+ele.description+ "</p>";
-                    reviews+= "</div>";
-                    
-                    
+                    var array = ele.created_at.split(' ');
+
+                    reviews += "<div class='review-header'>";
+                    reviews += "<span class='review-header-name'>"+ele.name+" " +array[0]+"</span>";
+                    reviews += "<span class='review-header-rating'>";
+                    reviews +="<span class='rating-info'>("+ele.rating+"/5)</span>";
+                    for( var j = 0; j < ele.rating ; j++ ){
+                        reviews += '<span class="fa fa-star green-star-checked"></span>';
+                      }
+                      for(var k = 0; k < (5-ele.rating); k++){
+                        reviews += '<span class="fa fa-star dark-star"></span>';
+                      }
+
+                    reviews += "</span></div><div class='review-content'>";
+                    reviews += ele.description;
+                    reviews += "</div>";
                 });
+
              });
-            $(".categories:eq(2)").html(offert);
-            $(".categories:eq(4)").prepend(reviews);
-            $(".detail-list").html(msg);
-            $(".categories:first").html(description);
+           // $(".categories:eq(2)").html(offert);
+           // $(".categories:eq(4)").prepend(reviews);
+            //$(".detail-list").html(msg);
+            //$(".categories:first").html(description);
+            $(".stars-info").html(stars);
+            $("#name-info").text(name);
+            $("#city-info").text(city);
+            $("#phone-info").text(phone);
+            $("#mail-info").text(email);
+            $("#fb-info").html(facebook);
+            $("#inst-info").html(instagram);
+            $(".categories-content:eq(0)").text(description);
+            $(".categories-content:eq(1)").html(certificates);
+            $(".categories-content:eq(2)").html(education);
+            $(".categories-content:eq(6)").prepend(reviews);
+            $("#price-table").append(offert);
             
         
         });    

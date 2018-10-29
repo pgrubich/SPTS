@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/profiles.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{asset('js/profile/jquery.scrollTo.min.js')}}"></script>
@@ -24,29 +25,37 @@
 
 <body>
 
-    <header>
-
-        <div id="logBar">
-            <span>
-            <a href="/login">Zaloguj się</a>
-            /
-            <a href="/register">Zarejerstruj się</a>
-            </span>
-        </div>
-
-        
-
+  <header>
         <nav>
-            <ul class="menu">
-            <li><a href="/dyscyplina/trenerzy_personalni">Trenerzy personalni</a></li>/
-              <li><a href="#">Trenerzy sportu</a></li>/
-              <li><a href="/dyscyplina/dietetycy">Dietetycy</a></li>
-            </ul>
+
+            @if (Auth::check())
+            <div class="container-fluid" id="logBar">
+                <span>
+                <a href="/logout" >Wyloguj się</a>
+                    /
+                <a href="/editProfile" >Edytuj profil</a>
+                </span>
+            </div>
+            @else
+            <div class="container-fluid" id="logBar">
+                <div class="logo">
+                </div>
+                <span>
+                <a href="/login" >Zaloguj się</a>
+                <button type="button" class="btn blue-button">Zarejerstruj się</button>
+                </span>
+            </div>
+            @endif
+            <!-- <select> 
+                <option value="" selected="selected">Wybierz</option> 
+                <option value="/login">Zaloguj się</option> 
+                <option value="/register">Zarejerstruj się</option> 
+            </select>  -->
         </nav>
     </header>
     <main>
         <article>
-            <div id="content">
+            <div class="container-fluid profile-content">
 
                 <div class="leftColumn">
                     <section>
@@ -54,70 +63,126 @@
 
                         <div class="trener-details">
                             <ul class="detail-list">
-                                <li>Jan Kowalski</li>
-                                <li>603 603 603</li>
-                                <li>j.kowal@gmail.com</li>
-                                <li>Poznań, Wielkopolska</li>
+                            <li class="stars-info"></li>
+                                <li>
+                                    <span id="name-info">Jan Kowalski</span><br/>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span id="city-info">
+                                        Poznań, Wielkopolska
+                                    </span>
+                                </li>
+                                <li class="detail-info ">
+                                <i class="fas fa-phone "></i>
+                                    Numer telefonu <br/>
+                                    <span id="phone-info">
+                                        603 184 710
+                                    </span>
+                                </li>
+                                <li class="detail-info">
+                                <i class="far fa-envelope "></i>
+                                    Email<br/>
+                                    <span id="mail-info">j.kowal@gmail.com</span>
+                                    
+                                </li>
+                                <li class="detail-info">
+                                <i class="fab fa-facebook "></i>
+                                    Facebook<br/>
+                                    <span id="fb-info"><a href="#">Zobacz profil</a></span>
+                                </li>
+                                <li class="detail-info"> 
+                                <i class="fab fa-instagram "></i>
+                                    Instagram<br/>
+                                    <span id="inst-info"><a href="#">Zobacz profil</a></span>
+                                </li>
                             </ul>
                         </div>
                     </section>
                 </div>
                 
                 <div class="middleColumn">
-                        <section>
-                                <div id="section-nav">
-                                    <ul class="section-menu">
-                                            <li id="link1">Profil</li>
-                                            <li id="link2">Kalendarz</li>
-                                            <li id="link3">Cennik</li>
-                                            <li id="link4">Galeria</li>
-                                            <li id="link5">Opinie</li>
-                                    </ul>
+                        <div id="section-nav">
+                            <ul class="section-menu">
+                                <li id="link1">Profil</li>
+                                <li id="link2">Wykształcenie</li>
+                                <li id="link3">Kalendarz</li>
+                                <li id="link4">Cennik</li>
+                                <li id="link5">Galeria</li>
+                                <li id="link6">Lokalizacja</li>
+                                <li id="link7">Opinie</li>
+                            </ul>
+                        </div>
+                     <div class="categories">
+                        <div class="categories-header">
+                            <i class="far fa-bookmark"></i>
+                            Doświadczenie i umiejętności</div>
+                        <div class="categories-content"></div>
+                    </div>
+                    <div class="categories">
+                        <div class="categories-header">
+                        <i class="fas fa-certificate"></i>
+                            Certyfikaty</div>
+                        <div class="categories-content"></div>
+                    </div>
+                    <div class="categories">
+                        <div class="categories-header">
+                        <i class="fas fa-graduation-cap"></i>
+                        Wykształcenie</div>
+                        <div class="categories-content"></div>
+                    </div>
+
+                    <section>
+                        <div class="categories">
+                        <div class="categories-header">
+                        <i class="far fa-calendar-alt"></i>
+                        Kalendarz</div>
+                        <div class="categories-content"></div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="categories">
+                            <div class="categories-header">
+                            <i class="fas fa-shopping-bag"></i>Cennik</div>
+                                <div class="categories-content">
+                                <table id="price-table">
+                                    <tr >
+                                        <th>Typ zajęć</th>
+                                        <th>Maksymalna liczba osób</th>
+                                        <th>Cena / 1h</th>
+                                    </tr>
+             
+                                </table>    
                                 </div>
-                            </section>
-                    <section>
-                        <div class="categories">
-                            <h2 id="profile-info">Profil</h2>
-                        </div>
+                            </div>
                     </section>
 
                     <section>
                         <div class="categories">
-                            <h2 id="calendar-info">Kalendarz</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porttitor, ex eu tincidunt rhoncus, ex diam placerat felis, eu rhoncus ex libero vestibulum risus. Integer mattis suscipit sem at suscipit. Proin scelerisque lectus efficitur ipsum luctus venenatis. Aliquam ultricies vehicula magna, ac facilisis odio tempor eu. Duis ut varius tellus. Vivamus tristique vitae sapien nec imperdiet. Quisque ac elit lectus. Praesent tempus tincidunt libero quis pretium. Maecenas id eros ut enim maximus molestie. Praesent elit velit, tincidunt eu nibh id, pharetra venenatis purus. Pellentesque a consectetur dui. In ultricies orci vitae sodales viverra.</p>
-                        </div>
-                    </section>
-
-                    <section>
-                        <div class="categories">
-                            <h2 id="prices-info">Cennik</h2>
-                        </div>
-                    </section>
-
-                    <section>
-                        <div class="categories">
-                            <h2 id="gallery-info">Galeria</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam porttitor, ex eu tincidunt rhoncus, ex diam placerat felis, eu rhoncus ex libero vestibulum risus. Integer mattis suscipit sem at suscipit. Proin scelerisque lectus efficitur ipsum luctus venenatis. Aliquam ultricies vehicula magna, ac facilisis odio tempor eu. Duis ut varius tellus. Vivamus tristique vitae sapien nec imperdiet. Quisque ac elit lectus. Praesent tempus tincidunt libero quis pretium. Maecenas id eros ut enim maximus molestie. Praesent elit velit, tincidunt eu nibh id, pharetra venenatis purus. Pellentesque a consectetur dui. In ultricies orci vitae sodales viverra.</p>
+                        <div class="categories-header">
+                        <i class="far fa-images"></i>
+                        Galeria</div>
+                        <div class="categories-content"></div>
                         </div>
                     </section>
                     <section>
                         <div class="categories">
+                        <div class="categories-header">
+                        <i class="far fa-comments"></i>
+                        Opinie</div>
 
-                            <form action='/profiles/addOpinion' method = 'GET'>
+                        <div class="categories-content">
+                            
+
+                            <form class="comment-box" action='/profiles/addOpinion' method = 'GET'>
 
                             <label>
-                                Imię 
-                                <input name='name' type='text' required pattern=".{3,}">
+                                Imię:
+                                <input placeholder="Podaj imię..." class="review-input-name" name='name' type='text' required pattern=".{3,}">
                             </label>
                             <br>
                             <label>
-                                Nazwisko 
-                                <input name='surname' type='text' required pattern=".{3,}">
-                            </label>
-                            <br>
-                            <label>
-                                Email 
-                                <input name='email' type='email' required>
+                                Adres email: 
+                                <input placeholder="Podaj email..." class="review-input-email" name='email' type='email' required>
                             </label>
                             <br>
                                 Ocena
@@ -128,27 +193,19 @@
                                 <input type="radio" name="rating" id="str5" value="5"><label for="str5"></label>
                             <br>
                             <label>
-                                Opinia 
                                 <br>
-                                <textarea name="description" cols="70" rows="10" required maxlength="500" minlength="5"></textarea>
+                                <textarea class="review-input-description" placeholder="Oceń trenera..." name="description" cols="70" rows="10" required maxlength="500" minlength="5"></textarea>
                             </label>
                             <br>
                                 <input type='hidden' name='trainer_id' value='{!! Request::segment(2) !!}'/>
-                            <input type="submit">
+                            <input class="submit-button" type="submit">
                             </form> 
                           
-
+                            </div>
 
 						</div>  
                     </section>
-                </div>
-
-                <div id="ads">
-                    <aside>
-                    </aside>
-                </div>
-                <div style="clear:both;"></div>
-            
+                </div>      
             </div>
            
         </article>

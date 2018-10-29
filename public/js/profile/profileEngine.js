@@ -1,20 +1,13 @@
 jQuery(function($)
 {
-
-
     $.scrollTo(0);
 
-    $('#link1').click(function() { $.scrollTo($('#profile-info'),500); });
-    $('#link2').click(function() { $.scrollTo($('#calendar-info'), 500); });
-    $('#link3').click(function() { $.scrollTo($('#prices-info'), 500); });
-    $('#link4').click(function() { $.scrollTo($('#gallery-info'), 500); });
-    $('#link5').click(function() { $.scrollTo($('#reviews-info'), 500); });
-
-
-
-
+    $('#link1').click(function() { $.scrollTo($('.categories:eq(0)'),500); });
+    $('#link2').click(function() { $.scrollTo($('.categories:eq(2)'), 500); });
+    $('#link3').click(function() { $.scrollTo($('.categories:eq(3)'), 500); });
+    $('#link4').click(function() { $.scrollTo($('.categories:eq(4)'), 500); });
+    $('#link5').click(function() { $.scrollTo($('.categories:eq(5)'), 500); });
 });
-
 
 $(document).ready(function() {
     var NavY = $('#section-nav').offset().top;
