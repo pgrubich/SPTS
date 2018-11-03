@@ -25,6 +25,12 @@ option6.addEventListener('click',function(){show(6);},false)
 function show(a){
     switch(a){
         case 1:
+            option1.classList.add("editMenu-option-checked");
+            option2.classList.remove("editMenu-option-checked");
+            option3.classList.remove("editMenu-option-checked");
+            option4.classList.remove("editMenu-option-checked");
+            option5.classList.remove("editMenu-option-checked");
+            option6.classList.remove("editMenu-option-checked");
             block1.style.display = "block";
             block2.style.display = "none";
             block3.style.display = "none";
@@ -33,6 +39,12 @@ function show(a){
             block6.style.display = "none";
             break;
         case 2:
+            option1.classList.remove("editMenu-option-checked");
+            option3.classList.remove("editMenu-option-checked");
+            option4.classList.remove("editMenu-option-checked");
+            option5.classList.remove("editMenu-option-checked");
+            option6.classList.remove("editMenu-option-checked");
+            option2.classList.add("editMenu-option-checked");
             block1.style.display = "none";
             block2.style.display = "block";
             block3.style.display = "none";
@@ -41,6 +53,12 @@ function show(a){
             block6.style.display = "none";
             break;
         case 3:
+            option1.classList.remove("editMenu-option-checked");
+            option2.classList.remove("editMenu-option-checked");
+            option4.classList.remove("editMenu-option-checked");
+            option5.classList.remove("editMenu-option-checked");
+            option6.classList.remove("editMenu-option-checked");
+            option3.classList.add("editMenu-option-checked");
             block1.style.display = "none";
             block2.style.display = "none";
             block3.style.display = "block";
@@ -49,6 +67,12 @@ function show(a){
             block6.style.display = "none";
         break;
         case 4:
+            option1.classList.remove("editMenu-option-checked");
+            option2.classList.remove("editMenu-option-checked");
+            option3.classList.remove("editMenu-option-checked");
+            option5.classList.remove("editMenu-option-checked");
+            option6.classList.remove("editMenu-option-checked");
+            option4.classList.add("editMenu-option-checked");
             block1.style.display = "none";
             block2.style.display = "none";
             block3.style.display = "none";
@@ -57,6 +81,12 @@ function show(a){
             block6.style.display = "none";
         break;
         case 5:
+            option1.classList.remove("editMenu-option-checked");
+            option2.classList.remove("editMenu-option-checked");
+            option3.classList.remove("editMenu-option-checked");
+            option4.classList.remove("editMenu-option-checked");
+            option6.classList.remove("editMenu-option-checked");
+            option5.classList.add("editMenu-option-checked");
             block1.style.display = "none";
             block2.style.display = "none";
             block3.style.display = "none";
@@ -65,6 +95,12 @@ function show(a){
             block6.style.display = "none";
             break;
         case 6:
+            option1.classList.remove("editMenu-option-checked");
+            option2.classList.remove("editMenu-option-checked");
+            option3.classList.remove("editMenu-option-checked");
+            option4.classList.remove("editMenu-option-checked");
+            option5.classList.remove("editMenu-option-checked");
+            option6.classList.add("editMenu-option-checked");
             block1.style.display = "none";
             block2.style.display = "none";
             block3.style.display = "none";
@@ -152,42 +188,42 @@ xhr.onload = function() {
     var column5 ='';
     var column6 ='';
     var record = document.getElementsByClassName("dyscypline-column-editprofile");                    
-    for (var i = 0; i < 10; i++){
+    for (var i = 0; i < 12; i++){
         column1 += '<label><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
         column1 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
         column1 += responseObject.Dysciplines[i].Name + '</label></br>';
         
     }
-    for (var i = 10; i < 20; i++){
+    for (var i = 12; i < 24; i++){
         column2 += '<label><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
         column2 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
         column2 += responseObject.Dysciplines[i].Name + '</label></br>';
     }
-    for (var i = 20; i < 30; i++){
+    for (var i = 24; i < 36; i++){
         column3 += '<label><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
         column3 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
         column3 += responseObject.Dysciplines[i].Name + '</label></br>';
 
     }
-    for (var i = 30; i < 40; i++){
+    for (var i = 36; i < responseObject.Dysciplines.length; i++){
 
         column4 += '<label><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
         column4 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
         column4 += responseObject.Dysciplines[i].Name + '</label></br>';
     }   
 
-    for (var i = 40; i < responseObject.Dysciplines.length; i++){
+    // for (var i = 40; i < responseObject.Dysciplines.length; i++){
 
-        column5 += '<label><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
-        column5 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
-        column5 += responseObject.Dysciplines[i].Name + '</label></br>';
+    //     column5 += '<label><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
+    //     column5 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
+    //     column5 += responseObject.Dysciplines[i].Name + '</label></br>';
 
-    }   
+    // }   
     record[0].innerHTML = column1;   
     record[1].innerHTML = column2;  
     record[2].innerHTML = column3;  
     record[3].innerHTML = column4;  
-    record[4].innerHTML = column5;  
+    // record[4].innerHTML = column5;  
 
   }
 };
@@ -213,9 +249,10 @@ xhr2.onload = function() {
 //show offers
         var offers = '';
        for(var i = 0; i<responseObject2[0].tr_off.length; i++){
-          offers +=  "<div class='single-ofert' id='single-ofert-"+responseObject2[0].tr_off[i].id+"'>";
-          offers +=  responseObject2[0].tr_off[i].name+" - "+ responseObject2[0].tr_off[i].price+"zł - ";
-          offers +=  "Maks. liczba klientów: "+responseObject2[0].tr_off[i].max_no_of_clients+ "</div>";
+          offers += '<i class="fas fa-shopping-bag edit-icon"></i>'
+          offers +=  "<div class='single-ofert' id='single-ofert-"+responseObject2[0].tr_off[i].id+"'><div>";
+          offers +=  responseObject2[0].tr_off[i].name+"</br><div style='font-size: 13px;'> "+ responseObject2[0].tr_off[i].price+"zł </br> ";
+          offers +=  "Maks. liczba klientów: "+responseObject2[0].tr_off[i].max_no_of_clients+ "</div></div><div class='edit-delete-section'><span>Edutuj</span></br><span>Usuń</span></div></div>";
           offers += "<div class='edit-single-ofert' id='edit-single-ofert-"+responseObject2[0].tr_off[i].id;
           offers += "'><form id='editTrainerOffer' action='editTrainerOffer' method='GET'><label>Nazwa zajęć: <input type='text' name='name'></label>";
           offers += "<label>Cena: <input type='text' name='price'></label>";
@@ -251,10 +288,11 @@ xhr2.onload = function() {
 
     var unis = '';
     for(var i = 0; i<responseObject2[0].tr_uni.length; i++){
-       unis +=  "<div class='single-uni' id='single-uni-"+responseObject2[0].tr_uni[i].id+"'>";
-       unis +=  responseObject2[0].tr_uni[i].university+" - "+ responseObject2[0].tr_uni[i].course+" - ";
-       unis +=  responseObject2[0].tr_uni[i].degree+"</br> Data: "+responseObject2[0].tr_uni[i].begin_date;
-       unis += " : "+responseObject2[0].tr_uni[i].end_date+"</div>";
+       unis += '<i class="fas fa-graduation-cap edit-icon-uni"></i>'
+       unis +=  "<div class='single-uni' id='single-uni-"+responseObject2[0].tr_uni[i].id+"'><div>";
+       unis +=  responseObject2[0].tr_uni[i].university+"<br><div style='font-size: 13px;'>"+ responseObject2[0].tr_uni[i].course+" - ";
+       unis +=  responseObject2[0].tr_uni[i].degree+"</br> "+responseObject2[0].tr_uni[i].begin_date;
+       unis += " - "+responseObject2[0].tr_uni[i].end_date+"</div></div><div class='edit-delete-section'><span>Edutuj</span></br><span>Usuń</span></div></div>";
        unis += "<div class='edit-single-uni' id='edit-single-uni-"+responseObject2[0].tr_uni[i].id;
        unis += "'><form id='editUni' action='editUni' method='GET'><label>Nazwa uniwersytetu: <input type='text' name='university'></label>";
        unis += "<label>Kierunek: <input type='text' name='course'></label>";
@@ -281,7 +319,6 @@ xhr2.onload = function() {
      document.getElementById("single-uni-"+responseObject2[0].tr_uni[i].id).addEventListener('click',function(){
              var idSplitUni = event.target.id.split("-");
 
-             console.log(document.getElementById("edit-single-uni-6"));
              if(document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display == "none"){
                  document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display = "block";
              }else{
@@ -299,16 +336,17 @@ xhr2.onload = function() {
 
 var cers = '';
 for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
-    cers +=  "<div class='single-cer' id='single-cer-"+responseObject2[0].tr_cert[i].id+"'>";
-    cers +=  responseObject2[0].tr_cert[i].name_of_institution+" - "+ responseObject2[0].tr_cert[i].name_of_course;
-    cers +=  "</br>Data: "+responseObject2[0].tr_cert[i].begin_date;
-    cers += " : "+responseObject2[0].tr_cert[i].end_date+"</div>";
+    cers += '<i class="far fa-file-alt edit-icon"></i>'
+    cers +=  "<div class='single-cer' id='single-cer-"+responseObject2[0].tr_cert[i].id+"'><div>";
+    cers +=  responseObject2[0].tr_cert[i].name_of_institution+"</br><div style='font-size: 13px;'>"+ responseObject2[0].tr_cert[i].name_of_course;
+    cers +=  "</br>"+responseObject2[0].tr_cert[i].begin_date;
+    cers += " - "+responseObject2[0].tr_cert[i].end_date+"</div></div><div class='edit-delete-section'><span>Edutuj</span></br><span>Usuń</span></div></div>";
     cers += "<div class='edit-single-cer' id='edit-single-cer-"+responseObject2[0].tr_cert[i].id;
     cers += "'><form id='editCourse' action='editCourse' method='GET'><label>Nazwa instytucji: <input type='text' name='name_of_institution'></label>";
     cers += "<label>Nawa kursu: <input type='text' name='name_of_course'></label>";
     cers += "<label>Data rozpoczęcia: <input type='date' name='begin_date'></label>";
     cers += "<label>Data zakończenia: <input type='date' name='end_date'></label>";
-    cers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_cert[i].id+"'></label></label><input type='submit' value='Edytuj'></form></div>";
+    cers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_cert[i].id+"'></label></label><input type='submit' value='Edytuj'></form></div></br>";
 
 }
 var cerContainer = document.getElementById("cer-container");

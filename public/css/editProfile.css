@@ -1,3 +1,19 @@
+.edit-profile-content{
+    border-top: solid 1px #dfdede;
+    display:flex;
+    justify-content: center;
+}
+.middleColumn{
+    width: 700px;
+
+}
+fieldset{
+    margin-top: 30px;
+    border:1.5px solid #dfdede;
+    border-radius: 3px;
+    padding-bottom: 30px;
+}
+
 .editProfile-menu{
     width:210px;
     background-color:white;
@@ -9,12 +25,194 @@
     letter-spacing: 2px;
 
 }
-
+.editMenu-option{
+    display:flex;
+    background-color: #e4f6fb;
+    width: 180px;
+    height: 50px;
+    border-radius: 3px;
+    align-items:center;
+    justify-content: center;
+}
+.editMenu-option-checked{
+    background-color: #4bc0e3;
+    color: white;
+}
 .editMenu-option:hover{
     cursor:pointer;
-    color:rgb(23, 23, 230);
+    background-color: #9dd2e2;
 }
 
+.edit-name{
+    margin-left: 120px;
+    width: 250px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.edit-lastname{
+    margin-left: 80px;
+    width: 250px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.edit-date{
+    margin-left: 34px;
+    width: 250px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.edit-phone{
+    margin-left: 95px;
+    width: 250px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.edit-insta{
+    margin-left: 74px;
+    width: 250px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.edit-face{
+    margin-left: 78px;
+    width: 250px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.edit-text{
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 2px;
+    border: 1px solid #dfdede;
+}
+.save-button{
+    width: 100px;
+    height: 30px;
+    color: white;
+    background-color:#3cdaa8;
+    border: none;
+    float: right;
+    margin-right: 200px;
+    border-radius: 3px;
+}
+.add-button{
+    padding: 7px 15px;
+    border: 1px solid #4bc0e3 ;
+    float: right;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.edit-place{
+    margin-left: 30px;
+    width: 480px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+#edit-course, #edit-uni, #edit-price{
+    font-size: 14px;
+}
+.edit-course{
+    margin-left: 50px;
+    width: 480px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.edit-startdate{
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+    margin-left: 24px;
+    display: inline-block;
+    width:150px;
+    padding: 3px;
+}
+.edit-enddate{
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    width:150px;
+    padding: 3px;
+    padding: 3px;
+    margin-left: 25px;
+    display: inline-block;
+}
+
+.edit-uni{
+    margin-left: 45px;
+    width: 480px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+
+}
+.edit-spec{
+    margin-left: 78px;
+    width: 480px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.edit-title{
+    margin-left: 103px;
+    width: 480px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.edit-lessons{
+    margin-left: 68px;
+    width: 480px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.edit-patric{
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+    margin-left: 24px;
+    display: inline-block;
+    width:150px;
+    padding: 3px;
+}
+.edit-price{
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    width:150px;
+    padding: 3px;
+    padding: 3px;
+    margin-left: 25px;
+    display: inline-block;
+}
+
+.add-button:hover{
+    background-color: rgb(235, 249, 255);
+}
 #basic-edit{
     display: block;
 }
@@ -37,30 +235,22 @@
     display:none;
 }
 
-.leftColumn
-{
-    width: 20%;
-    float:left;
-    height: 300px;
-}
-
-.middleColumn
-{
-    float:left;
-    width:70%;
-}
-
 #show-uni ,#show-course ,#show-price{
     cursor:pointer;
+    opacity: 0.7;
+    font-size: 14px;
 }
 #edit-uni ,#edit-course ,#edit-price {
     display: none;
 
 }
+#dyscypline-list-editprofile{
+    font-size: 14px;
+}
 
 .dyscypline-column-editprofile{
     float:left;
-    width:20%;
+    width:25%;
 }
 
 .edit-single-ofert, .edit-single-uni, .edit-single-cer{
@@ -71,9 +261,39 @@
 }
 
 .single-ofert, .single-uni, .single-cer{
-    padding: 5px;
+    padding: 10px;
     margin: 2px;
-    border: 1px solid #0a2b42;
     cursor:pointer;
+    line-height: 24px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    margin-bottom: 15px;
+    width: 550px;
+    display: inline-flex;
+    justify-content: space-between;
 }
 
+.edit-icon{
+    font-size: 60px;
+    color: #4bc0e3;
+    margin-right: 20px;
+    margin-left: 10px;
+    display: inline-block;
+    position: relative;
+    bottom: -40px;
+}
+.edit-icon-uni{
+    font-size:40px;
+    color: #4bc0e3;
+    margin-right: 20px;
+    margin-left: 10px;
+    display: inline-block;
+    position: relative;
+    bottom: -40px;
+}
+.edit-delete-section{
+    font-size: 13px;
+    opacity: 0.7;
+    margin-top: 15px;
+    margin-right: 15px;
+}
