@@ -28,11 +28,11 @@ DELIMITER $$
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `search` (`input` VARCHAR(49))  BEGIN
 
-( SELECT t.id, t.name, t.surname, t.gender, t.phone, t.email, t.description, t.rating FROM trainers t 
+( SELECT t.id, t.name, t.surname, t.gender, t.phone, t.email, t.description, t.rating FROM trainers t
 WHERE 	t.gender LIKE Concat(Concat('%',input),'%')
 		OR t.description LIKE Concat(Concat('%',input),'%')
 GROUP BY t.id )
-UNION        
+UNION
 ( SELECT t.id, t.name, t.surname, t.gender, t.phone, t.email, t.description, t.rating FROM (SELECT td.trainer_id, td.discipline_url_name FROM trainers_disciplines td ) tdis
 INNER JOIN trainers t ON tdis.trainer_id = t.id
 WHERE tdis.discipline_url_name LIKE Concat(Concat('%',input),'%')
@@ -85,7 +85,8 @@ CREATE TABLE `trainers` (
   `rating` double NOT NULL DEFAULT '0',
   `avatar` varchar(250) COLLATE utf8_polish_ci DEFAULT NULL,
   `registerDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `remember_token` varchar(100) COLLATE utf8_polish_ci DEFAULT NULL
+  `remember_token` varchar(100) COLLATE utf8_polish_ci DEFAULT NULL,
+  `profile_picture_id` int(11) COLLATE utf8_polish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 --
@@ -248,6 +249,19 @@ INSERT INTO `trainers_opinions` (`id`, `name`, `surname`, `email`, `description`
 (8, 'Łukasz Szymula', 'Szymula', 'lukasz.szymula@icloud.com', 'ugkjgjjjjjjjjjjjjjjj', 5, 4, '2018-08-30 17:37:37', '2018-08-30 17:37:37'),
 (9, 'Łukasz Szymula', 'Szymula', 'lukasz.szymula@icloud.com', 'fudjfufyfy77777', 5, 4, '2018-08-30 17:37:52', '2018-08-30 17:37:52');
 
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `trainers_photos`
+--
+
+CREATE TABLE `trainers_photos` (
+  `id` int(11) NOT NULL,
+  `trainer_id` int(11) NOT NULL,
+  `photo_name` varchar(250) COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -383,6 +397,13 @@ ALTER TABLE `trainers_opinions`
   ADD KEY `trainer_id_idx` (`trainer_id`);
 
 --
+-- Indeksy dla tabeli `trainers_photos`
+--
+ALTER TABLE `trainers_photos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `trainer_id` (`trainer_id`);
+
+--
 -- Indeksy dla tabeli `trainers_places`
 --
 ALTER TABLE `trainers_places`
@@ -508,6 +529,12 @@ ALTER TABLE `trainers_offers`
 --
 ALTER TABLE `trainers_opinions`
   ADD CONSTRAINT `op_trainer_id` FOREIGN KEY (`trainer_id`) REFERENCES `trainers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Ograniczenia dla tabeli `trainers_photos`
+--
+ALTER TABLE `trainers_photos`
+  ADD CONSTRAINT `trainers_photos_ibfk_1` FOREIGN KEY (`trainer_id`) REFERENCES `trainers` (`id`);
 
 --
 -- Ograniczenia dla tabeli `trainers_places`
