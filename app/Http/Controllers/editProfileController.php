@@ -162,7 +162,7 @@ class editProfileController extends Controller
 
         if (TrOffer::where('name', '=', $request['classes_name'])->where('max_no_of_clients', '=', $request['numbers_of_members'])->where('trainer_id', '=', $request['id'])->exists()) 
         {
-            return ('Ten typ zajęc juz istnieje.');
+            return ('Ten typ zajęć już istnieje.');
         }
         else
         {
@@ -215,7 +215,22 @@ class editProfileController extends Controller
         {
             return ('Podano złe hasło.');
         }
-    } 
+    }
+
+    protected function updateProfilePicture(Request $request)
+    {
+        if (TrPhotos::where('id', '=', $request['photo_id'])->exists()) {
+            $photoId = TrPhotos::find($request['photo_id']);
+            $trainer = Trainer::find($request['id']);
+            $trainer->profile_picture_id = $photoId;
+            $trainer->save();
+        }
+        else {
+            return('Nie znaleziono wybranego zdjęcia.');
+        }
+
+        return redirect('/editProfile');
+    }
 
 
 }
