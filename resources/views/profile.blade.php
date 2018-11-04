@@ -59,7 +59,11 @@
 
                 <div class="leftColumn">
                     <section>
-                        <div class="profilePic"></div>
+                         <div class="profilePic">
+                             <!-- <img src="/storage/trainers_photos/{id_trenera}/{nazwa_zdjecia}"/> -->
+                         </div>
+
+
 
                         <div class="trener-details">
                             <ul class="detail-list">

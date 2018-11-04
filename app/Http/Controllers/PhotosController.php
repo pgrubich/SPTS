@@ -38,7 +38,7 @@ class PhotosController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'photo_name' => 'image|nullable|max:1999'
+            'photo_name' => 'image|nullable'
         ]);
 
         if($request->hasFile('photo_name')){
@@ -47,7 +47,7 @@ class PhotosController extends Controller
             $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('photo_name')->getClientOriginalExtension();
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $path = $request->file('photo_name')->storeAs('public/trainers_photos', $fileNameToStore);
+            $path = $request->file('photo_name')->storeAs('public/trainers_photos/'.auth()->user()->id, $fileNameToStore);
 
         } else {
             $fileNameToStore = 'noimage.jpg';
