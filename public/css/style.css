@@ -1,24 +1,32 @@
 body
 {
 	margin: 0;
-    background-image: url('background.jpg');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-attachment:fixed;
     font-family: 'Open Sans', sans-serif;
     font-size: 17px;
 }
 
+.blue-button{
+    color: white;
+    width: 180px;
+    height: 50px;
+    background-color: #4bc0e3;
+    border-radius: 8px;
+    margin-left: 40px;
+}
 
 #logBar
 {
-    width:94%;
-    height: 80px;
-    background-color:rgb(231, 220, 220,0.8);
-    margin-top:15px;
-    margin-left: 3%;
-    margin-right: 3%;
-    border-radius: 4px;
+    height: 100px;
+}
+
+#logBar > .logo
+{
+    width: 316px;
+    height: 100px;
+    background-image: url('images/logo.png');
+    margin-right:15px;
+    font-size:25px;
+    display:inline-block
 }
 
 #logBar > span
@@ -26,78 +34,33 @@ body
     float:right;
     margin-top: 25px;
     margin-right: 15px;
-    font-size: 21px;
+    font-size: 16px;
 }
 #logBar > span > a
 {
     margin-left: 10px;
     margin-right: 10px;
     text-decoration: none;
-    font-size: 18px;
     color:black;
     transition: 0.2s;
 }
 
-#logBar > span > a:hover
-{
-    color: #57778d;
-}
-
-nav
-{
-    background-color: rgb(172, 165, 165);
-    opacity: 0.8;
-    width:94%;
-    margin-left:3%;
-    margin-right:3%;
-    height: 40px;
-    border-radius: 4px;
-}
-
-.menu
-{
-    list-style-type: none;
-    margin: 0px;
-    padding: 5px;
-    font-size:21px;
-
-}
-
-.menu > li 
-{
-    display: inline-block;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-size: 18px;
-}
-
-.menu a
-{
-    color: white;
-    text-decoration: none;
-    transition: 0.2s;
-}
-
-.menu a:hover
-{
-    color: #0a2b42;
-}
-
 #content
 {
-    margin-top: 40px;
-    margin-left:3%;
-    margin-right:3%;
-    width:94%;
+    opacity: 0.8;
+    height:400px;
     background-color:rgb(221, 210, 210,0.8);
-    border-radius: 4px;
+    background-image: url('images/athlete.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    object-fit:cover;
 }
 
-#ads
-{
-    height: 600px;
-    width: 10%;
-    background-color: rgba(255, 255, 255, 0.596);
-    float:left;
-    border-radius: 4px;
-}
+/* login register mobile */
+/* nav select {
+    display: none;
+  }
+@media (max-width: 768px) {
+    nav span     { display: none; }
+    nav select { display: inline-block; }
+  } */

@@ -124,7 +124,7 @@ class editProfileController extends Controller
 
         if (TrUniversity::where('university', '=', $request['name'])->where('course', '=', $request['course'])->where('degree', '=', $request['degree'])->where('trainer_id', '=', $request['id'])->exists()) 
         {
-            return ('Twoja ista uczelni zawiera podaną placówkę, kierunek oraz stopień.');
+            return ('Twoja lista uczelni zawiera podaną placówkę, kierunek oraz stopień.');
         }
         else
         {

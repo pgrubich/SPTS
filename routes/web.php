@@ -51,3 +51,5 @@ Route::get('editEmailInfo', ['uses' =>'editProfileController@updateEmailInfo']);
 Route::post('editPasswordInfo', ['uses' =>'editProfileController@editPasswordInfo']);
 
 Route::post('store', ['uses' => 'PhotosController@store']);
+
+Route::post('orderTraining', ['uses' =>'CalendarController@orderTraining']);

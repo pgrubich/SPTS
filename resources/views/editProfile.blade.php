@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/editProfile.css')}}" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{asset('js/profile/jquery.scrollTo.min.js')}}"></script>
@@ -22,48 +23,34 @@
 </head>
 
 <body>
-
-    <header>
-
-        @if (Auth::check())
-        <div id="logBar">
-            <span>
-            <a href="/logout" >Wyloguj się</a>
-            </span>
-        </div>
-         @else
-            <div id="logBar">
-            <span>
-            <a href="/login">Zaloguj się</a>
-            /
-            <a href="/register">Zarejerstruj się</a>
-            </span>
-            </div>
-        @endif
-
+<header>
         <nav>
-            <ul class="menu">
-              <li><a href="/dyscyplina/trenerzy_personalni">Trenerzy personalni</a></li>/
-              <li><a href="#">Trenerzy sportu</a></li>/
-              <li><a href="/dyscyplina/dietetycy">Dietetycy</a></li>
-
-            </ul>
+            <div class="container-fluid" id="logBar">
+                <div class="logo">
+                </div>
+                <span>
+                <a href="/editProfile" >Edytuj profil</a>
+                <a href="/logout" >Wyloguj się</a>
+                <button type="button" class="btn blue-button">Zarejerstruj się</button>
+                </span>
+            </div>
         </nav>
     </header>
 
     <main>
         <article>
-            <div id="content">
+            <div class="container-fluid edit-profile-content">
                 
             <div class="leftColumn">
 
                 <div class="editProfile-menu">
-                   <p><span id="editMenu-option1" class="editMenu-option"> 1. Informacje podstawowe</span></p>
-                   <p><span id="editMenu-option2" class="editMenu-option"> 2. Informacje szczegółowe</span></p>
-                   <p><span id="editMenu-option3" class="editMenu-option"> 3. Mój kalendarz</span></p>
-                   <p><span id="editMenu-option4" class="editMenu-option"> 4. Galeria zdjęć</span></p>
-                   <p><span id="editMenu-option5" class="editMenu-option"> 5. Zmiana adresu e-mail</span></p>
-                   <p><span id="editMenu-option6" class="editMenu-option"> 6. Zmiana hasła</span></p>
+                   <p><span id="editMenu-option1" class="editMenu-option editMenu-option-checked">Dane podstawowe</span></p>
+                   <p><span id="editMenu-option2" class="editMenu-option">Dane szczegółowe</span></p>
+                   <p><span id="editMenu-option3" class="editMenu-option">Kalendarz</span></p>
+                   <p><span id="editMenu-option4" class="editMenu-option">Galeria zdjęć</span></p>
+                   <p><span  class="editMenu-option">Lokalizacja</span></p>
+                   <p><span id="editMenu-option5" class="editMenu-option">Zmiana adresu e-mail</span></p>
+                   <p><span id="editMenu-option6" class="editMenu-option">Zmiana hasła</span></p>
                 </div>
                 
             </div> 
@@ -71,33 +58,33 @@
                 <div class="categories">
                     <div id="basic-edit">
                         <fieldset>
-                            <legend>Informacje podstawowe dla </legend>
+                            <legend>Dane podstawowe </legend>
                             
                             <form id="editPrimaryInfo" action='editPrimaryInfo' method = 'GET'></form>
                             <form id="addCity" action='addCity' method = 'GET'></form>
                                 
                                 <p>
-                                <label>
+                                <label style="margin-left: 45px;">
                                         Imię: 
-                                        <input form="editPrimaryInfo" name='name' type='text' placeholder='{{ Auth::user()->name }}' pattern=".{3,}">
+                                        <input class="edit-name" form="editPrimaryInfo" name='name' type='text' placeholder='{{ Auth::user()->name }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
-                                <label>
+                                <label style="margin-left: 45px;">
                                         Nazwisko: 
-                                        <input form="editPrimaryInfo" name='surname' type='text' placeholder='{{ Auth::user()->surname }}' pattern=".{3,}">
+                                        <input class="edit-lastname" form="editPrimaryInfo" name='surname' type='text' placeholder='{{ Auth::user()->surname }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
-                                <label>
+                                <label style="margin-left: 45px;">
                                         Data urodzenia:
-                                        <input form="editPrimaryInfo" name='bdate' type="date" placeholder='{{ Auth::user()->bdate }}' >
-                                <label>
+                                        <input  class="edit-date" form="editPrimaryInfo" name='bdate' type="date" placeholder='{{ Auth::user()->bdate }}' >
+                                <label style="margin-left: 45px;">
                                 </p>
                                 
-                                <p>
+                                <p style="margin-left: 45px;">
                                         Płeć
                                         <input form="editPrimaryInfo" type="radio" name="gender" value="f">
                                         <label for="female">kobieta</label>
@@ -106,29 +93,27 @@
                                 </p>
 
                                 <p>
-                                <label>
+                                <label style="margin-left: 45px;">
                                     Telefon: 
-                                    <input form="editPrimaryInfo" name='phone' type='tel' placeholder='{{ Auth::user()->phone }}'>
+                                    <input  class="edit-phone" form="editPrimaryInfo" name='phone' type='tel' placeholder='{{ Auth::user()->phone }}'>
                                 </label>
                                 </p>
                                 
                                 <p>
-                                <label>
+                                <label style="margin-left: 45px;">
                                     Instagram: 
-                                    <input form="editPrimaryInfo" name='instagram' type='text' placeholder='{{ Auth::user()->instagram }}' pattern=".{3,}">
+                                    <input  class="edit-insta" form="editPrimaryInfo" name='instagram' type='text' placeholder='{{ Auth::user()->instagram }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
-                                <label>
+                                <label style="margin-left: 45px;">
                                     Facebook: 
-                                    <input form="editPrimaryInfo" name='facebook' type='text' placeholder='{{ Auth::user()->facebook }}' pattern=".{3,}">
+                                    <input class="edit-face"  form="editPrimaryInfo" name='facebook' type='text' placeholder='{{ Auth::user()->facebook }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
-                                <label>
-                                Cennik:
-                                <br> </br>
+                                <label style="margin-left: 45px;">
                                     <span id="show-cities">+ Dodaj miasto</span>:</br></br>
                                     <div id="edit-cities">
                                         <p>
@@ -149,7 +134,7 @@
 
                                 <input form="editPrimaryInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
 
-                                <input type="submit" value="Zapisz" form="editPrimaryInfo">
+                                <input class="save-button" type="submit" value="Zapisz" form="editPrimaryInfo">
 
                             </form>
 
@@ -163,17 +148,18 @@
                     <form id="addTrainerOffer" action='addTrainerOffer' method = 'GET'></form>
 
                         <fieldset>
-                            <legend>Informacje szczegółowe</legend>
+                            <legend>Dane szczegółowe</legend>
                                 <p>
-                                        <label>
+                                        <label >
                                         Opis trenera:
                                         <br />
-                                        <textarea form="editSpecificInfo" name="description" placeholder='{{ Auth::user()->description }}' cols="70" rows="10" maxlength="500" minlength="5"></textarea>
+                                        <textarea placeholder="Podaj swój opis" class="edit-text" form="editSpecificInfo" name="description" placeholder='{{ Auth::user()->description }}' cols="90" rows="10" maxlength="500" minlength="5"></textarea>
                                         </label>
+                                        <input class="add-button" type="submit" value="Aktualizuj opis" >
                                 </p>
-                                <p>
+                                <p style="margin-top:45px;">
                                         Dyscypliny:
-                                        <div id="dyscypline-list-editprofile">
+                                        <div id="dyscypline-list-editprofile" >
                                             <form id='updateDisciplines' action='updateDisciplines' method='GET'>
                                             <div class="dyscypline-column-editprofile">
                                             </div>
@@ -187,7 +173,7 @@
                                             </div>
                                             <div style="clear:both;"></div>
                                             <input type='hidden' name='trainer_id' value='{{ Auth::user()->id }}'/>
-                                            <input type="submit" value="zmien dyscypline" >
+                                            <input class="add-button" type="submit" value="Zmień dyscypliny" >
                                             </form>
                                         </div>
                                 </p>
@@ -197,27 +183,33 @@
                                 <label>
                                 Certyfikaty:
                                 <br> </br>
-                                    <span id="show-course" >+ Dodaj certyfikat</span>: </br></br>
+                                    <span id="show-course" >+ Dodaj certyfikat </span> </br></br>
     
                                     <div id="edit-course">
                                         <p>
                                             Nazwa placówki:
-                                            <input form="addCourse" name='place' type="text" pattern=".{3,}" required>
+                                            <input placeholder="Podaj nazwę placówki" class="edit-place" form="addCourse" name='place' type="text" pattern=".{3,}" required>
                                         </p>
                                         <p>
                                             Nazwa kursu:
-                                            <input form="addCourse" name='name' type="text" pattern=".{3,}">
+                                            <input placeholder="Podaj nazwę kursu" class="edit-course" form="addCourse" name='name' type="text" pattern=".{3,}">
                                         </p>
-                                        <p>
+                                        <p style="display:inline-block">
                                             Data rozpoczęcia:
-                                            <input form="addCourse" name='begin_date' type="date">
+                                            <input class="edit-startdate" form="addCourse" name='begin_date' type="date">
+                                        </p>
+                                        <p style="margin-left:20px; display:inline-block;">
+                                            Data zakończenia:
+                                            <input class="edit-enddate" form="addCourse" name='end_date' type="date">
                                         </p>
                                         <p>
-                                            Data zakończenia:
-                                            <input form="addCourse" name='end_date' type="date">
+                                            Dodaj załącznik
+                                        <input type="file" name="zalacznik" />
                                         </p>
                                         <input type='hidden' form="addCourse" name='id' value='{{ Auth::user()->id }}'/>
-                                        <input type="submit" value="Dodaj certyfikat" form="addCourse">
+                                        <div style="display:block; margin-bottom: 70px;;">
+                                        <input class="add-button" type="submit" value="Dodaj" form="addCourse">
+                                        </div>  
 
                                         
                                     </div>
@@ -229,33 +221,33 @@
                                 <label>
                                 Uczelnie wyższe:
                                 <br> </br>
-                                    <span id="show-uni">+ Dodaj uczelnię wyższą</span>:</br></br>
+                                    <span id="show-uni">+ Dodaj uczelnię wyższą</span></br></br>
                                     <div id="edit-uni">
                                         <p>
                                             Nazwa uczelni:
-                                            <input form="addUni" name='name' type="text" pattern=".{3,}" required>
+                                            <input class="edit-uni" form="addUni" name='name' type="text" pattern=".{3,}" required>
                                         </p>
                                         <p>
                                             Kierunek:
-                                            <input form="addUni" name='course' type="text" pattern=".{3,}" required>
+                                            <input class="edit-spec" form="addUni" name='course' type="text" pattern=".{3,}" required>
                                         </p>
                                         <p>
                                             Tytuł:
-                                            <input form="addUni" name='degree' type="text" pattern=".{3,}">
+                                            <input class="edit-title" form="addUni" name='degree' type="text" pattern=".{3,}">
                                         </p>
-                                        <p>
+                                        <p style="display:inline-block">
                                             Data rozpoczęcia:
-                                            <input form="addUni" name='begin_date' type="date">
+                                            <input class="edit-startdate" form="addUni" name='begin_date' type="date">
                                         </p>
-                                        <p>
+                                        <p style="margin-left:20px; display:inline-block;">
                                             Data zakończenia:
-                                            <input form="addUni" name='end_date' type="date">
+                                            <input class="edit-enddate" form="addUni" name='end_date' type="date">
                                         </p>
                                         <input type='hidden' form="addUni" name='id' value='{{ Auth::user()->id }}'/>
-                                        <input type="submit" value="Dodaj uczelnię wyższą" form="addUni" >
+                                        <input class="add-button" type="submit" value="Dodaj uczelnię wyższą" form="addUni" >
                                         
                                     </div>
-                                    <div id="uni-container"></div>
+                                    <div id="uni-container" style="margin-top:50px;"></div>
                                 </label>
 
                                 <br />
@@ -264,24 +256,24 @@
                                 Cennik:
                                 <div>
                                 <br> </br>
-                                    <span id="show-price">+ Dodaj cennik</span>:</br></br>
+                                    <span id="show-price" >+ Dodaj cennik</span></br></br>
                                     <div id="edit-price">
                                         <p>
                                             Nazwa zajęć:
-                                            <input form="addTrainerOffer" name='classes_name' type="text" pattern=".{3,}" required>
+                                            <input class="edit-lessons" form="addTrainerOffer" name='classes_name' type="text" pattern=".{3,}" required>
                                         </p>
-                                        <p>
+                                        <p style="display:inline-block">
+                                            Maksymalna liczba uczestników:
+                                            <input class="edit-patric" form="addTrainerOffer" name='numbers_of_members' type="number" required>
+                                        </p>
+                                        <p style="margin-left:20px; display:inline-block;">
                                             Cena:
-                                            <input form="addTrainerOffer" name='price' type="number">
-                                        </p>
-                                        <p>
-                                            Liczba uczestników:
-                                            <input form="addTrainerOffer" name='numbers_of_members' type="number" required>
+                                            <input class="edit-price" form="addTrainerOffer" name='price' type="number">
                                         </p>
                                         <input form="addTrainerOffer" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
-                                        <input type="submit" value="Dodaj ofertę do cennika" form="addTrainerOffer">
+                                        <input class="add-button" type="submit" value="Dodaj ofertę do cennika" form="addTrainerOffer">
                                     </div>
-                                    <div id="offers-container"></div>
+                                    <div id="offers-container" style="margin-top:45px;"></div>
                                         
                                     </div>
                                 </label>
@@ -290,7 +282,6 @@
 
                                 <br />
                                 <br />
-                                <input type="submit" value="Zapisz" form="editSpecificInfo">
                         </fieldset>
                     </div>
 
