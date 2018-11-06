@@ -272,3 +272,31 @@
 .small-container > p{
     font-size: 13px;
 }
+
+
+.gallery-content{
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.gallery-photo{
+    object-fit: contain;
+    width: 170px; 
+    height: 150px;
+    margin:15px;
+    display:flex;
+    align-items: center;
+    background-color: #0000008f;
+}
+
+.gallery-photo img{
+    width: 100%;
+}
+.gallery-photo:hover{
+    transform: scale(1.1);
+}
+
+.profilePic img{
+    width: 100%;
+    height:100%;
+}

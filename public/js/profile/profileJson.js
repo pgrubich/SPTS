@@ -17,7 +17,9 @@ $(function(){
             var description = "";
             var certificates = "";
             var education = "";
-            var offert = ""
+            var offert = "";
+            var photos = "";
+            var profilePic = "";
             $.each(data, function(index, element) {
                 console.log(element)
                 //gwiazdki
@@ -139,8 +141,24 @@ $(function(){
                     reviews += "</div>";
                 });
 
+                //Galeria
+                $.each(element.tr_ph,function(ind,ele){
+                    photos += "<div class='gallery-photo'><div><a href=\"";
+                    photos += "\/storage/trainers_photos\/"+element.id+"\/"+ ele.photo_name+"\" data-lightbox=\"my-gallery\" >"
+                    photos += " <img src=\"\/storage/trainers_photos\/"+element.id+"\/";
+                    photos += ele.photo_name+"\" \/></a></div></div>"
+                });
+
+                if(element.profile_picture_id){
+                    $.each(element.tr_ph,function(ind,ele){
+                        if(ele.id === element.profile_picture_id){
+                            profilePic += " <img src=\"\/storage/trainers_photos\/"+element.id+"\/";
+                            profilePic += ele.photo_name+"\" \/>"
+                        }
+                    });
+                }
              });
-           // $(".categories:eq(2)").html(offert);
+           // $(".categories:eq(2)").html(offert);  <img src="/storage/trainers_photos/8/picture2_1541352187.jpg"/>
            // $(".categories:eq(4)").prepend(reviews);
             //$(".detail-list").html(msg);
             //$(".categories:first").html(description);
@@ -154,8 +172,11 @@ $(function(){
             $(".categories-content:eq(0)").text(description);
             $(".categories-content:eq(1)").html(certificates);
             $(".categories-content:eq(2)").html(education);
+            $(".gallery-content").html(photos);
+            $(".categories-content:eq(5)").prepend(reviews);
             $(".categories-content:eq(6)").prepend(reviews);
             $("#price-table").append(offert);
+            $(".profilePic").html(profilePic);
             
         
         });    
