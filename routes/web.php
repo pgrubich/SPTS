@@ -52,6 +52,8 @@ Route::post('editPasswordInfo', ['uses' =>'editProfileController@editPasswordInf
 
 Route::post('store', ['uses' => 'PhotosController@store']);
 
+Route::post('destroy', ['uses' => 'PhotosController@destroy']);
+
 Route::post('orderTraining', ['uses' =>'CalendarController@orderTraining']);
 
 Route::post('updateProfilePicture', ['uses' => 'editProfileController@updateProfilePicture']);

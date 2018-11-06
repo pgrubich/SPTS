@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Trainer extends Authenticatable
 {
     protected $table = 'trainers';
-    protected $hidden = ['password','id','remember_token'];
+    protected $hidden = ['password','remember_token'];
     protected $fillable = ['password','email'];
     const CREATED_AT = 'registerDate';
     public $timestamps = false;

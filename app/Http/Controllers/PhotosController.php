@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use Illuminate\Http\Request;
 use App\Models\Trainer\Trainer;
 use App\Models\Trainer\TrPhotos;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PhotosController extends Controller
 {
@@ -38,19 +40,16 @@ class PhotosController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'photo_name' => 'image|nullable'
+            'photo_name' => 'image|size:5000'
         ]);
 
-        if($request->hasFile('photo_name')){
+        if($request->hasFile('photo_name')) {
 
             $fileNameWithExt = $request->file('photo_name')->getClientOriginalName();
             $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('photo_name')->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $path = $request->file('photo_name')->storeAs('public/trainers_photos/'.auth()->user()->id, $fileNameToStore);
-
-        } else {
-            $fileNameToStore = 'noimage.jpg';
+            $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+            $path = $request->file('photo_name')->storeAs('public/trainers_photos/'. auth()->user()->id, $fileNameToStore);
         }
 
         $album = new TrPhotos;
@@ -104,7 +103,13 @@ class PhotosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (TrPhotos::where('id', $id)->exists()) {
+            $photo = TrPhotos::find($id);
+            $photoName = TrPhotos('photo_name')->where('id', $id);
+            $photo->delete();
+            Storage::delete('public/trainers_photos/'.auth()->user()->id.'/'.$photoName);
+        }
+
     }
 
 
