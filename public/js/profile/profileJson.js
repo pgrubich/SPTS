@@ -173,7 +173,7 @@ $(function(){
             $(".categories-content:eq(1)").html(certificates);
             $(".categories-content:eq(2)").html(education);
             $(".gallery-content").html(photos);
-            $(".categories-content:eq(5)").prepend(reviews);
+            // $(".categories-content:eq(5)").prepend(reviews);
             $(".categories-content:eq(6)").prepend(reviews);
             $("#price-table").append(offert);
             $(".profilePic").html(profilePic);
