@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\ListByDiscipline\Trainer;
-use App\Models\ListByDiscipline\TrDiscipline;
-use App\Models\ListByDiscipline\TrLocation;
-use App\Models\ListByDiscipline\TrPlace;
 
 
 class DisciplineAndLocationController extends Controller
@@ -72,7 +69,7 @@ class DisciplineAndLocationController extends Controller
             // zrobic Jsona z miastami
             $query->where('city', '=', $location);
         })
-        ->with('TrDisc','trLoc','trPl')->get();
+        ->with('TrDisc','trLoc','trPl','trPh')->get();
     }
 
     /**

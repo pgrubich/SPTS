@@ -21,4 +21,8 @@ class Trainer extends Model
         return $this->hasMany('App\Models\ListByDiscipline\TrPlace');
     }
 
+    public function trPh(){
+        return $this->hasMany('App\Models\Trainer\TrPhotos');
+    }
+
 }
