@@ -6,27 +6,71 @@ var n = decodeURI(window.location.href).split("/");
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
-var disciplineSection = document.getElementsByClassName("discipline-value");
+var disciplineSection = document.getElementById("discipline-value");
 var citySection = document.getElementsByClassName("city-value");
-disciplineSection[0].textContent = capitalizeFirstLetter(n[n.length - 2]).replace("_", " ")
-citySection[0].textContent = capitalizeFirstLetter(n[n.length - 1]);
+// disciplineSection.textContent = capitalizeFirstLetter(n[n.length - 2]).replace("_", " ")
+// citySection[0].textContent = capitalizeFirstLetter(n[n.length - 1]);
+
+//cities search-input
+
+function inputSearchCities(){
+  var options = {
+      types: ['(cities)'],
+      componentRestrictions: {country: "pl"}
+     };
+
+  let input = document.getElementById('city-search-results');
+  input.value = capitalizeFirstLetter(n[n.length - 1]);
+  let autocomplete = new google.maps.places.Autocomplete(input, options);
+}
+
+
+//insert dysciplines to overlay from json file
+
+var xhr1 = new XMLHttpRequest();                 
+var disciplinesContent= '<select class="custom-select rounded disciplines-select">';
+xhr1.onload = function() {                       
+  if(xhr1.status === 200) {
+    responseObject = JSON.parse(xhr1.responseText);  
+    let disciplineSelect = document.getElementById("discipline-value");
+    disciplinesContent+= '<option>Dyscyplina</option>';
+    
+    responseObject.Dysciplines.map(function(obj){
+      disciplinesContent+= '<option value="'+ obj.Name +'"'
+      if(obj.Name == capitalizeFirstLetter(n[n.length - 2]).replace("_", " ") ){
+        disciplinesContent += ' selected';  
+      }
+      disciplinesContent += '>'+obj.Name+'</option>';
+    })
+    disciplinesContent+= '</select>'
+    disciplineSelect.innerHTML = disciplinesContent;
+  }
+};
+
+xhr1.open('GET', 'http://pri.me/api/dyscyplines.json', true);        
+xhr1.send(null);                                 
+
 
 
 // trainers profiles
-
+profilePic =[];
 var xhr = new XMLHttpRequest();                 
 
 xhr.onload = function() {                       
   if(xhr.status === 200) {
     responseObject = JSON.parse(xhr.responseText);
+    console.log(responseObject)
     var content = '';
     for(var i = 0; i < responseObject.length; i++) {
       content += '<div class="single-trainer-result" id="trainer_record_';
       content += responseObject[i].id+'"><div class="profile-picture">';
       content += '</div><div class="profile-info">'
       content += "<p class='name-surname'>"+ responseObject[i].name + " " + responseObject[i].surname +"</p>";
-      content += "<p> Opis: "+ responseObject[i].description+"</p>";
-      content += "</div><div class='right-segment'><div class='stars'>";
+      content += "<p> Opis: "+ responseObject[i].description;
+      // if(responseObject[i].description.length > 280){
+      //   content += '...'
+      // }
+      content += "</p></div><div class='right-segment'><div class='stars'>";
 
       for( var j = 0; j < responseObject[i].rating ; j++ ){
         content += '<span class="fa fa-star green-star-checked"></span>';
@@ -35,6 +79,15 @@ xhr.onload = function() {
         content += '<span class="fa fa-star green-star"></span>';
       }
       content += "</div><button type='button' class='btn green-button'>Zobacz profil</button></div></div>";
+
+      if(responseObject[i].profile_picture_id){
+        for(var j = 0; j < responseObject[i].tr_ph.length; j++){
+          if(responseObject[i].profile_picture_id == responseObject[i].tr_ph[j].id ){
+            profilePic.push([" <img src=\"\/storage/trainers_photos\/"+responseObject[i].id+"\/"+responseObject[i].tr_ph[j].photo_name+"\" \/>", i]);
+          }
+        }
+    }
+    
     }
     var trainerBox = document.getElementById("trainers-container");
     trainerBox.innerHTML = content;
@@ -62,7 +115,62 @@ xhr.onload = function() {
     let resultValue = document.getElementsByClassName('result-value');
     resultValue[0].textContent = '(0 wyników)';
   }
+  if(profilePic){
+    for(var k = 0; k < profilePic.length; k++ ){
+      console.log(profilePic)
+      console.log(profilePic[k][1])
+      document.getElementsByClassName('profile-picture')[profilePic[k][1]].innerHTML = profilePic[k][0];
+    }
+
+  }
 };
 
 xhr.open('GET', 'http://pri.me/api/'+n[n.length - 2]+'/'+n[n.length - 1], true);        
-xhr.send(null);                                 
+xhr.send(null);    
+
+ 
+// range slider
+
+$( function() {
+  $( "#slider-range" ).slider({
+    range: true,
+    min: 0,
+    max: 350,
+    values: [ 50, 150 ],
+    slide: function( event, ui ) {
+      $( "#amount" ).val("Cena:   " + ui.values[ 0 ]+"zł" + " - " + ui.values[ 1 ]+"zł" );
+    }
+  });
+  $( "#amount" ).val("Cena:   " + $( "#slider-range" ).slider( "values", 0 )+"zł" +
+    " - " + $( "#slider-range" ).slider( "values", 1 )+"zł" );
+} );
+
+$( function() {
+  $( "#age-slider-range" ).slider({
+    range: true,
+    min: 0,
+    max: 99,
+    values: [ 10, 50 ],
+    slide: function( event, ui ) {
+      $( "#age" ).val("Wiek:   " + ui.values[ 0 ]+" lat" + " - " + ui.values[ 1 ]+" lat" );
+    }
+  });
+  $( "#age" ).val("Wiek:   " + $( "#age-slider-range" ).slider( "values", 0 )+" lat" +
+    " - " + $( "#age-slider-range" ).slider( "values", 1 )+" lat" );
+} );
+
+// Clear all
+
+clearButton = document.getElementById('clearAll');
+
+clearButton.addEventListener('click',clearFilter)
+
+function clearFilter(){
+  document.getElementById('age').value = "Wiek:   " +10+" lat" + " - " +50+" lat";
+  document.getElementById('amount').value = "Cena:   " +50+"zł" + " - " +150+"zł";
+  document.getElementById('training-place').value = 'Miejsce';
+  document.getElementById('trainer-sex').value = 'Płeć';
+  document.getElementById('city-search-results').value = capitalizeFirstLetter(n[n.length - 1]);
+  document.getElementsByClassName('disciplines-select')[0].value = capitalizeFirstLetter(n[n.length - 2]).replace("_", " ");
+}
+

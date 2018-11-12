@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/searching.css')}}" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{asset('js/profile/jquery.scrollTo.min.js')}}"></script>
@@ -31,10 +32,13 @@
 
             @if (Auth::check())
             <div class="container-fluid" id="logBar">
+            <div class="logo">
+                </div>
                 <span>
-                <a href="/logout" >Wyloguj się</a>
-                    /
-                <a href="/editProfile" >Edytuj profil</a>
+                
+                <a href="/profiles/{{ Auth::user()->id }}" ><i class="fas fa-user" style='color:#5f5d5d; margin-right:5px;'></i> Profil</a>
+                <a href="/editProfile" ><i class="far fa-edit" style='color:#5f5d5d; margin-right:5px;'></i>Edytuj profil</a>
+                <button onclick="location.href='/logout'" type="button" class="btn blue-button">Wyloguj się</button>
                 </span>
             </div>
             @else
@@ -43,7 +47,7 @@
                 </div>
                 <span>
                 <a href="/login" >Zaloguj się</a>
-                <button type="button" class="btn blue-button">Zarejerstruj się</button>
+                <button onclick="location.href='/register'" type="button" class="btn blue-button">Zarejerstruj się</button>
                 </span>
             </div>
             @endif
@@ -86,6 +90,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>   
     <script src="{{asset('js/profile/js/bootstrap.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
    
     <script type="text/javascript" src="{{asset('js/profile/search.js')}}"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASwYHL3afDu086oPLiCJ_S-3lfh2GGTMA&libraries=places&callback=inputSearchCities&region=PL"></script>

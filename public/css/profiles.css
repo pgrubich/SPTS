@@ -16,7 +16,6 @@
 .categories-header{
     background-color: #3cdaa8;
     padding: 10px;
-    height: 20px;
     color: white;
 }
 
@@ -286,7 +285,7 @@
     margin:15px;
     display:flex;
     align-items: center;
-    background-color: #0000008f;
+    background-color:#0000008f;
 }
 
 .gallery-photo img{

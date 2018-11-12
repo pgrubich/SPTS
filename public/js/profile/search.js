@@ -45,5 +45,3 @@ function searchResult(){
     localStorage.setItem("city", city); 
     document.location.href = "/"+dysc+"/"+city;
 }
-
-

@@ -19,6 +19,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{asset('js/profile/jquery.scrollTo.min.js')}}"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<!--[if lt IE 9]>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<![endif]-->
@@ -31,12 +33,15 @@
     <header>
         <nav>
 
-            @if (Auth::check())
+                @if (Auth::check())
             <div class="container-fluid" id="logBar">
+            <div class="logo">
+                </div>
                 <span>
-                <a href="/logout" >Wyloguj się</a>
-                    /
-                <a href="/editProfile" >Edytuj profil</a>
+                
+                <a href="/profiles/{{ Auth::user()->id }}" ><i class="fas fa-user" style='color:#5f5d5d; margin-right:5px;'></i> Profil</a>
+                <a href="/editProfile" ><i class="far fa-edit" style='color:#5f5d5d; margin-right:5px;'></i>Edytuj profil</a>
+                <button onclick="location.href='/logout'" type="button" class="btn blue-button">Wyloguj się</button>
                 </span>
             </div>
             @else
@@ -45,7 +50,7 @@
                 </div>
                 <span>
                 <a href="/login" >Zaloguj się</a>
-                <button type="button" class="btn blue-button">Zarejerstruj się</button>
+                <button onclick="location.href='/register'" type="button" class="btn blue-button">Zarejerstruj się</button>
                 </span>
             </div>
             @endif
@@ -60,14 +65,13 @@
                     <span class="filter-text">
                         Wynik wyszukiwania dla:
                     </span>
-                    <div class="discipline-value">
-                    Trener Personalny
+                    <div id="discipline-value">
                     </div>
                     <span class="filter-text">
                     w miejscowości: 
                     </span>
                     <div class="city-value">
-                    Poznań (Wielkopolskie)
+                        <input type="text" id="city-search-results" class="rounded">
                     </div>
                     <div class="result-value">
                     (5 wyników)
@@ -75,27 +79,34 @@
                 </div>
 
                 <div class="place-filter">
-                    <select class="custom-select rounded">
+                    <select id="training-place" class="custom-select rounded">
                         <option>Miejsce</option>
+                        <option>U trenera</option>
+                        <option>U klienta</option>
+                        <option>W terenie</option>
                     </select>
                 </div>
                 <div class="age-filter">
-                    <select class="custom-select rounded">
-                        <option>Wiek</option>
-                    </select>
+                    <p>
+                    <input type="text" id="age" readonly style="border:0; color:#4bc0e3; font-weight:bold; text-align:center;">
+                    </p>
+                    <div id="age-slider-range"></div>
                 </div>
                 <div class="sex-filter">
-                    <select  class="custom-select rounded">
+                    <select id="trainer-sex" class="custom-select rounded">
                         <option>Płeć</option>
+                        <option>Mężczyzna</option>
+                        <option>Kobieta</option>
                     </select>
                 </div>
                 <div class="prize-filter">
-                    <select  class="custom-select rounded">
-                        <option>Cena</option>
-                    </select>
+                    <p>
+                    <input type="text" id="amount" readonly style="border:0; color:#4bc0e3; font-weight:bold; text-align:center;">
+                    </p>
+                    <div id="slider-range"></div>
                 </div>
                 <div class="button-filter">
-                    <a href="#">Wyczyść</a>
+                    <span id="clearAll">Wyczyść</span>
                     <button type="button" class="btn blue-button">Filtruj wyniki</button>
                 </div>
             </div>
@@ -112,5 +123,6 @@
     </main>
     
     <script type="text/javascript" src="{{asset('js/profile/profilesResult.js')}}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASwYHL3afDu086oPLiCJ_S-3lfh2GGTMA&libraries=places&callback=inputSearchCities&region=PL"></script>
 </body>
 </html>

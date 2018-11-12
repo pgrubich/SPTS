@@ -9,7 +9,7 @@
 	<meta name="author" content="">
 	
 	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
-	
+    <link rel="stylesheet" href="{{asset('css/css/bootstrap.min.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/profiles.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
@@ -30,12 +30,15 @@
   <header>
         <nav>
 
-            @if (Auth::check())
+             @if (Auth::check())
             <div class="container-fluid" id="logBar">
+            <div class="logo">
+                </div>
                 <span>
-                <a href="/logout" >Wyloguj się</a>
-                    /
-                <a href="/editProfile" >Edytuj profil</a>
+                
+                <a href="/profiles/{{ Auth::user()->id }}" ><i class="fas fa-user" style='color:#5f5d5d; margin-right:5px;'></i> Profil</a>
+                <a href="/editProfile" ><i class="far fa-edit" style='color:#5f5d5d; margin-right:5px;'></i>Edytuj profil</a>
+                <button onclick="location.href='/logout'" type="button" class="btn blue-button">Wyloguj się</button>
                 </span>
             </div>
             @else
@@ -44,7 +47,7 @@
                 </div>
                 <span>
                 <a href="/login" >Zaloguj się</a>
-                <button type="button" class="btn blue-button">Zarejerstruj się</button>
+                <button onclick="location.href='/register'" type="button" class="btn blue-button">Zarejerstruj się</button>
                 </span>
             </div>
             @endif

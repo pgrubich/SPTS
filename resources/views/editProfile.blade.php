@@ -7,7 +7,8 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="author" content="">
-	
+    
+    <link rel="stylesheet" href="{{asset('css/css/buttons/bootstrap.min.css')}}" type="text/css" />
 	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
@@ -26,12 +27,13 @@
 <header>
         <nav>
             <div class="container-fluid" id="logBar">
-                <div class="logo">
+            <div class="logo">
                 </div>
                 <span>
-                <a href="/editProfile" >Edytuj profil</a>
-                <a href="/logout" >Wyloguj się</a>
-                <button type="button" class="btn blue-button">Zarejerstruj się</button>
+                
+                <a href="/profiles/{{ Auth::user()->id }}" ><i class="fas fa-user" style='color:#5f5d5d; margin-right:5px;'></i> Profil</a>
+                <a href="/editProfile" ><i class="far fa-edit" style='color:#5f5d5d; margin-right:5px;'></i>Edytuj profil</a>
+                <button onclick="location.href='/logout'" type="button" class="btn blue-button">Wyloguj się</button>
                 </span>
             </div>
         </nav>
@@ -375,7 +377,7 @@
                             @endforeach
                         @endif
 
-                       @foreach (['danger', 'warning', 'success', 'info'] as $key)
+                        @foreach (['danger', 'warning', 'success', 'info'] as $key)
                           @if(Session::has($key))
                             <p class="alert alert-{{ $key }}">{{ Session::get($key) }}</p>
                           @endif

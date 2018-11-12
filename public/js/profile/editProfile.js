@@ -252,7 +252,7 @@ xhr2.onload = function() {
           offers += '<i class="fas fa-shopping-bag edit-icon"></i>'
           offers +=  "<div class='single-ofert' id='single-ofert-"+responseObject2[0].tr_off[i].id+"'><div>";
           offers +=  responseObject2[0].tr_off[i].name+"</br><div style='font-size: 13px;'> "+ responseObject2[0].tr_off[i].price+"zł </br> ";
-          offers +=  "Maks. liczba klientów: "+responseObject2[0].tr_off[i].max_no_of_clients+ "</div></div><div class='edit-delete-section'><span>Edutuj</span></br><span>Usuń</span></div></div>";
+          offers +=  "Maks. liczba klientów: "+responseObject2[0].tr_off[i].max_no_of_clients+ "</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span>Usuń</span></div></div>";
           offers += "<div class='edit-single-ofert' id='edit-single-ofert-"+responseObject2[0].tr_off[i].id;
           offers += "'><form id='editTrainerOffer' action='editTrainerOffer' method='GET'><label>Nazwa zajęć: <input type='text' name='name'></label>";
           offers += "<label>Cena: <input type='text' name='price'></label>";
@@ -292,7 +292,7 @@ xhr2.onload = function() {
        unis +=  "<div class='single-uni' id='single-uni-"+responseObject2[0].tr_uni[i].id+"'><div>";
        unis +=  responseObject2[0].tr_uni[i].university+"<br><div style='font-size: 13px;'>"+ responseObject2[0].tr_uni[i].course+" - ";
        unis +=  responseObject2[0].tr_uni[i].degree+"</br> "+responseObject2[0].tr_uni[i].begin_date;
-       unis += " - "+responseObject2[0].tr_uni[i].end_date+"</div></div><div class='edit-delete-section'><span>Edutuj</span></br><span>Usuń</span></div></div>";
+       unis += " - "+responseObject2[0].tr_uni[i].end_date+"</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span>Usuń</span></div></div>";
        unis += "<div class='edit-single-uni' id='edit-single-uni-"+responseObject2[0].tr_uni[i].id;
        unis += "'><form id='editUni' action='editUni' method='GET'><label>Nazwa uniwersytetu: <input type='text' name='university'></label>";
        unis += "<label>Kierunek: <input type='text' name='course'></label>";
@@ -340,7 +340,7 @@ for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
     cers +=  "<div class='single-cer' id='single-cer-"+responseObject2[0].tr_cert[i].id+"'><div>";
     cers +=  responseObject2[0].tr_cert[i].name_of_institution+"</br><div style='font-size: 13px;'>"+ responseObject2[0].tr_cert[i].name_of_course;
     cers +=  "</br>"+responseObject2[0].tr_cert[i].begin_date;
-    cers += " - "+responseObject2[0].tr_cert[i].end_date+"</div></div><div class='edit-delete-section'><span>Edutuj</span></br><span>Usuń</span></div></div>";
+    cers += " - "+responseObject2[0].tr_cert[i].end_date+"</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span>Usuń</span></div></div>";
     cers += "<div class='edit-single-cer' id='edit-single-cer-"+responseObject2[0].tr_cert[i].id;
     cers += "'><form id='editCourse' action='editCourse' method='GET'><label>Nazwa instytucji: <input type='text' name='name_of_institution'></label>";
     cers += "<label>Nawa kursu: <input type='text' name='name_of_course'></label>";
