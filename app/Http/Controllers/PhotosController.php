@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Session;
 use Illuminate\Http\Request;
 use App\Models\Trainer\Trainer;
 use App\Models\Trainer\TrPhotos;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 
 class PhotosController extends Controller
 {
@@ -45,18 +43,23 @@ class PhotosController extends Controller
 
         if($request->hasFile('photo_name')) {
 
-            $fileNameWithExt = $request->file('photo_name')->getClientOriginalName();
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $originalFilename = $request->file('photo_name')->getClientOriginalName();
+            $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
             $extension = $request->file('photo_name')->getClientOriginalExtension();
-            $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
-            $path = $request->file('photo_name')->storeAs('public/trainers_photos/'. auth()->user()->id, $fileNameToStore);
-        }
+            $finalFilename = $fileName.'_'.time().'.'.$extension;
+            $path = $request->file('photo_name')->storeAs('public/trainers_photos/'.auth()->user()->id, $finalFilename);
 
-        $album = new TrPhotos;
-        $album->trainer_id = auth()->user()->id;
-        $album->photo_name = $fileNameToStore;
-        $album->timestamps = false;
-        $album->save();
+            $album = new TrPhotos;
+            $album->trainer_id = auth()->user()->id;
+            $album->photo_name = $finalFilename;
+            $album->timestamps = false;
+            $album->save();
+
+            $request->session()->flash('success', 'Dodano zdjęcie.');
+
+        } else {
+            $request->session()->flash('info', 'Nie udało się dodać zdjęcia.');
+        }
 
         return redirect('/editProfile');
     }
@@ -103,13 +106,16 @@ class PhotosController extends Controller
      */
     public function destroy($id)
     {
-        if (TrPhotos::where('id', $id)->exists()) {
-            $photo = TrPhotos::find($id);
-            $photoName = TrPhotos('photo_name')->where('id', $id);
+        $photo = TrPhotos::find($id);
+        if ($photo->trainer_id = auth()->user()->id){
+            Storage::delete('public/trainers_photos/'.auth()->user()->id.'/'.$photo->photo_name);
             $photo->delete();
-            Storage::delete('public/trainers_photos/'.auth()->user()->id.'/'.$photoName);
+            session()->flash('success', 'Usunięto zdjęcie.');
+        } else {
+            session()->flsh('info', 'Usunięcie zdjęcia nie powiodło się.');
         }
 
+        return redirect('/editProfile');
     }
 
 
