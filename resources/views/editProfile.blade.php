@@ -209,7 +209,7 @@
                                         <input type="file" name="zalacznik" />
                                         </p>
                                         <input type='hidden' form="addCourse" name='id' value='{{ Auth::user()->id }}'/>
-                                        <div style="display:block; margin-bottom: 70px;;">
+                                        <div style="margin-bottom: 70px;">
                                         <input class="add-button" type="submit" value="Dodaj" form="addCourse">
                                         </div>  
 
@@ -246,8 +246,9 @@
                                             <input class="edit-enddate" form="addUni" name='end_date' type="date">
                                         </p>
                                         <input type='hidden' form="addUni" name='id' value='{{ Auth::user()->id }}'/>
+                                        <div style="margin-bottom: 70px;">
                                         <input class="add-button" type="submit" value="Dodaj uczelnię wyższą" form="addUni" >
-                                        
+</div>
                                     </div>
                                     <div id="uni-container" style="margin-top:50px;"></div>
                                 </label>
@@ -273,7 +274,9 @@
                                             <input class="edit-price" form="addTrainerOffer" name='price' type="number">
                                         </p>
                                         <input form="addTrainerOffer" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                                        <div style="margin-bottom: 70px;">
                                         <input class="add-button" type="submit" value="Dodaj ofertę do cennika" form="addTrainerOffer">
+</div>
                                     </div>
                                     <div id="offers-container" style="margin-top:45px;"></div>
                                         
