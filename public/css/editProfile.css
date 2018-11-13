@@ -92,6 +92,7 @@ fieldset{
     padding: 3px;
 }
 .edit-text{
+    width: 100%;
     font: 15px arial;
     padding: 10px;
     margin-top: 10px;
@@ -240,6 +241,9 @@ fieldset{
     cursor:pointer;
     opacity: 0.7;
     font-size: 14px;
+}
+#uni-container, #offers-container{
+    margin:0px !important;
 }
 #edit-uni ,#edit-course ,#edit-price {
     display: none;

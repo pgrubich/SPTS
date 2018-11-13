@@ -249,10 +249,10 @@ xhr2.onload = function() {
 //show offers
         var offers = '';
        for(var i = 0; i<responseObject2[0].tr_off.length; i++){
-          offers += '<i class="fas fa-shopping-bag edit-icon"></i>'
+          offers += '<div><i class="fas fa-shopping-bag edit-icon"></i>'
           offers +=  "<div class='single-ofert' id='single-ofert-"+responseObject2[0].tr_off[i].id+"'><div>";
           offers +=  responseObject2[0].tr_off[i].name+"</br><div style='font-size: 13px;'> "+ responseObject2[0].tr_off[i].price+"zł </br> ";
-          offers +=  "Maks. liczba klientów: "+responseObject2[0].tr_off[i].max_no_of_clients+ "</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span>Usuń</span></div></div>";
+          offers +=  "Maks. liczba klientów: "+responseObject2[0].tr_off[i].max_no_of_clients+ "</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span>Usuń</span></div></div></div>";
           offers += "<div class='edit-single-ofert' id='edit-single-ofert-"+responseObject2[0].tr_off[i].id;
           offers += "'><form id='editTrainerOffer' action='editTrainerOffer' method='GET'><label>Nazwa zajęć: <input type='text' name='name'></label>";
           offers += "<label>Cena: <input type='text' name='price'></label>";
