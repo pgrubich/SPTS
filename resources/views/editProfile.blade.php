@@ -62,8 +62,8 @@
                         <fieldset>
                             <legend>Dane podstawowe </legend>
                             
-                            <form id="editPrimaryInfo" action='editPrimaryInfo' method = 'POST'></form>
-                            <form id="addCity" action='addCity' method = 'POST'></form>
+                            <form id="editPrimaryInfo" action='editPrimaryInfo' method = 'GET'></form>
+                            <form id="addCity" action='addCity' method = 'GET'></form>
                                 
                                 <p>
                                 <label style="margin-left: 45px;">
@@ -128,7 +128,6 @@
                                             <input form="addCity" name='voivodeship' type="text" pattern=".{3,}" required>
                                         </p>
                                         <input form="addCity" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
-
                                         <input type="submit" value="Dodaj miasto" form="addCity">
                                     </div>
                                 </label>
@@ -136,7 +135,7 @@
 
 
                                 <input form="editPrimaryInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
-                                <input form="editPrimaryInfo" type='hidden' value='{{ csrf_token() }}' name='_token'/>
+
                                 <input class="save-button" type="submit" value="Zapisz" form="editPrimaryInfo">
 
                             </form>
@@ -145,10 +144,10 @@
                     </div>
                     <div id="specific-edit">
                     
-                    <form id="editSpecificInfo" action='editSpecificInfo' method = 'POST'></form>
-                    <form id="addCourse" action='addCourse' method = 'POST'></form>
-                    <form id="addUni" action='addUni' method = 'POST'></form>
-                    <form id="addTrainerOffer" action='addTrainerOffer' method = 'POST'></form>
+                    <form id="editSpecificInfo" action='editSpecificInfo' method = 'GET'></form>
+                    <form id="addCourse" action='addCourse' method = 'GET'></form>
+                    <form id="addUni" action='addUni' method = 'GET'></form>
+                    <form id="addTrainerOffer" action='addTrainerOffer' method = 'GET'></form>
 
                         <fieldset>
                             <legend>Dane szczegółowe</legend>
@@ -163,7 +162,7 @@
                                 <p style="margin-top:45px;">
                                         Dyscypliny:
                                         <div id="dyscypline-list-editprofile" >
-                                            <form id='updateDisciplines' action='updateDisciplines' method='POST'>
+                                            <form id='updateDisciplines' action='updateDisciplines' method='GET'>
                                             <div class="dyscypline-column-editprofile">
                                             </div>
                                             <div class="dyscypline-column-editprofile">
@@ -176,7 +175,6 @@
                                             </div>
                                             <div style="clear:both;"></div>
                                             <input type='hidden' name='trainer_id' value='{{ Auth::user()->id }}'/>
-                                            <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
                                             <input class="add-button" type="submit" value="Zmień dyscypliny" >
                                             </form>
                                         </div>
@@ -211,8 +209,7 @@
                                         <input type="file" name="zalacznik" />
                                         </p>
                                         <input type='hidden' form="addCourse" name='id' value='{{ Auth::user()->id }}'/>
-                                        <input form="addCourse" type='hidden' value='{{ csrf_token() }}' name='_token'/>
-                                        <div style="display:block; margin-bottom: 70px;;">
+                                        <div style="margin-bottom: 70px;">
                                         <input class="add-button" type="submit" value="Dodaj" form="addCourse">
                                         </div>  
 
@@ -249,9 +246,9 @@
                                             <input class="edit-enddate" form="addUni" name='end_date' type="date">
                                         </p>
                                         <input type='hidden' form="addUni" name='id' value='{{ Auth::user()->id }}'/>
-                                        <input form="addUni" type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                        <div style="margin-bottom: 70px;">
                                         <input class="add-button" type="submit" value="Dodaj uczelnię wyższą" form="addUni" >
-                                        
+</div>
                                     </div>
                                     <div id="uni-container" style="margin-top:50px;"></div>
                                 </label>
@@ -277,8 +274,9 @@
                                             <input class="edit-price" form="addTrainerOffer" name='price' type="number">
                                         </p>
                                         <input form="addTrainerOffer" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
-                                        <input form="addTrainerOffer" type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                        <div style="margin-bottom: 70px;">
                                         <input class="add-button" type="submit" value="Dodaj ofertę do cennika" form="addTrainerOffer">
+</div>
                                     </div>
                                     <div id="offers-container" style="margin-top:45px;"></div>
                                         
@@ -286,7 +284,6 @@
                                 </label>
 
                                 <input form="editSpecificInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
-                                <input form="editSpecificInfo" type='hidden' value='{{ csrf_token() }}' name='_token'/>
 
                                 <br />
                                 <br />
@@ -322,7 +319,7 @@
 
                     <div id="email-edit">
 
-                    <form action='editEmailInfo' method = 'POST'>
+                    <form action='editEmailInfo' method = 'GET'>
                          <fieldset>
                             <legend>Zmiana email</legend>
 
@@ -341,7 +338,7 @@
                                 </p>
 
                                 <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
-                                <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
+
                                 <input type="submit" value="Zmień">
                                 </br>
                         </fieldset>
@@ -350,14 +347,14 @@
                     </div>
                     <div id="password-edit">
 
-                    <form action='editPasswordInfo' method = 'POST'>
+                    <form action='editPasswordInfo' method = 'GET'>
                          <fieldset>
                             <legend>Zmiana hasła</legend>
 
                                 <p>
                                 <label>
                                         Stare hasło: 
-                                        <input name='current_password' type='password' required>
+                                        <input name='current_password' type='password' pattern="{{ Auth::user()->email }}" required>
                                 </label>
                                 </p>
 
@@ -369,7 +366,7 @@
                                 </p>
 
                                 <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
-                                <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
+
                                 <input type="submit" value="Zmień">
                                 </br>
                         </fieldset>
