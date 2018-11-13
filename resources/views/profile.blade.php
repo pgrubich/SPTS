@@ -183,7 +183,7 @@
                         <div class="categories-content">
                             
 
-                            <form class="comment-box" action='/profiles/addOpinion' method = 'GET'>
+                            <form class="comment-box" action='/profiles/addOpinion' method = 'POST'>
 
                             <label>
                                 Imię:
@@ -208,6 +208,7 @@
                             </label>
                             <br>
                                 <input type='hidden' name='trainer_id' value='{!! Request::segment(2) !!}'/>
+                                <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
                             <input class="submit-button" type="submit">
                             </form> 
                           
