@@ -185,7 +185,7 @@
                                 <label>
                                 Certyfikaty:
                                 <br> </br>
-                                    <span id="show-course" >+ Dodaj certyfikat </span> </br></br>
+                                    <span id="show-course" >+ Dodaj certyfikat </span> </br>
     
                                     <div id="edit-course">
                                         <p>
@@ -257,8 +257,8 @@
                                 <label>
                                 Cennik:
                                 <div>
-                                <br> </br>
-                                    <span id="show-price" >+ Dodaj cennik</span></br></br>
+</br>
+                                    <span id="show-price" >+ Dodaj cennik</span>
                                     <div id="edit-price">
                                         <p>
                                             Nazwa zajęć:
