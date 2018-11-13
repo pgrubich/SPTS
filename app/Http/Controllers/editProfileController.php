@@ -65,7 +65,7 @@ class editProfileController extends Controller
     {
         $deletedRows = TrDiscipline::where('trainer_id', $request['trainer_id'])->delete();
 
-        $data = $request->except('trainer_id');
+        $data = $request->except('trainer_id', '_token');
         foreach($data as $discipline_url_name => $value)
         {
             $discipline_url_name = Str::lower($discipline_url_name);
