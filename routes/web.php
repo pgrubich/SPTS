@@ -36,15 +36,15 @@ Route::post('updateDisciplines', ['uses' =>'editProfileController@updateDiscipli
 
 Route::post('addCourse', ['uses' =>'editProfileController@addCourse']);
 
-Route::get('editCourse', ['uses' =>'editProfileController@editCourse']);
+Route::post('editCourse', ['uses' =>'editProfileController@editCourse']);
 
 Route::post('addUni', ['uses' =>'editProfileController@addUni']);
 
-Route::get('editUni', ['uses' =>'editProfileController@editUni']);
+Route::post('editUni', ['uses' =>'editProfileController@editUni']);
 
 Route::post('addTrainerOffer', ['uses' =>'editProfileController@addTrainerOffer']);
 
-Route::get('editTrainerOffer', ['uses' =>'editProfileController@editTrainerOffer']);
+Route::post('editTrainerOffer', ['uses' =>'editProfileController@editTrainerOffer']);
 
 Route::post('editEmailInfo', ['uses' =>'editProfileController@updateEmailInfo']);
 

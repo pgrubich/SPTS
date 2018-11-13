@@ -246,17 +246,21 @@ xhr2.onload = function() {
             document.getElementById(dysciplineName).checked = true;
           }
       }
+
+
 //show offers
+
         var offers = '';
        for(var i = 0; i<responseObject2[0].tr_off.length; i++){
-          offers += '<div><i class="fas fa-shopping-bag edit-icon"></i>'
+          offers += '<i class="fas fa-shopping-bag edit-icon"></i>'
           offers +=  "<div class='single-ofert' id='single-ofert-"+responseObject2[0].tr_off[i].id+"'><div>";
           offers +=  responseObject2[0].tr_off[i].name+"</br><div style='font-size: 13px;'> "+ responseObject2[0].tr_off[i].price+"zł </br> ";
-          offers +=  "Maks. liczba klientów: "+responseObject2[0].tr_off[i].max_no_of_clients+ "</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span>Usuń</span></div></div></div>";
+          offers +=  "Maks. liczba klientów: "+responseObject2[0].tr_off[i].max_no_of_clients+ "</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span>Usuń</span></div></div>";
           offers += "<div class='edit-single-ofert' id='edit-single-ofert-"+responseObject2[0].tr_off[i].id;
-          offers += "'><form id='editTrainerOffer' action='editTrainerOffer' method='GET'><label>Nazwa zajęć: <input type='text' name='name'></label>";
+          offers += "'><form id='editTrainerOffer' action='editTrainerOffer' method='POST'><label>Nazwa zajęć: <input type='text' name='name'></label>";
           offers += "<label>Cena: <input type='text' name='price'></label>";
           offers += "<label>Maksymalna liczba osób: <input type='text' name='members'></label>";
+          offers += "<label><input type='hidden' value='{{ csrf_token() }}' name='_token'/></label>";
           offers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_off[i].id+"'></label></label><input type='submit' value='Edytuj'></form></div>";
       }
       var offersContainer = document.getElementById("offers-container");
@@ -269,8 +273,8 @@ xhr2.onload = function() {
     for(var i=0; i<y.length;i++){
         document.getElementsByClassName("edit-single-ofert")[i].style.display="none";
     }
-     //show edit offers
 
+     //show edit offers
   
     for(var i=0; i<y.length;i++){
         document.getElementById("single-ofert-"+responseObject2[0].tr_off[i].id).addEventListener('click',function(){
@@ -294,11 +298,12 @@ xhr2.onload = function() {
        unis +=  responseObject2[0].tr_uni[i].degree+"</br> "+responseObject2[0].tr_uni[i].begin_date;
        unis += " - "+responseObject2[0].tr_uni[i].end_date+"</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span>Usuń</span></div></div>";
        unis += "<div class='edit-single-uni' id='edit-single-uni-"+responseObject2[0].tr_uni[i].id;
-       unis += "'><form id='editUni' action='editUni' method='GET'><label>Nazwa uniwersytetu: <input type='text' name='university'></label>";
+       unis += "'><form id='editUni' action='editUni' method='POST'><label>Nazwa uniwersytetu: <input type='text' name='university'></label>";
        unis += "<label>Kierunek: <input type='text' name='course'></label>";
        unis += "<label>Stopień: <input type='text' name='degree'></label></br>";
        unis += "<label>Data rozpoczęcia: <input type='date' name='begin_date'></label>";
        unis += "<label>Data zakończenia: <input type='date' name='end_date'></label>";
+       unis += "<label><input type='hidden' value='{{ csrf_token() }}' name='_token'/></label>";
        unis += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_uni[i].id+"'></label></label><input type='submit' value='Edytuj'></form></div>";
 
    }
@@ -342,10 +347,11 @@ for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
     cers +=  "</br>"+responseObject2[0].tr_cert[i].begin_date;
     cers += " - "+responseObject2[0].tr_cert[i].end_date+"</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span>Usuń</span></div></div>";
     cers += "<div class='edit-single-cer' id='edit-single-cer-"+responseObject2[0].tr_cert[i].id;
-    cers += "'><form id='editCourse' action='editCourse' method='GET'><label>Nazwa instytucji: <input type='text' name='name_of_institution'></label>";
+    cers += "'><form id='editCourse' action='editCourse' method='POST'><label>Nazwa instytucji: <input type='text' name='name_of_institution'></label>";
     cers += "<label>Nawa kursu: <input type='text' name='name_of_course'></label>";
     cers += "<label>Data rozpoczęcia: <input type='date' name='begin_date'></label>";
     cers += "<label>Data zakończenia: <input type='date' name='end_date'></label>";
+    cers += "<label><input type='hidden' value='{{ csrf_token() }}' name='_token'/></label>";
     cers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_cert[i].id+"'></label></label><input type='submit' value='Edytuj'></form></div></br>";
 
 }
