@@ -36,9 +36,6 @@
     margin-top: 20px;
     margin-right: 20px;
     border-radius:3px;
-    -webkit-box-shadow: 10px 15px 45px 0px rgba(0,0,0,0.42);
-    -moz-box-shadow: 10px 15px 45px 0px rgba(0,0,0,0.42);
-    box-shadow: 10px 15px 45px 0px rgba(0,0,0,0.42);
 
 }
 .trener-details
@@ -48,9 +45,6 @@
     margin-right: 20px;
     border-radius:3px;
     border: 1px solid #dfdede;
-    -webkit-box-shadow: 10px 15px 45px 0px rgba(0,0,0,0.42);
-    -moz-box-shadow: 10px 15px 45px 0px rgba(0,0,0,0.42);
-    box-shadow: 10px 15px 45px 0px rgba(0,0,0,0.42);
 }
 
 
@@ -64,13 +58,14 @@
     background-color: #3cdaa8;
     color: white;
     height: 40px;
+    width: 830px;
     
 
 }
 
 .section-menu > li 
 {
-    height:35px;
+    height:40px;
     display: inline-block;
     cursor:pointer;
     padding: 5px 22px 0px 22px;
@@ -80,7 +75,17 @@
     border-right: none;
 }
 
-
+.date-review{
+    width: 100px;
+    top: 0px;
+    position: absolute;
+    left: 130px;
+}
+.show-number, .show-mail{
+    font-size: 15px;
+    color: #3cdaa8;
+    cursor: pointer;
+}
 
 /* Cennik  */
 #price-table {
@@ -182,6 +187,7 @@
 
 .review-header{
     display:flex;
+    position: relative;
     justify-content: space-between;
     margin-bottom: 8px;
 }
@@ -189,7 +195,7 @@
     word-spacing: 20px;
 }
 .review-content{
-    margin-bottom: 15px;
+    margin-bottom: 40px;
 }
 
 .review-input-name{

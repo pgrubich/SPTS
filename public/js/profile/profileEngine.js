@@ -7,6 +7,7 @@ jQuery(function($)
     $('#link3').click(function() { $.scrollTo($('.categories:eq(3)'), 500); });
     $('#link4').click(function() { $.scrollTo($('.categories:eq(4)'), 500); });
     $('#link5').click(function() { $.scrollTo($('.categories:eq(5)'), 500); });
+    $('#link7').click(function() { $.scrollTo($('.categories:eq(6)'), 500); });
 });
 
 $(document).ready(function() {

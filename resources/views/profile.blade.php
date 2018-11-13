@@ -17,8 +17,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{{asset('js/profile/jquery.scrollTo.min.js')}}"></script>
     <script src="{{asset('js/profile/lightbox/lightbox-plus-jquery.min.js')}}"></script>
+    <script src="{{asset('js/profile/jquery.scrollTo.min.js')}}"></script>
+
 	<!--[if lt IE 9]>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<![endif]-->
@@ -194,7 +195,7 @@
                                 <input placeholder="Podaj email..." class="review-input-email" name='email' type='email' required>
                             </label>
                             <br>
-                                Ocena
+                                Ocena: 
                                 <input type="radio" name="rating" id="str1" value="1"><label for="str1"></label>
                                 <input type="radio" name="rating" id="str2" value="2"><label for="str2"></label>
                                 <input type="radio" name="rating" id="str3" value="3"><label for="str3"></label>

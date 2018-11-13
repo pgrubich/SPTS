@@ -10,7 +10,9 @@ $(function(){
             var city = "";
             var stars ="";
             var phone ="";
+            var phoneShow = "";
             var email ="";
+            var emailShow = "";
             var facebook ="";
             var instagram ="";
             var reviews = "";
@@ -29,7 +31,7 @@ $(function(){
                 for(var k = 0; k < (5-element.rating); k++){
                   stars += '<span class="fa fa-star green-star"></span>';
                 }
-                stars +="<span class='rating-info'>("+element.rating+"/5)</span>";
+                stars +="<span class='rating-info'><i>("+element.rating+"/5)</i></span>";
 
                 //imię + nazwisko
                 if(element.name && element.surname){
@@ -47,13 +49,15 @@ $(function(){
                 }
                 //telefon
                 if(element.phone){
-                    phone+= element.phone;
+                    phoneShow = element.phone
+                    phone+= element.phone.toString().substring(0,3) + "  <span class='show-number'><u>Pokaż</u></span>"
                 }else{
                     phone+= "Brak danych"
                 }
                 //email
                 if(element.email){
-                    email+= element.email;
+                    emailShow = element.email
+                    email+= element.email.substring(0,3)+ "  <span class='show-mail'><u>Pokaż</u></span>";
                 }else{
                     email+= "Brak danych"
                 }
@@ -126,9 +130,9 @@ $(function(){
                     var array = ele.created_at.split(' ');
 
                     reviews += "<div class='review-header'>";
-                    reviews += "<span class='review-header-name'>"+ele.name+" " +array[0]+"</span>";
+                    reviews += "<span class='review-header-name'>"+ele.name+" " +"<span class='date-review'>"+array[0]+"</span>"+"</span>";
                     reviews += "<span class='review-header-rating'>";
-                    reviews +="<span class='rating-info'>("+ele.rating+"/5)</span>";
+                    reviews +="<span class='rating-info'><i>("+ele.rating+"/5)</i></span>";
                     for( var j = 0; j < ele.rating ; j++ ){
                         reviews += '<span class="fa fa-star green-star-checked"></span>';
                       }
@@ -165,8 +169,8 @@ $(function(){
             $(".stars-info").html(stars);
             $("#name-info").text(name);
             $("#city-info").text(city);
-            $("#phone-info").text(phone);
-            $("#mail-info").text(email);
+            $("#phone-info").html(phone);
+            $("#mail-info").html(email);
             $("#fb-info").html(facebook);
             $("#inst-info").html(instagram);
             $(".categories-content:eq(0)").text(description);
@@ -177,6 +181,12 @@ $(function(){
             $(".categories-content:eq(6)").prepend(reviews);
             $("#price-table").append(offert);
             $(".profilePic").html(profilePic);
+            document.getElementsByClassName('show-number')[0].addEventListener('click', () => {
+                document.getElementById('phone-info').textContent = phoneShow;
+            })
+            document.getElementsByClassName('show-mail')[0].addEventListener('click', () => {
+                document.getElementById('mail-info').textContent = emailShow;
+            })
             
         
         });    
