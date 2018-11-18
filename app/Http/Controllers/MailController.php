@@ -28,6 +28,7 @@ class MailController extends Controller
    {
         $sender_mail = "lookszym@gmail.com";
         $sender_name = "SPTS";
+        
         $data  = array('email' => $mail);
 
         Mail::send('register_mail', $data, function($message) use ($data, $sender_mail, $sender_name)
