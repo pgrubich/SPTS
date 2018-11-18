@@ -9,12 +9,11 @@ use App\Http\Controllers\Controller;
 class MailController extends Controller 
 {
     
-    protected $sender_mail = "mail@mail.com";
-    protected $sender_name = "SPTS";
+    public $sender_mail = "lookszym@gmail.com";
+    public $sender_name = "SPTS";
 
-    public function text_email($recipient_mail, $data)
+    public function register_text_email($recipient_mail, $data)
     {
-        //$data = array('name'=>"SPTS");
    
         Mail::send(['text'=>'mail'], $data, function($message) 
         {
@@ -23,15 +22,17 @@ class MailController extends Controller
         });
       
         return ("Basic Email Sent. Check your inbox.");
-   }
+    }
 
-   public function html_email($recipient_mail, $data)
+   public function register_html_email($mail)
    {
-        //$data = array('name'=>"SPTS");
+        $sender_mail = "lookszym@gmail.com";
+        $sender_name = "SPTS";
+        $data  = array('email' => $mail);
 
-        Mail::send('mail', $data, function($message) 
+        Mail::send('register_mail', $data, function($message) use ($data, $sender_mail, $sender_name)
         {
-            $message->to($recipient_mail, 'Tutorials Point')->subject('Laravel HTML Testing Mail');
+            $message->to($data['email'])->subject('Rejestracja w bazie trenerów');
             $message->from($sender_mail, $sender_name);
         });
 
