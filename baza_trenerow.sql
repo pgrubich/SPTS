@@ -116,17 +116,6 @@ CREATE TABLE `trainers_disciplines` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
---
--- Zrzut danych tabeli `trainers_disciplines`
---
-
-INSERT INTO `trainers_disciplines` (`id`, `trainer_id`, `discipline_name`, `discipline_url_name`, `updated_at`, `created_at`) VALUES
-(1, 2, 'Trener personalny', 'trener_personalny', '2018-06-28 00:43:41', '2018-06-28 00:44:08'),
-(2, 3, 'Trener personalny', 'trener_personalny', '2018-06-28 00:43:41', '2018-06-28 00:44:08'),
-(3, 4, 'Joga', 'joga', '2018-06-28 00:43:41', '2018-06-28 00:44:08'),
-(4, 5, 'Piłka nożna', 'piłka_nożna', '2018-06-28 00:43:41', '2018-06-28 00:44:08'),
-(24, 7, 'Joga', 'joga', '2018-06-28 09:24:37', '2018-06-28 09:24:37'),
-(52, 6, 'Tenis ziemny', 'tenis_ziemny', '2018-11-13 22:54:08', '2018-11-13 22:54:08');
 
 -- --------------------------------------------------------
 
@@ -208,12 +197,6 @@ CREATE TABLE `trainers_trainings_dates` (
   `trainer_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
---
--- Zrzut danych tabeli `trainers_trainings_dates`
---
-
-INSERT INTO `trainers_trainings_dates` (`id`, `date`, `begin_time`, `end_time`, `status`, `place`, `trainer_id`) VALUES
-(1, '2018-10-24', '10:00:00', '11:30:00', 'zajęte', 'McFit Poznań', 2);
 
 -- --------------------------------------------------------
 
