@@ -63,7 +63,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        app('App\Http\Controllers\MailController')->register_html_email($data['email']);
+        //app('App\Http\Controllers\MailController')->register_html_email($data['email']);
 
         return Trainer::create([
             'email' => $data['email'],
