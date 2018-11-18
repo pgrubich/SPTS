@@ -302,3 +302,42 @@ fieldset{
     margin-top: 15px;
     margin-right: 15px;
 }
+
+.gallery-content{
+    display:flex;
+    flex-wrap: wrap;
+    padding-left: 15px;
+}
+
+.gallery-photo{
+    position: relative;
+    object-fit: contain;
+    width: 130px; 
+    height: 140px;
+    margin:15px;
+    display:flex;
+    align-items: center;
+    background-color:#0000008f;
+}
+.gallery-photo .delete {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 100;
+    background-color: white;
+    width: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.gallery-photo .delete .fa-trash-alt:hover{
+    transform: scale(1.2);
+}
+.gallery-photo img{
+    width: 100%;
+}
+
+.profilePic img{
+    width: 100%;
+    height:100%;
+}

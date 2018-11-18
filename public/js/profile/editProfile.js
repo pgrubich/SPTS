@@ -239,6 +239,7 @@ var loggedUserId = document.getElementById("username-id").value;
 xhr2.onload = function() {                       
     if(xhr2.status === 200) {
       responseObject2 = JSON.parse(xhr2.responseText);
+      console.log(responseObject2)
       
       for(var i = 0; i < responseObject2[0].tr_disc.length; i++ ){
           var dysciplineName = responseObject2[0].tr_disc[i].discipline_name.replace(" ","_");
@@ -257,7 +258,7 @@ xhr2.onload = function() {
           offers +=  responseObject2[0].tr_off[i].name+"</br><div style='font-size: 13px;'> "+ responseObject2[0].tr_off[i].price+"zł </br> ";
           offers +=  "Maks. liczba klientów: "+responseObject2[0].tr_off[i].max_no_of_clients+ "</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span>Usuń</span></div></div>";
           offers += "<div class='edit-single-ofert' id='edit-single-ofert-"+responseObject2[0].tr_off[i].id;
-          offers += "'><form id='editTrainerOffer' action='editTrainerOffer' method='POST'><label>Nazwa zajęć: <input type='text' name='name'></label>";
+          offers += "'><form class='editTrainerOffer' action='editTrainerOffer' method='POST'><label>Nazwa zajęć: <input type='text' name='name'></label>";
           offers += "<label>Cena: <input type='text' name='price'></label>";
           offers += "<label>Maksymalna liczba osób: <input type='text' name='members'></label>";
           offers += "<label><input type='hidden' value='{{ csrf_token() }}' name='_token'/></label>";
@@ -333,6 +334,46 @@ xhr2.onload = function() {
      },false);
  }
 
+ //gallery
+
+var delUrl = []
+var photos ='<p style="width:100%;">Pozostałe zdjęcia</p></br>';
+ for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
+    delUrl.push("/public/"+responseObject2[0].id+'/'+responseObject2[0].tr_ph[i].photo_name);
+    photos += "<div class='gallery-photo'><div><span class='delete'><i id='pho"+i+"'class='far fa-trash-alt'></i></span></div><a href=\"";
+    photos += "\/storage/trainers_photos\/"+responseObject2[0].id+"\/"+ responseObject2[0].tr_ph[i].photo_name+"\" data-lightbox=\"my-gallery\" >"
+    photos += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
+    photos += responseObject2[0].tr_ph[i].photo_name+"\" \/></a></div>"
+ }
+
+var photContainer = document.getElementsByClassName("gallery-content")[0];
+photContainer.innerHTML = photos;
+
+
+for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
+    document.getElementById('pho'+i).addEventListener('click',function(e) {
+        var t = e.target;
+        var url = delUrl[t.id.substring(3)];
+        var xhrdel = new XMLHttpRequest();
+        console.log(url);
+        xhrdel.open("GET", url, true);
+        xhrdel.onload = function () {
+            var users = JSON.parse(xhrdel.responseText);
+            if (xhrdel.status == "200") {
+                console.table(users);
+            } else {
+                console.error(users);
+            }
+        }
+        xhrdel.send(null);
+        console.log('done')
+}
+,false );
+}
+
+
+
+
 
 
 
@@ -402,7 +443,4 @@ for(var i=0; i<yyy.length;i++){
 xhr2.open('GET', 'http://pri.me/api/profiles/'+loggedUserId, true);        
 xhr2.send(null);
 
-
-
-// edit existing information
 

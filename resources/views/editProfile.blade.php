@@ -302,7 +302,7 @@
                     </div>
                     <div id="gallery-edit">
                         <fieldset>
-                            <legend>Moja galeria</legend>
+                            <legend>Galeria zdjęć</legend>
                             
 
                         <form action='store' enctype="multipart/form-data" method = 'POST'>
@@ -311,8 +311,9 @@
                             <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
                             <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                             <input type='submit' value='Dodaj zdjęcie' name='submit'>
+                            
                         </form>
-
+                        <div id="content-gallery" class="gallery-content"></div>
 
                         </fieldset>
                     </div>
