@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\ListByDiscipline\Trainer;
+use Carbon\Carbon;
 
 
 class DisciplineAndLocationController extends Controller
@@ -58,18 +59,35 @@ class DisciplineAndLocationController extends Controller
     {
         $discipline = Str::lower($discipline);
         $location = Str::lower($location);
+        $gender = request()->get('gender');
+
+
+        $minAge = request()->get('minAge');
+        $maxAge = request()->get('maxAge');
+        if ($minAge = NULL){
+            $minAge = 1;
+        }
+        if ($maxAge = NULL){
+            $maxAge = 99;
+        }
+        $datemin = Carbon::today()->addYears((-1)*$minAge);
+        $datemax = Carbon::today()->addYears((-1)*$maxAge);
+
 
         return Trainer::
-        whereHas('TrDisc',function($query) use($discipline)
-        { 
+        where(function($query) use ($gender) {
+            if($gender != NULL ) {
+                $query->where('gender', $gender);
+            }
+         })
+        ->whereHas('TrDisc',function($query) use($discipline){ 
             $query->where('discipline_url_name', '=', $discipline);
         })
-        ->whereHas('trLoc',function($query) use($location) 
-        {
-            // zrobic Jsona z miastami
+        ->whereHas('trLoc',function($query) use($location) {
             $query->where('city', '=', $location);
         })
         ->with('TrDisc','trLoc','trPl','trPh')->get();
+        
     }
 
     /**

@@ -119,6 +119,17 @@ class editProfileController extends Controller
     }
 
 
+    protected function destroyCourse($id)
+    {
+
+        $trCertificate = TrCertificate::find($id);
+        $trCertificate->delete();
+
+        return redirect('/editProfile');
+
+    }
+
+
     protected function addUni(Request $request)
     {
 
@@ -157,6 +168,17 @@ class editProfileController extends Controller
     }
 
 
+    protected function destroyUni($id)
+    {
+
+        $trUniversity = TrUniversity::find($id);
+        $trUniversity->delete();
+
+        return redirect('/editProfile');
+
+    }
+
+
     protected function addTrainerOffer(Request $request)
     {
 
@@ -185,6 +207,17 @@ class editProfileController extends Controller
         if ($request['price'] != '')    $trOffer->price = $request['price'];
         if ($request['members'] != '')  $trOffer->max_no_of_clients = $request['members'];
         $trOffer->save();
+
+        return redirect('/editProfile');
+
+    }
+
+
+    protected function destroyOffer($id)
+    {
+
+        $trOffer = TrOffer::find($id);
+        $trOffer->delete();
 
         return redirect('/editProfile');
 
