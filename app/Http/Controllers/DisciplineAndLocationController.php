@@ -63,20 +63,27 @@ class DisciplineAndLocationController extends Controller
         $parameters = request()->only(['place', 'minAge', 'maxAge', 'gender', 'minPrice', 'maxPrice']);
 
         $place = request()->get('place');
-        $minAge = request()->get('minAge');
-        $maxAge = request()->get('maxAge');
+        $minAge = (int)request()->get('minAge');
+        $maxAge = (int)request()->get('maxAge');
+        if( $maxAge == 0 )  { $maxAge = 99; }
         $gender = request()->get('gender');
-        $minPrice = request()->get('minPrice');
-        $maxPrice = request()->get('maxPrice');
+        $minPrice = (int)request()->get('minPrice');
+        $maxPrice = (int)request()->get('maxPrice');
+
+        $maxDate = Carbon::today()->addYears((-1)*$minAge);
+        $minDate = Carbon::today()->addYears((-1)*$maxAge);
+
 
         /*http://pri.me/api/joga/poznań/?place=&minAge=&maxAge=&gender=&minPrice=&maxPrice=*/
 
+        
         return Trainer::
         where(function($query) use ($gender) {
             if($gender != '' ) {
                 $query->where('gender', $gender);
             }
          })
+        ->whereBetween('bdate', [$minDate, $maxDate])
         ->whereHas('TrDisc',function($query) use($discipline){ 
             $query->where('discipline_url_name', '=', $discipline);
         })
