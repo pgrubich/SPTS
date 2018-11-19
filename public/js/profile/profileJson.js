@@ -3,8 +3,9 @@
 $(function(){
 
     function loadRates() {
-        var id = window.location.href.slice(-1);
+        var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
         $.getJSON('http://pri.me/api/profiles/'+id)
+        
         .done (function(data){
             var name = "";
             var city = "";
