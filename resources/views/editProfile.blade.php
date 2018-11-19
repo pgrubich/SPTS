@@ -24,6 +24,7 @@
 </head>
 
 <body>
+<input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 <header>
         <nav>
             <div class="container-fluid" id="logBar">

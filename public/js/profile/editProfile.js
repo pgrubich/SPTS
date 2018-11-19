@@ -341,35 +341,73 @@ xhr2.onload = function() {
 
 var delUrl = []
 var photos ='<p style="width:100%;">Pozostałe zdjęcia</p></br>';
+var gt = '>';
  for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
     delUrl.push("/public/"+responseObject2[0].id+'/'+responseObject2[0].tr_ph[i].photo_name);
-    photos += "<div class='gallery-photo'><div><span class='delete'><i id='pho"+i+"'class='far fa-trash-alt'></i></span></div><a href=\"";
+    photos += "<div class='gallery-photo'><span class='delete'><i id='pho"+responseObject2[0].tr_ph[i].id+"'class='far fa-trash-alt'></i></span><a href=\"";
     photos += "\/storage/trainers_photos\/"+responseObject2[0].id+"\/"+ responseObject2[0].tr_ph[i].photo_name+"\" data-lightbox=\"my-gallery\" >"
     photos += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
-    photos += responseObject2[0].tr_ph[i].photo_name+"\" \/></a></div>"
+    photos += responseObject2[0].tr_ph[i].photo_name+"\" \/></a></div>";
+    photos += '<meta name="_token" content="{{ csrf_token() }}">'
+
+    // photos += "<form action='destroy' method='post'" 
+    // photos += "style='display: none;' id='form"+i+"'><label><input value='{{ csrf_token() }}' name='_token'/></label>";
+    // photos += "<label><input name='id' value='"+responseObject2[0].tr_ph[i].id+"'>";
+    // photos += "</label></form>";
  }
 
 var photContainer = document.getElementsByClassName("gallery-content")[0];
 photContainer.innerHTML = photos;
 
+// for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
+//     document.getElementById('pho'+i).addEventListener('click',function(e) {
+//         alert("usuwanie zdjecia o id "+i);
+//         document.getElementById('form'+i).submit();
+//     },false);
+// }
 
 for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
-    document.getElementById('pho'+i).addEventListener('click',function(e) {
+    document.getElementById('pho'+responseObject2[0].tr_ph[i].id).addEventListener('click',function(e) {
         var t = e.target;
-        var url = delUrl[t.id.substring(3)];
-        var xhrdel = new XMLHttpRequest();
-        console.log(url);
-        xhrdel.open("GET", url, true);
-        xhrdel.onload = function () {
-            var users = JSON.parse(xhrdel.responseText);
-            if (xhrdel.status == "200") {
-                console.table(users);
-            } else {
-                console.error(users);
+        console.log(t.id.substring(3));
+        $.ajax({
+            // headers: {
+            //     "_token": $('#token').val()
+            //     },
+            data: {
+                "_token": $('#token').val()
+                },
+            method: "POST",
+            url: "/destroy/"+t.id.substring(3),
+            }).done(function( msg ) {
+            if(msg.error == 0){
+                //$('.sucess-status-update').html(msg.message);
+                alert(msg.message);
+            }else{
+                alert(msg.message);
+                //$('.error-favourite-message').html(msg.message);
             }
-        }
-        xhrdel.send(null);
-        console.log('done')
+        });
+        
+        // var xhrdel = new XMLHttpRequest();
+        // var csrfToken = "{{ csrf_token() }}";
+        // xhrdel.open("POST", "/destroy/"+t.id.substring(3), true);
+        // xhrdel.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // xhrdel.setRequestHeader('_token', csrfToken);
+
+        // xhrdel.onload = function () {
+        //     // var users = JSON.parse(xhrdel.responseText);
+        //     if (xhrdel.status == "200") {
+        //         console.table('good');
+        //     } else {
+        //         console.error('bad');
+        //     }
+
+        // }
+        // console.log(xhrdel)
+        // xhrdel.send();
+
+        // console.log('done')
 }
 ,false );
 }
