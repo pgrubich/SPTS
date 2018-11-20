@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Trainer\Trainer;
 use App\Models\Trainer\TrPhotos;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class PhotosController extends Controller
 {
@@ -81,7 +82,7 @@ class PhotosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( $id)
     {
         //
     }
@@ -109,11 +110,11 @@ class PhotosController extends Controller
         $photo = TrPhotos::find($id);
         if ($photo->trainer_id = auth()->user()->id){
             Storage::delete('public/trainers_photos/'.auth()->user()->id.'/'.$photo->photo_name);
+            //Session::flash('success', 'Usunięto zdjęcie.');
             $photo->delete();
-            session()->flash('success', 'Usunięto zdjęcie.');
-        } else {
-            session()->flsh('info', 'Usunięcie zdjęcia nie powiodło się.');
-        }
+        } //else {
+            //Session::flash('info', 'Usunięcie zdjęcia nie powiodło się.');
+        //}
 
         return redirect('/editProfile');
     }
