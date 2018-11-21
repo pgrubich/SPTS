@@ -154,9 +154,9 @@ $(function(){
                     photos += ele.photo_name+"\" \/></a></div></div>"
                 });
 
-                if(element.profile_picture_id){
+                if(element.avatar){
                     $.each(element.tr_ph,function(ind,ele){
-                        if(ele.id === element.profile_picture_id){
+                        if(ele.id === parseInt(element.avatar)){
                             profilePic += " <img src=\"\/storage/trainers_photos\/"+element.id+"\/";
                             profilePic += ele.photo_name+"\" \/>"
                         }
