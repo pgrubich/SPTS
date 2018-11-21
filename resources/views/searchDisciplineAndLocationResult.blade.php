@@ -1,14 +1,3 @@
-<script>
-    alert("Hello world")
-    // Kod JavaScript znajduję się pomiędzy znacznikmi script
-</script>
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>

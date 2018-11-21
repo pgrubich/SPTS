@@ -36,7 +36,6 @@
             <div class="logo">
                 </div>
                 <span>
-                
                 <a href="/profiles/{{ Auth::user()->id }}" ><i class="fas fa-user" style='color:#5f5d5d; margin-right:5px;'></i> Profil</a>
                 <a href="/editProfile" ><i class="far fa-edit" style='color:#5f5d5d; margin-right:5px;'></i>Edytuj profil</a>
                 <button onclick="location.href='/logout'" type="button" class="btn blue-button">Wyloguj się</button>

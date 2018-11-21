@@ -319,6 +319,9 @@ fieldset{
     align-items: center;
     background-color:#0000008f;
 }
+.gallery-photo:hover{
+    transform: scale(1.1);
+}
 .gallery-photo .delete {
     position: absolute;
     top: 0px;

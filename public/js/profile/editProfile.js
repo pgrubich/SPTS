@@ -259,7 +259,7 @@ xhr2.onload = function() {
           offers +=  "Maks. liczba klientów: "+responseObject2[0].tr_off[i].max_no_of_clients+ "</div></div>";
           offers +=  "<div class='edit-delete-section'>";
           offers +=  "<span>Edytuj</span>";
-          offers +=  "</br><span>Usuń</span></div></div>";
+          offers +=  "</br><span  id='off"+responseObject2[0].tr_off[i].id+"'>Usuń</span></div></div>";
           offers += "<div class='edit-single-ofert' id='edit-single-ofert-"+responseObject2[0].tr_off[i].id;
           offers += "'><form class='editTrainerOffer' action='editTrainerOffer' method='POST'><label>Nazwa zajęć: <input type='text' name='name'></label>";
           offers += "<label>Cena: <input type='text' name='price'></label>";
@@ -269,6 +269,31 @@ xhr2.onload = function() {
       }
       var offersContainer = document.getElementById("offers-container");
       offersContainer.innerHTML = offers;
+
+
+      
+   for(var i = 0; i<responseObject2[0].tr_off.length; i++){
+    document.getElementById('off'+responseObject2[0].tr_off[i].id).addEventListener('click',function(e) {
+        var t = e.target;
+        $.ajax({
+            // headers: {
+            //     "_token": $('#token').val()s
+            //     },
+            data: {
+                "_token": $('#token').val()
+                },
+            method: "POST",
+            url: "/destroyOffer/"+t.id.substring(3),
+            }).done(function( msg ) {
+            if(msg.error == 0){
+                window.location.reload()
+            }else{
+                window.location.reload()
+            }
+        });
+}
+,false );
+}
 
 
     //hide edit offers
@@ -283,10 +308,12 @@ xhr2.onload = function() {
     for(var i=0; i<y.length;i++){
         document.getElementById("single-ofert-"+responseObject2[0].tr_off[i].id).addEventListener('click',function(){
                 let idSplit = event.target.id.split("-");
-                if(document.getElementById("edit-single-ofert-"+idSplit[2]).style.display == "none"){
-                    document.getElementById("edit-single-ofert-"+idSplit[2]).style.display = "block";
-                }else{
-                    document.getElementById("edit-single-ofert-"+idSplit[2]).style.display = "none";
+                if(document.getElementById("edit-single-ofert-"+idSplit[2])){
+                    if(document.getElementById("edit-single-ofert-"+idSplit[2]).style.display == "none"){
+                        document.getElementById("edit-single-ofert-"+idSplit[2]).style.display = "block";
+                    }else{
+                        document.getElementById("edit-single-ofert-"+idSplit[2]).style.display = "none";
+                    }
                 }
                 
         },false);
@@ -300,7 +327,7 @@ xhr2.onload = function() {
        unis +=  "<div class='single-uni' id='single-uni-"+responseObject2[0].tr_uni[i].id+"'><div>";
        unis +=  responseObject2[0].tr_uni[i].university+"<br><div style='font-size: 13px;'>"+ responseObject2[0].tr_uni[i].course+" - ";
        unis +=  responseObject2[0].tr_uni[i].degree+"</br> "+responseObject2[0].tr_uni[i].begin_date;
-       unis += " - "+responseObject2[0].tr_uni[i].end_date+"</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span>Usuń</span></div></div>";
+       unis += " - "+responseObject2[0].tr_uni[i].end_date+"</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span id='uni"+responseObject2[0].tr_uni[i].id+"'>Usuń</span></div></div>";
        unis += "<div class='edit-single-uni' id='edit-single-uni-"+responseObject2[0].tr_uni[i].id;
        unis += "'><form id='editUni' action='editUni' method='POST'><label>Nazwa uniwersytetu: <input type='text' name='university'></label>";
        unis += "<label>Kierunek: <input type='text' name='course'></label>";
@@ -315,6 +342,29 @@ xhr2.onload = function() {
    uniContainer.innerHTML = unis;
 
 
+   for(var i = 0; i<responseObject2[0].tr_uni.length; i++){
+    document.getElementById('uni'+responseObject2[0].tr_uni[i].id).addEventListener('click',function(e) {
+        var t = e.target;
+        $.ajax({
+            // headers: {
+            //     "_token": $('#token').val()s
+            //     },
+            data: {
+                "_token": $('#token').val()
+                },
+            method: "POST",
+            url: "/destroyUni/"+t.id.substring(3),
+            }).done(function( msg ) {
+            if(msg.error == 0){
+                window.location.reload()
+            }else{
+                window.location.reload()
+            }
+        });
+}
+,false );
+}
+
  //hide edit uni
  var yy = document.getElementsByClassName("single-uni");
 
@@ -327,13 +377,13 @@ xhr2.onload = function() {
  for(var i=0; i<yy.length;i++){
      document.getElementById("single-uni-"+responseObject2[0].tr_uni[i].id).addEventListener('click',function(){
              var idSplitUni = event.target.id.split("-");
-
-             if(document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display == "none"){
-                 document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display = "block";
-             }else{
-                 document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display = "none";
-             }
-             
+            if(document.getElementById("edit-single-uni-"+idSplitUni[2])){
+                if(document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display == "none"){
+                    document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display = "block";
+                }else{
+                    document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display = "none";
+                }
+            }
      },false);
  }
 
@@ -349,22 +399,10 @@ var gt = '>';
     photos += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
     photos += responseObject2[0].tr_ph[i].photo_name+"\" \/></a></div>";
     photos += '<meta name="_token" content="{{ csrf_token() }}">'
-
-    // photos += "<form action='destroy' method='post'" 
-    // photos += "style='display: none;' id='form"+i+"'><label><input value='{{ csrf_token() }}' name='_token'/></label>";
-    // photos += "<label><input name='id' value='"+responseObject2[0].tr_ph[i].id+"'>";
-    // photos += "</label></form>";
  }
 
 var photContainer = document.getElementsByClassName("gallery-content")[0];
 photContainer.innerHTML = photos;
-
-// for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
-//     document.getElementById('pho'+i).addEventListener('click',function(e) {
-//         alert("usuwanie zdjecia o id "+i);
-//         document.getElementById('form'+i).submit();
-//     },false);
-// }
 
 for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
     document.getElementById('pho'+responseObject2[0].tr_ph[i].id).addEventListener('click',function(e) {
@@ -381,36 +419,15 @@ for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
             url: "/destroy/"+t.id.substring(3),
             }).done(function( msg ) {
             if(msg.error == 0){
-                //$('.sucess-status-update').html(msg.message);
-                alert(msg.message);
+                window.location.reload()
             }else{
-                alert(msg.message);
-                //$('.error-favourite-message').html(msg.message);
+                window.location.reload()
             }
         });
-        
-        // var xhrdel = new XMLHttpRequest();
-        // var csrfToken = "{{ csrf_token() }}";
-        // xhrdel.open("POST", "/destroy/"+t.id.substring(3), true);
-        // xhrdel.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        // xhrdel.setRequestHeader('_token', csrfToken);
-
-        // xhrdel.onload = function () {
-        //     // var users = JSON.parse(xhrdel.responseText);
-        //     if (xhrdel.status == "200") {
-        //         console.table('good');
-        //     } else {
-        //         console.error('bad');
-        //     }
-
-        // }
-        // console.log(xhrdel)
-        // xhrdel.send();
-
-        // console.log('done')
 }
 ,false );
 }
+
 
 
 
@@ -427,7 +444,7 @@ for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
     cers +=  "<div class='single-cer' id='single-cer-"+responseObject2[0].tr_cert[i].id+"'><div>";
     cers +=  responseObject2[0].tr_cert[i].name_of_institution+"</br><div style='font-size: 13px;'>"+ responseObject2[0].tr_cert[i].name_of_course;
     cers +=  "</br>"+responseObject2[0].tr_cert[i].begin_date;
-    cers += " - "+responseObject2[0].tr_cert[i].end_date+"</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span>Usuń</span></div></div>";
+    cers += " - "+responseObject2[0].tr_cert[i].end_date+"</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span id='cer"+responseObject2[0].tr_cert[i].id+"'>Usuń</span></div></div>";
     cers += "<div class='edit-single-cer' id='edit-single-cer-"+responseObject2[0].tr_cert[i].id;
     cers += "'><form id='editCourse' action='editCourse' method='POST'><label>Nazwa instytucji: <input type='text' name='name_of_institution'></label>";
     cers += "<label>Nawa kursu: <input type='text' name='name_of_course'></label>";
@@ -439,6 +456,31 @@ for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
 }
 var cerContainer = document.getElementById("cer-container");
 cerContainer.innerHTML = cers;
+
+
+
+for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
+    document.getElementById('cer'+responseObject2[0].tr_cert[i].id).addEventListener('click',function(e) {
+        var t = e.target;
+        $.ajax({
+            // headers: {
+            //     "_token": $('#token').val()s
+            //     },
+            data: {
+                "_token": $('#token').val()
+                },
+            method: "POST",
+            url: "/destroyCourse/"+t.id.substring(3),
+            }).done(function( msg ) {
+            if(msg.error == 0){
+                window.location.reload()
+            }else{
+                window.location.reload()
+            }
+        });
+}
+,false );
+}
 
 
 //hide edit cer
@@ -453,31 +495,19 @@ for(var i=0; i<yyy.length;i++){
 for(var i=0; i<yyy.length;i++){
  document.getElementById("single-cer-"+responseObject2[0].tr_cert[i].id).addEventListener('click',function(){
          var idSplitCer = event.target.id.split("-");
-
-         if(document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display == "none"){
-             document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display = "block";
-         }else{
-             document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display = "none";
+         if(document.getElementById("edit-single-cer-"+idSplitCer[2])){
+            if(document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display == "none"){
+                document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display = "block";
+            }else{
+                document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display = "none";
+            }   
          }
-         
+
  },false);
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
+    
   }
 };
 

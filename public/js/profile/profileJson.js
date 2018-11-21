@@ -41,7 +41,7 @@ $(function(){
                     name+= "Brak danych"
                 }
                 //miasto + województwo
-                if(element.tr_loc){
+                if(element.tr_loc.length != 0){
                     $.each(element.tr_loc,function(ind,ele){
                         city+= ele.city+ ", "+ele.voivodeship;
                     });
@@ -182,14 +182,16 @@ $(function(){
             $(".categories-content:eq(6)").prepend(reviews);
             $("#price-table").append(offert);
             $(".profilePic").html(profilePic);
-            document.getElementsByClassName('show-number')[0].addEventListener('click', () => {
-                document.getElementById('phone-info').textContent = phoneShow;
-            })
-            document.getElementsByClassName('show-mail')[0].addEventListener('click', () => {
-                document.getElementById('mail-info').textContent = emailShow;
-            })
-            
-        
+            if(document.getElementsByClassName('show-number')[0]){
+                document.getElementsByClassName('show-number')[0].addEventListener('click', () => {
+                    document.getElementById('phone-info').textContent = phoneShow;
+                })
+            }
+            if(document.getElementsByClassName('show-mail')[0]){
+                document.getElementsByClassName('show-mail')[0].addEventListener('click', () => {
+                    document.getElementById('mail-info').textContent = emailShow;
+                })
+            }
         });    
         
         
