@@ -25,4 +25,8 @@ class Trainer extends Model
         return $this->hasMany('App\Models\Trainer\TrPhotos');
     }
 
+    public function trOff(){
+        return $this->hasMany('App\Models\Trainer\TrOffer');
+    }
+
 }

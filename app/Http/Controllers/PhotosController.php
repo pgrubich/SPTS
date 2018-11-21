@@ -110,8 +110,8 @@ class PhotosController extends Controller
         $photo = TrPhotos::find($id);
         $trainer = Trainer::find(auth()->user()->id);
 
-        if ($trainer->profile_picture_id = $photo) {
-            $trainer->profile_picture_id = 0;
+        if ($trainer->avatar = $photo) {
+            $trainer->avatar = NULL;
             $trainer->save();
         }
 
