@@ -61,36 +61,91 @@ class DisciplineAndLocationController extends Controller
         $location = Str::lower($location);
         
         $parameters = request()->only(['place', 'minAge', 'maxAge', 'gender', 'minPrice', 'maxPrice']);
-
         $place = request()->get('place');
-        $minAge = (int)request()->get('minAge');
-        $maxAge = (int)request()->get('maxAge');
-        if( $maxAge == 0 )  { $maxAge = 99; }
+        $minAgeD = request()->get('minAge');
+        $maxAgeD = request()->get('maxAge');
         $gender = request()->get('gender');
+
         $minPrice = (int)request()->get('minPrice');
         $maxPrice = (int)request()->get('maxPrice');
 
-        $maxDate = Carbon::today()->addYears((-1)*$minAge);
-        $minDate = Carbon::today()->addYears((-1)*$maxAge);
 
 
         /*http://pri.me/api/joga/poznań/?place=&minAge=&maxAge=&gender=&minPrice=&maxPrice=*/
 
         
-        return Trainer::
-        where(function($query) use ($gender) {
-            if($gender != '' ) {
-                $query->where('gender', $gender);
+
+        if ($place != '')
+        {
+            $trainer = Trainer::
+            where(function($query) use ($gender)
+            {
+                if($gender != '' )
+                {
+                    $query->where('gender', $gender);
+                }
+            })
+            ->where(function($query) use ($minAgeD, $maxAgeD)
+            {
+                if($minAgeD != '' or $maxAgeD != '')
+                {
+                    $minAge = (int)request()->get('minAge');
+                    $maxAge = (int)request()->get('maxAge');
+                    if( $maxAge == 0 )  { $maxAge = 99; }
+                    $maxDate = Carbon::today()->addYears((-1)*(int)$minAge);
+                    $minDate = Carbon::today()->addYears((-1)*(int)$maxAge);
+                    $query->whereBetween('bdate', [$minDate, $maxDate]);
+                }
+            })
+            ->whereHas('TrDisc',function($query) use($discipline)
+            { 
+                $query->where('discipline_url_name', '=', $discipline);
+            })
+            ->whereHas('trLoc',function($query) use($location)
+            {
+                $query->where('city', '=', $location);
+            })
+            ->whereHas('trPl',function($query) use($place)
+            {   
+                $query->where('place', '=', $place);
             }
-         })
-        ->whereBetween('bdate', [$minDate, $maxDate])
-        ->whereHas('TrDisc',function($query) use($discipline){ 
-            $query->where('discipline_url_name', '=', $discipline);
-        })
-        ->whereHas('trLoc',function($query) use($location) {
-            $query->where('city', '=', $location);
-        })
-        ->with('TrDisc','trLoc','trPl','trPh')->get();
+            )
+            ->with('TrDisc','trLoc','trPl','trPh')->get();
+        }
+        else
+        {
+            $trainer = Trainer::
+            where(function($query) use ($gender)
+            {
+                if($gender != '' )
+                {
+                    $query->where('gender', $gender);
+                }
+            })
+            ->where(function($query) use ($minAgeD, $maxAgeD)
+            {
+                if($minAgeD != '' or $maxAgeD != '')
+                {
+                    $minAge = (int)request()->get('minAge');
+                    $maxAge = (int)request()->get('maxAge');
+                    if( $maxAge == 0 )  { $maxAge = 99; }
+                    $maxDate = Carbon::today()->addYears((-1)*(int)$minAge);
+                    $minDate = Carbon::today()->addYears((-1)*(int)$maxAge);
+                    $query->whereBetween('bdate', [$minDate, $maxDate]);
+                }
+            })
+            ->whereHas('TrDisc',function($query) use($discipline)
+            { 
+                $query->where('discipline_url_name', '=', $discipline);
+            })
+            ->whereHas('trLoc',function($query) use($location)
+            {
+                $query->where('city', '=', $location);
+            })
+            ->with('TrDisc','trLoc','trPl','trPh')->get();
+        }
+
+        return $trainer;
         
     }
 

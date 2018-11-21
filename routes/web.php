@@ -38,19 +38,19 @@ Route::post('addCourse', ['uses' =>'editProfileController@addCourse']);
 
 Route::post('editCourse', ['uses' =>'editProfileController@editCourse']);
 
-Route::post('destroytCourse', ['uses' =>'editProfileController@destroytCourse']);
+Route::post('/destroyCourse/{id}', ['uses' =>'editProfileController@destroyCourse']);
 
 Route::post('addUni', ['uses' =>'editProfileController@addUni']);
 
 Route::post('editUni', ['uses' =>'editProfileController@editUni']);
 
-Route::post('destroyUni', ['uses' =>'editProfileController@destroyUni']);
+Route::post('/destroyUni/{id}', ['uses' =>'editProfileController@destroyUni']);
 
 Route::post('addTrainerOffer', ['uses' =>'editProfileController@addTrainerOffer']);
 
 Route::post('editTrainerOffer', ['uses' =>'editProfileController@editTrainerOffer']);
 
-Route::post('destroyOffer', ['uses' =>'editProfileController@destroyOffer']);
+Route::post('/destroyOffer/{id}', ['uses' =>'editProfileController@destroyOffer']);
 
 Route::post('/destroy/{id}', ['uses' => 'PhotosController@destroy']);
 
