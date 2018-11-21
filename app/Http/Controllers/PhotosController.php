@@ -108,13 +108,23 @@ class PhotosController extends Controller
     public function destroy($id)
     {
         $photo = TrPhotos::find($id);
-        if ($photo->trainer_id = auth()->user()->id){
-            Storage::delete('public/trainers_photos/'.auth()->user()->id.'/'.$photo->photo_name);
+        $trainer = Trainer::find(auth()->user()->id);
+
+        if ($trainer->profile_picture_id = $photo) {
+            $trainer->profile_picture_id = 0;
+            $trainer->save();
+        }
+
+        if ($photo->trainer_id = $trainer->id){
+            Storage::delete('public/trainers_photos/'.$trainer->id.'/'.$photo->photo_name);
             //Session::flash('success', 'Usunięto zdjęcie.');
             $photo->delete();
         } //else {
             //Session::flash('info', 'Usunięcie zdjęcia nie powiodło się.');
         //}
+
+
+
 
         return redirect('/editProfile');
     }
