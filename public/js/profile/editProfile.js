@@ -274,23 +274,35 @@ xhr2.onload = function() {
       
    for(var i = 0; i<responseObject2[0].tr_off.length; i++){
     document.getElementById('off'+responseObject2[0].tr_off[i].id).addEventListener('click',function(e) {
-        var t = e.target;
-        $.ajax({
-            // headers: {
-            //     "_token": $('#token').val()s
-            //     },
-            data: {
-                "_token": $('#token').val()
-                },
-            method: "POST",
-            url: "/destroyOffer/"+t.id.substring(3),
-            }).done(function( msg ) {
-            if(msg.error == 0){
-                window.location.reload()
-            }else{
-                window.location.reload()
+        $.confirm({
+            boxWidth: '30%',
+            useBootstrap: false,
+            title: 'Usuwanie',
+            content: 'Czy na pewno chcesz usunąć ofertę ?',
+            buttons: {
+                usuń: {
+                    btnClass: 'btn-blue',
+                    action: function () {
+                    var t = e.target;
+                    $.ajax({
+                        data: {
+                            "_token": $('#token').val()
+                            },
+                        method: "POST",
+                        url: "/destroyOffer/"+t.id.substring(3),
+                        }).done(function( msg ) {
+                        if(msg.error == 0){
+                            window.location.reload()
+                        }else{
+                            window.location.reload()
+                        }
+                    });
+                }},
+                cofnij: function () {
+                }
             }
-        });
+        })
+        
 }
 ,false );
 }
@@ -344,23 +356,34 @@ xhr2.onload = function() {
 
    for(var i = 0; i<responseObject2[0].tr_uni.length; i++){
     document.getElementById('uni'+responseObject2[0].tr_uni[i].id).addEventListener('click',function(e) {
-        var t = e.target;
-        $.ajax({
-            // headers: {
-            //     "_token": $('#token').val()s
-            //     },
-            data: {
-                "_token": $('#token').val()
-                },
-            method: "POST",
-            url: "/destroyUni/"+t.id.substring(3),
-            }).done(function( msg ) {
-            if(msg.error == 0){
-                window.location.reload()
-            }else{
-                window.location.reload()
+        $.confirm({
+            boxWidth: '30%',
+            useBootstrap: false,
+            title: 'Usuwanie',
+            content: 'Czy na pewno chcesz usunąć uniwersytet ?',
+            buttons: {
+                usuń: {
+                    btnClass: 'btn-blue',
+                    action: function () {
+                    var t = e.target;
+                    $.ajax({
+                        data: {
+                            "_token": $('#token').val()
+                            },
+                        method: "POST",
+                        url: "/destroyUni/"+t.id.substring(3),
+                        }).done(function( msg ) {
+                        if(msg.error == 0){
+                            window.location.reload()
+                        }else{
+                            window.location.reload()
+                        }
+                    });
+                }},
+                cofnij: function () {
+                }
             }
-        });
+        })
 }
 ,false );
 }
@@ -389,6 +412,13 @@ xhr2.onload = function() {
 
  //gallery
 
+ //profilePic
+var profilePic =''
+
+
+
+
+ //rest
 var delUrl = []
 var photos ='<p style="width:100%;">Pozostałe zdjęcia</p></br>';
 var gt = '>';
@@ -406,24 +436,34 @@ photContainer.innerHTML = photos;
 
 for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
     document.getElementById('pho'+responseObject2[0].tr_ph[i].id).addEventListener('click',function(e) {
-        var t = e.target;
-        console.log(t.id.substring(3));
-        $.ajax({
-            // headers: {
-            //     "_token": $('#token').val()
-            //     },
-            data: {
-                "_token": $('#token').val()
-                },
-            method: "POST",
-            url: "/destroy/"+t.id.substring(3),
-            }).done(function( msg ) {
-            if(msg.error == 0){
-                window.location.reload()
-            }else{
-                window.location.reload()
+        $.confirm({
+            boxWidth: '30%',
+            useBootstrap: false,
+            title: 'Usuwanie',
+            content: 'Czy na pewno chcesz usunąć zdjęcie ?',
+            buttons: {
+                usuń: {
+                    btnClass: 'btn-blue',
+                    action: function () {
+                    var t = e.target;
+                    $.ajax({
+                        data: {
+                            "_token": $('#token').val()
+                            },
+                        method: "POST",
+                        url: "/destroy/"+t.id.substring(3),
+                        }).done(function( msg ) {
+                        if(msg.error == 0){
+                            window.location.reload()
+                        }else{
+                            window.location.reload()
+                        }
+                    });
+                }},
+                cofnij: function () {
+                }
             }
-        });
+        })
 }
 ,false );
 }
@@ -461,23 +501,34 @@ cerContainer.innerHTML = cers;
 
 for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
     document.getElementById('cer'+responseObject2[0].tr_cert[i].id).addEventListener('click',function(e) {
-        var t = e.target;
-        $.ajax({
-            // headers: {
-            //     "_token": $('#token').val()s
-            //     },
-            data: {
-                "_token": $('#token').val()
-                },
-            method: "POST",
-            url: "/destroyCourse/"+t.id.substring(3),
-            }).done(function( msg ) {
-            if(msg.error == 0){
-                window.location.reload()
-            }else{
-                window.location.reload()
+        $.confirm({
+            boxWidth: '30%',
+            useBootstrap: false,
+            title: 'Usuwanie',
+            content: 'Czy na pewno chcesz certyfikat ?',
+            buttons: {
+                usuń: {
+                    btnClass: 'btn-blue',
+                    action: function () {
+                    var t = e.target;
+                    $.ajax({
+                        data: {
+                            "_token": $('#token').val()
+                            },
+                        method: "POST",
+                        url: "/destroyCourse/"+t.id.substring(3),
+                        }).done(function( msg ) {
+                        if(msg.error == 0){
+                            window.location.reload()
+                        }else{
+                            window.location.reload()
+                        }
+                    });
+                }},
+                cofnij: function () {
+                }
             }
-        });
+        })
 }
 ,false );
 }

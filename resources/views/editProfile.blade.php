@@ -19,6 +19,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{asset('js/profile/lightbox/lightbox-plus-jquery.min.js')}}"></script>
     <script src="{{asset('js/profile/jquery.scrollTo.min.js')}}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 	<!--[if lt IE 9]>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<![endif]-->
@@ -315,10 +317,10 @@
 
                         <form action='store' enctype="multipart/form-data" method = 'POST'>
                         <label>Dodaj zdjęcie</label>
-                            <input type='file' name='photo_name' id='file'>
-                            <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
-                            <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
-                            <input type='submit' value='Dodaj zdjęcie' name='submit'>
+                                <input type='file' name='photo_name' id='file'>
+                                <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                                <input class="submit-b" type='submit' value='Dodaj zdjęcie' name='submit'>
                             
                         </form>
                         <div id="content-gallery" class="gallery-content"></div>
