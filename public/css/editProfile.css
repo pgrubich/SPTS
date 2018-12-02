@@ -129,6 +129,9 @@ fieldset{
 #edit-course, #edit-uni, #edit-price{
     font-size: 14px;
 }
+#edit-cities{
+    height: 150px;
+}
 .edit-course{
     margin-left: 50px;
     width: 480px;
@@ -144,14 +147,14 @@ fieldset{
     padding: 3px;
     margin-left: 24px;
     display: inline-block;
-    width:150px;
+    width:157px;
     padding: 3px;
 }
 .edit-enddate{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    width:150px;
+    width:156px;
     padding: 3px;
     padding: 3px;
     margin-left: 25px;
@@ -237,7 +240,46 @@ fieldset{
     display:none;
 }
 
-#show-uni ,#show-course ,#show-price{
+.edit-city{
+    margin-left: 101px;
+    width: 250px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px
+}
+.edit-voi{
+    margin-left: 43px;
+    width: 250px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.a-decoration{
+    text-decoration: none !important;
+    cursor: pointer;
+}
+.city-add-button{
+    padding: 7px 15px;
+    border: 1px solid #4bc0e3;
+    float: right;
+    margin-right: 160px;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.single-add-button{
+    padding: 7px 15px;
+    border: 1px solid #4bc0e3;
+    margin-left: 20px;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+#show-uni ,#show-course ,#show-price, #show-cities{
     cursor:pointer;
     opacity: 0.7;
     font-size: 14px;
@@ -261,14 +303,13 @@ fieldset{
 .edit-single-ofert, .edit-single-uni, .edit-single-cer{
     padding: 5px;
     margin: 2px;
-    border: 1px solid #0a2b42;
-    
+    font-size: 14px;
+    border: 1.5px solid #dfdede;
 }
 
 .single-ofert, .single-uni, .single-cer{
     padding: 10px;
     margin: 2px;
-    cursor:pointer;
     line-height: 24px;
     border-radius: 2px;
     border: 1.5px solid #dfdede;
@@ -277,7 +318,9 @@ fieldset{
     display: inline-flex;
     justify-content: space-between;
 }
-
+.pointer{
+    cursor:pointer;
+}
 .edit-icon{
     font-size: 60px;
     color: #4bc0e3;

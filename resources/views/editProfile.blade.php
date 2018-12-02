@@ -65,87 +65,88 @@
                 <div class="categories">
                     <div id="basic-edit">
                         <fieldset>
-                            <legend>Dane podstawowe </legend>
+
                             
+                            <legend>Dane podstawowe </legend>
+                            <div style="margin-left: 100px;">
                             <form id="editPrimaryInfo" action='editPrimaryInfo' method = 'POST'></form>
                             <form id="addCity" action='addCity' method = 'POST'></form>
                                 
                                 <p>
-                                <label style="margin-left: 45px;">
+                                <label  >
                                         Imię: 
                                         <input class="edit-name" form="editPrimaryInfo" name='name' type='text' placeholder='{{ Auth::user()->name }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
-                                <label style="margin-left: 45px;">
+                                <label  >
                                         Nazwisko: 
                                         <input class="edit-lastname" form="editPrimaryInfo" name='surname' type='text' placeholder='{{ Auth::user()->surname }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
-                                <label style="margin-left: 45px;">
+                                <label  >
                                         Data urodzenia:
                                         <input  class="edit-date" form="editPrimaryInfo" name='bdate' type="date" placeholder='{{ Auth::user()->bdate }}' >
-                                <label style="margin-left: 45px;">
+                                <label  >
                                 </p>
                                 
-                                <p style="margin-left: 45px;">
-                                        Płeć
-                                        <input form="editPrimaryInfo" type="radio" name="gender" value="f">
+                                <p  >
+                                        Płeć:
+                                        <input style="margin-left: 125px;" form="editPrimaryInfo" type="radio" name="gender" value="f">
                                         <label for="female">kobieta</label>
                                         <input form="editPrimaryInfo" type="radio" name="gender" value="m">
                                         <label for="male">mężczyzna</label>
                                 </p>
-
                                 <p>
-                                <label style="margin-left: 45px;">
+                                <label  >
                                     Telefon: 
                                     <input  class="edit-phone" form="editPrimaryInfo" name='phone' type='tel' placeholder='{{ Auth::user()->phone }}'>
                                 </label>
                                 </p>
                                 
                                 <p>
-                                <label style="margin-left: 45px;">
+                                <label  >
                                     Instagram: 
                                     <input  class="edit-insta" form="editPrimaryInfo" name='instagram' type='text' placeholder='{{ Auth::user()->instagram }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
-                                <label style="margin-left: 45px;">
+                                <label  >
                                     Facebook: 
                                     <input class="edit-face"  form="editPrimaryInfo" name='facebook' type='text' placeholder='{{ Auth::user()->facebook }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
-                                <label style="margin-left: 45px;">
-                                    <span id="show-cities">+ Dodaj miasto</span>:</br></br>
+                                <label  >
+                                    <span id="show-cities">+ Dodaj miasto: </span>
                                     <div id="edit-cities">
                                         <p>
                                             Miasto:
-                                            {{ Auth::user()->id }}
-                                            <input form="addCity" name='city' type="text" pattern=".{3,}" required>
+                                            <input class="edit-city" form="addCity" name='city' type="text" pattern=".{3,}" required>
                                         </p>
                                         <p>
                                             Województwo:
-                                            <input form="addCity" name='voivodeship' type="text" pattern=".{3,}" required>
+                                            <input class="edit-voi" form="addCity" name='voivodeship' type="text" pattern=".{3,}" required>
                                         </p>
                                         <input form="addCity" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                         <input form="addCity" type='hidden' value='{{ csrf_token() }}' name='_token'/>
-                                        <input type="submit" value="Dodaj miasto" form="addCity">
+                                        <input class="city-add-button" type="submit" value="Dodaj miasto" form="addCity">
                                     </div>
                                 </label>
 
 
-
+                                <div>
                                 <input form="editPrimaryInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                 <input form="editPrimaryInfo" type='hidden' value='{{ csrf_token() }}' name='_token'/>
                                 <input class="save-button" type="submit" value="Zapisz" form="editPrimaryInfo">
+                                </div>
 
                             </form>
-
+</div>
                         </fieldset>
                     </div>
                     <div id="specific-edit">

@@ -239,8 +239,6 @@ var loggedUserId = document.getElementById("username-id").value;
 xhr2.onload = function() {                       
     if(xhr2.status === 200) {
       responseObject2 = JSON.parse(xhr2.responseText);
-      console.log(responseObject2)
-      
       for(var i = 0; i < responseObject2[0].tr_disc.length; i++ ){
           var dysciplineName = responseObject2[0].tr_disc[i].discipline_name.replace(" ","_");
           if(document.getElementById(dysciplineName)){
@@ -253,19 +251,22 @@ xhr2.onload = function() {
 
         var offers = '';
        for(var i = 0; i<responseObject2[0].tr_off.length; i++){
-          offers += '<i class="fas fa-shopping-bag edit-icon"></i>'
-          offers +=  "<div class='single-ofert' id='single-ofert-"+responseObject2[0].tr_off[i].id+"'><div>";
+          offers += '<div id="single-ofert'+responseObject2[0].tr_off[i].id+'"><i class="fas fa-shopping-bag edit-icon"></i>'
+          offers +=  "<div class='single-ofert'><div>";
           offers +=  responseObject2[0].tr_off[i].name+"</br><div style='font-size: 13px;'> "+ responseObject2[0].tr_off[i].price+"zł </br> ";
           offers +=  "Maks. liczba klientów: "+responseObject2[0].tr_off[i].max_no_of_clients+ "</div></div>";
           offers +=  "<div class='edit-delete-section'>";
-          offers +=  "<span>Edytuj</span>";
-          offers +=  "</br><span  id='off"+responseObject2[0].tr_off[i].id+"'>Usuń</span></div></div>";
+          offers +=  "<span class='pointer' id='single-ofert-"+responseObject2[0].tr_off[i].id+"'>Edytuj</span>";
+          offers +=  "</br><span  id='off"+responseObject2[0].tr_off[i].id+"'>Usuń</span></div></div></div>";
           offers += "<div class='edit-single-ofert' id='edit-single-ofert-"+responseObject2[0].tr_off[i].id;
-          offers += "'><form class='editTrainerOffer' action='editTrainerOffer' method='POST'><label>Nazwa zajęć: <input type='text' name='name'></label>";
-          offers += "<label>Cena: <input type='text' name='price'></label>";
-          offers += "<label>Maksymalna liczba osób: <input type='text' name='members'></label>";
+          offers += "'><form class='editTrainerOffer' action='editTrainerOffer' method='POST'>";
+          offers += "<p><label>Nazwa zajęć: <input value='"+responseObject2[0].tr_off[i].name+"'class='edit-lessons' type='text' name='name'></label></p>";
+          offers += "<p style='display:inline-block;'><label>Maksymalna liczba osób: <input value='"+responseObject2[0].tr_off[i].max_no_of_clients+"' style='width:180px;' class='edit-patric' type='text' name='members'></label></p>";
+          offers += "<p style='margin-left:20px; display:inline-block;'><label>Cena: <input value='"+responseObject2[0].tr_off[i].price+"' style='width:180px;' class='edit-price' type='text' name='price'></label></p>";
           offers += "<label><input type='hidden' value='{{ csrf_token() }}' name='_token'/></label>";
-          offers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_off[i].id+"'></label></label><input type='submit' value='Edytuj'></form></div>";
+          offers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_off[i].id+"'></label></label>"
+          
+          offers += "<div style='margin-left: 78%;'> <a class='a-decoration' id='single-ofert-back-"+responseObject2[0].tr_off[i].id+"' >Wróć</a><input class='single-add-button' type='submit' value='Edytuj'></div></div></form></div>";
       }
       var offersContainer = document.getElementById("offers-container");
       offersContainer.innerHTML = offers;
@@ -321,33 +322,39 @@ xhr2.onload = function() {
         document.getElementById("single-ofert-"+responseObject2[0].tr_off[i].id).addEventListener('click',function(){
                 let idSplit = event.target.id.split("-");
                 if(document.getElementById("edit-single-ofert-"+idSplit[2])){
-                    if(document.getElementById("edit-single-ofert-"+idSplit[2]).style.display == "none"){
                         document.getElementById("edit-single-ofert-"+idSplit[2]).style.display = "block";
-                    }else{
-                        document.getElementById("edit-single-ofert-"+idSplit[2]).style.display = "none";
-                    }
+                        document.getElementById("single-ofert"+idSplit[2]).style.display = "none";
                 }
                 
         },false);
+        document.getElementById("single-ofert-back-"+responseObject2[0].tr_off[i].id).addEventListener('click',function(){
+            var idSplitCer3 = event.target.id.split("-");
+           document.getElementById("edit-single-ofert-"+idSplitCer3[3]).style.display = "none";
+           document.getElementById("single-ofert"+idSplitCer3[3]).style.display = "block";
+
+},false);
     }
    
 /// UNI
 
     var unis = '';
     for(var i = 0; i<responseObject2[0].tr_uni.length; i++){
-       unis += '<i class="fas fa-graduation-cap edit-icon-uni"></i>'
-       unis +=  "<div class='single-uni' id='single-uni-"+responseObject2[0].tr_uni[i].id+"'><div>";
+       unis += '<div id="single-uni'+responseObject2[0].tr_uni[i].id+'"><i class="fas fa-graduation-cap edit-icon-uni"></i>'
+       unis +=  "<div class='single-uni' ><div>";
        unis +=  responseObject2[0].tr_uni[i].university+"<br><div style='font-size: 13px;'>"+ responseObject2[0].tr_uni[i].course+" - ";
        unis +=  responseObject2[0].tr_uni[i].degree+"</br> "+responseObject2[0].tr_uni[i].begin_date;
-       unis += " - "+responseObject2[0].tr_uni[i].end_date+"</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span id='uni"+responseObject2[0].tr_uni[i].id+"'>Usuń</span></div></div>";
-       unis += "<div class='edit-single-uni' id='edit-single-uni-"+responseObject2[0].tr_uni[i].id;
-       unis += "'><form id='editUni' action='editUni' method='POST'><label>Nazwa uniwersytetu: <input type='text' name='university'></label>";
-       unis += "<label>Kierunek: <input type='text' name='course'></label>";
-       unis += "<label>Stopień: <input type='text' name='degree'></label></br>";
-       unis += "<label>Data rozpoczęcia: <input type='date' name='begin_date'></label>";
-       unis += "<label>Data zakończenia: <input type='date' name='end_date'></label>";
+       unis += " - "+responseObject2[0].tr_uni[i].end_date+"</div></div><div class='edit-delete-section'><span class='pointer' id='single-uni-"+responseObject2[0].tr_uni[i].id+"'>Edytuj</span></br><span id='uni"+responseObject2[0].tr_uni[i].id+"'>Usuń</span></div></div>";
+       unis += "</div><div class='edit-single-uni' id='edit-single-uni-"+responseObject2[0].tr_uni[i].id;
+       unis += "'><form id='editUni' action='editUni' method='POST'>";
+       unis += "<p><label>Nazwa uczelni: <input value='"+responseObject2[0].tr_uni[i].university+"' class='edit-uni' type='text' name='university'></label></p>";
+       unis += "<p><label>Kierunek: <input value='"+responseObject2[0].tr_uni[i].course+"' class='edit-spec' type='text' name='course'></label></p>";
+       unis += "<p><label>Tytuł: <input value='"+responseObject2[0].tr_uni[i].degree+"' class='edit-title' type='text' name='degree'></label></p>";
+       unis += "<p style='display:inline-block'><label>Data rozpoczęcia: <input value='"+responseObject2[0].tr_uni[i].begin_date+"' class='edit-startdate' type='date' name='begin_date'></label></p>";
+       unis += "<p style='margin-left:20px; display:inline-block;'><label>Data zakończenia: <input value='"+responseObject2[0].tr_uni[i].end_date+"' class='edit-enddate' type='date' name='end_date'></label></p>";
        unis += "<label><input type='hidden' value='{{ csrf_token() }}' name='_token'/></label>";
-       unis += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_uni[i].id+"'></label></label><input type='submit' value='Edytuj'></form></div>";
+       unis += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_uni[i].id+"'></label></label>";
+       unis += "<div style='margin-left: 76%;'><a class='a-decoration' id='single-uni-back-"+responseObject2[0].tr_uni[i].id+"' >Wróć</a>"
+       unis += "<input type='submit' class='single-add-button' value='Edytuj'></div></form></div>";
 
    }
    var uniContainer = document.getElementById("uni-container");
@@ -403,11 +410,19 @@ xhr2.onload = function() {
             if(document.getElementById("edit-single-uni-"+idSplitUni[2])){
                 if(document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display == "none"){
                     document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display = "block";
+                    
+                    document.getElementById("single-uni"+idSplitUni[2]).style.display = "none";
                 }else{
                     document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display = "none";
                 }
             }
      },false);
+     document.getElementById("single-uni-back-"+responseObject2[0].tr_uni[i].id).addEventListener('click',function(){
+        var idSplitCer4 = event.target.id.split("-");
+       document.getElementById("edit-single-uni-"+idSplitCer4[3]).style.display = "none";
+       document.getElementById("single-uni"+idSplitCer4[3]).style.display = "block";
+
+},false);
  }
 
  //gallery
@@ -480,18 +495,22 @@ for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
 
 var cers = '';
 for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
-    cers += '<i class="far fa-file-alt edit-icon"></i>'
-    cers +=  "<div class='single-cer' id='single-cer-"+responseObject2[0].tr_cert[i].id+"'><div>";
+    cers += '<div id="single-cer'+responseObject2[0].tr_cert[i].id+'"><i class="far fa-file-alt edit-icon" ></i>'
+    cers +=  "<div class='single-cer'><div>";
     cers +=  responseObject2[0].tr_cert[i].name_of_institution+"</br><div style='font-size: 13px;'>"+ responseObject2[0].tr_cert[i].name_of_course;
     cers +=  "</br>"+responseObject2[0].tr_cert[i].begin_date;
-    cers += " - "+responseObject2[0].tr_cert[i].end_date+"</div></div><div class='edit-delete-section'><span>Edytuj</span></br><span id='cer"+responseObject2[0].tr_cert[i].id+"'>Usuń</span></div></div>";
-    cers += "<div class='edit-single-cer' id='edit-single-cer-"+responseObject2[0].tr_cert[i].id;
-    cers += "'><form id='editCourse' action='editCourse' method='POST'><label>Nazwa instytucji: <input type='text' name='name_of_institution'></label>";
-    cers += "<label>Nawa kursu: <input type='text' name='name_of_course'></label>";
-    cers += "<label>Data rozpoczęcia: <input type='date' name='begin_date'></label>";
-    cers += "<label>Data zakończenia: <input type='date' name='end_date'></label>";
+    cers += " - "+responseObject2[0].tr_cert[i].end_date+"</div></div><div class='edit-delete-section'>"
+    cers += "<span class='pointer' id='single-cer-"+responseObject2[0].tr_cert[i].id+"'>Edytuj</span></br><span class='pointer' id='cer"+responseObject2[0].tr_cert[i].id+"'>Usuń</span></div></div>";
+    cers += "</div><div class='edit-single-cer' id='edit-single-cer-"+responseObject2[0].tr_cert[i].id;
+    cers += "'><form id='editCourse' action='editCourse' method='POST'>";
+    cers += "<p><label>Nazwa placówki: <input class='edit-place' value='"+responseObject2[0].tr_cert[i].name_of_institution+"' type='text' name='name_of_institution'></label></p>";
+    cers += "<p><label>Nawa kursu: <input style='margin-left: 56px;' class='edit-course' value="+responseObject2[0].tr_cert[i].name_of_course+" type='text' name='name_of_course'></label></p>";
+    cers += "<p style='display:inline-block'><label>Data rozpoczęcia: <input class='edit-startdate' value="+responseObject2[0].tr_cert[i].begin_date+" type='date' name='begin_date'></label></p>";
+    cers += "<p style='margin-left:20px; display:inline-block;'><label>Data zakończenia: <input class='edit-enddate' value="+responseObject2[0].tr_cert[i].end_date+" type='date' name='end_date'></label></p>";
     cers += "<label><input type='hidden' value='{{ csrf_token() }}' name='_token'/></label>";
-    cers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_cert[i].id+"'></label></label><input type='submit' value='Edytuj'></form></div></br>";
+    cers += "<div style='margin-left: 76%;'><a class='a-decoration' id='single-cer-back-"+responseObject2[0].tr_cert[i].id+"' >Wróć</a>"
+    cers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_cert[i].id+"'></label></label><input class='single-add-button' type='submit' value='Edytuj'>"
+    cers += "</div></form></div></br>";
 
 }
 var cerContainer = document.getElementById("cer-container");
@@ -549,12 +568,21 @@ for(var i=0; i<yyy.length;i++){
          if(document.getElementById("edit-single-cer-"+idSplitCer[2])){
             if(document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display == "none"){
                 document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display = "block";
+                document.getElementById("single-cer"+idSplitCer[2]).style.display = "none";
             }else{
                 document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display = "none";
             }   
          }
 
  },false);
+ document.getElementById("single-cer-back-"+responseObject2[0].tr_cert[i].id).addEventListener('click',function(){
+            var idSplitCer2 = event.target.id.split("-");
+           document.getElementById("edit-single-cer-"+idSplitCer2[3]).style.display = "none";
+           document.getElementById("single-cer"+idSplitCer2[3]).style.display = "block";
+
+},false);
+
+
 }
 
 
