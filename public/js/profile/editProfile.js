@@ -233,17 +233,28 @@ xhr.send(null);
 
 //checked dyscyplines
 
-
+var profilePic = ''
 var xhr2 = new XMLHttpRequest();  
 var loggedUserId = document.getElementById("username-id").value;
 xhr2.onload = function() {                       
     if(xhr2.status === 200) {
       responseObject2 = JSON.parse(xhr2.responseText);
       for(var i = 0; i < responseObject2[0].tr_disc.length; i++ ){
+
           var dysciplineName = responseObject2[0].tr_disc[i].discipline_name.replace(" ","_");
           if(document.getElementById(dysciplineName)){
             document.getElementById(dysciplineName).checked = true;
           }
+          console.log(responseObject2)
+            if(responseObject2[0].avatar){
+            for(j=0; j < responseObject2[0].tr_ph.length; j++){
+                if(responseObject2[0].tr_ph[j].id === parseInt(responseObject2[0].avatar)){
+                    profilePic += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
+                    profilePic += responseObject2[0].tr_ph[j].photo_name+"\" \/>"
+                    $(".profilePic").html(profilePic);
+                }
+            };
+        }
       }
 
 
@@ -345,7 +356,7 @@ xhr2.onload = function() {
        unis +=  responseObject2[0].tr_uni[i].degree+"</br> "+responseObject2[0].tr_uni[i].begin_date;
        unis += " - "+responseObject2[0].tr_uni[i].end_date+"</div></div><div class='edit-delete-section'><span class='pointer' id='single-uni-"+responseObject2[0].tr_uni[i].id+"'>Edytuj</span></br><span id='uni"+responseObject2[0].tr_uni[i].id+"'>Usuń</span></div></div>";
        unis += "</div><div class='edit-single-uni' id='edit-single-uni-"+responseObject2[0].tr_uni[i].id;
-       unis += "'><form id='editUni' action='editUni' method='POST'>";
+       unis += "'><form  action='editUni' method='POST'>";
        unis += "<p><label>Nazwa uczelni: <input value='"+responseObject2[0].tr_uni[i].university+"' class='edit-uni' type='text' name='university'></label></p>";
        unis += "<p><label>Kierunek: <input value='"+responseObject2[0].tr_uni[i].course+"' class='edit-spec' type='text' name='course'></label></p>";
        unis += "<p><label>Tytuł: <input value='"+responseObject2[0].tr_uni[i].degree+"' class='edit-title' type='text' name='degree'></label></p>";
@@ -428,14 +439,37 @@ xhr2.onload = function() {
  //gallery
 
  //profilePic
-var profilePic =''
 
+ function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+            $('#profile-img-tag').attr('src', e.target.result);
+            
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
 
+}
+$("#profile-img").change(function(){
+    document.getElementById('xyz').innerHTML = " <img id='profile-img-tag' style='width: 400px;' />"
+    readURL(this);
+    $("#profile-img-tag").on('load',function(){
+        $('#profile-img-tag').Jcrop({
+            aspectRatio: 1,
+            setSelect: [0, 0, 50, 50],
+            onSelect : function (c) {
+                console.log(c.x,c.y,c.w,c.h)
+            }
+        });})
+
+});
 
 
  //rest
 var delUrl = []
-var photos ='<p style="width:100%;">Pozostałe zdjęcia</p></br>';
+var photos ='';
 var gt = '>';
  for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
     delUrl.push("/public/"+responseObject2[0].id+'/'+responseObject2[0].tr_ph[i].photo_name);
@@ -502,7 +536,7 @@ for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
     cers += " - "+responseObject2[0].tr_cert[i].end_date+"</div></div><div class='edit-delete-section'>"
     cers += "<span class='pointer' id='single-cer-"+responseObject2[0].tr_cert[i].id+"'>Edytuj</span></br><span class='pointer' id='cer"+responseObject2[0].tr_cert[i].id+"'>Usuń</span></div></div>";
     cers += "</div><div class='edit-single-cer' id='edit-single-cer-"+responseObject2[0].tr_cert[i].id;
-    cers += "'><form id='editCourse' action='editCourse' method='POST'>";
+    cers += "'><form  action='editCourse' method='POST'>";
     cers += "<p><label>Nazwa placówki: <input class='edit-place' value='"+responseObject2[0].tr_cert[i].name_of_institution+"' type='text' name='name_of_institution'></label></p>";
     cers += "<p><label>Nawa kursu: <input style='margin-left: 56px;' class='edit-course' value="+responseObject2[0].tr_cert[i].name_of_course+" type='text' name='name_of_course'></label></p>";
     cers += "<p style='display:inline-block'><label>Data rozpoczęcia: <input class='edit-startdate' value="+responseObject2[0].tr_cert[i].begin_date+" type='date' name='begin_date'></label></p>";

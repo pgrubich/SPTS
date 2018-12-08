@@ -13,18 +13,26 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/editProfile.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/cropper/jquery.Jcrop.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/lightbox/lightbox.min.css')}}" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+    
+    
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{asset('js/profile/lightbox/lightbox-plus-jquery.min.js')}}"></script>
     <script src="{{asset('js/profile/jquery.scrollTo.min.js')}}"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 	<!--[if lt IE 9]>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-	<![endif]-->
-	
+    <![endif]-->
+    <script src="{{asset('js/profile/jquery.Jcrop.min.js')}}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -160,7 +168,7 @@
                             <legend>Dane szczegółowe</legend>
                                 <p>
                                         <label >
-                                        Opis trenera:
+                                        Opis:
                                         <br />
                                         <textarea form="editSpecificInfo" class="edit-text" form="editSpecificInfo" name="description" placeholder='{{ Auth::user()->description }}' cols="90" rows="10" maxlength="500" minlength="5"></textarea>
                                         <input form="editSpecificInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
@@ -232,9 +240,9 @@
                                 <br />
 
                                 <label>
-                                Uczelnie wyższe:
+                                Wykształcenie:
                                 <br> </br>
-                                    <span id="show-uni">+ Dodaj uczelnię wyższą</span></br></br>
+                                    <span id="show-uni">+ Dodaj wykształcenie</span></br></br>
                                     <div id="edit-uni">
                                         <p>
                                             Nazwa uczelni:
@@ -314,8 +322,74 @@
                     <div id="gallery-edit">
                         <fieldset>
                             <legend>Galeria zdjęć</legend>
+                            <div>
+                            <!-- <img style="width:10%;" id="image" src="./css/images/athlete.jpg"> -->
+                            </div>
+               
+                        <!-- Modal HTML embedded directly into document -->
+                        <div id="ex1" class="modal" style="height:600px; width: 800px;">
+                        <form action='store' method = 'POST'>
+                        <span style="font-size:20px; font-weight:900; ">Dodaj zdjęcie</span>
+                                <input style="margin-top:20px;" type='file' name='photo_name' id='profile-img'>
+                                <!-- <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/> -->
+                                
+                        <!-- Modal HTML embedded directly into document -->
+                        
+                        <div style="margin-top:15px;" id="xyz"></div>
+                        <input style="position: absolute; bottom: 15px; right: 20px;" class="submit-b" type='submit' value='Dodaj zdjęcie profilowe' name='submit'>
                             
+                        </form>
+                        
+                        </div>
+                        <br>
+                        Zdjęcie profilowe:
+                        <br> <br>
+                        <!-- Link to open the modal -->
+                        <div style="display:flex; justify-content: center; align-items:center;">
+                        <a style="color:#757575; width:20%; display:inline-block; text-align:center;  margin-top: 24px;" href="#ex1" rel="modal:open"><div>
+                        <p><i style=" font-size:28px" class="far fa-image"></i></p>
+                        <p>Dodaj zdjęcie profilowe</p>
+                        </div></a>
+                        <a style="color:#757575; width:20%; display:inline-block; text-align:center; margin-top: 24px;"><div>
+                        <p><i style=" font-size:28px" class="far fa-images"></i></p>
+                        <p>Wybierz zdjęcie z galerii</p>
+                        </div></a>
+                        <a style="color:#757575; width:20%; display:inline-block; text-align:center;"><div>
+                        <p><i style=" font-size:28px" class="far fa-trash-alt"></i></p>
+                        <p>Usuń</p>
+                        </div></a>
+                        <div class="profilePic" style="width:30%; display:inline-block;"></div>
+                    </div>
 
+
+
+
+
+
+
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <br>
+                        <p style="width:100%;">Pozostałe zdjęcia</p><br>
                         <form action='store' enctype="multipart/form-data" method = 'POST'>
                         <label>Dodaj zdjęcie</label>
                                 <input type='file' name='photo_name' id='file'>
@@ -324,7 +398,10 @@
                                 <input class="submit-b" type='submit' value='Dodaj zdjęcie' name='submit'>
                             
                         </form>
-                        <div id="content-gallery" class="gallery-content"></div>
+                        <br>
+                        <div id="content-gallery" class="gallery-content">
+
+                        </div>
 
                         </fieldset>
                     </div>
