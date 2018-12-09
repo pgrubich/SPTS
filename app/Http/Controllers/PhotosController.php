@@ -130,6 +130,36 @@ class PhotosController extends Controller
 
     protected function addProfilePicture(Request $request)
     {
+        $this->validate($request, [
+            'photo_name' => 'image|max:5000'
+        ]);
+
+        if($request->hasFile('photo_name')) {
+
+            $originalFilename = $request->file('photo_name')->getClientOriginalName();
+            $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
+            $extension = $request->file('photo_name')->getClientOriginalExtension();
+            $finalFilename = $fileName.'_'.time().'.'.$extension;
+            $path = $request->file('photo_name')->storeAs('public/trainers_photos/'.auth()->user()->id, $finalFilename);
+
+            $album = new TrPhotos;
+            $album->trainer_id = auth()->user()->id;
+            $album->photo_name = $finalFilename;
+            $album->only_for_avatar = 'NO';
+            $album->timestamps = false;
+            $album->save();
+
+            $new_photo_id = $album->id;
+
+            $trainer = Trainer::find(auth()->user()->id);
+            $trainer->avatar = $new_photo_id;
+            $trainer->save();
+
+            $request->session()->flash('success', 'Dodano zdjęcie profilowe.');
+
+        } else {
+            $request->session()->flash('info', 'Nie udało się dodać zdjęcia profilowego.');
+        }
 
         return redirect('/editProfile');
     }
