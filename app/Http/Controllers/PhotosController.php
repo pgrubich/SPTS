@@ -180,7 +180,7 @@ class PhotosController extends Controller
         return redirect('/editProfile');
     }
 
-    public function destroyProfilePicture()
+    public function destroyProfilePicture(Request $request)
     {
         $photo_id = auth()->user()->avatar;
         $photo = TrPhotos::find($photo_id);
