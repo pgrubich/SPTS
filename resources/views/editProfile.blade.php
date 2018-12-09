@@ -328,7 +328,7 @@
                
                         <!-- Modal HTML embedded directly into document -->
                         <div id="ex1" class="modal" style="height:600px; width: 800px;">
-                        <form action='store' method = 'POST'>
+                        <form id="profile-pic-form" action='store' method = 'POST'>
                         <span style="font-size:20px; font-weight:900; ">Dodaj zdjęcie</span>
                                 <input style="margin-top:20px;" type='file' name='photo_name' id='profile-img'>
                                 <!-- <input type='hidden' value='{{ csrf_token() }}' name='_token'/>

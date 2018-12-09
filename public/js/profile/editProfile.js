@@ -460,7 +460,13 @@ $("#profile-img").change(function(){
             aspectRatio: 1,
             setSelect: [0, 0, 50, 50],
             onSelect : function (c) {
-                console.log(c.x,c.y,c.w,c.h)
+                let coordinates = '';
+                coordinates +="<input type='hidden' value='"+c.x+"' name='coordX'/>";
+                coordinates +="<input type='hidden' value='"+c.y+"' name='coordY'/>";
+                coordinates +="<input type='hidden' value='"+c.w+"' name='coordW'/>";
+                coordinates +="<input type='hidden' value='"+c.h+"' name='coordH'/>";
+                $('#profile-pic-form').prepend(coordinates);
+                console.log('dupa')
             }
         });})
 
