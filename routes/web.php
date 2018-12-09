@@ -60,6 +60,8 @@ Route::post('editPasswordInfo', ['uses' =>'editProfileController@editPasswordInf
 
 Route::post('store', ['uses' => 'PhotosController@store']);
 
+Route::post('/updateProfilePicture/{id}', ['uses' =>'editProfileController@updateProfilePicture']);
+
 Route::post('orderTraining', ['uses' =>'CalendarController@orderTraining']);
 
 Route::post('updateProfilePicture', ['uses' => 'editProfileController@updateProfilePicture']);

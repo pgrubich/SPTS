@@ -250,11 +250,11 @@ class editProfileController extends Controller
         }
     }
 
-    protected function updateProfilePicture(Request $request)
+    protected function updateProfilePicture($id)
     {
-        if (TrPhotos::where('id', '=', $request['photo_id'])->exists()) {
-            $photoId = TrPhotos::find($request['photo_id']);
-            $trainer = Trainer::find($request['id']);
+        if (TrPhotos::where('id', '=', $id)->exists()) {
+            $photoId = TrPhotos::find($id);
+            $trainer = Trainer::find(Auth::user()->id);
             $trainer->profile_picture_id = $photoId;
             $trainer->save();
         }
