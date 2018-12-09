@@ -53,6 +53,7 @@ class PhotosController extends Controller
             $album = new TrPhotos;
             $album->trainer_id = auth()->user()->id;
             $album->photo_name = $finalFilename;
+            $album->only_for_avatar = 'NO';
             $album->timestamps = false;
             $album->save();
 
@@ -123,9 +124,48 @@ class PhotosController extends Controller
             //Session::flash('info', 'Usunięcie zdjęcia nie powiodło się.');
         //}
 
+        return redirect('/editProfile');
+    }
 
 
+    protected function addProfilePicture(Request $request)
+    {
 
+        return redirect('/editProfile');
+    }
+
+
+    protected function updateProfilePicture($id)
+    {
+        if (TrPhotos::where('id', '=', $id)->exists()) {
+            $photoId = TrPhotos::find($id);
+            $trainer = Trainer::find(Auth::user()->id);
+            $trainer->profile_picture_id = $photoId;
+            $trainer->save();
+        }
+        else {
+            return('Nie znaleziono wybranego zdjęcia.');
+        }
+
+        return redirect('/editProfile');
+    }
+
+    public function destroyProfilePicture()
+    {
+        $photo_id = auth()->user()->avatar;
+        $photo = TrPhotos::find($photo_id);
+
+        if ($photo->only_for_avatar = 'YES')
+        {
+            destroy(photo_id);
+        }
+        else
+        {
+            $trainer = Trainer::find(auth()->user()->id);
+            $trainer->avatar = NULL;
+            $trainer->save();
+        }    
+        
         return redirect('/editProfile');
     }
 

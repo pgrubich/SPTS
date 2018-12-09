@@ -250,20 +250,5 @@ class editProfileController extends Controller
         }
     }
 
-    protected function updateProfilePicture($id)
-    {
-        if (TrPhotos::where('id', '=', $id)->exists()) {
-            $photoId = TrPhotos::find($id);
-            $trainer = Trainer::find(Auth::user()->id);
-            $trainer->profile_picture_id = $photoId;
-            $trainer->save();
-        }
-        else {
-            return('Nie znaleziono wybranego zdjęcia.');
-        }
-
-        return redirect('/editProfile');
-    }
-
 
 }
