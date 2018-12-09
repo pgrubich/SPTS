@@ -8,7 +8,7 @@ class TrPhotos extends Model
 {
     protected $table = 'trainers_photos';
     protected $hidden = ['trainer_id'];
-    protected $fillable = ['trainer_id', 'photo_name'];
+    protected $fillable = ['trainer_id', 'photo_name', 'only_for_avatars'];
 
     public function trA(){
         return $this->belongsTo('\Trainer');

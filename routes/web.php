@@ -64,8 +64,6 @@ Route::post('addProfilePicture', ['uses' => 'PhotosController@addProfilePicture'
 
 Route::post('/updateProfilePicture/{id}', ['uses' =>'PhotosController@updateProfilePicture']);
 
-Route::post('destroyProfilePicture', ['uses' => 'PhotosController@addProfilePicture']);
+Route::post('destroyProfilePicture', ['uses' => 'PhotosController@destroyProfilePicture']);
 
 Route::post('orderTraining', ['uses' =>'CalendarController@orderTraining']);
-
-Route::post('updateProfilePicture', ['uses' => 'editProfileController@updateProfilePicture']);
