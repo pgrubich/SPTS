@@ -182,12 +182,11 @@ class PhotosController extends Controller
 
     protected function destroyProfilePicture(Request $request)
     {
-        $photo_id = auth()->user()->avatar;
-        $photo = TrPhotos::find($photo_id);
+        $photo = TrPhotos::find(auth()->user()->avatar);
 
-        if ($photo->only_for_avatar = 'YES')
+        if ($photo->only_for_avatar == 'YES')
         {
-            destroy(photo_id);
+            $this->destroy(auth()->user()->avatar);
         }
         else
         {
