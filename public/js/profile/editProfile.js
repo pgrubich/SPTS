@@ -472,9 +472,42 @@ $("#profile-img").change(function(){
 
 });
 
+//del profile pic
 
- //rest
-var delUrl = []
+document.getElementById('del-profile-pic').addEventListener('click',function(e) {
+    $.confirm({
+        boxWidth: '30%',
+        useBootstrap: false,
+        title: 'Usuwanie',
+        content: 'Czy na pewno chcesz usunąć zdjęcie profilowe ?',
+        buttons: {
+            usuń: {
+                btnClass: 'btn-blue',
+                action: function () {
+                var t = e.target;
+                $.ajax({
+                    data: {
+                        "_token": $('#token').val()
+                        },
+                    method: "POST",
+                    url: "/destroyProfilePicture",
+                    }).done(function( msg ) {
+                    if(msg.error == 0){
+                        window.location.reload()
+                    }else{
+                        window.location.reload()
+                    }
+                });
+            }},
+            cofnij: function () {
+            }
+        }
+    })
+})
+
+
+//rest
+var delUrl = [];
 var photos ='';
 var gt = '>';
  for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
@@ -564,7 +597,7 @@ for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
             boxWidth: '30%',
             useBootstrap: false,
             title: 'Usuwanie',
-            content: 'Czy na pewno chcesz certyfikat ?',
+            content: 'Czy na pewno chcesz usunąć certyfikat ?',
             buttons: {
                 usuń: {
                     btnClass: 'btn-blue',

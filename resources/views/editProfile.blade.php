@@ -355,7 +355,7 @@
                         <p><i style=" font-size:28px" class="far fa-images"></i></p>
                         <p>Wybierz zdjęcie z galerii</p>
                         </div></a>
-                        <a style="color:#757575; width:20%; display:inline-block; text-align:center;"><div>
+                        <a id="del-profile-pic" style="color:#757575; width:20%; display:inline-block; text-align:center;"><div>
                         <p><i style=" font-size:28px" class="far fa-trash-alt"></i></p>
                         <p>Usuń</p>
                         </div></a>
