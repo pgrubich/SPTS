@@ -24,6 +24,8 @@ Route::view('/{dycyplina}/{miasto}', 'searchDisciplineAndLocationResult');
 
 Auth::routes();
 
+//Route::view('/reset', 'auth\passwords\reset');
+
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::post('editPrimaryInfo', ['uses' =>'editProfileController@updatePrimaryInfo']);

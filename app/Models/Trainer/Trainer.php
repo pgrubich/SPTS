@@ -3,13 +3,15 @@
 namespace App\Models\Trainer;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Trainer extends Authenticatable
 {
+    use Notifiable;
     protected $table = 'trainers';
     protected $hidden = ['password','remember_token'];
-    protected $fillable = ['password','email'];
+    protected $fillable = ['password','email','remember_token'];
     const CREATED_AT = 'registerDate';
     public $timestamps = false;
 
