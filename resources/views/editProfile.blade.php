@@ -13,18 +13,26 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/editProfile.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/cropper/jquery.Jcrop.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/lightbox/lightbox.min.css')}}" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+    
+    
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{asset('js/profile/lightbox/lightbox-plus-jquery.min.js')}}"></script>
     <script src="{{asset('js/profile/jquery.scrollTo.min.js')}}"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
 	<!--[if lt IE 9]>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-	<![endif]-->
-	
+    <![endif]-->
+    <script src="{{asset('js/profile/jquery.Jcrop.min.js')}}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -38,7 +46,7 @@
                 
                 <a href="/profiles/{{ Auth::user()->id }}" ><i class="fas fa-user" style='color:#5f5d5d; margin-right:5px;'></i> Profil</a>
                 <a href="/editProfile" ><i class="far fa-edit" style='color:#5f5d5d; margin-right:5px;'></i>Edytuj profil</a>
-                <button onclick="location.href='/logout'" type="button" class="btn blue-button">Wyloguj się</button>
+                <button onclick="location.href='/logout'" style="font-size:16px;" type="button" class="btn blue-button">Wyloguj się</button>
                 </span>
             </div>
         </nav>
@@ -65,87 +73,93 @@
                 <div class="categories">
                     <div id="basic-edit">
                         <fieldset>
-                            <legend>Dane podstawowe </legend>
+
                             
+                            <legend>Dane podstawowe </legend>
+                            <div style="margin-left: 100px;">
                             <form id="editPrimaryInfo" action='editPrimaryInfo' method = 'POST'></form>
                             <form id="addCity" action='addCity' method = 'POST'></form>
                                 
                                 <p>
-                                <label style="margin-left: 45px;">
+                                <label  >
                                         Imię: 
                                         <input class="edit-name" form="editPrimaryInfo" name='name' type='text' placeholder='{{ Auth::user()->name }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
-                                <label style="margin-left: 45px;">
+                                <label  >
                                         Nazwisko: 
                                         <input class="edit-lastname" form="editPrimaryInfo" name='surname' type='text' placeholder='{{ Auth::user()->surname }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
-                                <label style="margin-left: 45px;">
+                                <label  >
                                         Data urodzenia:
                                         <input  class="edit-date" form="editPrimaryInfo" name='bdate' type="date" placeholder='{{ Auth::user()->bdate }}' >
-                                <label style="margin-left: 45px;">
+                                <label  >
                                 </p>
                                 
-                                <p style="margin-left: 45px;">
-                                        Płeć
-                                        <input form="editPrimaryInfo" type="radio" name="gender" value="f">
-                                        <label for="female">kobieta</label>
-                                        <input form="editPrimaryInfo" type="radio" name="gender" value="m">
-                                        <label for="male">mężczyzna</label>
+                                <p  >
+                                        Płeć:
+                                        <span style="margin-left:104px;">
+                                        <label class="container-radio" >
+                                        <input style="margin-left: 125px;" form="editPrimaryInfo" type="radio" name="gender" value="f">
+                                        kobieta  <span class="checkmark-radio"></span></label>
+                                        
+                                        <label class="container-radio" >
+                                        <input form="editPrimaryInfo" type="radio" name="gender" value="m">    
+                                        mężczyzna  <span class="checkmark-radio"></span></label>
+</span>
                                 </p>
-
                                 <p>
-                                <label style="margin-left: 45px;">
+                                <label  >
                                     Telefon: 
                                     <input  class="edit-phone" form="editPrimaryInfo" name='phone' type='tel' placeholder='{{ Auth::user()->phone }}'>
                                 </label>
                                 </p>
                                 
                                 <p>
-                                <label style="margin-left: 45px;">
+                                <label  >
                                     Instagram: 
                                     <input  class="edit-insta" form="editPrimaryInfo" name='instagram' type='text' placeholder='{{ Auth::user()->instagram }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
                                 <p>
-                                <label style="margin-left: 45px;">
+                                <label  >
                                     Facebook: 
                                     <input class="edit-face"  form="editPrimaryInfo" name='facebook' type='text' placeholder='{{ Auth::user()->facebook }}' pattern=".{3,}">
                                 </label>
                                 </p>
 
-                                <label style="margin-left: 45px;">
-                                    <span id="show-cities">+ Dodaj miasto</span>:</br></br>
+                                <label  >
+                                    <span id="show-cities">+ Dodaj miasto: </span>
                                     <div id="edit-cities">
                                         <p>
                                             Miasto:
-                                            {{ Auth::user()->id }}
-                                            <input form="addCity" name='city' type="text" pattern=".{3,}" required>
+                                            <input class="edit-city" form="addCity" name='city' type="text" pattern=".{3,}" required>
                                         </p>
                                         <p>
                                             Województwo:
-                                            <input form="addCity" name='voivodeship' type="text" pattern=".{3,}" required>
+                                            <input class="edit-voi" form="addCity" name='voivodeship' type="text" pattern=".{3,}" required>
                                         </p>
                                         <input form="addCity" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                         <input form="addCity" type='hidden' value='{{ csrf_token() }}' name='_token'/>
-                                        <input type="submit" value="Dodaj miasto" form="addCity">
+                                        <input class="city-add-button" type="submit" value="Dodaj miasto" form="addCity">
                                     </div>
                                 </label>
 
 
-
+                                <div>
                                 <input form="editPrimaryInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                 <input form="editPrimaryInfo" type='hidden' value='{{ csrf_token() }}' name='_token'/>
                                 <input class="save-button" type="submit" value="Zapisz" form="editPrimaryInfo">
+                                </div>
 
                             </form>
-
+</div>
                         </fieldset>
                     </div>
                     <div id="specific-edit">
@@ -159,7 +173,7 @@
                             <legend>Dane szczegółowe</legend>
                                 <p>
                                         <label >
-                                        Opis trenera:
+                                        Opis:
                                         <br />
                                         <textarea form="editSpecificInfo" class="edit-text" form="editSpecificInfo" name="description" placeholder='{{ Auth::user()->description }}' cols="90" rows="10" maxlength="500" minlength="5"></textarea>
                                         <input form="editSpecificInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
@@ -171,13 +185,13 @@
                                         Dyscypliny:
                                         <div id="dyscypline-list-editprofile" >
                                             <form id='updateDisciplines' action='updateDisciplines' method='POST'>
-                                            <div class="dyscypline-column-editprofile">
+                                            <div style="width:27%" class="dyscypline-column-editprofile">
                                             </div>
                                             <div class="dyscypline-column-editprofile">
                                             </div>
-                                            <div class="dyscypline-column-editprofile">
+                                            <div style="width:28%" class="dyscypline-column-editprofile">
                                             </div>
-                                            <div class="dyscypline-column-editprofile">
+                                            <div style="width:20%" class="dyscypline-column-editprofile">
                                             </div>
                                             <div class="dyscypline-column-editprofile">
                                             </div>
@@ -201,7 +215,7 @@
                                             Nazwa placówki:
                                             <input placeholder="Podaj nazwę placówki" class="edit-place" form="addCourse" name='place' type="text" pattern=".{3,}" required>
                                         </p>
-                                        <p>
+                                        <p style="display: inline-block;">
                                             Nazwa kursu:
                                             <input placeholder="Podaj nazwę kursu" class="edit-course" form="addCourse" name='name' type="text" pattern=".{3,}">
                                         </p>
@@ -231,19 +245,19 @@
                                 <br />
 
                                 <label>
-                                Uczelnie wyższe:
+                                Wykształcenie:
                                 <br> </br>
-                                    <span id="show-uni">+ Dodaj uczelnię wyższą</span></br></br>
+                                    <span id="show-uni">+ Dodaj wykształcenie</span></br></br>
                                     <div id="edit-uni">
                                         <p>
                                             Nazwa uczelni:
                                             <input class="edit-uni" form="addUni" name='name' type="text" pattern=".{3,}" required>
                                         </p>
-                                        <p>
+                                        <p  style="display: inline-block;">
                                             Kierunek:
                                             <input class="edit-spec" form="addUni" name='course' type="text" pattern=".{3,}" required>
                                         </p>
-                                        <p>
+                                        <p  style="display: inline-block;">
                                             Tytuł:
                                             <input class="edit-title" form="addUni" name='degree' type="text" pattern=".{3,}">
                                         </p>
@@ -313,8 +327,74 @@
                     <div id="gallery-edit">
                         <fieldset>
                             <legend>Galeria zdjęć</legend>
+                            <div>
+                            <!-- <img style="width:10%;" id="image" src="./css/images/athlete.jpg"> -->
+                            </div>
+               
+                        <!-- Modal HTML embedded directly into document -->
+                        <div id="ex1" class="modal" style="height:600px; width: 800px;">
+                        <form id="profile-pic-form" action='store' method = 'POST'>
+                        <span style="font-size:20px; font-weight:900; ">Dodaj zdjęcie</span>
+                                <input style="margin-top:20px;" type='file' name='photo_name' id='profile-img'>
+                                <!-- <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/> -->
+                                
+                        <!-- Modal HTML embedded directly into document -->
+                        
+                        <div style="margin-top:15px;" id="xyz"></div>
+                        <input style="position: absolute; bottom: 15px; right: 20px;" class="submit-b" type='submit' value='Dodaj zdjęcie profilowe' name='submit'>
                             
+                        </form>
+                        
+                        </div>
+                        <br>
+                        Zdjęcie profilowe:
+                        <br> <br>
+                        <!-- Link to open the modal -->
+                        <div style="display:flex; justify-content: center; align-items:center;">
+                        <a style="color:#757575; width:20%; display:inline-block; text-align:center;  margin-top: 24px;" href="#ex1" rel="modal:open"><div>
+                        <p><i style=" font-size:28px" class="far fa-image"></i></p>
+                        <p>Dodaj zdjęcie profilowe</p>
+                        </div></a>
+                        <a style="color:#757575; width:20%; display:inline-block; text-align:center; margin-top: 24px;"><div>
+                        <p><i style=" font-size:28px" class="far fa-images"></i></p>
+                        <p>Wybierz zdjęcie z galerii</p>
+                        </div></a>
+                        <a id="del-profile-pic" style="color:#757575; width:20%; display:inline-block; text-align:center;"><div>
+                        <p><i style=" font-size:28px" class="far fa-trash-alt"></i></p>
+                        <p>Usuń</p>
+                        </div></a>
+                        <div class="profilePic" style="width:30%; display:inline-block;"></div>
+                    </div>
 
+
+
+
+
+
+
+                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <br>
+                        <p style="width:100%;">Pozostałe zdjęcia</p><br>
                         <form action='store' enctype="multipart/form-data" method = 'POST'>
                         <label>Dodaj zdjęcie</label>
                                 <input type='file' name='photo_name' id='file'>
@@ -323,7 +403,10 @@
                                 <input class="submit-b" type='submit' value='Dodaj zdjęcie' name='submit'>
                             
                         </form>
-                        <div id="content-gallery" class="gallery-content"></div>
+                        <br>
+                        <div id="content-gallery" class="gallery-content">
+
+                        </div>
 
                         </fieldset>
                     </div>

@@ -54,14 +54,18 @@ Route::post('editTrainerOffer', ['uses' =>'editProfileController@editTrainerOffe
 
 Route::post('/destroyOffer/{id}', ['uses' =>'editProfileController@destroyOffer']);
 
-Route::post('/destroy/{id}', ['uses' => 'PhotosController@destroy']);
-
 Route::post('editEmailInfo', ['uses' =>'editProfileController@updateEmailInfo']);
 
 Route::post('editPasswordInfo', ['uses' =>'editProfileController@editPasswordInfo']);
 
 Route::post('store', ['uses' => 'PhotosController@store']);
 
-Route::post('orderTraining', ['uses' =>'CalendarController@orderTraining']);
+Route::post('/destroy/{id}', ['uses' => 'PhotosController@destroy']);
 
-Route::post('updateProfilePicture', ['uses' => 'editProfileController@updateProfilePicture']);
+Route::post('addProfilePicture', ['uses' => 'PhotosController@addProfilePicture']);
+
+Route::post('/updateProfilePicture/{id}', ['uses' =>'PhotosController@updateProfilePicture']);
+
+Route::post('/destroyProfilePicture', ['uses' => 'PhotosController@destroyProfilePicture']);
+
+Route::post('orderTraining', ['uses' =>'CalendarController@orderTraining']);

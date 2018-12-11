@@ -129,6 +129,9 @@ fieldset{
 #edit-course, #edit-uni, #edit-price{
     font-size: 14px;
 }
+#edit-cities{
+    height: 150px;
+}
 .edit-course{
     margin-left: 50px;
     width: 480px;
@@ -144,14 +147,14 @@ fieldset{
     padding: 3px;
     margin-left: 24px;
     display: inline-block;
-    width:150px;
+    width:157px;
     padding: 3px;
 }
 .edit-enddate{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    width:150px;
+    width:156px;
     padding: 3px;
     padding: 3px;
     margin-left: 25px;
@@ -237,7 +240,46 @@ fieldset{
     display:none;
 }
 
-#show-uni ,#show-course ,#show-price{
+.edit-city{
+    margin-left: 101px;
+    width: 250px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px
+}
+.edit-voi{
+    margin-left: 43px;
+    width: 250px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.a-decoration{
+    text-decoration: none !important;
+    cursor: pointer;
+}
+.city-add-button{
+    padding: 7px 15px;
+    border: 1px solid #4bc0e3;
+    float: right;
+    margin-right: 160px;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.single-add-button{
+    padding: 7px 15px;
+    border: 1px solid #4bc0e3;
+    margin-left: 20px;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+#show-uni ,#show-course ,#show-price, #show-cities{
     cursor:pointer;
     opacity: 0.7;
     font-size: 14px;
@@ -261,23 +303,24 @@ fieldset{
 .edit-single-ofert, .edit-single-uni, .edit-single-cer{
     padding: 5px;
     margin: 2px;
-    border: 1px solid #0a2b42;
-    
+    font-size: 14px;
+    border: 1.5px solid #dfdede;
 }
 
 .single-ofert, .single-uni, .single-cer{
     padding: 10px;
     margin: 2px;
-    cursor:pointer;
     line-height: 24px;
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     margin-bottom: 15px;
-    width: 550px;
+    width: 580px;
     display: inline-flex;
     justify-content: space-between;
 }
-
+.pointer{
+    cursor:pointer;
+}
 .edit-icon{
     font-size: 60px;
     color: #4bc0e3;
@@ -326,7 +369,7 @@ fieldset{
     position: absolute;
     top: 0px;
     right: 0px;
-    z-index: 100;
+    z-index: 1;
     background-color: white;
     width: 20px;
     text-align: center;
@@ -343,6 +386,18 @@ fieldset{
 .profilePic img{
     width: 100%;
     height:100%;
+}
+.profilePic
+{
+    width:220px;
+    height:220px;
+    background-image: url('images/no-avatar.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius:3px;
+
 }
 
 
@@ -362,3 +417,142 @@ input[type=file]::-webkit-file-upload-button {
     padding: 6px 12px;
     border: 1px solid #4bc0e3;
 }
+
+
+/* checkboxes*/
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 21px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+      
+    position: absolute;
+    border-radius: 2px;
+    top: 4px;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #4bc0e3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+/* RADIO BUTTONS */
+
+/* The container */
+.container-radio {
+    display: inline-block;
+    position: relative;
+    margin-left: 20px;
+    padding-left: 23px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .container-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .checkmark-radio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container-radio:hover input ~ .checkmark-radio {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .container-radio input:checked ~ .checkmark-radio {
+    background-color: #4bc0e3;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark-radio:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .container-radio input:checked ~ .checkmark-radio:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .container-radio .checkmark-radio:after {
+    top: 5px;
+    left: 5px;
+    width: 7px;
+    height: 7px;
+
+      border-radius: 50%;
+      background: white;
+  }

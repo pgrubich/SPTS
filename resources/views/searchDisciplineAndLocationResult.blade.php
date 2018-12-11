@@ -107,7 +107,7 @@
                 </div>
                 <div class="button-filter">
                     <span id="clearAll">Wyczyść</span>
-                    <button type="button" class="btn blue-button">Filtruj wyniki</button>
+                    <button id="filter-button" type="button" class="btn blue-button">Filtruj wyniki</button>
                 </div>
             </div>
         </nav>

@@ -53,6 +53,7 @@ class PhotosController extends Controller
             $album = new TrPhotos;
             $album->trainer_id = auth()->user()->id;
             $album->photo_name = $finalFilename;
+            $album->only_for_avatar = 'NO';
             $album->timestamps = false;
             $album->save();
 
@@ -123,9 +124,77 @@ class PhotosController extends Controller
             //Session::flash('info', 'Usunięcie zdjęcia nie powiodło się.');
         //}
 
+        return redirect('/editProfile');
+    }
 
 
+    protected function addProfilePicture(Request $request)
+    {
+        $this->validate($request, [
+            'photo_name' => 'image|max:5000'
+        ]);
 
+        if($request->hasFile('photo_name')) {
+
+            $originalFilename = $request->file('photo_name')->getClientOriginalName();
+            $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
+            $extension = $request->file('photo_name')->getClientOriginalExtension();
+            $finalFilename = $fileName.'_'.time().'.'.$extension;
+            $path = $request->file('photo_name')->storeAs('public/trainers_photos/'.auth()->user()->id, $finalFilename);
+
+            $album = new TrPhotos;
+            $album->trainer_id = auth()->user()->id;
+            $album->photo_name = $finalFilename;
+            $album->only_for_avatar = 'NO';
+            $album->timestamps = false;
+            $album->save();
+
+            $new_photo_id = $album->id;
+
+            $trainer = Trainer::find(auth()->user()->id);
+            $trainer->avatar = $new_photo_id;
+            $trainer->save();
+
+            $request->session()->flash('success', 'Dodano zdjęcie profilowe.');
+
+        } else {
+            $request->session()->flash('info', 'Nie udało się dodać zdjęcia profilowego.');
+        }
+
+        return redirect('/editProfile');
+    }
+
+
+    protected function updateProfilePicture($id)
+    {
+        if (TrPhotos::where('id', '=', $id)->exists()) {
+            $photoId = TrPhotos::find($id);
+            $trainer = Trainer::find(Auth::user()->id);
+            $trainer->profile_picture_id = $photoId;
+            $trainer->save();
+        }
+        else {
+            return('Nie znaleziono wybranego zdjęcia.');
+        }
+
+        return redirect('/editProfile');
+    }
+
+    protected function destroyProfilePicture(Request $request)
+    {
+        $photo = TrPhotos::find(auth()->user()->avatar);
+
+        if ($photo->only_for_avatar == 'YES')
+        {
+            $this->destroy(auth()->user()->avatar);
+        }
+        else
+        {
+            $trainer = Trainer::find(auth()->user()->id);
+            $trainer->avatar = NULL;
+            $trainer->save();
+        }    
+        
         return redirect('/editProfile');
     }
 
