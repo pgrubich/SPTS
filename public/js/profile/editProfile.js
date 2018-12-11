@@ -21,6 +21,8 @@ option4.addEventListener('click',function(){show(4);},false)
 option5.addEventListener('click',function(){show(5);},false)
 option6.addEventListener('click',function(){show(6);},false)
 
+csrfToken = document.getElementById('token').value
+
 
 function show(a){
     switch(a){
@@ -274,7 +276,7 @@ xhr2.onload = function() {
           offers += "<p  style='display: inline-block;'><label>Nazwa zajęć: <input value='"+responseObject2[0].tr_off[i].name+"'class='edit-lessons' type='text' name='name'></label></p>";
           offers += "<p style='display:inline-block;'><label>Maksymalna liczba osób: <input value='"+responseObject2[0].tr_off[i].max_no_of_clients+"' style='width:180px;' class='edit-patric' type='text' name='members'></label></p>";
           offers += "<p style='margin-left:20px; display:inline-block;'><label>Cena: <input value='"+responseObject2[0].tr_off[i].price+"' style='width:180px;' class='edit-price' type='text' name='price'></label></p>";
-          offers += "<label><input type='hidden' value='{{ csrf_token() }}' name='_token'/></label>";
+          offers += "<label><input type='hidden' value='"+csrfToken+"' name='_token'/></label>";
           offers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_off[i].id+"'></label></label>"
           
           offers += "<div style='margin-left: 78%;'> <a class='a-decoration' id='single-ofert-back-"+responseObject2[0].tr_off[i].id+"' >Wróć</a><input class='single-add-button' type='submit' value='Edytuj'></div></div></form></div>";
@@ -362,7 +364,7 @@ xhr2.onload = function() {
        unis += "<p  style='display: inline-block;'><label>Tytuł: <input value='"+responseObject2[0].tr_uni[i].degree+"' class='edit-title' type='text' name='degree'></label></p>";
        unis += "<p style='display:inline-block'><label>Data rozpoczęcia: <input value='"+responseObject2[0].tr_uni[i].begin_date+"' class='edit-startdate' type='date' name='begin_date'></label></p>";
        unis += "<p style='margin-left:20px; display:inline-block;'><label>Data zakończenia: <input value='"+responseObject2[0].tr_uni[i].end_date+"' class='edit-enddate' type='date' name='end_date'></label></p>";
-       unis += "<label><input type='hidden' value='{{ csrf_token() }}' name='_token'/></label>";
+       unis += "<label><input type='hidden' value='"+csrfToken+"' name='_token'/></label>";
        unis += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_uni[i].id+"'></label></label>";
        unis += "<div style='margin-left: 76%;'><a class='a-decoration' id='single-uni-back-"+responseObject2[0].tr_uni[i].id+"' >Wróć</a>"
        unis += "<input type='submit' class='single-add-button' value='Edytuj'></div></form></div>";
@@ -516,7 +518,7 @@ var gt = '>';
     photos += "\/storage/trainers_photos\/"+responseObject2[0].id+"\/"+ responseObject2[0].tr_ph[i].photo_name+"\" data-lightbox=\"my-gallery\" >"
     photos += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
     photos += responseObject2[0].tr_ph[i].photo_name+"\" \/></a></div>";
-    photos += '<meta name="_token" content="{{ csrf_token() }}">'
+    photos += '<meta name="_token" content="'+csrfToken+'">'
  }
 
 var photContainer = document.getElementsByClassName("gallery-content")[0];
@@ -580,7 +582,7 @@ for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
     cers += "<p  style='display: inline-block;' ><label>Nawa kursu: <input style='margin-left: 56px;' class='edit-course' value="+responseObject2[0].tr_cert[i].name_of_course+" type='text' name='name_of_course'></label></p>";
     cers += "<p style='display:inline-block'><label>Data rozpoczęcia: <input class='edit-startdate' value="+responseObject2[0].tr_cert[i].begin_date+" type='date' name='begin_date'></label></p>";
     cers += "<p style='margin-left:20px; display:inline-block;'><label>Data zakończenia: <input class='edit-enddate' value="+responseObject2[0].tr_cert[i].end_date+" type='date' name='end_date'></label></p>";
-    cers += "<label><input type='hidden' value='{{ csrf_token() }}' name='_token'/></label>";
+    cers += "<label><input type='hidden' value='"+csrfToken+"' name='_token'/></label>";
     cers += "<div style='margin-left: 76%;'><a class='a-decoration' id='single-cer-back-"+responseObject2[0].tr_cert[i].id+"' >Wróć</a>"
     cers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_cert[i].id+"'></label></label><input class='single-add-button' type='submit' value='Edytuj'>"
     cers += "</div></form></div></br>";
