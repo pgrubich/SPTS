@@ -419,14 +419,14 @@
                                 <p>
                                 <label>
                                         Aktualny adres email: 
-                                        <input name='current_email' type='email' pattern="{{ Auth::user()->email }}" required>
+                                        <input name='current_email' type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
                                 </label>
                                 </p>
 
                                 <p>
                                 <label>
                                         Nowy adres email: 
-                                        <input name='new_email' type='email' required>
+                                        <input name='new_email' type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
                                 </label>
                                 </p>
 
@@ -447,14 +447,14 @@
                                 <p>
                                 <label>
                                         Stare hasło: 
-                                        <input name='current_password' type='password' required>
+                                        <input name='current_password' type='password' minlength="3" maxlength="20" required>
                                 </label>
                                 </p>
 
                                 <p>
                                 <label>
                                         Nowe hasło: 
-                                        <input name='new_password' type='password' required>
+                                        <input name='new_password' type='password' minlength="3" maxlength="20" required>
                                 </label>
                                 </p>
 
