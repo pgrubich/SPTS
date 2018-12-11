@@ -273,9 +273,9 @@ xhr2.onload = function() {
           offers +=  "</br><span  id='off"+responseObject2[0].tr_off[i].id+"'>Usuń</span></div></div></div>";
           offers += "<div class='edit-single-ofert' id='edit-single-ofert-"+responseObject2[0].tr_off[i].id;
           offers += "'><form class='editTrainerOffer' action='editTrainerOffer' method='POST'>";
-          offers += "<p  style='display: inline-block;'><label>Nazwa zajęć: <input value='"+responseObject2[0].tr_off[i].name+"'class='edit-lessons' type='text' name='name'></label></p>";
-          offers += "<p style='display:inline-block;'><label>Maksymalna liczba osób: <input value='"+responseObject2[0].tr_off[i].max_no_of_clients+"' style='width:180px;' class='edit-patric' type='text' name='members'></label></p>";
-          offers += "<p style='margin-left:20px; display:inline-block;'><label>Cena: <input value='"+responseObject2[0].tr_off[i].price+"' style='width:180px;' class='edit-price' type='text' name='price'></label></p>";
+          offers += "<p  style='display: inline-block;'><label>Nazwa zajęć: <input value='"+responseObject2[0].tr_off[i].name+"'class='edit-lessons' type='text' name='classes_name' pattern='.{3,}' required title='Wprowadź co najmniej 3 znaki.'></label></p>";
+          offers += "<p style='display:inline-block;'><label>Maksymalna liczba osób: <input value='"+responseObject2[0].tr_off[i].max_no_of_clients+"' style='width:180px;' class='edit-patric' type='text' name='numbers_of_members' type='number' min='1' max='20' required ></label></p>";
+          offers += "<p style='margin-left:20px; display:inline-block;'><label>Cena: <input value='"+responseObject2[0].tr_off[i].price+"' style='width:180px;' class='edit-price' type='text' name='price' name='price'  type='number' step='0.01'></label></p>";
           offers += "<label><input type='hidden' value='"+csrfToken+"' name='_token'/></label>";
           offers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_off[i].id+"'></label></label>"
           
@@ -359,11 +359,11 @@ xhr2.onload = function() {
        unis += " - "+responseObject2[0].tr_uni[i].end_date+"</div></div><div class='edit-delete-section'><span class='pointer' id='single-uni-"+responseObject2[0].tr_uni[i].id+"'>Edytuj</span></br><span id='uni"+responseObject2[0].tr_uni[i].id+"'>Usuń</span></div></div>";
        unis += "</div><div class='edit-single-uni' id='edit-single-uni-"+responseObject2[0].tr_uni[i].id;
        unis += "'><form  action='editUni' method='POST'>";
-       unis += "<p><label>Nazwa uczelni: <input value='"+responseObject2[0].tr_uni[i].university+"' class='edit-uni' type='text' name='university'></label></p>";
-       unis += "<p style='display: inline-block;'><label>Kierunek: <input value='"+responseObject2[0].tr_uni[i].course+"' class='edit-spec' type='text' name='course'></label></p>";
-       unis += "<p  style='display: inline-block;'><label>Tytuł: <input value='"+responseObject2[0].tr_uni[i].degree+"' class='edit-title' type='text' name='degree'></label></p>";
-       unis += "<p style='display:inline-block'><label>Data rozpoczęcia: <input value='"+responseObject2[0].tr_uni[i].begin_date+"' class='edit-startdate' type='date' name='begin_date'></label></p>";
-       unis += "<p style='margin-left:20px; display:inline-block;'><label>Data zakończenia: <input value='"+responseObject2[0].tr_uni[i].end_date+"' class='edit-enddate' type='date' name='end_date'></label></p>";
+       unis += "<p><label>Nazwa uczelni: <input value='"+responseObject2[0].tr_uni[i].university+"' class='edit-uni' type='text' name='university' pattern='.{3,}' required title='Wprowadź co najmniej 3 znaki.'></label></p>";
+       unis += "<p style='display: inline-block;'><label>Kierunek: <input value='"+responseObject2[0].tr_uni[i].course+"' class='edit-spec' type='text' name='course' pattern='.{3,}' required title='Wprowadź co najmniej 3 znaki.'></label></p>";
+       unis += "<p  style='display: inline-block;'><label>Tytuł: <input value='"+responseObject2[0].tr_uni[i].degree+"' class='edit-title' type='text' name='degree' pattern='.{3,}' title='Wprowadź co najmniej 3 znaki.'></label></p>";
+       unis += "<p style='display:inline-block'><label>Data rozpoczęcia: <input value='"+responseObject2[0].tr_uni[i].begin_date+"' class='edit-startdate' type='date' name='begin_date' max='2018-12-31' min='1900-01-01'></label></p>";
+       unis += "<p style='margin-left:20px; display:inline-block;'><label>Data zakończenia: <input value='"+responseObject2[0].tr_uni[i].end_date+"' class='edit-enddate' type='date' name='end_date' max='2018-12-31' min='1900-01-01'></label></p>";
        unis += "<label><input type='hidden' value='"+csrfToken+"' name='_token'/></label>";
        unis += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_uni[i].id+"'></label></label>";
        unis += "<div style='margin-left: 76%;'><a class='a-decoration' id='single-uni-back-"+responseObject2[0].tr_uni[i].id+"' >Wróć</a>"
@@ -578,10 +578,10 @@ for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
     cers += "<span class='pointer' id='single-cer-"+responseObject2[0].tr_cert[i].id+"'>Edytuj</span></br><span class='pointer' id='cer"+responseObject2[0].tr_cert[i].id+"'>Usuń</span></div></div>";
     cers += "</div><div class='edit-single-cer' id='edit-single-cer-"+responseObject2[0].tr_cert[i].id;
     cers += "'><form  action='editCourse' method='POST'>";
-    cers += "<p><label>Nazwa placówki: <input class='edit-place' value='"+responseObject2[0].tr_cert[i].name_of_institution+"' type='text' name='name_of_institution'></label></p>";
-    cers += "<p  style='display: inline-block;' ><label>Nawa kursu: <input style='margin-left: 56px;' class='edit-course' value="+responseObject2[0].tr_cert[i].name_of_course+" type='text' name='name_of_course'></label></p>";
-    cers += "<p style='display:inline-block'><label>Data rozpoczęcia: <input class='edit-startdate' value="+responseObject2[0].tr_cert[i].begin_date+" type='date' name='begin_date'></label></p>";
-    cers += "<p style='margin-left:20px; display:inline-block;'><label>Data zakończenia: <input class='edit-enddate' value="+responseObject2[0].tr_cert[i].end_date+" type='date' name='end_date'></label></p>";
+    cers += "<p><label>Nazwa placówki: <input class='edit-place' value='"+responseObject2[0].tr_cert[i].name_of_institution+"' type='text' name='name_of_institution'  pattern='.{3,}' required title='Wprowadź co najmniej 3 znaki.'></label></p>";
+    cers += "<p  style='display: inline-block;' ><label>Nawa kursu: <input style='margin-left: 56px;' class='edit-course' value="+responseObject2[0].tr_cert[i].name_of_course+" type='text' name='name_of_course' pattern='.{3,}' title='Wprowadź co najmniej 3 znaki.'></label></p>";
+    cers += "<p style='display:inline-block'><label>Data rozpoczęcia: <input class='edit-startdate' value="+responseObject2[0].tr_cert[i].begin_date+" type='date' name='begin_date' max='2018-12-31' min='1900-01-01' ></label></p>";
+    cers += "<p style='margin-left:20px; display:inline-block;'><label>Data zakończenia: <input class='edit-enddate' value="+responseObject2[0].tr_cert[i].end_date+" type='date' name='end_date' max='2018-12-31' min='1900-01-01'></label></p>";
     cers += "<label><input type='hidden' value='"+csrfToken+"' name='_token'/></label>";
     cers += "<div style='margin-left: 76%;'><a class='a-decoration' id='single-cer-back-"+responseObject2[0].tr_cert[i].id+"' >Wróć</a>"
     cers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_cert[i].id+"'></label></label><input class='single-add-button' type='submit' value='Edytuj'>"

@@ -83,21 +83,21 @@
                                 <p>
                                 <label  >
                                         Imię: 
-                                        <input class="edit-name" form="editPrimaryInfo" name='name' type='text' placeholder='{{ Auth::user()->name }}' pattern=".{3,}">
+                                        <input class="edit-name" form="editPrimaryInfo" name='name' type='text' placeholder='{{ Auth::user()->name }}' value='{{ Auth::user()->name }}' pattern="[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,10}" title="Pierwsza litera wielka, maksymalnie 11 znaków">
                                 </label>
                                 </p>
 
                                 <p>
                                 <label  >
                                         Nazwisko: 
-                                        <input class="edit-lastname" form="editPrimaryInfo" name='surname' type='text' placeholder='{{ Auth::user()->surname }}' pattern=".{3,}">
+                                        <input class="edit-lastname" form="editPrimaryInfo" name='surname' type='text' placeholder='{{ Auth::user()->surname }}' value='{{ Auth::user()->surname }}' pattern="[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,10}" title="Pierwsza litera wielka, maksymalnie 11 znaków">
                                 </label>
                                 </p>
 
                                 <p>
                                 <label  >
                                         Data urodzenia:
-                                        <input  class="edit-date" form="editPrimaryInfo" name='bdate' type="date" placeholder='{{ Auth::user()->bdate }}' >
+<input  class="edit-date" form="editPrimaryInfo" name='bdate' type="date" placeholder='{{ Auth::user()->bdate }}' value='{{ Auth::user()->bdate }}' max="2000-11-01" min="1920-11-01">
                                 <label  >
                                 </p>
                                 
@@ -116,34 +116,34 @@
                                 <p>
                                 <label  >
                                     Telefon: 
-                                    <input  class="edit-phone" form="editPrimaryInfo" name='phone' type='tel' placeholder='{{ Auth::user()->phone }}'>
+                                    <input  class="edit-phone" form="editPrimaryInfo" name='phone' type='tel' placeholder='{{ Auth::user()->phone }}' value='{{ Auth::user()->phone }}' pattern="([0-9]{3}-[0-9]{3}-[0-9]{3})|([0-9]{9})" title="Numer w formacie 123-456-789 lub 123456789.">
                                 </label>
                                 </p>
                                 
                                 <p>
                                 <label  >
                                     Instagram: 
-                                    <input  class="edit-insta" form="editPrimaryInfo" name='instagram' type='text' placeholder='{{ Auth::user()->instagram }}' pattern=".{3,}">
+                                    <input  class="edit-insta" form="editPrimaryInfo" name='instagram' type='text' placeholder='{{ Auth::user()->instagram }}' value='{{ Auth::user()->instagram }}' pattern="^[a-z\d\.]{5,}$" title="Nazwa użytkownika. Minimum 5 znaków">
                                 </label>
                                 </p>
 
                                 <p>
                                 <label  >
                                     Facebook: 
-                                    <input class="edit-face"  form="editPrimaryInfo" name='facebook' type='text' placeholder='{{ Auth::user()->facebook }}' pattern=".{3,}">
+                                    <input class="edit-face"  form="editPrimaryInfo" name='facebook' type='text' placeholder='{{ Auth::user()->facebook }}' value='{{ Auth::user()->facebook }}' pattern="^[a-z\d\.]{5,}$" title="Nazwa użytkownika. Minimum 5 znaków">
                                 </label>
                                 </p>
 
                                 <label  >
                                     <span id="show-cities">+ Dodaj miasto: </span>
                                     <div id="edit-cities">
-                                        <p>
+                                    <p>
                                             Miasto:
-                                            <input class="edit-city" form="addCity" name='city' type="text" pattern=".{3,}" required>
+                                            <input class="edit-city" form="addCity" name='city' minlength="2" maxlength="40" type="text" pattern="^[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]+(?:[\s-][a-ząęźżśóćńłA-ZĄĘŹŻŚÓĆNŁ]+)*$" required>
                                         </p>
                                         <p>
                                             Województwo:
-                                            <input class="edit-voi" form="addCity" name='voivodeship' type="text" pattern=".{3,}" required>
+                                            <input class="edit-voi" form="addCity" name='voivodeship' minlength="2" maxlength="40" type="text" pattern="^[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]+(?:[\s-][a-ząęźżśóćńłA-ZĄĘŹŻŚÓĆNŁ]+)*$" required>
                                         </p>
                                         <input form="addCity" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                         <input form="addCity" type='hidden' value='{{ csrf_token() }}' name='_token'/>
@@ -175,8 +175,7 @@
                                         <label >
                                         Opis:
                                         <br />
-                                        <textarea form="editSpecificInfo" class="edit-text" form="editSpecificInfo" name="description" placeholder='{{ Auth::user()->description }}' cols="90" rows="10" maxlength="500" minlength="5"></textarea>
-                                        <input form="editSpecificInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                                        <textarea form="editSpecificInfo" class="edit-text" form="editSpecificInfo" name="description" cols="90" rows="10" maxlength="2048" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 2000 ">{{ Auth::user()->description }}</textarea>                                        <input form="editSpecificInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                         <input form="editSpecificInfo" type='hidden' value='{{ csrf_token() }}' name='_token'/>
                                         <input class="add-button" type="submit" value="Aktualizuj opis" form="editSpecificInfo" >
                                         </label>
@@ -211,21 +210,21 @@
                                     <span id="show-course" >+ Dodaj certyfikat </span> </br>
     
                                     <div id="edit-course">
-                                        <p>
+                                    <p>
                                             Nazwa placówki:
-                                            <input placeholder="Podaj nazwę placówki" class="edit-place" form="addCourse" name='place' type="text" pattern=".{3,}" required>
+                                            <input placeholder="Podaj nazwę placówki" class="edit-place" form="addCourse" name='place' type="text" pattern=".{3,}" required title="Wprowadź co najmniej 3 znaki.">
                                         </p>
                                         <p style="display: inline-block;">
                                             Nazwa kursu:
-                                            <input placeholder="Podaj nazwę kursu" class="edit-course" form="addCourse" name='name' type="text" pattern=".{3,}">
+                                            <input placeholder="Podaj nazwę kursu" class="edit-course" form="addCourse" name='name' type="text" pattern=".{3,}" title="Wprowadź co najmniej 3 znaki.">
                                         </p>
                                         <p style="display:inline-block">
                                             Data rozpoczęcia:
-                                            <input class="edit-startdate" form="addCourse" name='begin_date' type="date">
+                                            <input class="edit-startdate" form="addCourse" name='begin_date' type="date" max="2018-12-31" min="1900-01-01">
                                         </p>
                                         <p style="margin-left:20px; display:inline-block;">
                                             Data zakończenia:
-                                            <input class="edit-enddate" form="addCourse" name='end_date' type="date">
+                                            <input class="edit-enddate" form="addCourse" name='end_date' type="date" max="2018-12-31" min="1900-01-01">
                                         </p>
                                         <p>
                                             Dodaj załącznik
@@ -251,23 +250,23 @@
                                     <div id="edit-uni">
                                         <p>
                                             Nazwa uczelni:
-                                            <input class="edit-uni" form="addUni" name='name' type="text" pattern=".{3,}" required>
+                                            <input class="edit-uni" form="addUni" name='name' type="text" pattern=".{3,}" required title="Wprowadź co najmniej 3 znaki.">
                                         </p>
                                         <p  style="display: inline-block;">
                                             Kierunek:
-                                            <input class="edit-spec" form="addUni" name='course' type="text" pattern=".{3,}" required>
+                                            <input class="edit-spec" form="addUni" name='course' type="text" pattern=".{3,}" required title="Wprowadź co najmniej 3 znaki.">
                                         </p>
                                         <p  style="display: inline-block;">
                                             Tytuł:
-                                            <input class="edit-title" form="addUni" name='degree' type="text" pattern=".{3,}">
+                                            <input class="edit-title" form="addUni" name='degree' type="text" pattern=".{3,}" title="Wprowadź co najmniej 3 znaki.">
                                         </p>
                                         <p style="display:inline-block">
                                             Data rozpoczęcia:
-                                            <input class="edit-startdate" form="addUni" name='begin_date' type="date">
+                                            <input class="edit-startdate" form="addUni" name='begin_date' type="date" max="2018-12-31" min="1900-01-01">
                                         </p>
                                         <p style="margin-left:20px; display:inline-block;">
                                             Data zakończenia:
-                                            <input class="edit-enddate" form="addUni" name='end_date' type="date">
+                                            <input class="edit-enddate" form="addUni" name='end_date' type="date" max="2018-12-31" min="1900-01-01">
                                         </p>
                                         <input type='hidden' form="addUni" name='id' value='{{ Auth::user()->id }}'/>
                                         <input form="addUni" type='hidden' value='{{ csrf_token() }}' name='_token'/>
@@ -288,15 +287,15 @@
                                     <div id="edit-price">
                                         <p>
                                             Nazwa zajęć:
-                                            <input class="edit-lessons" form="addTrainerOffer" name='classes_name' type="text" pattern=".{3,}" required>
+                                            <input class="edit-lessons" form="addTrainerOffer" name='classes_name' type="text" pattern=".{3,}" required title="Wprowadź co najmniej 3 znaki.">
                                         </p>
                                         <p style="display:inline-block">
                                             Maksymalna liczba uczestników:
-                                            <input class="edit-patric" form="addTrainerOffer" name='numbers_of_members' type="number" required>
+                                            <input class="edit-patric" form="addTrainerOffer" name='numbers_of_members' type="number" min='1' max='20' required>
                                         </p>
                                         <p style="margin-left:20px; display:inline-block;">
                                             Cena:
-                                            <input class="edit-price" form="addTrainerOffer" name='price' type="number">
+                                            <input class="edit-price" form="addTrainerOffer" name='price' type="number" step="0.01">
                                         </p>
                                         <input form="addTrainerOffer" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                         <input form="addTrainerOffer" type='hidden' value='{{ csrf_token() }}' name='_token'/>
