@@ -46,7 +46,7 @@
                 
                 <a href="/profiles/{{ Auth::user()->id }}" ><i class="fas fa-user" style='color:#5f5d5d; margin-right:5px;'></i> Profil</a>
                 <a href="/editProfile" ><i class="far fa-edit" style='color:#5f5d5d; margin-right:5px;'></i>Edytuj profil</a>
-                <button onclick="location.href='/logout'" type="button" class="btn blue-button">Wyloguj się</button>
+                <button onclick="location.href='/logout'" style="font-size:16px;" type="button" class="btn blue-button">Wyloguj się</button>
                 </span>
             </div>
         </nav>
@@ -103,10 +103,15 @@
                                 
                                 <p  >
                                         Płeć:
+                                        <span style="margin-left:104px;">
+                                        <label class="container-radio" >
                                         <input style="margin-left: 125px;" form="editPrimaryInfo" type="radio" name="gender" value="f">
-                                        <label for="female">kobieta</label>
-                                        <input form="editPrimaryInfo" type="radio" name="gender" value="m">
-                                        <label for="male">mężczyzna</label>
+                                        kobieta  <span class="checkmark-radio"></span></label>
+                                        
+                                        <label class="container-radio" >
+                                        <input form="editPrimaryInfo" type="radio" name="gender" value="m">    
+                                        mężczyzna  <span class="checkmark-radio"></span></label>
+</span>
                                 </p>
                                 <p>
                                 <label  >
@@ -180,13 +185,13 @@
                                         Dyscypliny:
                                         <div id="dyscypline-list-editprofile" >
                                             <form id='updateDisciplines' action='updateDisciplines' method='POST'>
-                                            <div class="dyscypline-column-editprofile">
+                                            <div style="width:27%" class="dyscypline-column-editprofile">
                                             </div>
                                             <div class="dyscypline-column-editprofile">
                                             </div>
-                                            <div class="dyscypline-column-editprofile">
+                                            <div style="width:28%" class="dyscypline-column-editprofile">
                                             </div>
-                                            <div class="dyscypline-column-editprofile">
+                                            <div style="width:20%" class="dyscypline-column-editprofile">
                                             </div>
                                             <div class="dyscypline-column-editprofile">
                                             </div>
@@ -210,7 +215,7 @@
                                             Nazwa placówki:
                                             <input placeholder="Podaj nazwę placówki" class="edit-place" form="addCourse" name='place' type="text" pattern=".{3,}" required>
                                         </p>
-                                        <p>
+                                        <p style="display: inline-block;">
                                             Nazwa kursu:
                                             <input placeholder="Podaj nazwę kursu" class="edit-course" form="addCourse" name='name' type="text" pattern=".{3,}">
                                         </p>
@@ -248,11 +253,11 @@
                                             Nazwa uczelni:
                                             <input class="edit-uni" form="addUni" name='name' type="text" pattern=".{3,}" required>
                                         </p>
-                                        <p>
+                                        <p  style="display: inline-block;">
                                             Kierunek:
                                             <input class="edit-spec" form="addUni" name='course' type="text" pattern=".{3,}" required>
                                         </p>
-                                        <p>
+                                        <p  style="display: inline-block;">
                                             Tytuł:
                                             <input class="edit-title" form="addUni" name='degree' type="text" pattern=".{3,}">
                                         </p>
