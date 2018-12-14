@@ -11,6 +11,7 @@
 |
 */
 
+Auth::routes();
 
 Route::view('','searching');
 
@@ -21,10 +22,6 @@ Route::post('/profiles/addOpinion', ['uses' =>'OpinionController@create']);
 Route::view('/profiles/{id}', 'profile');
 
 Route::view('/{dycyplina}/{miasto}', 'searchDisciplineAndLocationResult');
-
-Auth::routes();
-
-//Route::view('/reset', 'auth\passwords\reset');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 

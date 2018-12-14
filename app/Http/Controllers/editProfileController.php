@@ -118,7 +118,7 @@ class editProfileController extends Controller
 
     }
 
-
+    
     protected function destroyCourse($id)
     {
 
