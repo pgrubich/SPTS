@@ -12,7 +12,6 @@ class OpinionController extends Controller
 
         TrOpinion::create([
             'name' => $request['name'],
-            'surname' => $request['surname'],
             'email' => $request['email'],
             'rating' => $request['rating'],
             'description' => $request['description'],
