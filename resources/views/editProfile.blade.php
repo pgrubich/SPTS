@@ -257,7 +257,7 @@
                                             <input class="edit-spec" form="addUni" name='course' type="text" pattern=".{3,}" required title="Wprowadź co najmniej 3 znaki.">
                                         </p>
                                         <p  style="display: inline-block;">
-                                            Tytuł:
+                                        Tytuł zawodowy:
                                             <input class="edit-title" form="addUni" name='degree' type="text" pattern=".{3,}" title="Wprowadź co najmniej 3 znaki.">
                                         </p>
                                         <p style="display:inline-block">
@@ -347,7 +347,7 @@
                         
                         </div>
                         <br>
-                        Zdjęcie profilowe:
+                        Zdjęcie profilowe
                         <br> <br>
                         <!-- Link to open the modal -->
                         <div style="display:flex; justify-content: center; align-items:center;">

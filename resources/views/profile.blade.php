@@ -167,7 +167,7 @@
                                     <tr >
                                         <th>Typ zajęć</th>
                                         <th>Maksymalna liczba osób</th>
-                                        <th>Cena / 1h</th>
+                                        <th>Cena / 1 os.</th>
                                     </tr>
              
                                 </table>    

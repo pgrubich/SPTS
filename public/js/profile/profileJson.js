@@ -64,13 +64,13 @@ $(function(){
                 }
                 //facebook
                 if(element.facebook){
-                    facebook+= "<a href='http://"+element.facebook+"' target='_blank'>Zobacz profil</a>";
+                    facebook+= "<a href='https://facebook.com/"+element.facebook+"' target='_blank'>Zobacz profil</a>";
                 }else{
                     facebook += "Brak danych";
                 }
                 //instagram
                 if(element.instagram){
-                    instagram+= "<a href='http://"+element.instagram+"' target='_blank'>Zobacz profil</a>";;
+                    instagram+= "<a href='https://instagram.com/"+element.instagram+"' target='_blank'>Zobacz profil</a>";;
                 }else{
                     instagram += "Brak danych";
                 }
