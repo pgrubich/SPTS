@@ -48,6 +48,8 @@ class TrainersController extends Controller
      */
     public function show($id)
     {
+        $findstatus = Trainer::findOrFail($id);
+
         return Trainer::with('TrDisc','trCert','trUni','trLoc','trPl','trOff','trOp','trTr','trPh')
                         ->where('id','=',$id)
                         ->get()->toJson(JSON_PRETTY_PRINT);

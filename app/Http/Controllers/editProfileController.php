@@ -16,35 +16,43 @@ use Illuminate\Support\Str;
 
 class editProfileController extends Controller
 {
+
     protected function updatePrimaryInfo(Request $request)
     {
 
-        $trainer = Trainer::find($request['id']);
-        if ($request['name'] != '')        $trainer->name = $request['name'];
-        if ($request['surname'] != '')     $trainer->surname = $request['surname'];
-        if ($request['gender'] != '')      $trainer->gender = $request['gender'];
-        if ($request['bdate'] != '')       $trainer->bdate = $request['bdate'];
-        if ($request['phone'] != '')       $trainer->phone = $request['phone'];
-        if ($request['facebook'] != '')    $trainer->facebook = $request['facebook'];
-        if ($request['instagram'] != '')   $trainer->instagram = $request['instagram'];
+        $trainer = Trainer::findOrFail(Auth::user()->id);
+
+        $trainer->name = $request['name'];
+        $trainer->surname = $request['surname'];
+        $trainer->gender = $request['gender'];
+        if ($request['bdate'] == '') $trainer->bdate = NULL;      
+        else $trainer->bdate = $request['bdate'];
+        $trainer->phone = $request['phone'];
+        $trainer->facebook = $request['facebook'];
+        $trainer->instagram = $request['instagram'];
+
         $trainer->save();
 
         return redirect('/editProfile');
         
     } 
 
+
     protected function addCity(Request $request)
     {
-        if (TrLocation::where('city', '=', $request['city'])->where('voivodeship', '=', $request['voivodeship'])->where('trainer_id', '=', $request['id'])->exists()) 
+        if (TrLocation::where('city', '=', $request['city'])
+            ->where('voivodeship', '=', $request['voivodeship'])
+            ->where('trainer_id', '=', $request['id'])
+            ->exists()) 
         {
-            return ('Podane miasto i województwo już znajdują się w profilu.');
+            return ('Podane miasto już znajduje się w profilu.');
         }
         else
         {
             TrLocation::create([
                 'city' => $request['city'],
                 'voivodeship' => $request['voivodeship'],
-                'trainer_id' => $request['id'],
+                'trainer_id' => Auth::user()->id,
             ]);
 
             return redirect('/editProfile');
@@ -52,14 +60,25 @@ class editProfileController extends Controller
     }
 
 
+    protected function destroyCity($id)
+    {
+
+        $trLocation = TrLocation::findOrFail($id);
+        $trLocation->delete();
+
+        return redirect('/editProfile');
+    }
+
+
     protected function updateSpecificInfo(Request $request)
     {
-        $trainer = Trainer::find($request['id']);
-        if ($request['description'] != '')        $trainer->description = $request['description'];
+        $trainer = Trainer::findOrFail(Auth::user()->id);
+        $trainer->description = $request['description'];
         $trainer->save();
 
         return redirect('/editProfile');
     }
+
 
     protected function updateDisciplines(Request $request)
     {
@@ -83,10 +102,14 @@ class editProfileController extends Controller
         return redirect('/editProfile');
     }
 
+
     protected function addCourse(Request $request)
     {
 
-        if (TrCertificate::where('name_of_institution', '=', $request['place'])->where('name_of_course', '=', $request['name'])->where('trainer_id', '=', $request['id'])->exists()) 
+        if (TrCertificate::where('name_of_institution', '=', $request['place'])
+            ->where('name_of_course', '=', $request['name'])
+            ->where('trainer_id', '=', Auth::user()->id)
+            ->exists()) 
         {
             return ('Certyfikat zawierjący podaną placówkę oraz nazwę kursu juz istnieje.');
         }
@@ -97,24 +120,38 @@ class editProfileController extends Controller
                 'name_of_course' => $request['name'],
                 'begin_date' => $request['begin_date'],
                 'end_date' => $request['end_date'],
-                'trainer_id' => $request['id'],
+                'trainer_id' => Auth::user()->id,
             ]);
 
             return redirect('/editProfile');
         }
     }
 
+
     protected function editCourse(Request $request)
     {
+        if (TrCertificate::where('id', '!=', $request['id'])
+            ->where('name_of_institution', '=', $request['name_of_institution'])
+            ->where('name_of_course', '=', $request['name_of_course'])
+            ->where('trainer_id', '=', Auth::user()->id)
+            ->exists()) 
+        {
+            return ('Taki certyfikat już znajduje się w Twojej liście.');
+        }
+        else
+        {
+            $trCertificate = TrCertificate::findOrFail($request['id']);
 
-        $trCertificate = TrCertificate::find($request['id']);
-        if ($request['name_of_institution'] != '')  $trCertificate->name_of_institution = $request['name_of_institution'];
-        if ($request['name_of_course'] != '')       $trCertificate->name_of_course = $request['name_of_course'];
-        if ($request['begin_date'] != '')           $trCertificate->begin_date = $request['begin_date'];
-        if ($request['end_date'] != '')             $trCertificate->end_date = $request['end_date'];
-        $trCertificate->save();
+            if ($request['name_of_institution'] != '')  $trCertificate->name_of_institution = $request['name_of_institution'];
+            if ($request['name_of_course'] != '')       $trCertificate->name_of_course = $request['name_of_course'];
+            if ($request['begin_date'] == '')           $trCertificate->begin_date = NULL;      
+            else                                        $trCertificate->begin_date = $request['begin_date'];
+            if ($request['end_date'] == '')             $trCertificate->end_date = NULL;      
+            else                                        $trCertificate->end_date = $request['end_date'];
+            $trCertificate->save();
 
-        return redirect('/editProfile');
+            return redirect('/editProfile');
+        }
 
     }
 
@@ -122,7 +159,7 @@ class editProfileController extends Controller
     protected function destroyCourse($id)
     {
 
-        $trCertificate = TrCertificate::find($id);
+        $trCertificate = TrCertificate::findOrFail($id);
         $trCertificate->delete();
 
         return redirect('/editProfile');
@@ -133,7 +170,11 @@ class editProfileController extends Controller
     protected function addUni(Request $request)
     {
 
-        if (TrUniversity::where('university', '=', $request['name'])->where('course', '=', $request['course'])->where('degree', '=', $request['degree'])->where('trainer_id', '=', $request['id'])->exists()) 
+        if (TrUniversity::where('university', '=', $request['name'])
+            ->where('course', '=', $request['course'])
+            ->where('degree', '=', $request['degree'])
+            ->where('trainer_id', '=', Auth::user()->id)
+            ->exists()) 
         {
             return ('Twoja lista uczelni zawiera podaną placówkę, kierunek oraz stopień.');
         }
@@ -145,25 +186,39 @@ class editProfileController extends Controller
                 'degree' => $request['degree'],
                 'begin_date' => $request['begin_date'],
                 'end_date' => $request['end_date'],
-                'trainer_id' => $request['id'],
+                'trainer_id' => Auth::user()->id,
             ]);
 
             return redirect('/editProfile');
         }
     }
 
+
     protected function editUni(Request $request)
     {
+        if (TrUniversity::where('id', '!=', $request['id'])
+            ->where('university', '=', $request['university'])
+            ->where('course', '=', $request['course'])
+            ->where('degree', '=', $request['degree'])
+            ->where('trainer_id', '=', Auth::user()->id)
+            ->exists()) 
+        {
+            return ('Taki kierunek studiów już znajduje się w Twojej liście.');
+        }
+        else
+        {
+            $trUniversity = TrUniversity::findOrFail($request['id']);
+            if ($request['university'] != '')   $trUniversity->university = $request['university'];
+            if ($request['course'] != '')       $trUniversity->course = $request['course'];
+            if ($request['degree'] != '')       $trUniversity->degree = $request['degree'];
+            if ($request['begin_date'] == '')           $trUniversity->begin_date = NULL;      
+            else                                        $trUniversity->begin_date = $request['begin_date'];
+            if ($request['end_date'] == '')             $trUniversity->end_date = NULL;      
+            else                                        $trUniversity->end_date = $request['end_date'];
+            $trUniversity->save();
 
-        $trUniversity = TrUniversity::find($request['id']);
-        if ($request['university'] != '')   $trUniversity->university = $request['university'];
-        if ($request['course'] != '')       $trUniversity->course = $request['course'];
-        if ($request['degree'] != '')       $trUniversity->degree = $request['degree'];
-        if ($request['begin_date'] != '')   $trUniversity->begin_date = $request['begin_date'];
-        if ($request['end_date'] != '')     $trUniversity->end_date = $request['end_date'];
-        $trUniversity->save();
-
-        return redirect('/editProfile');
+            return redirect('/editProfile');
+        }
 
     }
 
@@ -171,7 +226,7 @@ class editProfileController extends Controller
     protected function destroyUni($id)
     {
 
-        $trUniversity = TrUniversity::find($id);
+        $trUniversity = TrUniversity::findOrFail($id);
         $trUniversity->delete();
 
         return redirect('/editProfile');
@@ -182,7 +237,11 @@ class editProfileController extends Controller
     protected function addTrainerOffer(Request $request)
     {
 
-        if (TrOffer::where('name', '=', $request['classes_name'])->where('max_no_of_clients', '=', $request['numbers_of_members'])->where('trainer_id', '=', $request['id'])->exists()) 
+        if (TrOffer::where('name', '=', $request['classes_name'])
+            ->where('price', '=', $request['price'])
+            ->where('max_no_of_clients', '=', $request['numbers_of_members'])
+            ->where('trainer_id', '=', Auth::user()->id)
+            ->exists()) 
         {
             return ('Ten typ zajęć już istnieje.');
         }
@@ -192,23 +251,36 @@ class editProfileController extends Controller
                 'name' => $request['classes_name'],
                 'price' => $request['price'],
                 'max_no_of_clients' => $request['numbers_of_members'],
-                'trainer_id' => $request['id'],
+                'trainer_id' => Auth::user()->id,
             ]);
 
             return redirect('/editProfile');
         }
     }
 
+
     protected function editTrainerOffer(Request $request)
     {
+        if (TrOffer::where('id', '!=', $request['id'])
+            ->where('name', '=', $request['name'])
+            ->where('price', '=', $request['price'])
+            ->where('max_no_of_clients', '=', $request['members'])
+            ->where('trainer_id', '=', Auth::user()->id)
+            ->exists()) 
+        {
+            return ('Taka oferta już znajduje się w Twojej liście.');
+        }
+        else
+        {
+            $trOffer = TrOffer::findOrFail($request['id']);
+            $trOffer->name = $request['name'];
+            if ($request['price'] == '')    $trOffer->price = NULL;
+            else $trOffer->price = $request['price'];
+            $trOffer->max_no_of_clients = $request['members'];
+            $trOffer->save();
 
-        $trOffer = TrOffer::find($request['id']);
-        if ($request['name'] != '')     $trOffer->name = $request['name'];
-        if ($request['price'] != '')    $trOffer->price = $request['price'];
-        if ($request['members'] != '')  $trOffer->max_no_of_clients = $request['members'];
-        $trOffer->save();
-
-        return redirect('/editProfile');
+            return redirect('/editProfile');
+        }
 
     }
 
@@ -216,7 +288,7 @@ class editProfileController extends Controller
     protected function destroyOffer($id)
     {
 
-        $trOffer = TrOffer::find($id);
+        $trOffer = TrOffer::findOrFail($id);
         $trOffer->delete();
 
         return redirect('/editProfile');
@@ -226,11 +298,26 @@ class editProfileController extends Controller
 
     protected function updateEmailInfo(Request $request)
     {
-        $trainer = Trainer::find($request['id']);
-        $trainer->email = $request['new_email'];
-        $trainer->save();
 
-        return redirect('/editProfile');
+        if ($request['current_email'] != Auth::user()->email)
+        {
+            return ('Podany obecny adres email jest nieprawidłowy.');
+        }
+        else if (Trainer::where('id', '!=', Auth::user()->id)
+                ->where('email', '=', $request['new_email'])
+                ->exists()) 
+        {
+            return ('Podany nowy adres email jest nieprawidłowy.');
+        }
+        else
+        {
+            $trainer = Trainer::findOrFail(Auth::user()->id);
+            $trainer->email = $request['new_email'];
+            $trainer->save();
+
+            return redirect('/editProfile');
+        }
+
     } 
 
 
@@ -238,7 +325,7 @@ class editProfileController extends Controller
     {
         if (Hash::check($request['current_password'], Auth::user()->password))
         {
-            $trainer = Trainer::find($request['id']);
+            $trainer = Trainer::findOrFail(Auth::user()->id);
             if ($request['new_password'] != '') $trainer->password = Hash::make($request['new_password']);
             $trainer->save();
 
