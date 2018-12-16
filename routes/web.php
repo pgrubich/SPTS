@@ -73,7 +73,13 @@ Route::post('destroyProfilePicture', ['uses' => 'PhotosController@destroyProfile
 
 // Trainings ordering and management 
 
+Route::post('addTraining', ['uses' =>'CalendarController@addTraining']);
+
+Route::post('deleteTraining/{id}', ['uses' =>'CalendarController@deleteTraining']);
+
 Route::post('orderTraining', ['uses' =>'CalendarController@orderTraining']);
+
+Route::post('deleteOrder/{id}', ['uses' =>'CalendarController@deleteOrder']);
 
 
 // Update email and password

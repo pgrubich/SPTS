@@ -44,11 +44,7 @@ class Trainer extends Authenticatable
     }
 
     public function trTr(){
-        return $this->hasMany('App\Models\Trainer\TrTraining')->where('status', "wolne");
-    }
-
-    public function trOrdTr(){
-        return $this->hasMany('App\Models\Trainer\TrOrderedTrainings');
+        return $this->hasMany('App\Models\Trainer\TrTraining')->where('status', "wolne")->where('date', '>=', Carbon::today());
     }
 
     public function trPh(){

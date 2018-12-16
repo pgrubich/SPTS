@@ -8,7 +8,4 @@ class TrOrderedTrainings extends Model
 {
     protected $table = 'term_orders';
 
-    public function trainer(){
-        return $this->belongsTo('Trainer');
-    }
 }
