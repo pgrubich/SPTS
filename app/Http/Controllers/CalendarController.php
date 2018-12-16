@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-
 class CalendarController extends Controller
 {
 
@@ -101,7 +100,7 @@ class CalendarController extends Controller
         $training_id = $orderedTraining->training_id;
         $orderedTraining->delete();
 
-        $training = TrTraining::find($training_id);
+        $training = TrTraining::findOrFail($training_id);
         $training->actual_client_number = $training->actual_client_number - 1;
         if( $training->client_limit > $training->actual_client_number) $training->status = "wolne";
         $training->save();
