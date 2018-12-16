@@ -17,6 +17,7 @@ body
 #logBar
 {
     height: 100px;
+    cursor: pointer;
 }
 
 #logBar > .logo

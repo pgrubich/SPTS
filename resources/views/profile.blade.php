@@ -81,34 +81,31 @@
                             <ul class="detail-list">
                             <li class="stars-info"></li>
                                 <li>
-                                    <span id="name-info">Jan Kowalski</span><br/>
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span id="city-info">
-                                        Poznań, Wielkopolska
+                                    <span class="dotted" id="name-info"></span><br/>
+                                    <span class="dotted" id="city-info">
                                     </span>
                                 </li>
                                 <li class="detail-info ">
                                 <i class="fas fa-phone "></i>
                                     Numer telefonu <br/>
-                                    <span id="phone-info">
-                                        603 184 710
+                                    <span class="dotted" id="phone-info">
                                     </span>
                                 </li>
                                 <li class="detail-info">
                                 <i class="far fa-envelope "></i>
                                     Email<br/>
-                                    <span id="mail-info">j.kowal@gmail.com</span>
+                                    <span class="dotted" id="mail-info"></span>
                                     
                                 </li>
                                 <li class="detail-info">
                                 <i class="fab fa-facebook "></i>
                                     Facebook<br/>
-                                    <span id="fb-info"><a href="#">Zobacz profil</a></span>
+                                    <span class="dotted" id="fb-info"><a href="#"></a></span>
                                 </li>
                                 <li class="detail-info"> 
                                 <i class="fab fa-instagram "></i>
                                     Instagram<br/>
-                                    <span id="inst-info"><a href="#">Zobacz profil</a></span>
+                                    <span class="dotted" id="inst-info"><a href="#"></a></span>
                                 </li>
                             </ul>
                         </div>
@@ -131,7 +128,7 @@
                         <div class="categories-header">
                             <i class="far fa-bookmark"></i>
                             Doświadczenie i umiejętności</div>
-                        <div class="categories-content"></div>
+                        <div style="white-space: pre;" class="categories-content"></div>
                     </div>
                     <div class="categories">
                         <div class="categories-header">
