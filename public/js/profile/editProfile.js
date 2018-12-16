@@ -669,3 +669,10 @@ xhr2.open('GET', 'http://pri.me/api/profiles/'+loggedUserId, true);
 xhr2.send(null);
 
 
+//logo
+if(document.getElementsByClassName('logo')){
+    document.getElementsByClassName('logo')[0].addEventListener('click',function(){
+        location.href = "//pri.me";
+    },false)
+  }
+

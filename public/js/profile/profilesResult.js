@@ -164,7 +164,11 @@ clearButton.addEventListener('click',clearFilter)
 
 function clearFilter(){
   document.getElementById('age').value = "Wiek:   " +10+" lat" + " - " +50+" lat";
+  $( "#age-slider-range" ).slider( "values", 0, 10 );
+  $( "#age-slider-range" ).slider( "values", 1, 50 );
   document.getElementById('amount').value = "Cena:   " +50+"zł" + " - " +150+"zł";
+  $( "#slider-range" ).slider( "values", 0, 50);
+  $( "#slider-range" ).slider( "values", 1, 150 );
   document.getElementById('training-place').value = 'Miejsce';
   document.getElementById('trainer-sex').value = 'Płeć';
   document.getElementById('city-search-results').value = capitalizeFirstLetter(n[n.length - 1]);
@@ -207,6 +211,8 @@ document.getElementById('filter-button').addEventListener('click', function(){
     }
     url  += priceMin+"&maxPrice=";
     url  += priceMax;
+    console.log(url)
+    console.log($( "#age-slider-range" ).slider( "values", 0 ))
     var xhr5  = new XMLHttpRequest()
     xhr5.open('GET', url, true)
     xhr5.onload = function () {
@@ -281,3 +287,12 @@ xhr5.send(null);
 },false)
 
 
+
+
+
+//logo
+if(document.getElementsByClassName('logo')){
+  document.getElementsByClassName('logo')[0].addEventListener('click',function(){
+      location.href = "//pri.me";
+  },false)
+}

@@ -45,3 +45,10 @@ function searchResult(){
     localStorage.setItem("city", city); 
     document.location.href = "/"+dysc+"/"+city;
 }
+
+//logo
+if(document.getElementsByClassName('logo')){
+    document.getElementsByClassName('logo')[0].addEventListener('click',function(){
+        window.location.href = "";
+    },false)
+}

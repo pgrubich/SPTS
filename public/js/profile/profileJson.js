@@ -43,7 +43,7 @@ $(function(){
                 //miasto + województwo
                 if(element.tr_loc.length != 0){
                     $.each(element.tr_loc,function(ind,ele){
-                        city+= ele.city+ ", "+ele.voivodeship;
+                        city+="<i class='fas fa-map-marker-alt'></i>" +ele.city+ ", "+ele.voivodeship+"</br>";
                     });
                 }else{
                     city+= "Brak danych"
@@ -169,7 +169,7 @@ $(function(){
             //$(".categories:first").html(description);
             $(".stars-info").html(stars);
             $("#name-info").text(name);
-            $("#city-info").text(city);
+            $("#city-info").html(city);
             $("#phone-info").html(phone);
             $("#mail-info").html(email);
             $("#fb-info").html(facebook);
@@ -208,5 +208,10 @@ $(function(){
 
 
 
-
+//logo
+if(document.getElementsByClassName('logo')){
+    document.getElementsByClassName('logo')[0].addEventListener('click',function(){
+        location.href = "//pri.me";
+    },false)
+  }
 

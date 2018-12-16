@@ -323,3 +323,10 @@
 .fc-agendaWeek-view tr {
     height: 40px;
 }
+.dotted{
+    display:inline-block;
+    width:210px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
