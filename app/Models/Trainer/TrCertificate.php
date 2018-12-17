@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class TrCertificate extends Model
 {
     protected $table = 'trainers_certificates';
-    protected $hidden = ['trainer_id','created_at','updated_at'];
-    protected $fillable = ['name_of_institution','name_of_course', 'begin_date', 'end_date', 'trainer_id'];
+    protected $hidden = ['created_at','updated_at'];
+    protected $fillable = ['name_of_institution','name_of_course', 'begin_date', 'end_date', 'zalacznik', 'trainer_id'];
 
 
     public function trainer(){

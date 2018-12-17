@@ -172,7 +172,7 @@
                     <div id="specific-edit">
                     
                     <form id="editSpecificInfo" action='editSpecificInfo' method = 'POST'></form>
-                    <form id="addCourse" action='addCourse' method = 'POST'></form>
+                    <form id="addCourse" action='addCourse' enctype="multipart/form-data" method = 'POST'></form>
                     <form id="addUni" action='addUni' method = 'POST'></form>
                     <form id="addTrainerOffer" action='addTrainerOffer' method = 'POST'></form>
 
@@ -235,7 +235,7 @@
                                         </p>
                                         <p>
                                             Dodaj załącznik
-                                        <input type="file" name="zalacznik" />
+                                        <input form="addCourse" type="file" name="zalacznik" accept="image/jpeg,image/gif,image/png,application/pdf" >
                                         </p>
                                         <input type='hidden' form="addCourse" name='id' value='{{ Auth::user()->id }}'/>
                                         <input form="addCourse" type='hidden' value='{{ csrf_token() }}' name='_token'/>

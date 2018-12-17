@@ -12,6 +12,7 @@ use App\Models\Trainer\TrOffer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 
 class editProfileController extends Controller
@@ -116,11 +117,27 @@ class editProfileController extends Controller
         }
         else
         {
+
+            if($request->hasFile('zalacznik'))
+            {
+                $originalFilename = $request->file('zalacznik')->getClientOriginalName();
+                $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
+                $extension = $request->file('zalacznik')->getClientOriginalExtension();
+                $finalFilename = $fileName.'_'.time().'.'.$extension;
+                $path = $request->file('zalacznik')->storeAs('public/trainers_certificates/'.auth()->user()->id, $finalFilename);
+            }
+            else
+            {
+                $finalFilename = NULL;
+            } 
+            
+
             TrCertificate::create([
                 'name_of_institution' => $request['place'],
                 'name_of_course' => $request['name'],
                 'begin_date' => $request['begin_date'],
                 'end_date' => $request['end_date'],
+                'zalacznik' => $finalFilename,
                 'trainer_id' => Auth::user()->id,
             ]);
 
@@ -159,9 +176,14 @@ class editProfileController extends Controller
     
     protected function destroyCourse($id)
     {
-
+        $trainer = Trainer::findOrFail(Auth()->user()->id);
         $trCertificate = TrCertificate::findOrFail($id);
-        $trCertificate->delete();
+
+        if ($trCertificate->trainer_id = $trainer->id)
+        {
+            Storage::delete('public/trainers_certificates/'.$trainer->id.'/'.$trCertificate->zalacznik);
+            $trCertificate->delete();
+        }
 
         return redirect('/editProfile');
 
