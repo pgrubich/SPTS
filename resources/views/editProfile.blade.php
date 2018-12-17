@@ -95,7 +95,7 @@
                                 </p>
 
                                 <p>
-                                <label  >
+                                <label>
                                         Data urodzenia:
 <input  class="edit-date" form="editPrimaryInfo" name='bdate' type="date" placeholder='{{ Auth::user()->bdate }}' value='{{ Auth::user()->bdate }}' max="2000-11-01" min="1920-11-01">
                                 <label  >
@@ -131,6 +131,13 @@
                                 <label  >
                                     Facebook: 
                                     <input class="edit-face"  form="editPrimaryInfo" name='facebook' type='text' placeholder='{{ Auth::user()->facebook }}' value='{{ Auth::user()->facebook }}' pattern="^[a-z\d\.]{5,}$" title="Nazwa użytkownika. Minimum 5 znaków">
+                                </label>
+                                </p>
+
+                                <p>
+                                <label  >
+                                    Strona WWW: 
+                                    <input class="edit-page"  form="editPrimaryInfo" name='page' type='text' placeholder='{{ Auth::user()->page }}' value='{{ Auth::user()->page }}' pattern="^(https?://)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$" >
                                 </label>
                                 </p>
 

@@ -16,6 +16,7 @@ $(function(){
             var emailShow = "";
             var facebook ="";
             var instagram ="";
+            var page ="";
             var reviews = "";
             var description = "";
             var certificates = "";
@@ -73,6 +74,13 @@ $(function(){
                     instagram+= "<a href='https://instagram.com/"+element.instagram+"' target='_blank'>Zobacz profil</a>";;
                 }else{
                     instagram += "Brak danych";
+                }
+
+                //web_page
+                if(element.page){
+                    page+= "<a href=https://"+element.page+" target='_blank'>Przejdź na stronę</a>";;
+                }else{
+                    page += "Brak danych";
                 }
 
                 //Doświadczenie i umiejętności
@@ -174,6 +182,7 @@ $(function(){
             $("#mail-info").html(email);
             $("#fb-info").html(facebook);
             $("#inst-info").html(instagram);
+            $("#page-info").html(page);
             $(".categories-content:eq(0)").text(description);
             $(".categories-content:eq(1)").html(certificates);
             $(".categories-content:eq(2)").html(education);

@@ -91,6 +91,14 @@ fieldset{
     height: 20px;
     padding: 3px;
 }
+.edit-page{
+    margin-left: 50px;
+    width: 250px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
 .edit-text{
     width: 100%;
     font: 15px arial;

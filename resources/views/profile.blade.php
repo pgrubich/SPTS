@@ -107,6 +107,11 @@
                                     Instagram<br/>
                                     <span class="dotted" id="inst-info"><a href="#"></a></span>
                                 </li>
+                                <li class="detail-info"> 
+                                <i class="fas fa-globe"></i>
+                                    Strona WWW<br/>
+                                    <span class="dotted" id="page-info"><a href="#"></a></span>
+                                </li>
                             </ul>
                         </div>
                     </section>

@@ -119,7 +119,7 @@
 
 /* Podstawowe info */
 
-.fa-map-marker-alt, .fa-phone, .fa-envelope, .fa-facebook, .fa-instagram {
+.fa-map-marker-alt, .fa-phone, .fa-envelope, .fa-facebook, .fa-instagram, .fa-globe{
     color: #3cdaa8;
     margin-right: 5px;
     font-size: 15px;
@@ -156,7 +156,7 @@
     font-size: 18px;
 }
 
-#inst-info > a, #fb-info > a {
+#inst-info > a, #fb-info > a, #page-info >a {
     text-decoration: none;
     cursor:pointer;
     font-size: 16px;

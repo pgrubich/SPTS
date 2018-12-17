@@ -30,6 +30,7 @@ class editProfileController extends Controller
         $trainer->phone = $request['phone'];
         $trainer->facebook = $request['facebook'];
         $trainer->instagram = $request['instagram'];
+        $trainer->page = $request['page'];
 
         $trainer->save();
 
