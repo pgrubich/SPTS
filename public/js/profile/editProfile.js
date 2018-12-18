@@ -577,11 +577,12 @@ for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
     cers += " - "+responseObject2[0].tr_cert[i].end_date+"</div></div><div class='edit-delete-section'>"
     cers += "<span class='pointer' id='single-cer-"+responseObject2[0].tr_cert[i].id+"'>Edytuj</span></br><span class='pointer' id='cer"+responseObject2[0].tr_cert[i].id+"'>Usuń</span></div></div>";
     cers += "</div><div class='edit-single-cer' id='edit-single-cer-"+responseObject2[0].tr_cert[i].id;
-    cers += "'><form  action='editCourse' method='POST'>";
+    cers += "'><form  action='editCourse' enctype='multipart/form-data' method='POST'>";
     cers += "<p><label>Nazwa placówki: <input class='edit-place' value='"+responseObject2[0].tr_cert[i].name_of_institution+"' type='text' name='name_of_institution'  pattern='.{3,}' required title='Wprowadź co najmniej 3 znaki.'></label></p>";
     cers += "<p  style='display: inline-block;' ><label>Nawa kursu: <input style='margin-left: 56px;' class='edit-course' value="+responseObject2[0].tr_cert[i].name_of_course+" type='text' name='name_of_course' pattern='.{3,}' title='Wprowadź co najmniej 3 znaki.'></label></p>";
     cers += "<p style='display:inline-block'><label>Data rozpoczęcia: <input class='edit-startdate' value="+responseObject2[0].tr_cert[i].begin_date+" type='date' name='begin_date' max='2018-12-31' min='1900-01-01' ></label></p>";
     cers += "<p style='margin-left:20px; display:inline-block;'><label>Data zakończenia: <input class='edit-enddate' value="+responseObject2[0].tr_cert[i].end_date+" type='date' name='end_date' max='2018-12-31' min='1900-01-01'></label></p>";
+    cers += "<p>Zastąp załącznik<input type='file' name='zalacznik' accept='image/jpeg,image/gif,image/png,application/pdf' ></p>";
     cers += "<label><input type='hidden' value='"+csrfToken+"' name='_token'/></label>";
     cers += "<div style='margin-left: 76%;'><a class='a-decoration' id='single-cer-back-"+responseObject2[0].tr_cert[i].id+"' >Wróć</a>"
     cers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_cert[i].id+"'></label></label><input class='single-add-button' type='submit' value='Edytuj'>"

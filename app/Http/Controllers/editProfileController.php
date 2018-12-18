@@ -160,12 +160,25 @@ class editProfileController extends Controller
         {
             $trCertificate = TrCertificate::findOrFail($request['id']);
 
+            if($request->hasFile('zalacznik'))
+            {
+                $originalFilename = $request->file('zalacznik')->getClientOriginalName();
+                $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
+                $extension = $request->file('zalacznik')->getClientOriginalExtension();
+                $finalFilename = $fileName.'_'.time().'.'.$extension;
+
+                if($trCertificate->zalacznik != NULL) Storage::delete('public/trainers_certificates/'.$trainer->id.'/'.$trCertificate->zalacznik);
+
+                $path = $request->file('zalacznik')->storeAs('public/trainers_certificates/'.auth()->user()->id, $finalFilename);
+            }
+
             if ($request['name_of_institution'] != '')  $trCertificate->name_of_institution = $request['name_of_institution'];
             if ($request['name_of_course'] != '')       $trCertificate->name_of_course = $request['name_of_course'];
             if ($request['begin_date'] == '')           $trCertificate->begin_date = NULL;      
             else                                        $trCertificate->begin_date = $request['begin_date'];
             if ($request['end_date'] == '')             $trCertificate->end_date = NULL;      
             else                                        $trCertificate->end_date = $request['end_date'];
+            if($request->hasFile('zalacznik'))          $trCertificate->zalacznik = $finalFilename;
             $trCertificate->save();
 
             return redirect('/editProfile');
@@ -181,7 +194,7 @@ class editProfileController extends Controller
 
         if ($trCertificate->trainer_id = $trainer->id)
         {
-            Storage::delete('public/trainers_certificates/'.$trainer->id.'/'.$trCertificate->zalacznik);
+            if($trCertificate->zalacznik != NULL) Storage::delete('public/trainers_certificates/'.$trainer->id.'/'.$trCertificate->zalacznik);
             $trCertificate->delete();
         }
 
