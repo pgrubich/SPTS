@@ -104,7 +104,7 @@ $(function(){
                         certificates+= " - "+(ele.end_date);
                     }
                     if(ele.zalacznik){
-                        certificates+= " - <a href='\/storage\/trainers_certificates\/"+(ele.trainer_id)+"\/"+(ele.zalacznik)+"'>Zobacz</a></p>";
+                        certificates+= " - <a href='\/storage\/trainers_certificates\/"+(ele.trainer_id)+"\/"+(ele.zalacznik)+"' target='_blank'>Zobacz</a></p>";
                     }
                 });
 

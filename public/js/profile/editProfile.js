@@ -582,6 +582,7 @@ for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
     cers += "<p  style='display: inline-block;' ><label>Nawa kursu: <input style='margin-left: 56px;' class='edit-course' value="+responseObject2[0].tr_cert[i].name_of_course+" type='text' name='name_of_course' pattern='.{3,}' title='Wprowadź co najmniej 3 znaki.'></label></p>";
     cers += "<p style='display:inline-block'><label>Data rozpoczęcia: <input class='edit-startdate' value="+responseObject2[0].tr_cert[i].begin_date+" type='date' name='begin_date' max='2018-12-31' min='1900-01-01' ></label></p>";
     cers += "<p style='margin-left:20px; display:inline-block;'><label>Data zakończenia: <input class='edit-enddate' value="+responseObject2[0].tr_cert[i].end_date+" type='date' name='end_date' max='2018-12-31' min='1900-01-01'></label></p>";
+    cers += "<p style='display: inline-block;'><label >Dodany załącznik: <a href='\/storage\/trainers_certificates\/"+responseObject2[0].tr_cert[i].trainer_id+"\/"+responseObject2[0].tr_cert[i].zalacznik+"' target='_blank'>Zobacz</a></label></p>";
     cers += "<p>Zastąp załącznik<input type='file' name='zalacznik' accept='image/jpeg,image/gif,image/png,application/pdf' ></p>";
     cers += "<label><input type='hidden' value='"+csrfToken+"' name='_token'/></label>";
     cers += "<div style='margin-left: 76%;'><a class='a-decoration' id='single-cer-back-"+responseObject2[0].tr_cert[i].id+"' >Wróć</a>"
