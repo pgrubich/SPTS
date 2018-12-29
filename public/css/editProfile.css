@@ -51,6 +51,38 @@ fieldset{
     height: 20px;
     padding: 3px;
 }
+.edit-email{
+    margin-left: 80px;
+    width: 240px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.edit-password-actual{
+    margin-left: 104px;
+    width: 240px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.edit-password{
+    margin-left: 128px;
+    width: 240px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
+.edit-email-actual{
+    margin-left: 56px;
+    width: 240px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 3px;
+}
 .edit-lastname{
     margin-left: 80px;
     width: 250px;
@@ -563,4 +595,29 @@ input[type=file]::-webkit-file-upload-button {
 
       border-radius: 50%;
       background: white;
+  }
+
+
+
+
+
+  /* choose profile pic */
+
+  .radio-photo{
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  } 
+
+  /* IMAGE STYLES */
+  
+  /* CHECKED STYLES */
+  .checked-pic {
+    border: 3px solid #29b94d;
+  }
+
+  #profilePicPick{
+    display:flex;
+    flex-wrap:wrap;
   }

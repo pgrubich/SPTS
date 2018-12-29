@@ -235,7 +235,7 @@
                                         </p>
                                         <p>
                                             Dodaj załącznik
-                                        <input form="addCourse" type="file" name="zalacznik" accept="image/jpeg,image/gif,image/png,application/pdf" >
+                                        < <input form="addCourse" type="file" name="zalacznik" accept="image/jpeg,image/gif,image/png,application/pdf" >
                                         </p>
                                         <input type='hidden' form="addCourse" name='id' value='{{ Auth::user()->id }}'/>
                                         <input form="addCourse" type='hidden' value='{{ csrf_token() }}' name='_token'/>
@@ -337,6 +337,27 @@
                             <!-- <img style="width:10%;" id="image" src="./css/images/athlete.jpg"> -->
                             </div>
                
+
+                        <div id="ex2" class="modal" style="max-width: 540px; min-height: 500px;">
+                        <form id="profile-pic-choose-form" action='store' method = 'POST'>
+                        <span style="font-size:20px; font-weight:900; ">Wybierz zdjęcie profilowe</span>
+                        <div id="profilePicPick">
+
+                        </div>
+
+                                
+                        <!-- Modal HTML embedded directly into document -->
+                        
+                        <div style="margin-top:15px;" id="abc"></div>
+                        <input style="position: absolute; bottom: 15px; right: 20px;" class="submit-b" type='submit' value='Ustaw jako zdjęcie profilowe' name='submit'>
+                            
+                        </form>
+                        
+                        </div>
+                        
+
+
+                    
                         <!-- Modal HTML embedded directly into document -->
                         <div id="ex1" class="modal" style="height:600px; width: 800px;">
                         <form id="profile-pic-form" action='addProfilePicture' enctype="multipart/form-data" method = 'POST'>
@@ -362,11 +383,11 @@
                         <p><i style=" font-size:28px" class="far fa-image"></i></p>
                         <p>Dodaj zdjęcie profilowe</p>
                         </div></a>
-                        <a style="color:#757575; width:20%; display:inline-block; text-align:center; margin-top: 24px;"><div>
+                        <a style="color:#757575; width:20%; display:inline-block; text-align:center; margin-top: 24px;" href="#ex2" rel="modal:open"><div>
                         <p><i style=" font-size:28px" class="far fa-images"></i></p>
                         <p>Wybierz zdjęcie z galerii</p>
                         </div></a>
-                        <a id="del-profile-pic" style="color:#757575; width:20%; display:inline-block; text-align:center;"><div>
+                        <a id="del-profile-pic" style="cursor:pointer; color:#757575; width:20%; display:inline-block; text-align:center;"><div>
                         <p><i style=" font-size:28px" class="far fa-trash-alt"></i></p>
                         <p>Usuń</p>
                         </div></a>
@@ -422,25 +443,26 @@
                     <form action='editEmailInfo' method = 'POST'>
                          <fieldset>
                             <legend>Zmiana email</legend>
-
+                            <div style="margin-left: 100px;">
                                 <p>
                                 <label>
                                         Aktualny adres email: 
-                                        <input name='current_email' type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+                                        <input class="edit-email-actual" name='current_email' type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
                                 </label>
                                 </p>
 
                                 <p>
                                 <label>
                                         Nowy adres email: 
-                                        <input name='new_email' type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+                                        <input class="edit-email" name='new_email' type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
                                 </label>
                                 </p>
 
                                 <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                 <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
-                                <input type="submit" value="Zmień">
+                                <input style="margin-left: 69%;" class="submit-b" type="submit" value="Zmień">
                                 </br>
+                                </div>
                         </fieldset>
 
                     </form>
@@ -450,25 +472,27 @@
                     <form action='editPasswordInfo' method = 'POST'>
                          <fieldset>
                             <legend>Zmiana hasła</legend>
+                            <div style="margin-left: 100px;">
 
                                 <p>
                                 <label>
-                                        Stare hasło: 
-                                        <input name='current_password' type='password' minlength="3" maxlength="20" required>
+                                        Aktualne hasło: 
+                                        <input class="edit-password-actual" name='current_password' type='password' minlength="3" maxlength="20" required>
                                 </label>
                                 </p>
 
                                 <p>
                                 <label>
                                         Nowe hasło: 
-                                        <input name='new_password' type='password' minlength="3" maxlength="20" required>
+                                        <input class="edit-password" name='new_password' type='password' minlength="3" maxlength="20" required>
                                 </label>
                                 </p>
 
                                 <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                 <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
-                                <input type="submit" value="Zmień">
+                                <input style="margin-left: 69%;" class="submit-b" type="submit" value="Zmień">
                                 </br>
+                                    </div>
                         </fieldset>
 
                     </form>

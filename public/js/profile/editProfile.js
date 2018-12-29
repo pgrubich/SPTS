@@ -462,13 +462,22 @@ $("#profile-img").change(function(){
             aspectRatio: 1,
             setSelect: [0, 0, 50, 50],
             onSelect : function (c) {
-                let coordinates = '';
-                coordinates +="<input type='hidden' value='"+c.x+"' name='coordX'/>";
-                coordinates +="<input type='hidden' value='"+c.y+"' name='coordY'/>";
-                coordinates +="<input type='hidden' value='"+c.w+"' name='coordW'/>";
-                coordinates +="<input type='hidden' value='"+c.h+"' name='coordH'/>";
+                var coordinates = '';
+                coordinates +="<input id='coordX' type='hidden' value='"+c.x+"' name='coordX'/>";
+                coordinates +="<input id='coordY' type='hidden' value='"+c.y+"' name='coordY'/>";
+                coordinates +="<input id='coordW' type='hidden' value='"+c.w+"' name='coordW'/>";
+                coordinates +="<input id='coordH' type='hidden' value='"+c.h+"' name='coordH'/>";
+                if(document.getElementById('coordX')){
+                    var element1 = document.getElementById('coordX');
+                    element1.parentNode.removeChild(element1);
+                    var element2 = document.getElementById('coordY');
+                    element2.parentNode.removeChild(element2);
+                    var element3 = document.getElementById('coordW');
+                    element3.parentNode.removeChild(element3);
+                    var element4 = document.getElementById('coordH');
+                    element4.parentNode.removeChild(element4);
+                }
                 $('#profile-pic-form').prepend(coordinates);
-                console.log('dupa')
             }
         });})
 
@@ -511,7 +520,17 @@ document.getElementById('del-profile-pic').addEventListener('click',function(e) 
 //rest
 var delUrl = [];
 var photos ='';
+var photosForProfilePic = '';
 var gt = '>';
+for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
+    photosForProfilePic += "<input id='pic"+responseObject2[0].tr_ph[i].id+"' type='radio' class='radio-photo' name='pickProfilePic";
+    photosForProfilePic += "' value='"+responseObject2[0].tr_ph[i].photo_name+"'>";
+    photosForProfilePic += "<label style='cursor:pointer' for='pic"+responseObject2[0].tr_ph[i].id+"'><div class='pickProfilePicture"+responseObject2[0].tr_ph[i].id+" gallery-photo'>";
+    photosForProfilePic += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
+    photosForProfilePic += responseObject2[0].tr_ph[i].photo_name+"\" \/></div>";
+    photosForProfilePic += '<meta name="_token" content="'+csrfToken+'"></label>';
+   
+ }
  for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
     delUrl.push("/public/"+responseObject2[0].id+'/'+responseObject2[0].tr_ph[i].photo_name);
     photos += "<div class='gallery-photo'><span class='delete'><i id='pho"+responseObject2[0].tr_ph[i].id+"'class='far fa-trash-alt'></i></span><a href=\"";
@@ -520,6 +539,21 @@ var gt = '>';
     photos += responseObject2[0].tr_ph[i].photo_name+"\" \/></a></div>";
     photos += '<meta name="_token" content="'+csrfToken+'">'
  }
+
+
+var pickProfilePic = document.getElementById('profilePicPick');
+pickProfilePic.innerHTML = photosForProfilePic;
+for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
+    document.getElementById('pic'+responseObject2[0].tr_ph[i].id).addEventListener('click',function(e){
+        var target = e.target;
+        var x = document.getElementsByClassName('gallery-photo');
+        for(var q=0;q<x.length;q++){
+            x[q].classList.remove('checked-pic')
+        }
+        document.getElementsByClassName('pickProfilePicture'+target.id.substring(3))[0].classList.add("checked-pic");
+        console.log('dupa');
+    })
+}
 
 var photContainer = document.getElementsByClassName("gallery-content")[0];
 photContainer.innerHTML = photos;
@@ -678,3 +712,9 @@ if(document.getElementsByClassName('logo')){
     },false)
   }
 
+
+//profile pic del icon active
+if(document.getElementById('profile-img-tag') === null){
+    document.getElementById('del-profile-pic').style.opacity = '0.6';
+    document.getElementById('del-profile-pic').style.cursor = 'auto';
+}

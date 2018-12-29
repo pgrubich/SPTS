@@ -81,36 +81,36 @@
                             <ul class="detail-list">
                             <li class="stars-info"></li>
                                 <li>
-                                    <span class="dotted" id="name-info"></span><br/>
-                                    <span class="dotted" id="city-info">
+                                    <span  id="name-info"></span><br/>
+                                    <span  id="city-info">
                                     </span>
                                 </li>
                                 <li class="detail-info ">
                                 <i class="fas fa-phone "></i>
                                     Numer telefonu <br/>
-                                    <span class="dotted" id="phone-info">
+                                    <span  id="phone-info">
                                     </span>
                                 </li>
                                 <li class="detail-info">
                                 <i class="far fa-envelope "></i>
                                     Email<br/>
-                                    <span class="dotted" id="mail-info"></span>
+                                    <span style="font-size: 13px;" id="mail-info"></span>
                                     
                                 </li>
                                 <li class="detail-info">
                                 <i class="fab fa-facebook "></i>
                                     Facebook<br/>
-                                    <span class="dotted" id="fb-info"><a href="#"></a></span>
+                                    <span  id="fb-info"><a href="#"></a></span>
                                 </li>
                                 <li class="detail-info"> 
                                 <i class="fab fa-instagram "></i>
                                     Instagram<br/>
-                                    <span class="dotted" id="inst-info"><a href="#"></a></span>
+                                    <span  id="inst-info"><a href="#"></a></span>
                                 </li>
                                 <li class="detail-info"> 
                                 <i class="fas fa-globe"></i>
                                     Strona WWW<br/>
-                                    <span class="dotted" id="page-info"><a href="#"></a></span>
+                                    <span  id="page-info"><a href="#"></a></span>
                                 </li>
                             </ul>
                         </div>
@@ -133,7 +133,7 @@
                         <div class="categories-header">
                             <i class="far fa-bookmark"></i>
                             Doświadczenie i umiejętności</div>
-                        <div style="white-space: pre;" class="categories-content"></div>
+                        <div style="white-space: pre-wrap;" class="categories-content"></div>
                     </div>
                     <div class="categories">
                         <div class="categories-header">
