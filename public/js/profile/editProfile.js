@@ -464,8 +464,8 @@ $("#profile-img").change(function(){
             setSelect: [0, 0, 50, 50],
             onSelect : function (c) {
                 var coordinates = '';
-                coordinates +="<input id='widthPic' type='hidden' value='"+$('#getheight').width()+"' name='widthPic'/>";
-                coordinates +="<input id='heightPic' type='hidden' value='"+$('#getheight').height()+"' name='heightPic'/>";
+                coordinates +="<input id='widthPic' type='hidden' value='"+$('#profile-img-tag').width()+"' name='widthPic'/>";
+                coordinates +="<input id='heightPic' type='hidden' value='"+$('#profile-img-tag').height()+"' name='heightPic'/>";
                 coordinates +="<input id='coordX' type='hidden' value='"+c.x+"' name='coordX'/>";
                 coordinates +="<input id='coordY' type='hidden' value='"+c.y+"' name='coordY'/>";
                 coordinates +="<input id='coordW' type='hidden' value='"+c.w+"' name='coordW'/>";
