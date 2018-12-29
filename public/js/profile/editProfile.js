@@ -455,14 +455,17 @@ xhr2.onload = function() {
 
 }
 $("#profile-img").change(function(){
-    document.getElementById('xyz').innerHTML = " <img id='profile-img-tag' style='width: 400px;' />"
+    document.getElementById('xyz').innerHTML = "<div id='getheight'> <img id='profile-img-tag' style='width: 400px;' /></div>"
     readURL(this);
+    var pickedPhoto = document.getElementById('getheight');
     $("#profile-img-tag").on('load',function(){
         $('#profile-img-tag').Jcrop({
             aspectRatio: 1,
             setSelect: [0, 0, 50, 50],
             onSelect : function (c) {
                 var coordinates = '';
+                coordinates +="<input id='widthPic' type='hidden' value='"+$('#getheight').width()+"' name='widthPic'/>";
+                coordinates +="<input id='heightPic' type='hidden' value='"+$('#getheight').height()+"' name='heightPic'/>";
                 coordinates +="<input id='coordX' type='hidden' value='"+c.x+"' name='coordX'/>";
                 coordinates +="<input id='coordY' type='hidden' value='"+c.y+"' name='coordY'/>";
                 coordinates +="<input id='coordW' type='hidden' value='"+c.w+"' name='coordW'/>";
@@ -476,6 +479,10 @@ $("#profile-img").change(function(){
                     element3.parentNode.removeChild(element3);
                     var element4 = document.getElementById('coordH');
                     element4.parentNode.removeChild(element4);
+                    var element5 = document.getElementById('widthPic');
+                    element5.parentNode.removeChild(element5);
+                    var element6 = document.getElementById('heightPic');
+                    element6.parentNode.removeChild(element6);
                 }
                 $('#profile-pic-form').prepend(coordinates);
             }
