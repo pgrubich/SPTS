@@ -339,11 +339,11 @@
                
                         <!-- Modal HTML embedded directly into document -->
                         <div id="ex1" class="modal" style="height:600px; width: 800px;">
-                        <form id="profile-pic-form" action='store' method = 'POST'>
+                        <form id="profile-pic-form" action='addProfilePicture' enctype="multipart/form-data" method = 'POST'>
                         <span style="font-size:20px; font-weight:900; ">Dodaj zdjęcie</span>
                                 <input style="margin-top:20px;" type='file' name='photo_name' id='profile-img'>
-                                <!-- <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
-                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/> -->
+                                <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                 
                         <!-- Modal HTML embedded directly into document -->
                         

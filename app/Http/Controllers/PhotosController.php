@@ -7,6 +7,7 @@ use App\Models\Trainer\Trainer;
 use App\Models\Trainer\TrPhotos;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class PhotosController extends Controller
 {
@@ -136,11 +137,19 @@ class PhotosController extends Controller
 
         if($request->hasFile('photo_name')) {
 
+            $coordX = $request->input('coordX');
+            $coordY = $request->input('coordY');
+            $coordW = $request->input('coordW');
+            $coordH = $request->input('coordH');
+
             $originalFilename = $request->file('photo_name')->getClientOriginalName();
             $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
             $extension = $request->file('photo_name')->getClientOriginalExtension();
             $finalFilename = $fileName.'_'.time().'.'.$extension;
-            $path = $request->file('photo_name')->storeAs('public/trainers_photos/'.auth()->user()->id, $finalFilename);
+            //$path = $request->file('photo_name')->storeAs('public/trainers_photos/'.auth()->user()->id, $finalFilename);
+
+            $image = Image::make($request->file('photo_name')->getRealPath());
+            $image->crop($coordW - $coordX, $coordH - $coordY, $coordX, $coordY)->save(public_path('/storage/trainers_photos/').auth()->user()->id.'/'.$finalFilename);
 
             $album = new TrPhotos;
             $album->trainer_id = auth()->user()->id;
@@ -154,6 +163,7 @@ class PhotosController extends Controller
             $trainer = Trainer::find(auth()->user()->id);
             $trainer->avatar = $new_photo_id;
             $trainer->save();
+
 
             $request->session()->flash('success', 'Dodano zdjęcie profilowe.');
 
