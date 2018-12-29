@@ -98,7 +98,7 @@
                                 <label>
                                         Data urodzenia:
 <input  class="edit-date" form="editPrimaryInfo" name='bdate' type="date" placeholder='{{ Auth::user()->bdate }}' value='{{ Auth::user()->bdate }}' max="2000-11-01" min="1920-11-01">
-                                <label  >
+                                </label  >
                                 </p>
                                 
                                 <p  >

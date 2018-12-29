@@ -141,6 +141,8 @@ class PhotosController extends Controller
             $coordY = $request->input('coordY');
             $coordW = $request->input('coordW');
             $coordH = $request->input('coordH');
+            //$scaledWidth = $request->input('widthPic');
+            $scaledHeight = $request->input('heightPic');
 
             $originalFilename = $request->file('photo_name')->getClientOriginalName();
             $fileName = pathinfo($originalFilename, PATHINFO_FILENAME);
@@ -149,7 +151,12 @@ class PhotosController extends Controller
             //$path = $request->file('photo_name')->storeAs('public/trainers_photos/'.auth()->user()->id, $finalFilename);
 
             $image = Image::make($request->file('photo_name')->getRealPath());
-            $image->crop($coordW - $coordX, $coordH - $coordY, $coordX, $coordY)->save(public_path('/storage/trainers_photos/').auth()->user()->id.'/'.$finalFilename);
+            //$realWidth = $image->width();
+            $realHeight = $image->height();
+            $ratio = $realHeight / $scaledHeight;
+
+            $path = public_path('/storage/trainers_photos/').auth()->user()->id.'/'.$finalFilename;
+            $image->crop(round($coordW * $ratio),round($coordH * $ratio),round($coordX * $ratio),round($coordY * $ratio))->save($path);
 
             $album = new TrPhotos;
             $album->trainer_id = auth()->user()->id;
@@ -163,7 +170,6 @@ class PhotosController extends Controller
             $trainer = Trainer::find(auth()->user()->id);
             $trainer->avatar = $new_photo_id;
             $trainer->save();
-
 
             $request->session()->flash('success', 'Dodano zdjęcie profilowe.');
 
