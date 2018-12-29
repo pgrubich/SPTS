@@ -338,7 +338,7 @@
                             </div>
                
 
-                        <div id="ex2" class="modal" style="height:600px; width: 800px;">
+                        <div id="ex2" class="modal" style="max-width: 540px; min-height: 500px;">
                         <form id="profile-pic-choose-form" action='store' method = 'POST'>
                         <span style="font-size:20px; font-weight:900; ">Wybierz zdjęcie profilowe</span>
                         <div id="profilePicPick">
