@@ -161,7 +161,7 @@ class PhotosController extends Controller
             $album = new TrPhotos;
             $album->trainer_id = auth()->user()->id;
             $album->photo_name = $finalFilename;
-            $album->only_for_avatar = 'NO';
+            $album->only_for_avatar = 'YES';
             $album->timestamps = false;
             $album->save();
 
