@@ -111,8 +111,8 @@ function show(a){
             block6.style.display = "block";
             break;
     }
-    
-    
+
+
 
 }
 
@@ -170,31 +170,31 @@ function showHide(a){
                 cities.style.display = "none";
             }
             break;
-  
+
     }
-    
+
 }
 
 
 // dyscyplines from json
 
-var xhr = new XMLHttpRequest();                 
+var xhr = new XMLHttpRequest();
 
-xhr.onload = function() {                       
+xhr.onload = function() {
   if(xhr.status === 200) {
-    responseObject = JSON.parse(xhr.responseText);  
+    responseObject = JSON.parse(xhr.responseText);
     var column1 ='';
     var column2 ='';
     var column3 ='';
     var column4 ='';
     var column5 ='';
     var column6 ='';
-    var record = document.getElementsByClassName("dyscypline-column-editprofile");                    
+    var record = document.getElementsByClassName("dyscypline-column-editprofile");
     for (var i = 0; i < 12; i++){
         column1 += '<label class="container"><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
         column1 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
         column1 += responseObject.Dysciplines[i].Name + '<span class="checkmark"></span></label>';
-        
+
     }
     for (var i = 12; i < 24; i++){
         column2 += '<label class="container"><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
@@ -212,7 +212,7 @@ xhr.onload = function() {
         column4 += '<label class="container"><input type="checkbox" name="'+responseObject.Dysciplines[i].Name;
         column4 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
         column4 += responseObject.Dysciplines[i].Name + '<span class="checkmark"></span></label>';
-    }   
+    }
 
     // for (var i = 40; i < responseObject.Dysciplines.length; i++){
 
@@ -220,25 +220,25 @@ xhr.onload = function() {
     //     column5 += '" id="'+responseObject.Dysciplines[i].Name.replace(" ","_")+'">';
     //     column5 += responseObject.Dysciplines[i].Name + '</label></br>';
 
-    // }   
-    record[0].innerHTML = column1;   
-    record[1].innerHTML = column2;  
-    record[2].innerHTML = column3;  
-    record[3].innerHTML = column4;  
-    // record[4].innerHTML = column5;  
+    // }
+    record[0].innerHTML = column1;
+    record[1].innerHTML = column2;
+    record[2].innerHTML = column3;
+    record[3].innerHTML = column4;
+    // record[4].innerHTML = column5;
 
   }
 };
 
-xhr.open('GET', 'http://pri.me/api/dyscyplines.json', true);        
+xhr.open('GET', 'http://pri.me/api/dyscyplines.json', true);
 xhr.send(null);
 
 //checked dyscyplines
 
 var profilePic = ''
-var xhr2 = new XMLHttpRequest();  
+var xhr2 = new XMLHttpRequest();
 var loggedUserId = document.getElementById("username-id").value;
-xhr2.onload = function() {                       
+xhr2.onload = function() {
     if(xhr2.status === 200) {
       responseObject2 = JSON.parse(xhr2.responseText);
       for(var i = 0; i < responseObject2[0].tr_disc.length; i++ ){
@@ -278,14 +278,14 @@ xhr2.onload = function() {
           offers += "<p style='margin-left:20px; display:inline-block;'><label>Cena: <input value='"+responseObject2[0].tr_off[i].price+"' style='width:180px;' class='edit-price' type='text' name='price' name='price'  type='number' step='0.01'></label></p>";
           offers += "<label><input type='hidden' value='"+csrfToken+"' name='_token'/></label>";
           offers += "<label><input name='id' type='hidden' value='"+responseObject2[0].tr_off[i].id+"'></label></label>"
-          
+
           offers += "<div style='margin-left: 78%;'> <a class='a-decoration' id='single-ofert-back-"+responseObject2[0].tr_off[i].id+"' >Wróć</a><input class='single-add-button' type='submit' value='Edytuj'></div></div></form></div>";
       }
       var offersContainer = document.getElementById("offers-container");
       offersContainer.innerHTML = offers;
 
 
-      
+
    for(var i = 0; i<responseObject2[0].tr_off.length; i++){
     document.getElementById('off'+responseObject2[0].tr_off[i].id).addEventListener('click',function(e) {
         $.confirm({
@@ -316,7 +316,7 @@ xhr2.onload = function() {
                 }
             }
         })
-        
+
 }
 ,false );
 }
@@ -330,7 +330,7 @@ xhr2.onload = function() {
     }
 
      //show edit offers
-  
+
     for(var i=0; i<y.length;i++){
         document.getElementById("single-ofert-"+responseObject2[0].tr_off[i].id).addEventListener('click',function(){
                 let idSplit = event.target.id.split("-");
@@ -338,16 +338,16 @@ xhr2.onload = function() {
                         document.getElementById("edit-single-ofert-"+idSplit[2]).style.display = "block";
                         document.getElementById("single-ofert"+idSplit[2]).style.display = "none";
                 }
-                
+
         },false);
         document.getElementById("single-ofert-back-"+responseObject2[0].tr_off[i].id).addEventListener('click',function(){
             var idSplitCer3 = event.target.id.split("-");
            document.getElementById("edit-single-ofert-"+idSplitCer3[3]).style.display = "none";
            document.getElementById("single-ofert"+idSplitCer3[3]).style.display = "block";
 
-},false);
+        },false);
     }
-   
+
 /// UNI
 
     var unis = '';
@@ -423,7 +423,7 @@ xhr2.onload = function() {
             if(document.getElementById("edit-single-uni-"+idSplitUni[2])){
                 if(document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display == "none"){
                     document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display = "block";
-                    
+
                     document.getElementById("single-uni"+idSplitUni[2]).style.display = "none";
                 }else{
                     document.getElementById("edit-single-uni-"+idSplitUni[2]).style.display = "none";
@@ -445,10 +445,10 @@ xhr2.onload = function() {
  function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-        
+
         reader.onload = function (e) {
             $('#profile-img-tag').attr('src', e.target.result);
-            
+
         }
         reader.readAsDataURL(input.files[0]);
     }
@@ -536,7 +536,7 @@ for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
     photosForProfilePic += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
     photosForProfilePic += responseObject2[0].tr_ph[i].photo_name+"\" \/></div>";
     photosForProfilePic += '<meta name="_token" content="'+csrfToken+'"></label>';
-   
+
  }
  for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
     delUrl.push("/public/"+responseObject2[0].id+'/'+responseObject2[0].tr_ph[i].photo_name);
@@ -558,7 +558,6 @@ for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
             x[q].classList.remove('checked-pic')
         }
         document.getElementsByClassName('pickProfilePicture'+target.id.substring(3))[0].classList.add("checked-pic");
-        console.log('dupa');
     })
 }
 
@@ -689,7 +688,7 @@ for(var i=0; i<yyy.length;i++){
                 document.getElementById("single-cer"+idSplitCer[2]).style.display = "none";
             }else{
                 document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display = "none";
-            }   
+            }
          }
 
  },false);
@@ -704,11 +703,11 @@ for(var i=0; i<yyy.length;i++){
 }
 
 
-    
+
   }
 };
 
-xhr2.open('GET', 'http://pri.me/api/profiles/'+loggedUserId, true);        
+xhr2.open('GET', 'http://pri.me/api/profiles/'+loggedUserId, true);
 xhr2.send(null);
 
 

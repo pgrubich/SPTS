@@ -7,6 +7,7 @@ use App\Models\Trainer\Trainer;
 use App\Models\Trainer\TrPhotos;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class PhotosController extends Controller
@@ -155,8 +156,11 @@ class PhotosController extends Controller
             $realHeight = $image->height();
             $ratio = $realHeight / $scaledHeight;
 
-            $path = public_path('/storage/trainers_photos/').auth()->user()->id.'/'.$finalFilename;
-            $image->crop(round($coordW * $ratio),round($coordH * $ratio),round($coordX * $ratio),round($coordY * $ratio))->save($path);
+            $path = public_path('/storage/trainers_photos/').auth()->user()->id;
+            if(!File::exists($path)) {
+                File::makeDirectory($path);
+            }
+            $image->crop(round($coordW * $ratio),round($coordH * $ratio),round($coordX * $ratio),round($coordY * $ratio))->save($path.'/'.$finalFilename);
 
             $album = new TrPhotos;
             $album->trainer_id = auth()->user()->id;

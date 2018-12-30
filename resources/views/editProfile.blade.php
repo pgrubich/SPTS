@@ -235,7 +235,7 @@
                                         </p>
                                         <p>
                                             Dodaj załącznik
-                                        < <input form="addCourse" type="file" name="zalacznik" accept="image/jpeg,image/gif,image/png,application/pdf" >
+                                            <input form="addCourse" type="file" name="zalacznik" accept="image/jpeg,image/gif,image/png,application/pdf" >
                                         </p>
                                         <input type='hidden' form="addCourse" name='id' value='{{ Auth::user()->id }}'/>
                                         <input form="addCourse" type='hidden' value='{{ csrf_token() }}' name='_token'/>
