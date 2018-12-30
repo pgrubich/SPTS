@@ -167,7 +167,7 @@ class editProfileController extends Controller
                 $extension = $request->file('zalacznik')->getClientOriginalExtension();
                 $finalFilename = $fileName.'_'.time().'.'.$extension;
 
-                if($trCertificate->zalacznik != NULL) Storage::delete('public/trainers_certificates/'.$trainer->id.'/'.$trCertificate->zalacznik);
+                if($trCertificate->zalacznik != NULL) Storage::delete('public/trainers_certificates/'.Auth::user()->id.'/'.$trCertificate->zalacznik);
 
                 $path = $request->file('zalacznik')->storeAs('public/trainers_certificates/'.auth()->user()->id, $finalFilename);
             }
