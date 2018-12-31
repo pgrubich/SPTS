@@ -349,10 +349,10 @@
                         <!-- Modal HTML embedded directly into document -->
                         
                         <div style="margin-top:15px;" id="abc"></div>
-                        <input style="position: absolute; bottom: 15px; right: 20px;" class="submit-b" type='submit' value='Ustaw jako zdjęcie profilowe' name='submit'>
-                            
+                        <!-- <input  value='Ustaw jako zdjęcie profilowe' name='submit'> -->
+                       
                         </form>
-                        
+                        <button id="setProfilePic" style="position: absolute; bottom: 15px; right: 20px;" class="submit-b">Ustaw jako zdjęcie profilowe</button>
                         </div>
                         
 
@@ -370,6 +370,21 @@
                         
                         <div style="margin-top:15px;" id="xyz"></div>
                         <input style="position: absolute; bottom: 15px; right: 20px;" class="submit-b" type='submit' value='Dodaj zdjęcie profilowe' name='submit'>
+                            
+                        </form>
+                        
+                        </div>
+
+                        <div id="ex3" class="modal" style="height:600px; width: 800px;">
+                        <form id="profile-pic-form-after" action='#' enctype="multipart/form-data" method = 'POST'>
+                        <span style="font-size:20px; font-weight:900; ">Ustaw zdjęcie</span>
+                                <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                                
+                        <!-- Modal HTML embedded directly into document -->
+                        
+                        <div style="margin-top:15px;" id="qwerty"></div>
+                        <input style="position: absolute; bottom: 15px; right: 20px;" class="submit-b" type='submit' value='Ustaw zdjęcie profilowe' name='submit'>
                             
                         </form>
                         

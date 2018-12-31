@@ -600,6 +600,51 @@ for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
 
 
 
+// go to crop after pick
+
+document.getElementById('setProfilePic').addEventListener('click',function(){
+    for(var r = 0; r<responseObject2[0].tr_ph.length; r++){
+        if(document.getElementById("pic"+responseObject2[0].tr_ph[r].id).checked){
+            let contentPic ="<div id='getheight-after'> <img id='profile-img-tag-after' style='width: 400px;'";
+            contentPic += " src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
+            contentPic +=  responseObject2[0].tr_ph[r].photo_name+"\"";
+            contentPic += "/></div>"
+            document.getElementById('qwerty').innerHTML = contentPic;
+            
+            $("#profile-img-tag-after").on('load',function(){
+                $('#profile-img-tag-after').Jcrop({
+                    aspectRatio: 1,
+                    setSelect: [0, 0, 200, 200],
+                    onSelect : function (c) {
+                        var coordinates = '';
+                        coordinates +="<input id='widthPicA' type='hidden' value='"+$('#profile-img-tag-after').width()+"' name='widthPic'/>";
+                        coordinates +="<input id='heightPicA' type='hidden' value='"+$('#profile-img-tag-after').height()+"' name='heightPic'/>";
+                        coordinates +="<input id='coordXA' type='hidden' value='"+c.x+"' name='coordX'/>";
+                        coordinates +="<input id='coordYA' type='hidden' value='"+c.y+"' name='coordY'/>";
+                        coordinates +="<input id='coordWA' type='hidden' value='"+c.w+"' name='coordW'/>";
+                        coordinates +="<input id='coordHA' type='hidden' value='"+c.h+"' name='coordH'/>";
+                        if(document.getElementById('coordXA')){
+                            var element1 = document.getElementById('coordXA');
+                            element1.parentNode.removeChild(element1);
+                            var element2 = document.getElementById('coordYA');
+                            element2.parentNode.removeChild(element2);
+                            var element3 = document.getElementById('coordWA');
+                            element3.parentNode.removeChild(element3);
+                            var element4 = document.getElementById('coordHA');
+                            element4.parentNode.removeChild(element4);
+                            var element5 = document.getElementById('widthPicA');
+                            element5.parentNode.removeChild(element5);
+                            var element6 = document.getElementById('heightPicA');
+                            element6.parentNode.removeChild(element6);
+                        }
+                        $('#profile-pic-form-after').prepend(coordinates);
+                    }
+                });})
+                $('#ex3').modal('show'); 
+        }
+}
+},false)
+
 
 
 
