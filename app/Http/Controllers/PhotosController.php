@@ -8,6 +8,7 @@ use App\Models\Trainer\TrPhotos;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class PhotosController extends Controller
@@ -138,6 +139,22 @@ class PhotosController extends Controller
 
         if($request->hasFile('photo_name')) {
 
+            $trainer = Trainer::find(Auth::user()->id);
+            if ($trainer->avatar != NULL)
+            {
+                $photo = TrPhotos::find(Auth::user()->avatar);
+                if ($trainer->avatar = $photo) {
+                    $trainer->avatar = NULL;
+                    $trainer->save();
+                }
+
+                if ($photo->trainer_id = $trainer->id)
+                {
+                    Storage::delete('public/trainers_photos/'.$trainer->id.'/'.$photo->photo_name);
+                    $photo->delete();
+                }
+            }
+
             $coordX = $request->input('coordX');
             $coordY = $request->input('coordY');
             $coordW = $request->input('coordW');
@@ -184,9 +201,10 @@ class PhotosController extends Controller
         return redirect('/editProfile');
     }
 
-
-    protected function updateProfilePicture($id)
+    protected function updateProfilePicture(Request $request)
     {
+        return $request;
+        /*
         if (TrPhotos::where('id', '=', $id)->exists()) {
             $photoId = TrPhotos::find($id);
             $trainer = Trainer::find(Auth::user()->id);
@@ -198,6 +216,7 @@ class PhotosController extends Controller
         }
 
         return redirect('/editProfile');
+        */
     }
 
     protected function destroyProfilePicture(Request $request)

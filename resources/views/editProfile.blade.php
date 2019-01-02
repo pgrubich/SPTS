@@ -339,7 +339,7 @@
                
 
                         <div id="ex2" class="modal" style="max-width: 540px; min-height: 500px;">
-                        <form id="profile-pic-choose-form" action='addProfilePicture' method = 'POST'>
+                        <form id="profile-pic-choose-form" action='updateProfilePicture' method = 'POST'>
                         <span style="font-size:20px; font-weight:900; ">Wybierz zdjęcie profilowe</span>
                         <div id="profilePicPick">
 
@@ -352,7 +352,7 @@
                         <!-- <input  value='Ustaw jako zdjęcie profilowe' name='submit'> -->
                        
                         </form>
-                        <button id="setProfilePic" style="position: absolute; bottom: 15px; right: 20px;" class="submit-b">Ustaw jako zdjęcie profilowe</button>
+                        <button id="setProfilePic" style="position: absolute; bottom: 15px; right: 20px;" class="submit-b">Dalej</button>
                         </div>
                         
 
@@ -384,7 +384,8 @@
                         <!-- Modal HTML embedded directly into document -->
                         
                         <div style="margin-top:15px;" id="qwerty"></div>
-                        <input style="position: absolute; bottom: 15px; right: 20px;" class="submit-b" type='submit' value='Ustaw zdjęcie profilowe' name='submit'>
+                        <input form="profile-pic-choose-form" type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                        <input form="profile-pic-choose-form" style="position: absolute; bottom: 15px; right: 20px;" class="submit-b" type='submit' value='Ustaw zdjęcie profilowe' name='submit'>
                             
                         </form>
                         

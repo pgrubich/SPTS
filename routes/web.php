@@ -66,7 +66,7 @@ Route::post('destroy/{id}', ['uses' => 'PhotosController@destroy']);
 
 Route::post('addProfilePicture', ['uses' => 'PhotosController@addProfilePicture']);
 
-Route::post('updateProfilePicture/{id}', ['uses' =>'PhotosController@updateProfilePicture']);
+Route::post('updateProfilePicture', ['uses' =>'PhotosController@updateProfilePicture']);
 
 Route::post('destroyProfilePicture', ['uses' => 'PhotosController@destroyProfilePicture']);
 
