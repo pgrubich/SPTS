@@ -530,8 +530,8 @@ var photos ='';
 var photosForProfilePic = '';
 var gt = '>';
 for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
-    photosForProfilePic += "<input id='pic"+responseObject2[0].tr_ph[i].id+"' type='radio' class='radio-photo' name='pickProfilePic";
-    photosForProfilePic += "' value='"+responseObject2[0].tr_ph[i].photo_name+"'>";
+    photosForProfilePic += "<input id='pic"+responseObject2[0].tr_ph[i].id+"' type='radio' class='radio-photo' name='id'";
+    photosForProfilePic += "' value='"+responseObject2[0].tr_ph[i].id+"'/>";
     photosForProfilePic += "<label style='cursor:pointer' for='pic"+responseObject2[0].tr_ph[i].id+"'><div class='pickProfilePicture"+responseObject2[0].tr_ph[i].id+" gallery-photo'>";
     photosForProfilePic += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
     photosForProfilePic += responseObject2[0].tr_ph[i].photo_name+"\" \/></div>";
