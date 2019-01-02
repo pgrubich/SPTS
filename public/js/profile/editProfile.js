@@ -617,12 +617,12 @@ document.getElementById('setProfilePic').addEventListener('click',function(){
                     setSelect: [0, 0, 200, 200],
                     onSelect : function (c) {
                         var coordinates = '';
-                        coordinates +="<input id='widthPicA' type='hidden' value='"+$('#profile-img-tag-after').width()+"' name='widthPic'/>";
-                        coordinates +="<input id='heightPicA' type='hidden' value='"+$('#profile-img-tag-after').height()+"' name='heightPic'/>";
-                        coordinates +="<input id='coordXA' type='hidden' value='"+c.x+"' name='coordX'/>";
-                        coordinates +="<input id='coordYA' type='hidden' value='"+c.y+"' name='coordY'/>";
-                        coordinates +="<input id='coordWA' type='hidden' value='"+c.w+"' name='coordW'/>";
-                        coordinates +="<input id='coordHA' type='hidden' value='"+c.h+"' name='coordH'/>";
+                        coordinates +="<input form='profile-pic-choose-form' id='widthPicA' type='hidden' value='"+$('#profile-img-tag-after').width()+"' name='widthPic'/>";
+                        coordinates +="<input form='profile-pic-choose-form' id='heightPicA' type='hidden' value='"+$('#profile-img-tag-after').height()+"' name='heightPic'/>";
+                        coordinates +="<input form='profile-pic-choose-form' id='coordXA' type='hidden' value='"+c.x+"' name='coordX'/>";
+                        coordinates +="<input form='profile-pic-choose-form' id='coordYA' type='hidden' value='"+c.y+"' name='coordY'/>";
+                        coordinates +="<input form='profile-pic-choose-form' id='coordWA' type='hidden' value='"+c.w+"' name='coordW'/>";
+                        coordinates +="<input form='profile-pic-choose-form' id='coordHA' type='hidden' value='"+c.h+"' name='coordH'/>";
                         if(document.getElementById('coordXA')){
                             var element1 = document.getElementById('coordXA');
                             element1.parentNode.removeChild(element1);
