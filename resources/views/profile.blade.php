@@ -147,6 +147,28 @@
                         Wykształcenie</div>
                         <div class="categories-content"></div>
                     </div>
+                    <div class="categories">
+                        <div class="categories-header">
+                            <i class="fas fa-map-marker"></i>
+                            Lokalizacja</div>
+                        <div class="categories-content">
+                            <div id="map" style="width: 500px; height: 500px;"></div>
+                            <script>
+                                function initMap() {
+
+                                    var city = {lat: 52.4069200, lng: 16.9299300};
+
+                                    var map = new google.maps.Map(
+                                        document.getElementById('map'), {zoom: 12, center: city});
+                                    var marker = new google.maps.Marker({position: city, map: map});
+                                }
+                            </script>
+                            <script async defer
+                                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdktX69Y6UxOEIewtqsdusvkcVqPoik1w&callback=initMap">
+                            </script>
+                        </div>
+                    </div>
+
 
                     <section>
                         <div class="categories">

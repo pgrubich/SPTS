@@ -410,32 +410,6 @@
                         <div class="profilePic" style="width:30%; display:inline-block;"></div>
                     </div>
 
-
-
-
-
-
-
-                        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         <br>
                         <p style="width:100%;">Pozostałe zdjęcia</p><br>
                         <form action='store' enctype="multipart/form-data" method = 'POST'>
