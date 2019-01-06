@@ -175,6 +175,7 @@
                     <form id="addCourse" action='addCourse' enctype="multipart/form-data" method = 'POST'></form>
                     <form id="addUni" action='addUni' method = 'POST'></form>
                     <form id="addTrainerOffer" action='addTrainerOffer' method = 'POST'></form>
+                    <form id="addTrainersPlace" action='addTrainersPlace' method = 'POST'></form>
 
                         <fieldset>
                             <legend>Dane szczegółowe</legend>
@@ -314,6 +315,41 @@
                                         
                                     </div>
                                 </label>
+
+                            <br/>
+                            <label>
+                                Miejsca treningu:
+                                <div>
+                                    </br>
+                                    <input id="locationSearch" form="addTrainersPlace" name='numbers_of_members' type="text" placeholder="Wpisz adres" required>
+                                    <input form="addTrainersPlace" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                                    <input form="addTrainersPlace" type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                    <input id="location-name" form="addTrainersPlace" type='hidden' value=''/>
+                                    <input id="location-latitude" form="addTrainersPlace" type='hidden'/>
+                                    <input id="location-longitude" form="addTrainersPlace" type='hidden'/>
+                                    <div style="margin-bottom: 70px;">
+                                        <input class="add-button" type="submit" value="Dodaj lokalizację" form="addTrainersPlace">
+                                        <script>
+                                            function initMap() {
+                                                var address = document.getElementById('locationSearch');
+
+                                                var autocomplete = new google.maps.places.Autocomplete(address);
+
+                                                autocomplete.addListener('place_changed', function() {
+                                                    var place = autocomplete.getPlace();
+                                                    var name = document.getElementById('location-name').setAttribute('value', place.formatted_address);
+                                                    var lt = document.getElementById('location-latitude').value = place.geometry.location.lat();
+                                                    var lg = document.getElementById('location-longitude').value = place.geometry.location.lng();
+                                                });
+                                            }
+                                        </script>
+                                        <script  type="text/javascript" async defer
+                                                 src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBdktX69Y6UxOEIewtqsdusvkcVqPoik1w&libraries=places&callback=initMap">
+                                        </script>
+                                    </div>
+
+                                </div>
+                            </label>
 
                                 <br />
                                 <br />

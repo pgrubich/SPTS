@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Trainer\TrPlace;
 use Illuminate\Http\Request;
 use App\Models\Trainer\Trainer;
 use App\Models\Trainer\TrDiscipline;
@@ -331,6 +332,26 @@ class editProfileController extends Controller
 
     }
 
+    protected function addTrainersPlace(Request $request)
+    {
+        if (TrPlace::where('place', '=', $request['location-name'])
+            ->where('trainer_id', '=', Auth::user()->id)
+            ->exists())
+        {
+            return ('To miejsce znajduje się już na liście Twoich lokalizacji.');
+        }
+        else
+        {
+            TrPlace::create([
+                'place' => $request['location-name'],
+                'longitude' => $request['location-longitude'],
+                'latitude' => $request['location-latitude'],
+                'trainer_id' => Auth::user()->id,
+            ]);
+
+            return redirect('/editProfile');
+        }
+    }
 
     protected function updateEmailInfo(Request $request)
     {
