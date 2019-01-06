@@ -114,7 +114,7 @@ class PhotosController extends Controller
         $photo = TrPhotos::find($id);
         $trainer = Trainer::find(auth()->user()->id);
 
-        if ($trainer->avatar = $photo) {
+        if ($trainer->avatar == $photo->id) {
             $trainer->avatar = NULL;
             $trainer->save();
         }
@@ -129,7 +129,6 @@ class PhotosController extends Controller
 
         return redirect('/editProfile');
     }
-
 
     protected function addProfilePicture(Request $request)
     {
@@ -203,20 +202,72 @@ class PhotosController extends Controller
 
     protected function updateProfilePicture(Request $request)
     {
-        return $request;
-        /*
-        if (TrPhotos::where('id', '=', $id)->exists()) {
-            $photoId = TrPhotos::find($id);
-            $trainer = Trainer::find(Auth::user()->id);
-            $trainer->profile_picture_id = $photoId;
-            $trainer->save();
+
+        $trainer = Trainer::find(Auth::user()->id);
+        if ($trainer->avatar != NULL)
+        {
+            $photo = TrPhotos::find(Auth::user()->avatar);
+            if ($trainer->avatar = $photo) {
+                $trainer->avatar = NULL;
+                $trainer->save();
+            }
+
+            if ($photo->trainer_id = $trainer->id)
+            {
+                Storage::delete('public/trainers_photos/'.$trainer->id.'/'.$photo->photo_name);
+                $photo->delete();
+            }
         }
-        else {
-            return('Nie znaleziono wybranego zdjęcia.');
+
+
+        $coordX = $request->input('coordX');
+        $coordY = $request->input('coordY');
+        $coordW = $request->input('coordW');
+        $coordH = $request->input('coordH');
+        //$scaledWidth = $request->input('widthPic');
+        $scaledHeight = $request->input('heightPic');
+
+        $photoId = $request->input('id');
+
+        $path = public_path('/storage/trainers_photos/').auth()->user()->id;
+        if(!File::exists($path)) {
+            File::makeDirectory($path);
+        }
+
+        $photo = TrPhotos::find($photoId);
+        $photo_path = public_path('/storage/trainers_photos/').auth()->user()->id.'/'.$photo->photo_name;
+        
+        $current_image = Image::make($photo_path);
+        $mime = $current_image->mime();
+        if ($mime == 'image/jpeg')      $extension = '.jpg';
+        elseif ($mime == 'image/png')   $extension = '.png';
+        elseif ($mime == 'image/gif')   $extension = '.gif';
+        else                            $extension = '';
+        
+        $photo_name = 'avatar_'.time().$extension;
+        $copy_path = public_path('/storage/trainers_photos/').auth()->user()->id.'/'.$photo_name;
+
+        if (\File::copy($photo_path , $copy_path)) {
+            $image = Image::make($copy_path);
+            $realHeight = $image->height();
+            $ratio = $realHeight / $scaledHeight;
+            $image->crop(round($coordW * $ratio),round($coordH * $ratio),round($coordX * $ratio),round($coordY * $ratio))->save($path.'/'.$photo_name);
+       
+            $album = new TrPhotos;
+            $album->trainer_id = auth()->user()->id;
+            $album->photo_name = $photo_name;
+            $album->only_for_avatar = 'YES';
+            $album->timestamps = false;
+            $album->save();
+
+            $new_photo_id = $album->id;
+
+            $trainer = Trainer::find(auth()->user()->id);
+            $trainer->avatar = $new_photo_id;
+            $trainer->save();
         }
 
         return redirect('/editProfile');
-        */
     }
 
     protected function destroyProfilePicture(Request $request)
