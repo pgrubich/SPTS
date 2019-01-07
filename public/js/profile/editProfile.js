@@ -361,7 +361,7 @@ xhr2.onload = function() {
        unis += "'><form  action='editUni' method='POST'>";
        unis += "<p><label>Nazwa uczelni: <input value='"+responseObject2[0].tr_uni[i].university+"' class='edit-uni' type='text' name='university' pattern='.{3,}' required title='Wprowadź co najmniej 3 znaki.'></label></p>";
        unis += "<p style='display: inline-block;'><label>Kierunek: <input value='"+responseObject2[0].tr_uni[i].course+"' class='edit-spec' type='text' name='course' pattern='.{3,}' required title='Wprowadź co najmniej 3 znaki.'></label></p>";
-       unis += "<p  style='display: inline-block;'><label>Tytuł: <input value='"+responseObject2[0].tr_uni[i].degree+"' class='edit-title' type='text' name='degree' pattern='.{3,}' title='Wprowadź co najmniej 3 znaki.'></label></p>";
+       unis += "<p  style='display: inline-block;'><label>Tytuł: <input style='margin-left: 106px;' value='"+responseObject2[0].tr_uni[i].degree+"' class='edit-title' type='text' name='degree' pattern='.{3,}' title='Wprowadź co najmniej 3 znaki.'></label></p>";
        unis += "<p style='display:inline-block'><label>Data rozpoczęcia: <input value='"+responseObject2[0].tr_uni[i].begin_date+"' class='edit-startdate' type='date' name='begin_date' max='2018-12-31' min='1900-01-01'></label></p>";
        unis += "<p style='margin-left:20px; display:inline-block;'><label>Data zakończenia: <input value='"+responseObject2[0].tr_uni[i].end_date+"' class='edit-enddate' type='date' name='end_date' max='2018-12-31' min='1900-01-01'></label></p>";
        unis += "<label><input type='hidden' value='"+csrfToken+"' name='_token'/></label>";

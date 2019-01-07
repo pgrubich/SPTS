@@ -191,7 +191,7 @@ $(function(){
             $(".categories-content:eq(2)").html(education);
             $(".gallery-content").html(photos);
             // $(".categories-content:eq(5)").prepend(reviews);
-            $(".categories-content:eq(6)").prepend(reviews);
+            $(".categories-content:eq(7)").prepend(reviews);
             $("#price-table").append(offert);
             $(".profilePic").html(profilePic);
             if(document.getElementsByClassName('show-number')[0]){

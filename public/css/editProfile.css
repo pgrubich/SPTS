@@ -49,7 +49,7 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-email{
     margin-left: 80px;
@@ -57,7 +57,7 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-password-actual{
     margin-left: 104px;
@@ -65,7 +65,7 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-password{
     margin-left: 128px;
@@ -73,7 +73,7 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;;
 }
 .edit-email-actual{
     margin-left: 56px;
@@ -81,7 +81,7 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-lastname{
     margin-left: 80px;
@@ -89,7 +89,7 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-date{
     margin-left: 34px;
@@ -97,7 +97,7 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-phone{
     margin-left: 95px;
@@ -105,7 +105,7 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-insta{
     margin-left: 74px;
@@ -113,7 +113,7 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-face{
     margin-left: 78px;
@@ -121,7 +121,7 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-page{
     margin-left: 50px;
@@ -129,7 +129,7 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-text{
     width: 100%;
@@ -164,7 +164,7 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 #edit-course, #edit-uni, #edit-price{
     font-size: 14px;
@@ -178,25 +178,49 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-startdate{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
     margin-left: 24px;
     display: inline-block;
     width:157px;
-    padding: 3px;
+}
+.edit-startdate-loc{
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 11px 15px 11px 5px;
+    margin-left: 94px;
+    display: inline-block;
+    width:157px;
+}
+.edit-number{
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 25px;
+    width: 90px;
+    padding: 1px 5px 1px 5px;
+    display: inline-block;
+    margin-left: 10px;
+}
+.edit-time{
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 25px;
+    padding: 1px 5px 1px 5px;
+    display: inline-block;
+    margin-left: 11px;
 }
 .edit-enddate{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
     width:156px;
-    padding: 3px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;;
     margin-left: 25px;
     display: inline-block;
 }
@@ -207,24 +231,32 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 
 }
 .edit-spec{
-    margin-left: 78px;
+    margin-left: 79px;
     width: 480px;
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
+}
+.edit-loc-place{
+    margin-left: 76px;
+    width: 480px;
+    border-radius: 2px;
+    border: 1.5px solid #dfdede;
+    height: 20px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-title{
-    margin-left: 103px;
+    margin-left: 33px;
     width: 480px;
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-lessons{
     margin-left: 68px;
@@ -232,25 +264,23 @@ fieldset{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-patric{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px;
     margin-left: 24px;
     display: inline-block;
     width:150px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
 }
 .edit-price{
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
     width:150px;
-    padding: 3px;
-    padding: 3px;
+    padding: 11px 15px 11px 5px;
     margin-left: 25px;
     display: inline-block;
 }
@@ -319,7 +349,7 @@ fieldset{
     border-radius: 3px;
     cursor: pointer;
 }
-#show-uni ,#show-course ,#show-price, #show-cities{
+#show-uni ,#show-course ,#show-price, #show-cities, #show-loc{
     cursor:pointer;
     opacity: 0.7;
     font-size: 14px;

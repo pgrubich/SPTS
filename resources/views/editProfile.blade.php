@@ -63,7 +63,7 @@
                    <p><span id="editMenu-option2" class="editMenu-option">Dane szczegółowe</span></p>
                    <p><span id="editMenu-option3" class="editMenu-option">Kalendarz</span></p>
                    <p><span id="editMenu-option4" class="editMenu-option">Galeria zdjęć</span></p>
-                   <p><span  class="editMenu-option">Lokalizacja</span></p>
+                   <p><span id="editMenu-option7"  class="editMenu-option">Lokalizacja</span></p>
                    <p><span id="editMenu-option5" class="editMenu-option">Zmiana adresu e-mail</span></p>
                    <p><span id="editMenu-option6" class="editMenu-option">Zmiana hasła</span></p>
                 </div>
@@ -332,8 +332,10 @@
                                         <script>
                                             function initMap() {
                                                 var address = document.getElementById('locationSearch');
-
-                                                var autocomplete = new google.maps.places.Autocomplete(address);
+                                                var options = {
+                                                        componentRestrictions: {country: "pl"}
+                                                    };
+                                                var autocomplete = new google.maps.places.Autocomplete(address, options);
 
                                                 autocomplete.addListener('place_changed', function() {
                                                     var place = autocomplete.getPlace();
@@ -359,9 +361,53 @@
                     <div id="calendar-edit">
                         <fieldset>
                             <legend>Mój kalendarz</legend>
-                            <form>
-                                in progress
-                                <input type="submit" value="Zapisz">
+                            <form id="addTraining" action='addTraining' method = 'POST'>
+                            <br>
+                                    <span id="show-loc">+ Dodaj trening</span></br></br>
+                                    <div id="edit-loc" style='display: none; font-size:14px; margin-left: 20px;'>
+                                        <p>
+                                            Nazwa zajęć:
+                                            <input placeholder="Podaj nazwę zajęć..." class="edit-uni" form="addUni" name='name' type="text" pattern=".{3,}" required >
+                                        </p>
+                                        <p style="display: inline-block;">
+                                            Miejsce:
+                                            <input placeholder="Podaj miejsce zajęć..." class="edit-loc-place" form="addUni" name='course' type="text" pattern=".{3,}" required >
+                                        </p>
+                                        <p style="display:inline-block">
+                                            Data:
+                                            <input class="edit-startdate-loc" form="addUni" name='begin_date' type="date" max="2018-12-31" min="1900-01-01">
+                                        </p>
+                                        <p style="display:inline-block;margin-left: 10px;"> 
+                                            Godzina od:
+                                            <input class="edit-time" form="addUni" name='begin_time' type="time" >
+                                        </p>
+                                        <p style="display:inline-block;margin-left: 13px;">
+                                            do:
+                                            <input class="edit-time" form="addUni" name='end_time' type="time">
+                                        </p>
+                                        <p style="display:inline-block;">
+                                            Maks. liczba osób:
+                                            <input class="edit-number" placeholder="0" form="addUni" name='end_time' type="number">
+                                        </p>
+                                        <p style="display:inline-block;margin-left: 64px;">
+                                            Cena zł (1 os.):
+                                            <input class="edit-time" placeholder="0" style="width:83px" form="addUni" name='end_time' type="number">
+                                        </p><br>
+                                        <span style="display:inline-block;position: relative;bottom: 182px;
+">
+                                            Opis:
+                                        </span><p style="display:inline-block;"><textarea placeholder="Podaj opis treningu..." style="width:480px; margin-left:100px; border: 1.5px solid #dfdede;" class="edit-text" name="description" cols="90" rows="10" maxlength="2048" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 2000 "></textarea>                                        </p>
+                                        <p>
+                                            Powtórz:
+                                            <input style="margin-left: 73px;" class="edit-number" placeholder="0" form="addUni" name='end_time' type="number">
+                                            razy
+                                        </p>
+                                        <input type='hidden' form="addUni" name='id' value='{{ Auth::user()->id }}'/>
+                                        <input form="addUni" type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                        <div style="margin-bottom: 70px;">
+                                        <input class="add-button" type="submit" value="Dodaj trening" style="margin-right:36px" form="addUni" >
+</div>
+                                    </div>
                             </form>
                         </fieldset>
                         
@@ -552,5 +598,6 @@
 
     <input id="username-id" type="hidden" value='{{ Auth::user()->id }}' />
     <script type="text/javascript" src="{{asset('js/profile/editProfile.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/profile/calendarEditProfile.js')}}"></script>
 </body>
 </html>
