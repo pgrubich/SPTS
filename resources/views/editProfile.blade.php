@@ -324,9 +324,9 @@
                                     <input id="locationSearch" form="addTrainersPlace" name='numbers_of_members' type="text" placeholder="Wpisz adres" required>
                                     <input form="addTrainersPlace" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                     <input form="addTrainersPlace" type='hidden' value='{{ csrf_token() }}' name='_token'/>
-                                    <input id="location-name" form="addTrainersPlace" type='hidden' value=''/>
-                                    <input id="location-latitude" form="addTrainersPlace" type='hidden'/>
-                                    <input id="location-longitude" form="addTrainersPlace" type='hidden'/>
+                                    <input id="location-name" name="location-name" form="addTrainersPlace" type='hidden'/>
+                                    <input id="location-latitude" name=location-latitude" form="addTrainersPlace" type='hidden'/>
+                                    <input id="location-longitude" name="location-longitude" form="addTrainersPlace" type='hidden'/>
                                     <div style="margin-bottom: 70px;">
                                         <input class="add-button" type="submit" value="Dodaj lokalizację" form="addTrainersPlace">
                                         <script>
@@ -339,9 +339,9 @@
 
                                                 autocomplete.addListener('place_changed', function() {
                                                     var place = autocomplete.getPlace();
-                                                    var name = document.getElementById('location-name').setAttribute('value', place.formatted_address);
-                                                    var lt = document.getElementById('location-latitude').value = place.geometry.location.lat();
-                                                    var lg = document.getElementById('location-longitude').value = place.geometry.location.lng();
+                                                    document.getElementById('location-name').value = place.name;
+                                                    document.getElementById('location-latitude').value = place.geometry.location.lat();
+                                                    document.getElementById('location-longitude').value = place.geometry.location.lng();
                                                 });
                                             }
                                         </script>
