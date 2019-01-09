@@ -154,15 +154,26 @@
                         <div class="categories-content">
                             <div id="map" style="width: 500px; height: 500px;"></div>
                             <script>
-                                function initMap() {
-
-                                    var city = {lat: 52.4069200, lng: 16.9299300};
-
-                                    var map = new google.maps.Map(
-                                        document.getElementById('map'), {zoom: 12, center: city});
-                                    var marker = new google.maps.Marker({position: city, map: map});
+                            function initMap() {
+                                var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+                                var xhttp = new XMLHttpRequest();
+                                xhttp.onreadystatechange = function() {
+                                    if (this.readyState == 4 && this.status == 200) {
+                                    responseObject = JSON.parse(xhttp.responseText); 
+                                    console.log(responseObject)
+                                    }
+                                };
+                                xhttp.open("GET", 'http://pri.me/api/profiles/'+id, true);
+                                xhttp.send();
+                                var options = {
+                                    zoom: 12,
+                                    center: {lat: 53.4837486, lng: 18.753565}
                                 }
-                            </script>
+                                var map = new google.maps.Map(
+                                    document.getElementById('map'), options);
+
+                                 var marker = new google.maps.Marker({position: options.center, map: map});
+                            }</script>
                             <script async defer
                                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdktX69Y6UxOEIewtqsdusvkcVqPoik1w&callback=initMap">
                             </script>
@@ -258,5 +269,6 @@
 <script type="text/javascript" src="{{asset('js/profile/profileJson.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/profile/profileEngine.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/profile/calendar.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/profile/locationProfile.js')}}"></script>
 </body>
 </html>

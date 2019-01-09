@@ -235,7 +235,7 @@ xhr.send(null);
 
 //checked dyscyplines
 
-var profilePic = ''
+
 var xhr2 = new XMLHttpRequest();
 var loggedUserId = document.getElementById("username-id").value;
 xhr2.onload = function() {
@@ -250,11 +250,15 @@ xhr2.onload = function() {
           console.log(responseObject2)
             if(responseObject2[0].avatar){
             for(j=0; j < responseObject2[0].tr_ph.length; j++){
-                if(responseObject2[0].tr_ph[j].id === parseInt(responseObject2[0].avatar)){
-                    profilePic += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
-                    profilePic += responseObject2[0].tr_ph[j].photo_name+"\" \/>"
-                    $(".profilePic").html(profilePic);
+                if(responseObject2[0].tr_ph[j].only_for_avatar == "YES"){
+                    if(responseObject2[0].tr_ph[j].id === parseInt(responseObject2[0].avatar)){
+                        var profilePic = ''
+                        profilePic += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
+                        profilePic += responseObject2[0].tr_ph[j].photo_name+"\" \/>"
+                        $(".profilePic").html(profilePic);
+                    }
                 }
+
             };
         }
       }
@@ -530,41 +534,52 @@ var photos ='';
 var photosForProfilePic = '';
 var gt = '>';
 for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
-    photosForProfilePic += "<input id='pic"+responseObject2[0].tr_ph[i].id+"' type='radio' class='radio-photo' name='id'";
-    photosForProfilePic += "' value='"+responseObject2[0].tr_ph[i].id+"'/>";
-    photosForProfilePic += "<label style='cursor:pointer' for='pic"+responseObject2[0].tr_ph[i].id+"'><div class='pickProfilePicture"+responseObject2[0].tr_ph[i].id+" gallery-photo'>";
-    photosForProfilePic += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
-    photosForProfilePic += responseObject2[0].tr_ph[i].photo_name+"\" \/></div>";
-    photosForProfilePic += '<meta name="_token" content="'+csrfToken+'"></label>';
-
+    if(responseObject2[0].tr_ph[i].only_for_avatar == "NO"){
+        photosForProfilePic += "<input id='pic"+responseObject2[0].tr_ph[i].id+"' type='radio' class='radio-photo' name='id'";
+        photosForProfilePic += "' value='"+responseObject2[0].tr_ph[i].id+"'/>";
+        photosForProfilePic += "<label style='cursor:pointer' for='pic"+responseObject2[0].tr_ph[i].id+"'><div class='pickProfilePicture"+responseObject2[0].tr_ph[i].id+" gallery-photo'>";
+        photosForProfilePic += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
+        photosForProfilePic += responseObject2[0].tr_ph[i].photo_name+"\" \/></div>";
+        photosForProfilePic += '<meta name="_token" content="'+csrfToken+'"></label>';
+    }
  }
  for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
-    delUrl.push("/public/"+responseObject2[0].id+'/'+responseObject2[0].tr_ph[i].photo_name);
-    photos += "<div class='gallery-photo'><span class='delete'><i id='pho"+responseObject2[0].tr_ph[i].id+"'class='far fa-trash-alt'></i></span><a href=\"";
-    photos += "\/storage/trainers_photos\/"+responseObject2[0].id+"\/"+ responseObject2[0].tr_ph[i].photo_name+"\" data-lightbox=\"my-gallery\" >"
-    photos += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
-    photos += responseObject2[0].tr_ph[i].photo_name+"\" \/></a></div>";
-    photos += '<meta name="_token" content="'+csrfToken+'">'
+    if(responseObject2[0].tr_ph[i].only_for_avatar == "NO"){
+        console.log('halo')
+        delUrl.push("/public/"+responseObject2[0].id+'/'+responseObject2[0].tr_ph[i].photo_name);
+        photos += "<div class='gallery-photo'><span class='delete'><i id='pho"+responseObject2[0].tr_ph[i].id+"'class='far fa-trash-alt'></i></span><a href=\"";
+        photos += "\/storage/trainers_photos\/"+responseObject2[0].id+"\/"+ responseObject2[0].tr_ph[i].photo_name+"\" data-lightbox=\"my-gallery\" >"
+        photos += " <img src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
+        photos += responseObject2[0].tr_ph[i].photo_name+"\" \/></a></div>";
+        photos += '<meta name="_token" content="'+csrfToken+'">'
+    }
  }
 
 
 var pickProfilePic = document.getElementById('profilePicPick');
 pickProfilePic.innerHTML = photosForProfilePic;
 for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
-    document.getElementById('pic'+responseObject2[0].tr_ph[i].id).addEventListener('click',function(e){
-        var target = e.target;
-        var x = document.getElementsByClassName('gallery-photo');
-        for(var q=0;q<x.length;q++){
-            x[q].classList.remove('checked-pic')
-        }
-        document.getElementsByClassName('pickProfilePicture'+target.id.substring(3))[0].classList.add("checked-pic");
-    })
+    if(responseObject2[0].tr_ph[i].only_for_avatar == "NO"){
+        console.log(responseObject2[0].tr_ph[i].id)
+        document.getElementById('pic'+responseObject2[0].tr_ph[i].id).addEventListener('click',function(e){
+            var target = e.target;
+            var x = document.getElementsByClassName('gallery-photo');
+            for(var q=0;q<x.length;q++){
+                x[q].classList.remove('checked-pic')
+            }
+            document.getElementsByClassName('pickProfilePicture'+target.id.substring(3))[0].classList.add("checked-pic");
+        })
+    }
+
 }
 
+
 var photContainer = document.getElementsByClassName("gallery-content")[0];
+console.log(photContainer)
 photContainer.innerHTML = photos;
 
 for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
+    if(responseObject2[0].tr_ph[i].only_for_avatar == "NO"){
     document.getElementById('pho'+responseObject2[0].tr_ph[i].id).addEventListener('click',function(e) {
         $.confirm({
             boxWidth: '30%',
@@ -597,6 +612,7 @@ for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
 }
 ,false );
 }
+}
 
 
 
@@ -604,6 +620,7 @@ for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
 
 document.getElementById('setProfilePic').addEventListener('click',function(){
     for(var r = 0; r<responseObject2[0].tr_ph.length; r++){
+        if(responseObject2[0].tr_ph[r].only_for_avatar == "NO"){
         if(document.getElementById("pic"+responseObject2[0].tr_ph[r].id).checked){
             let contentPic ="<div id='getheight-after'> <img id='profile-img-tag-after' style='width: 400px;'";
             contentPic += " src=\"\/storage/trainers_photos\/"+responseObject2[0].id+"\/";
@@ -642,7 +659,7 @@ document.getElementById('setProfilePic').addEventListener('click',function(){
                 });})
                 $('#ex3').modal('show'); 
         }
-}
+}}
 },false)
 
 

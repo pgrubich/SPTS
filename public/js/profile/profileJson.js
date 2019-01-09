@@ -159,10 +159,12 @@ $(function(){
 
                 //Galeria
                 $.each(element.tr_ph,function(ind,ele){
-                    photos += "<div class='gallery-photo'><div><a href=\"";
-                    photos += "\/storage/trainers_photos\/"+element.id+"\/"+ ele.photo_name+"\" data-lightbox=\"my-gallery\" >"
-                    photos += " <img src=\"\/storage/trainers_photos\/"+element.id+"\/";
-                    photos += ele.photo_name+"\" \/></a></div></div>"
+                    if(ele.only_for_avatar == "NO"){
+                        photos += "<div class='gallery-photo'><div><a href=\"";
+                        photos += "\/storage/trainers_photos\/"+element.id+"\/"+ ele.photo_name+"\" data-lightbox=\"my-gallery\" >"
+                        photos += " <img src=\"\/storage/trainers_photos\/"+element.id+"\/";
+                        photos += ele.photo_name+"\" \/></a></div></div>"
+                    }
                 });
 
                 if(element.avatar){

@@ -1,6 +1,18 @@
 $(function() {
 
-  
+    var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+    var eventRecords = [];
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+        responseObject = JSON.parse(xhttp.responseText);
+        // console.log(responseObject[0].)
+        
+        }
+    };
+    xhttp.open("GET", 'http://pri.me/api/profiles/'+id, true);
+    xhttp.send();
+
 
     // page is now ready, initialize the calendar...
   
@@ -52,7 +64,6 @@ $(function() {
       color: 'white',
       minTime: '06:00:00',
       eventClick: function(calEvent, jsEvent, view) {
-        console.log(calEvent)
         alert('Event: ' + calEvent.title);
         alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
         alert('View: ' + view.name);
