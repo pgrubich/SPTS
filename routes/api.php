@@ -35,4 +35,8 @@ Route::get('api/dyscyplina/{id}','ListByDisciplineController@show');
 
 Route::get('api/search/{id}','SearchController@show');
 
+Route::get('api/futureTrainerTrainings/{id}','CalendarController@futureTrainerTrainings');
+
+Route::get('api/pastTrainerTrainings/{id}','CalendarController@pastTrainerTrainings');
+
 Route::get('api/{discipline}/{location}','DisciplineAndLocationController@show');

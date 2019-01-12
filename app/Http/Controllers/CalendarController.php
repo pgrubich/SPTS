@@ -9,6 +9,7 @@ use App\Models\Trainer\TrOrderedTrainings;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class CalendarController extends Controller
 {
@@ -109,6 +110,31 @@ class CalendarController extends Controller
         // Wysłanie maila do trenera
             
         return redirect('/editProfile');
+    }
+
+
+    protected function futureTrainerTrainings($id)
+    {
+
+        $findstatus = Trainer::findOrFail($id);
+
+        return TrTraining::with('trOrdTr')
+                        ->where('trainer_id','=',$id)
+                        ->where('date', '>=', Carbon::today())
+                        ->get()->toJson(JSON_PRETTY_PRINT);
+
+    }
+
+    protected function pastTrainerTrainings($id)
+    {
+
+        $findstatus = Trainer::findOrFail($id);
+
+        return TrTraining::with('trOrdTr')
+                        ->where('trainer_id','=',$id)
+                        ->where('date', '<', Carbon::today())
+                        ->get()->toJson(JSON_PRETTY_PRINT);
+                        
     }
 
 

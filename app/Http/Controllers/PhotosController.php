@@ -202,7 +202,7 @@ class PhotosController extends Controller
 
     protected function updateProfilePicture(Request $request)
     {
-
+        
         $trainer = Trainer::find(Auth::user()->id);
         if ($trainer->avatar != NULL)
         {
@@ -212,7 +212,7 @@ class PhotosController extends Controller
                 $trainer->save();
             }
 
-            if ($photo->trainer_id = $trainer->id)
+            if ($photo->trainer_id == $trainer->id)
             {
                 Storage::delete('public/trainers_photos/'.$trainer->id.'/'.$photo->photo_name);
                 $photo->delete();
