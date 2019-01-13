@@ -651,3 +651,23 @@ input[type=file]::-webkit-file-upload-button {
     display:flex;
     flex-wrap:wrap;
   }
+
+
+
+  /* Table */
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    padding: 8px;
+  }
+  
+  tr:nth-child(2n+1) {
+    background-color:#e4f6fb;
+  }
+  td span {
+    cursor:pointer;
+  }

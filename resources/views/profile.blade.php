@@ -9,7 +9,8 @@
 	<meta name="author" content="">
 	
 	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1">
-    <link rel="stylesheet" href="{{asset('css/css/bootstrap.min.css')}}" type="text/css" />
+    <!-- <link rel="stylesheet" href="{{asset('css/css/bootstrap.min.css')}}" type="text/css" /> -->
+    <link rel="stylesheet" href="{{asset('css/css/buttons/bootstrap.min.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/profiles.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
@@ -26,7 +27,8 @@
     <script src='{{asset("js/profile/fullcalendar/fullcalendar.js")}}'></script>
     <script src='{{asset("js/profile/fullcalendar/locale/pl.js")}}'></script>
     <script src="{{asset('js/profile/jquery.scrollTo.min.js')}}"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" rel="stylesheet">
 	<!--[if lt IE 9]>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 	<![endif]-->
@@ -189,6 +191,53 @@
                         <div class="categories-content">
                             <div id="calendar">
                             </div>
+
+
+                                <!-- Modal HTML embedded directly into document -->
+                                <div id="eventModal" class="modal" style="max-width: 1000px; width: 720px;">
+                                <form method = 'POST'>
+                                <div id="eventInfo">
+                                <i class="fas fa-info-circle"></i> <h2 style="display: inline;">Informacje o treningu: </h2>
+                                <div id="eventInfoContent">
+
+                                </div>
+                                </div>
+                                <div id="eventForm">
+                                <i class="fab fa-wpforms"></i> <h2 style="display: inline;">Formularz zgłoszeniowy: </h2></br>
+                                <form>
+                                <div style="display:inline-block;">
+                                <p>
+                                    Imię: 
+                                    <input class="form-input" style='margin-left: 48px;' name='name' type='text' placeholder='Podaj imię...' pattern="[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,10}" title="Pierwsza litera wielka, maksymalnie 11 znaków">
+                                </p><p>
+                                    Telefon:
+                                    <input class="form-input" style='margin-left: 24px;'  name='phone' type='tel' placeholder='Podaj telefon...' pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" >
+                                </p>
+                                </div>
+                                <div style="display:inline-block; margin-left: 41px;">
+                                <p>
+                                    Nazwisko: 
+                                    <input class="form-input" style='margin-left: 20px;' name='name' type='text' placeholder='Podaj nazwisko...' pattern="[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,10}" title="Pierwsza litera wielka, maksymalnie 11 znaków">
+                                </p><p>
+                                    Email:
+                                    <input class="form-input" style='margin-left: 52px;' name='phone' type='tel' placeholder='Podaj adres email...' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                </p>
+                                </div> 
+                                <p style="margin-top: 0px;">
+                                Komentarz: 
+                                </br>
+                                <textarea placeholder="Wprowadź komentarz dla trenera" style="width:100%; height: 100px; margin-top: 10px;" class="form-input" maxlength="2048" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 2000 "></textarea>
+                                 </p>
+                                 <input class="save-button" type="submit" value="Zapisz">
+                                </form>
+                                </div>
+                                <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+
+
+
+
+
                         </div>
                         </div>
                     </section>

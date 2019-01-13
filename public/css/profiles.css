@@ -330,3 +330,26 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.fa-info-circle, .fa-wpforms{
+    color: #3cdaa8;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 30px;
+}
+
+.form-input{
+    border-radius: 5px;
+    padding: 2px;
+    border: 1.5px solid #dfdede;
+}
+
+.save-button{
+    width: 100px;
+    color: white;
+    background-color: #3cdaa8;
+    border: none;
+    float: right;
+    padding: 7px;
+    border-radius: 3px;
+}

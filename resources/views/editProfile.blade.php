@@ -409,6 +409,14 @@
 </div>
                                     </div>
                             </form>
+
+
+                                <!-- training table -->
+<div id="table-container"></div>
+
+
+
+
                         </fieldset>
                         
                     </div>
