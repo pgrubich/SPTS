@@ -3,6 +3,7 @@
 namespace App\Models\Trainer;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class TrTraining extends Model
 {
@@ -19,12 +20,12 @@ class TrTraining extends Model
 
     public function getFullBeginDateAttribute()
     {
-        return $this->date.(' ').($this->begin_time);
+        return Carbon::parse($this->date.('').($this->begin_time))->format('Y-m-d\TH:i:s.u'); 
     }
 
     public function getFullEndDateAttribute()
     {
-        return $this->date.(' ').($this->end_time);
+        return Carbon::parse($this->date.('').($this->end_time))->format('Y-m-d\TH:i:s.u'); 
     }
 
 }

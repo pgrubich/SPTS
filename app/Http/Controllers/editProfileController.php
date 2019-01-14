@@ -24,15 +24,22 @@ class editProfileController extends Controller
 
         $trainer = Trainer::findOrFail(Auth::user()->id);
 
-        $trainer->name = $request['name'];
-        $trainer->surname = $request['surname'];
-        $trainer->gender = $request['gender'];
+        if ($request['name'] == '') $trainer->name = NULL;  
+        else $trainer->name = $request['name'];
+        if ($request['surname'] == '') $trainer->surname = NULL; 
+        else $trainer->surname = $request['surname'];
+        if ($request['gender'] == '') $trainer->gender = NULL; 
+        else $trainer->gender = $request['gender'];
         if ($request['bdate'] == '') $trainer->bdate = NULL;      
         else $trainer->bdate = $request['bdate'];
-        $trainer->phone = $request['phone'];
-        $trainer->facebook = $request['facebook'];
-        $trainer->instagram = $request['instagram'];
-        $trainer->page = $request['page'];
+        if ($request['phone'] == '') $trainer->phone = NULL; 
+        else $trainer->phone = $request['phone'];
+        if ($request['facebook'] == '') $trainer->facebook = NULL; 
+        else $trainer->facebook = $request['facebook'];
+        if ($request['instagram'] == '') $trainer->instagram = NULL; 
+        else $trainer->instagram = $request['instagram'];
+        if ($request['page'] == '') $trainer->page = NULL; 
+        else $trainer->page = $request['page'];
 
         $trainer->save();
 

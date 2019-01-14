@@ -105,11 +105,11 @@
                                         Płeć:
                                         <span style="margin-left:104px;">
                                         <label class="container-radio" >
-                                        <input style="margin-left: 125px;" form="editPrimaryInfo" type="radio" name="gender" value="f">
+                                        <input style="margin-left: 125px;" form="editPrimaryInfo" type="radio" name="gender" value="K">
                                         kobieta  <span class="checkmark-radio"></span></label>
                                         
                                         <label class="container-radio" >
-                                        <input form="editPrimaryInfo" type="radio" name="gender" value="m">    
+                                        <input form="editPrimaryInfo" type="radio" name="gender" value="M">    
                                         mężczyzna  <span class="checkmark-radio"></span></label>
 </span>
                                 </p>
