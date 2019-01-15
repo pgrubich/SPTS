@@ -231,7 +231,6 @@
                                  <input class="save-button" type="submit" value="Zapisz">
                                  </div>
                                 <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
-                                <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                 <span id="idEventToken"></div>
                                 </form>
                                 
