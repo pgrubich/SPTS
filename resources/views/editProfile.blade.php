@@ -368,31 +368,31 @@
                                     <div id="edit-loc" style='display: none; font-size:14px; margin-left: 20px;'>
                                         <p>
                                             Nazwa zajęć:
-                                            <input placeholder="Podaj nazwę zajęć..." class="edit-uni" form="addUni" name='name' type="text" pattern=".{3,}" required >
+                                            <input placeholder="Podaj nazwę zajęć..." class="edit-uni" form="addTraining" name='name' type="text" pattern=".{3,}" >
                                         </p>
                                         <p style="display: inline-block;">
                                             Miejsce:
-                                            <input placeholder="Podaj miejsce zajęć..." class="edit-loc-place" form="addUni" name='course' type="text" pattern=".{3,}" required >
+                                            <input placeholder="Podaj miejsce zajęć..." class="edit-loc-place" form="addTraining" name='place' type="text" pattern=".{3,}" required >
                                         </p>
                                         <p style="display:inline-block">
                                             Data:
-                                            <input class="edit-startdate-loc" form="addUni" name='begin_date' type="date" max="2018-12-31" min="1900-01-01">
+                                            <input class="edit-startdate-loc" form="addTraining" name='date' type="date" max='{{ Carbon\Carbon::now()->addMonths(1)->addWeeks(2)->toDateString() }}' min='{{ Carbon\Carbon::now()->addDays(1)->toDateString() }}' required>
                                         </p>
                                         <p style="display:inline-block;margin-left: 10px;"> 
                                             Godzina od:
-                                            <input class="edit-time" form="addUni" name='begin_time' type="time" >
+                                            <input class="edit-time" form="addTraining" name='begin_time' type="time" required>
                                         </p>
                                         <p style="display:inline-block;margin-left: 13px;">
                                             do:
-                                            <input class="edit-time" form="addUni" name='end_time' type="time">
+                                            <input class="edit-time" form="addTraining" name='end_time' type="time" required>
                                         </p>
                                         <p style="display:inline-block;">
                                             Maks. liczba osób:
-                                            <input class="edit-number" placeholder="0" form="addUni" name='end_time' type="number">
+                                            <input class="edit-number" value="1" form="addTraining" name='client_limit' type="number" min="1" max="15" required>
                                         </p>
                                         <p style="display:inline-block;margin-left: 64px;">
                                             Cena zł (1 os.):
-                                            <input class="edit-time" placeholder="0" style="width:83px" form="addUni" name='end_time' type="number">
+                                            <input class="edit-time" placeholder="0" style="width:83px" form="addTraining" name='price' type="number">
                                         </p><br>
                                         <span style="display:inline-block;position: relative;bottom: 182px;
 ">
@@ -400,13 +400,13 @@
                                         </span><p style="display:inline-block;"><textarea placeholder="Podaj opis treningu..." style="width:480px; margin-left:100px; border: 1.5px solid #dfdede;" class="edit-text" name="description" cols="90" rows="10" maxlength="2048" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 2000 "></textarea>                                        </p>
                                         <p>
                                             Powtórz:
-                                            <input style="margin-left: 73px;" class="edit-number" placeholder="0" form="addUni" name='end_time' type="number">
+                                            <input style="margin-left: 73px;" class="edit-number" value="0" form="addTraining" name='repeat' type="number" min="0" max="4">
                                             razy
                                         </p>
-                                        <input type='hidden' form="addUni" name='id' value='{{ Auth::user()->id }}'/>
-                                        <input form="addUni" type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                        <input type='hidden' form="addTraining" name='id' value='{{ Auth::user()->id }}'/>
+                                        <input form="addTraining" type='hidden' value='{{ csrf_token() }}' name='_token'/>
                                         <div style="margin-bottom: 70px;">
-                                        <input class="add-button" type="submit" value="Dodaj trening" style="margin-right:36px" form="addUni" >
+                                        <input class="add-button" type="submit" value="Dodaj trening" style="margin-right:36px" form="addTraining" >
 </div>
                                     </div>
                             </form>

@@ -76,6 +76,8 @@ Route::post('destroyProfilePicture', ['uses' => 'PhotosController@destroyProfile
 
 Route::post('addTraining', ['uses' =>'CalendarController@addTraining']);
 
+Route::post('editTraining', ['uses' =>'CalendarController@editTraining']);
+
 Route::post('deleteTraining/{id}', ['uses' =>'CalendarController@deleteTraining']);
 
 Route::post('orderTraining', ['uses' =>'CalendarController@orderTraining']);

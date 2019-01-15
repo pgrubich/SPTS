@@ -16,6 +16,7 @@ class CalendarController extends Controller
 
     protected function addTraining(Request $request)
     {
+
         if (TrTraining::where('date', $request['date'])
             ->where('begin_time',$request['begin_time'])
             ->where('trainer_id',Auth::user()->id)
@@ -27,18 +28,40 @@ class CalendarController extends Controller
         {
             TrTraining::create([
                 'date' => $request['date'],
+                'name' => $request['name'],
                 'begin_time' => $request['begin_time'],
                 'end_time' => $request['end_time'],
                 'status' => "wolne",
                 'place' => $request['place'],
+                'price' => $request['price'],
                 'client_limit' => $request['client_limit'],
+                'description' => $request['description'],
                 'actual_client_number' => 0,
                 'trainer_id' => Auth::user()->id,
             ]);
 
-            return redirect('/editProfile');
+        return redirect('/editProfile');
 
         }
+
+    }
+
+
+    protected function editTraining(Request $request)
+    {
+        /*
+        $trTraining = TrTraining::findOrFail($request['id']);
+
+        if ($request['university'] != '')           $trTraining->university = $request['university'];
+        if ($request['course'] != '')               $trTraining->course = $request['course'];
+        if ($request['degree'] != '')               $trTraining->degree = $request['degree'];
+        if ($request['begin_date'] == '')           $trTraining->begin_date = NULL;      
+        else                                        $trTraining->begin_date = $request['begin_date'];
+        if ($request['end_date'] == '')             $trTraining->end_date = NULL;      
+        else                                        $trTraining->end_date = $request['end_date'];
+        $trUniversity->save();
+        */
+        return $request;
 
     }
 

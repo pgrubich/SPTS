@@ -39,45 +39,45 @@ xhttp.onreadystatechange = function() {
 
 
 
-        actualTableContent+= '<form  action="editEvent" method = "POST"> \
+        actualTableContent+= '<form  action="editTraining" method = "POST"> \
         <br>\
                 <div id="edit-event-'+responseObject[i].id+'" style="display:none; font-size:14px; margin-left: 20px;">\
                     <p style="margin-bottom: 2px;">\
                         Nazwa zajęć:\
-                        <input value="'+responseObject[i].name+'" placeholder="Podaj nazwę zajęć..." class="edit-uni" form="addUni" name="name" type="text" pattern=".{3,}" required >\
+                        <input value="'+responseObject[i].name+'" placeholder="Podaj nazwę zajęć..." class="edit-uni" name="name" type="text" pattern=".{3,}">\
                     </p>\
                     <p style="margin-bottom: 2px;display: inline-block;">\
                         Miejsce:\
-                        <input value="'+responseObject[i].place+'" placeholder="Podaj miejsce zajęć..." class="edit-loc-place" form="addUni" name="course" type="text" pattern=".{3,}" required >\
+                        <input value="'+responseObject[i].place+'" placeholder="Podaj miejsce zajęć..." class="edit-loc-place" name="place" type="text" pattern=".{3,}" required >\
                     </p>\
                     <p style="margin-bottom: 2px;display:inline-block">\
                         Data:\
-                        <input value="'+responseObject[i].date+'" class="edit-startdate-loc" form="addUni" name="begin_date" type="date" max="2018-12-31" min="1900-01-01">\
+                        <input value="'+responseObject[i].date+'" class="edit-startdate-loc" name="date" type="date" required>\
                     </p>\
                     <p style="margin-bottom: 2px;display:inline-block;margin-left: 10px;"> \
                         Godzina od:\
-                        <input value="'+responseObject[i].begin_time+'" class="edit-time" form="addUni" name="begin_time" type="time" >\
+                        <input value="'+responseObject[i].begin_time+'" class="edit-time" name="begin_time" type="time" >\
                     </p>\
                     <p style="margin-bottom: 2px;display:inline-block;margin-left: 13px;">\
                         do:\
-                        <input value="'+responseObject[i].end_time+'"  class="edit-time" form="addUni" name="end_time" type="time">\
+                        <input value="'+responseObject[i].end_time+'"  class="edit-time" name="end_time" type="time" min="1" max="15">\
                     </p>\
                     <p style="margin-bottom: 2px;display:inline-block;">\
                         Maks. liczba osób:\
-                        <input value="'+responseObject[i].client_limit+'" class="edit-number" placeholder="0" form="addUni" name="end_time" type="number">\
+                        <input value="'+responseObject[i].client_limit+'" class="edit-number" placeholder="0" name="client_limit" type="number">\
                     </p>\
                     <p style="margin-bottom: 2px;display:inline-block;margin-left: 64px;">\
                         Cena zł (1 os.):\
-                        <input value="'+responseObject[i].price+'" class="edit-time" placeholder="0" style="width:83px" form="addUni" name="end_time" type="number">\
+                        <input value="'+responseObject[i].price+'" class="edit-time" placeholder="0" style="width:83px" name="price" type="number">\
                     </p><br>\
                     <span style="margin-bottom: 2px;display:inline-block;position: relative;bottom: 182px;\
 ">\
                         Opis:\
                     </span><p style="margin-bottom: 2px;display:inline-block;"><textarea placeholder="Podaj opis treningu..."  style="width:480px; margin-left:100px; border: 1.5px solid #dfdede;" class="edit-text" name="description" cols="90" rows="10" maxlength="2048" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 2000 ">'+responseObject[i].description+'</textarea> </p>\
-                    <input type="hidden" form="addUni" name="id" value="{{ Auth::user()->id }}"/>\
-                    <input form="addUni" type="hidden" value="{{ csrf_token() }}" name="_token"/>\
+                    <input type="hidden" name="id" value="'+responseObject[i].trainer_id+'"/>\
+                    <input type="hidden" value="{{ csrf_token() }}" name="_token"/>\
                     <div style="margin-bottom: 70px;">\
-                    <input class="add-button" type="submit" value="Edytuj trening" style="margin-right:23px"" >\
+                    <input class="add-button" type="submit" value="Zapisz" style="margin-right:23px"" >\
                     <input id="backFromEdit-'+responseObject[i].id+'" class="add-button"  value="Wróć" style="width: 106px;margin-right: 19px;text-align: center;" >\
 </div>\
                 </div>\
