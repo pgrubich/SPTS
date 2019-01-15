@@ -74,7 +74,7 @@ xhttp.onreadystatechange = function() {
 ">\
                         Opis:\
                     </span><p style="margin-bottom: 2px;display:inline-block;"><textarea placeholder="Podaj opis treningu..."  style="width:480px; margin-left:100px; border: 1.5px solid #dfdede;" class="edit-text" name="description" cols="90" rows="10" maxlength="2048" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 2000 ">'+responseObject[i].description+'</textarea> </p>\
-                    <input type="hidden" name="id" value="'+responseObject[i].trainer_id+'"/>\
+                    <input type="hidden" name="id" value="'+responseObject[i].id+'"/>\
                     <input type="hidden" value="'+csrfToken2+'" name="_token"/>\
                     <div style="margin-bottom: 70px;">\
                     <input class="add-button" type="submit" value="Zapisz" style="margin-right:23px"" >\

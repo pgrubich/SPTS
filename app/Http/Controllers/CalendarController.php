@@ -80,40 +80,59 @@ class CalendarController extends Controller
     protected function orderTraining(Request $request)
     {
 
-        $delete_token = str_random(16);
-
-
-        if (TrTraining::where('status', '=', "zajęty")
-            ->where('id', '=', $request['training_id'])
-            ->exists()) 
+        if (TrOrderedTrainings::where(function ($query) use ($request)
+            {
+                $query->where('training_id', $request['id'])
+                      ->where('email', $request['email']);
+            })
+            ->orWhere(function($query) use ($request)
+            {   
+                $query->where('training_id', $request['id'])
+                      ->where('phone', $request['phone']);	
+            })
+            ->exists())
         {
-            return ('Podany termin jest niedostępny.');
+                return ('Nie można zajerestrować się na trening z podanymi danymi.');
         }
         else
         {
 
-            TrOrderedTrainings::create([
-                'name' => $request['name'],
-                'surname' => $request['surname'],
-                'phone' => $request['phone'],
-                'email' => $request['email'],
-                'training_id' => $request['training_id'],
-                'delete_token' => $delete_token,
-            ]);
+            $delete_token = str_random(16);
+
+            if (TrTraining::where('status', '=', "zajęty")
+                ->where('id', '=', $request['id'])
+                ->exists()) 
+            {
+                return ('Podany termin jest niedostępny.');
+            }
+            else
+            {
+
+                TrOrderedTrainings::create([
+                    'name' => $request['name'],
+                    'surname' => $request['surname'],
+                    'phone' => $request['phone'],
+                    'email' => $request['email'],
+                    'comment' => $request['comment'],
+                    'training_id' => $request['id'],
+                    'delete_token' => Hash::make($delete_token),
+                ]);
 
 
-            $training = TrTraining::find($request['training_id']);
-            $training->actual_client_number = $training->actual_client_number + 1;
-            if( $training->client_limit == $training->actual_client_number) $training->status = "zajęte";
-            $training->save();
+                $training = TrTraining::find($request['id']);
+                $training->actual_client_number = $training->actual_client_number + 1;
+                if($training->client_limit == $training->actual_client_number) $training->status = "zajęte";
+                $training->save();
 
 
-            // Wysłanie maila do klienta
-            // Wysłanie maila do trenera
+                // Wysłanie maila do klienta
+                // Wysłanie maila do trenera
 
 
-            return redirect('/profile/'.$id);
+                return redirect('/profiles/'.$training->trainer_id);
+            }
         }
+
     }
 
 
