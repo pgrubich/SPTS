@@ -74,7 +74,7 @@ xhr.onload = function() {
       for( var j = 0; j < responseObject[i].rating ; j++ ){
         content += '<span class="fa fa-star green-star-checked"></span>';
       }
-      for(var k = 0; k < (5-responseObject[i].rating); k++){
+      for(var k = 1; k <= (5-responseObject[i].rating); k++){
         content += '<span class="fa fa-star green-star"></span>';
       }
       content += "</div><button type='button' class='btn green-button'>Zobacz profil</button></div></div>";
@@ -92,7 +92,8 @@ xhr.onload = function() {
     trainerBox.innerHTML = content;
     for(var i = 0; i < responseObject.length; i++){
       var event = document.getElementById("trainer_record_"+responseObject[i].id);
-      event.addEventListener('click',function(){ window.location.href = 'http://pri.me/profiles/'+this.id.slice(-1);},false);
+      event.addEventListener('click',function(){
+        window.location.href = 'http://pri.me/profiles/'+x[2];},false);
     }
     let resultValue = document.getElementsByClassName('result-value');
 
@@ -252,7 +253,8 @@ document.getElementById('filter-button').addEventListener('click', function(){
 
         for(var i = 0; i < responseObject.length; i++){
           var event = document.getElementById("trainer_record_"+responseObject[i].id);
-          event.addEventListener('click',function(){ window.location.href = 'http://pri.me/profiles/'+this.id.slice(-1);},false);
+          var y = this.id.split("_");
+          event.addEventListener('click',function(){ window.location.href = 'http://pri.me/profiles/'+y[2]},false);
         }
         let resultValue = document.getElementsByClassName('result-value');
     
