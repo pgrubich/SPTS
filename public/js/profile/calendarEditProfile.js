@@ -48,7 +48,7 @@ xhttp.onreadystatechange = function() {
                     </p>\
                     <p style="margin-bottom: 2px;display: inline-block;">\
                         Miejsce:\
-                        <input value="'+responseObject[i].place+'" placeholder="Podaj miejsce zajęć..." class="edit-loc-place" name="place" type="text" pattern=".{3,}" required >\
+                        <input value="'+responseObject[i].place+'" placeholder="Podaj miejsce zajęć..." class="edit-loc-place" name="place" type="text" pattern=".{3,}" required>\
                     </p>\
                     <p style="margin-bottom: 2px;display:inline-block">\
                         Data:\
@@ -56,15 +56,15 @@ xhttp.onreadystatechange = function() {
                     </p>\
                     <p style="margin-bottom: 2px;display:inline-block;margin-left: 10px;"> \
                         Godzina od:\
-                        <input value="'+responseObject[i].begin_time+'" class="edit-time" name="begin_time" type="time" >\
+                        <input value="'+responseObject[i].begin_time+'" class="edit-time" name="begin_time" type="time" required>\
                     </p>\
                     <p style="margin-bottom: 2px;display:inline-block;margin-left: 13px;">\
                         do:\
-                        <input value="'+responseObject[i].end_time+'"  class="edit-time" name="end_time" type="time" min="1" max="15">\
+                        <input value="'+responseObject[i].end_time+'"  class="edit-time" name="end_time" type="time" required>\
                     </p>\
                     <p style="margin-bottom: 2px;display:inline-block;">\
                         Maks. liczba osób:\
-                        <input value="'+responseObject[i].client_limit+'" class="edit-number" placeholder="0" name="client_limit" type="number">\
+                        <input value="'+responseObject[i].client_limit+'" class="edit-number" placeholder="0" name="client_limit" type="number" min="1" max="15" required>\
                     </p>\
                     <p style="margin-bottom: 2px;display:inline-block;margin-left: 64px;">\
                         Cena zł (1 os.):\
