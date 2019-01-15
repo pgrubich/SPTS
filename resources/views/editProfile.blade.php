@@ -364,6 +364,7 @@
                             <form id="addTraining" action='addTraining' method = 'POST'>
                             <br>
                                     <span id="show-loc">+ Dodaj trening</span></br></br>
+                                   
                                     <div id="edit-loc" style='display: none; font-size:14px; margin-left: 20px;'>
                                         <p>
                                             Nazwa zajęć:
@@ -409,12 +410,16 @@
 </div>
                                     </div>
                             </form>
-
-
+                                            </br>
+                            <h2>Zarządzaj przyszłymi treningami</h2>
+                                    </br>
                                 <!-- training table -->
 <div id="table-container"></div>
+</br>
+                            <h2>Zakończone treningi</h2>
+                                    </br>
 
-
+                                    <div id="table-container2"></div>
 
 
                         </fieldset>

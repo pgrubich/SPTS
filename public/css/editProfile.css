@@ -665,9 +665,34 @@ input[type=file]::-webkit-file-upload-button {
     padding: 8px;
   }
   
-  tr:nth-child(2n+1) {
+  tr:nth-child(3n+1) {
     background-color:#e4f6fb;
   }
-  td span {
-    cursor:pointer;
-  }
+.deleteEventBut{
+    position: relative;
+    float: right;
+    right: 9px;
+    cursor: pointer;
+    text-decoration: none;
+    bottom: 26px;
+    font-size: smaller;
+    color: #868484;
+}
+.editEventBut{
+    cursor: pointer;
+    text-decoration: none;
+    /* bottom: 22px; */
+    font-size: smaller;
+    position: relative;
+    top: 6px;
+    right: -5px;
+    color: #868484;
+}
+.editEventBut:hover{
+    color: #868484;
+    text-decoration: none;
+}
+.deleteEventBut:hover{
+    color: #868484;
+    text-decoration: none;
+}
