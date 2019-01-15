@@ -229,11 +229,12 @@
                                 <textarea placeholder="Wprowadź komentarz dla trenera" style="width:100%; height: 100px; margin-top: 10px;" class="form-input" maxlength="2048" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 2000 "></textarea>
                                  </p>
                                  <input class="save-button" type="submit" value="Zapisz">
-                                </form>
-                                </div>
+                                 </div>
                                 <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
                                 <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                 <span id="idEventToken"></div>
+                                </form>
+                                
 
 
 
