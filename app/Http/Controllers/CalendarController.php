@@ -89,7 +89,7 @@ class CalendarController extends Controller
     {
 
         $trTraining = TrTraining::findOrFail($id);
-        if ($trTraining->status == 'zajete')  return ("Nie można usunąć treningu.");
+        if ($trTraining->status == 'zajęte')  return ("Nie można usunąć treningu.");
         else $trTraining->delete();
             
         return redirect('/editProfile');
