@@ -176,6 +176,7 @@ xhttp.onreadystatechange = function() {
 
 }
 ,false );
+}
     for(var x=0; x<responseObject.length; x++){
         document.getElementById('backFromEdit-'+responseObject[x].id).addEventListener('click',function() {
             let idSplit = event.target.id.split("-");
@@ -305,7 +306,6 @@ xhttp2.onreadystatechange = function() {
 };
 xhttp2.open("GET", 'http://pri.me/api/pastTrainerTrainings/'+id, true);
 xhttp2.send();
-
 
 
 
