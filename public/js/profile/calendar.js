@@ -13,6 +13,7 @@ $(function() {
           start: responseObject[0].tr_tr[i].full_begin_date,
           end: responseObject[0].tr_tr[i].full_end_date,
           id: "mojeid",
+          eventid: responseObject[0].tr_tr[i].id,
           color: "#4bc0e3",
           className: 'training-cal',
           place: responseObject[0].tr_tr[i].place,
@@ -49,6 +50,7 @@ $(function() {
             eventInfo += '<p>Cena: <b style="font-size: 19px;">'+ calEvent.price +"zł.</b>";
             eventInfo += '<p>Opis:</br> <b style="font-size: 19px;">'+ calEvent.description2 +"</b>";
             $('#eventInfoContent').html(eventInfo)
+            $('#idEventToken').html("<input type='hidden' name='id' value='"+calEvent.eventid+"'/>")
           }
         })
 
