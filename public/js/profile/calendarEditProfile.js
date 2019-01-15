@@ -142,6 +142,40 @@ xhttp.onreadystatechange = function() {
             }
         },false)
     }
+	    for(var x=0; x<responseObject.length; x++){
+    document.getElementById('deleteEvent-'+responseObject[x].id).addEventListener('click',function(e) {
+        let idSplit2 = event.target.id.split("-");
+        $.confirm({
+            boxWidth: '30%',
+            useBootstrap: false,
+            title: 'Usuwanie',
+            content: 'Czy na pewno chcesz usunąć trening ?',
+            buttons: {
+                usuń: {
+                    btnClass: 'btn-blue',
+                    action: function () {
+                    var t = e.target;
+                    $.ajax({
+                        data: {
+                            "_token": $('#token').val()
+                            },
+                        method: "POST",
+                        url: "/deleteTraining/"+idSplit2[1],
+                        }).done(function( msg ) {
+                        if(msg.error == 0){
+                            window.location.reload()
+                        }else{
+                            window.location.reload()
+                        }
+                    });
+                }},
+                cofnij: function () {
+                }
+            }
+        })
+
+}
+,false );
     for(var x=0; x<responseObject.length; x++){
         document.getElementById('backFromEdit-'+responseObject[x].id).addEventListener('click',function() {
             let idSplit = event.target.id.split("-");
