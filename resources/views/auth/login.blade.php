@@ -54,6 +54,13 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Zaloguj się') }}
                                 </button>
+                                <a class="btn btn-primary" href="/login/facebook">
+                                    Facebook
+                                </a>s
+
+                                <a class="btn btn-primary" href="/login/google">
+                                    Google
+                                </a>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Nie pamiętasz hasła?') }}

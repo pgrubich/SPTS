@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <link rel="stylesheet" href="{{asset('css/register.css')}}" type="text/css" />
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -46,12 +49,31 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div id="checkbox-container">
+                            <input type="checkbox" name="policy" id="policy" class="form-control{{ $errors->has('policy') ? ' is-invalid' : '' }}">
+                            <span>
+                                Potwierdzam, że zapoznałam(em) się z treścią <a href="/privacy">Polityki Prywatności</a> i akceptuję jej postanowienia.<br>
+                            </span>
+                            @if ($errors->has('policy'))
+                                <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('policy') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Zarejestruj się') }}
                                 </button>
+                                <a class="btn btn-primary" href="/login/facebook">
+                                    Facebook
+                                </a>
+
+                                <a class="btn btn-primary" href="/login/google">
+                                    Google
+                                </a>
                             </div>
                         </div>
                     </form>

@@ -20,14 +20,28 @@ body
     cursor: pointer;
 }
 
-#logBar > .logo
-{
+#logBar > .logo {
     width: 316px;
     height: 100px;
-    background-image: url('images/logo.png');
-    margin-right:15px;
-    font-size:25px;
-    display:inline-block
+    background-image: url(images/logo.png);
+    background-size: contain;
+    margin-right: 15px;
+    margin-top: 10px;
+    background-repeat: no-repeat;
+    font-size: 25px;
+    display: inline-block;
+}
+
+#logBar > a >.logo {
+    width: 316px;
+    height: 100px;
+    background-image: url(images/logo.png);
+    background-size: contain;
+    margin-right: 15px;
+    margin-top: 10px;
+    background-repeat: no-repeat;
+    font-size: 25px;
+    display: inline-block;
 }
 
 #logBar > span
@@ -65,3 +79,15 @@ body
     nav span     { display: none; }
     nav select { display: inline-block; }
   } */
+
+.privacyPolicy {
+    margin: auto;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 25px;
+}
+
+.privacyPolicy h1{
+    text-align: center;
+}
+
