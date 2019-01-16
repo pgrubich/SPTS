@@ -253,8 +253,11 @@ document.getElementById('filter-button').addEventListener('click', function(){
 
         for(var i = 0; i < responseObject.length; i++){
           var event = document.getElementById("trainer_record_"+responseObject[i].id);
-          var y = this.id.split("_");
-          event.addEventListener('click',function(){ window.location.href = 'http://pri.me/profiles/'+y[2]},false);
+          if(event){
+            var y = event.id.split("_");
+            event.addEventListener('click',function(){ window.location.href = 'http://pri.me/profiles/'+y[2]},false);
+          }
+
         }
         let resultValue = document.getElementsByClassName('result-value');
     
