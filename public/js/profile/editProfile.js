@@ -730,7 +730,11 @@ for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
 }
 ,false );
 }
-
+if(responseObject2[0].gender == "K"){
+    document.getElementById("genderK").checked = true;
+}else if(responseObject2[0].gender == "M"){
+    document.getElementById("genderM").checked = true;
+}
 
 //hide edit cer
 var yyy = document.getElementsByClassName("single-cer");
@@ -763,7 +767,6 @@ for(var i=0; i<yyy.length;i++){
 
 
 }
-
 
 
   }

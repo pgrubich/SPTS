@@ -42,13 +42,16 @@ $(function() {
             // $(this).css('border-color', 'red');
             $('#section-nav').removeClass('sticky');
             $('#eventModal').modal('show');
-            let eventInfo = '<p>Nazwa zajęć: <b style="font-size: 19px;">'+ calEvent.title + "</b></p>";
+            if(calEvent.title){var eventInfo = '<p>Nazwa zajęć: <b style="font-size: 19px;">'+ calEvent.title + "</b></p>";}
+              else{var eventInfo = '<p>Nazwa zajęć: <b style="font-size: 19px;">Brak danych</b></p>';}
             eventInfo += "<p>Data:  <b style='font-size: 19px;'>"+calEvent.date+"</b>      Godzina: <b style='font-size: 19px;'>"+calEvent.begin_time+" - "+calEvent.end_time+"</b> </p>";
-            eventInfo += '<p>Miejsce: <b style="font-size: 19px;">'+ calEvent.place + "</b></p>";
+            if(calEvent.place){eventInfo += '<p>Miejsce: <b style="font-size: 19px;">'+ calEvent.place + "</b></p>";}
+              else{eventInfo += '<p>Miejsce: <b style="font-size: 19px;">'+ calEvent.place + "</b></p>";}
             eventInfo += '<p>'+calEvent.description+'</b></p>';
-            if(calEvent.price)
-            eventInfo += '<p>Cena: <b style="font-size: 19px;">'+ calEvent.price +"zł.</b>";
-            eventInfo += '<p>Opis:</br> <b style="font-size: 19px;">'+ calEvent.description2 +"</b>";
+            if(calEvent.price){ eventInfo += '<p>Cena: <b style="font-size: 19px;">'+ calEvent.price +"zł.</b>";}
+              else{ eventInfo += '<p>Cena: <b style="font-size: 19px;">Brak danych</b>'; }
+            if(calEvent.description2){eventInfo += '<p>Opis:</br> <b style="font-size: 19px;">'+ calEvent.description2 +"</b>";}
+              else{ eventInfo += '<p>Opis:</br> <b style="font-size: 19px;">Brak danych</b>'; }
             $('#eventInfoContent').html(eventInfo)
             $('#idEventToken').html("<input type='hidden' name='id' value='"+calEvent.eventid+"'/>")
           }

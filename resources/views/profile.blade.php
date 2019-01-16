@@ -195,7 +195,7 @@
 
                                 <!-- Modal HTML embedded directly into document -->
                                 <div id="eventModal" class="modal" style="max-width: 1000px; width: 720px;">
-                                <form method = 'POST'>
+                                <form action='/profiles/orderTraining' method = 'POST'>
                                 <div id="eventInfo">
                                 <i class="fas fa-info-circle"></i> <h2 style="display: inline;">Informacje o treningu: </h2>
                                 <div id="eventInfoContent">
@@ -204,36 +204,36 @@
                                 </div>
                                 <div id="eventForm">
                                 <i class="fab fa-wpforms"></i> <h2 style="display: inline;">Formularz zgłoszeniowy: </h2></br>
-                                <form>
                                 <div style="display:inline-block;">
                                 <p>
                                     Imię: 
-                                    <input class="form-input" style='margin-left: 48px;' name='name' type='text' placeholder='Podaj imię...' pattern="[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,10}" title="Pierwsza litera wielka, maksymalnie 11 znaków">
-                                </p><p>
+                                    <input class="form-input" style='margin-left: 48px;' name='name' type='text' placeholder='Podaj imię...' pattern="[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,10}" title="Pierwsza litera wielka, maksymalnie 11 znaków" required>
+                                </p>
+                                <p>
                                     Telefon:
-                                    <input class="form-input" style='margin-left: 24px;'  name='phone' type='tel' placeholder='Podaj telefon...' pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" >
+                                    <input class="form-input" style='margin-left: 24px;'  name='phone' type='tel' placeholder='Podaj telefon...' pattern="([0-9]{3}-[0-9]{3}-[0-9]{3})|([0-9]{9})" title="Numer w formacie 123-456-789 lub 123456789.">
                                 </p>
                                 </div>
                                 <div style="display:inline-block; margin-left: 41px;">
                                 <p>
                                     Nazwisko: 
-                                    <input class="form-input" style='margin-left: 20px;' name='name' type='text' placeholder='Podaj nazwisko...' pattern="[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,10}" title="Pierwsza litera wielka, maksymalnie 11 znaków">
-                                </p><p>
+                                    <input class="form-input" style='margin-left: 20px;' name='surname' type='text' placeholder='Podaj nazwisko...' pattern="[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,10}" title="Pierwsza litera wielka, maksymalnie 11 znaków" required>
+                                </p>
+                                <p>
                                     Email:
-                                    <input class="form-input" style='margin-left: 52px;' name='phone' type='tel' placeholder='Podaj adres email...' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                                    <input class="form-input" style='margin-left: 52px;' name='email' type='email' placeholder='Podaj adres email...' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
                                 </p>
                                 </div> 
                                 <p style="margin-top: 0px;">
                                 Komentarz: 
                                 </br>
-                                <textarea placeholder="Wprowadź komentarz dla trenera" style="width:100%; height: 100px; margin-top: 10px;" class="form-input" maxlength="2048" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 2000 "></textarea>
+                                <textarea name='comment' placeholder="Wprowadź komentarz dla trenera" style="width:100%; height: 100px; margin-top: 10px;" class="form-input" maxlength="2048" minlength="0" title="Minimalna liczba znaków to 5, a maksymalna 150 "></textarea>
                                  </p>
-                                 <input class="save-button" type="submit" value="Zapisz">
-                                 </div>
-                                <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                 <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
                                 <span id="idEventToken"></div>
+                                 <input class="save-button" type="submit" value="Zapisz">
                                 </form>
-                                
+                                </div>
 
 
 
