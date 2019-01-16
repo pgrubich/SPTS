@@ -61,8 +61,8 @@ xhr.onload = function() {
     responseObject = JSON.parse(xhr.responseText);
     var content = '';
     for(var i = 0; i < responseObject.length; i++) {
-      content += '<div class="single-trainer-result" id="trainer_record_';
-      content += responseObject[i].id+'"><div class="profile-picture">';
+      content += '<div class="single-trainer-result"';
+      content += '><div class="profile-picture">';
       content += '</div><div class="profile-info">'
       content += "<p class='name-surname'>"+ responseObject[i].name + " " + responseObject[i].surname +"</p>";
       content += "<p> Opis: "+ responseObject[i].description;
@@ -77,7 +77,7 @@ xhr.onload = function() {
       for(var k = 1; k <= (5-responseObject[i].rating); k++){
         content += '<span class="fa fa-star green-star"></span>';
       }
-      content += "</div><button type='button' class='btn green-button'>Zobacz profil</button></div></div>";
+      content += "</div><button id='trainer_record_"+responseObject[i].id+"' type='button' class='btn green-button'>Zobacz profil</button></div></div>";
 
       if(responseObject[i].profile_picture_id){
         for(var j = 0; j < responseObject[i].tr_ph.length; j++){
@@ -90,10 +90,11 @@ xhr.onload = function() {
     }
     var trainerBox = document.getElementById("trainers-container");
     trainerBox.innerHTML = content;
+    var table = []
     for(var i = 0; i < responseObject.length; i++){
       var event = document.getElementById("trainer_record_"+responseObject[i].id);
-      event.addEventListener('click',function(){
-        window.location.href = 'http://pri.me/profiles/'+x[2];},false);
+      event.addEventListener('click',function(e){
+        window.location.href = 'http://pri.me/profiles/'+e.target.id.split("_")[2];},false);
     }
     let resultValue = document.getElementsByClassName('result-value');
 
@@ -221,8 +222,8 @@ document.getElementById('filter-button').addEventListener('click', function(){
         responseObject = JSON.parse(xhr5.responseText);
         var content = '';
         for(var i = 0; i < responseObject.length; i++) {
-          content += '<div class="single-trainer-result" id="trainer_record_';
-          content += responseObject[i].id+'"><div class="profile-picture">';
+          content += '<div class="single-trainer-result"' ;
+          content += '><div class="profile-picture">';
           content += '</div><div class="profile-info">'
           content += "<p class='name-surname'>"+ responseObject[i].name + " " + responseObject[i].surname +"</p>";
           content += "<p> Opis: "+ responseObject[i].description;
@@ -237,7 +238,7 @@ document.getElementById('filter-button').addEventListener('click', function(){
           for(var k = 0; k < (5-responseObject[i].rating); k++){
             content += '<span class="fa fa-star green-star"></span>';
           }
-          content += "</div><button type='button' class='btn green-button'>Zobacz profil</button></div></div>";
+          content += "</div><button type='button' id='trainer_record_"+responseObject[i].id+"' class='btn green-button'>Zobacz profil</button></div></div>";
     
           if(responseObject[i].profile_picture_id){
             for(var j = 0; j < responseObject[i].tr_ph.length; j++){
@@ -254,8 +255,7 @@ document.getElementById('filter-button').addEventListener('click', function(){
         for(var i = 0; i < responseObject.length; i++){
           var event = document.getElementById("trainer_record_"+responseObject[i].id);
           if(event){
-            var y = event.id.split("_");
-            event.addEventListener('click',function(){ window.location.href = 'http://pri.me/profiles/'+y[2]},false);
+            event.addEventListener('click',function(e){ window.location.href = 'http://pri.me/profiles/'+e.target.id.split("_")[2]},false);
           }
 
         }
