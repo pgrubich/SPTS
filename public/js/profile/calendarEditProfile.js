@@ -22,8 +22,10 @@ xhttp.onreadystatechange = function() {
     for(var i = 0; i < responseObject.length; i++){
         actualTableContent+= "<tr><td>"+responseObject[i].date+"</td>";
         actualTableContent+= "<td>"+responseObject[i].begin_time.slice(0, -3)+" - "+responseObject[i].end_time.slice(0, -3)+"</td>";
-        actualTableContent+= "<td>"+responseObject[i].name+"</td>";
-        actualTableContent+= "<td>"+responseObject[i].place+"</td>";
+        if (responseObject[i].name) {actualTableContent+= "<td>"+responseObject[i].name+"</td>";}
+            else{actualTableContent+= "<td>Brak danych</td>";}
+        if (responseObject[i].place) {actualTableContent+= "<td>"+responseObject[i].place+"</td>";}
+            else{actualTableContent+= "<td>Brak danych</td>";}
         actualTableContent+= "<td>"+responseObject[i].status+"</td>";
         actualTableContent+= "<td style='text-align: center;font-size: 30px;'><span style='cursor:pointer;' id='expand"+i+"'>+</span></td>";
         actualTableContent+="</tr><tr style='background-color:#e4f6fb;'><td id='slide"+i+"' colspan='6'>"
@@ -31,9 +33,27 @@ xhttp.onreadystatechange = function() {
         actualTableContent+="<div style='display:inline-block; width: 555px;height: 137px;' class='single-cer'>"
         actualTableContent+="<span style='line-height: 1.8;'>Data i godzina: <b> "+responseObject[i].date+" ";
         actualTableContent+=" "+responseObject[i].begin_time.slice(0, -3)+ " - "+responseObject[i].end_time.slice(0, -3)+"</b></span></br>";
-        actualTableContent+="<span style='line-height: 1.8;'><b>"+responseObject[i].name+"</b> w miejscu <b>"+ responseObject[i].place+"</b></span></br>";
-        actualTableContent+="<span style='line-height: 1.8;'>Liczba zapisanych osób: <b>"+responseObject[i].actual_client_number+"/"+ responseObject[i].client_limit +"</b></span></br>"
-        actualTableContent+='<span style="line-height: 1.8;">Cena: <b>'+ responseObject[i].price +"zł.</b></span>";
+
+
+
+        if(responseObject[i].name){actualTableContent+="<span style='line-height: 1.8;'><b>"+responseObject[i].name+"</b> w miejscu <b>"}
+            else{actualTableContent+="<span style='line-height: 1.8;'><b>Brak danych</b> w miejscu <b>" }
+
+            if(responseObject[i].place){actualTableContent+= responseObject[i].place+"</b></span></br>";}
+                else{actualTableContent+= "Brak danych</b></span></br>";}
+
+
+
+        if(responseObject[i].actual_client_number >= 0) {actualTableContent+="<span style='line-height: 1.8;'>Liczba zapisanych osób: <b>"+responseObject[i].actual_client_number;}
+            else{actualTableContent+="<span style='line-height: 1.8;'>Liczba zapisanych osób: <b>Brak danych";}
+        if(responseObject[i].client_limit){actualTableContent+="/"+ responseObject[i].client_limit +"</b></span></br>"}
+            else{ actualTableContent+="/ Brak danych</b></span></br>" }
+
+
+        if(responseObject[i].price){ actualTableContent+='<span style="line-height: 1.8;">Cena: <b>'+ responseObject[i].price +'zł.</b></span>';}
+            else { actualTableContent+='<span style="line-height: 1.8;">Cena: <b>0.00   zł</b></span>';}
+
+
         actualTableContent+='<span style="position: relative;top: -62px;right: -384px;"><a id="editEvent-'+responseObject[i].id+'" class="editEventBut">Edytuj</a><a id="deleteEvent-'+responseObject[i].id+'" class="deleteEventBut">Usuń</a></span>'
         actualTableContent+= "</div></div>";
 
@@ -92,12 +112,16 @@ xhttp.onreadystatechange = function() {
             actualTableContent+= "<div style='min-height: 170px;'><i style='bottom: -21px;right: -74px;' class='edit-icon far fa-address-card'></i><div style='height:100px;width: 470px;display: inline-block;;float: right;'>"
             actualTableContent+= "<span style='line-height: 1.8;'>Imię i nazwisko: <b style='margin-left: 40px;'>"+responseObject[i].tr_ord_tr[j].name;
             actualTableContent+= " "+responseObject[i].tr_ord_tr[j].surname+"</b></span></br>"
-            actualTableContent+= "<span style='line-height: 1.8;'>Adres email: <b style='margin-left: 65px;'>"+responseObject[i].tr_ord_tr[j].email+"</b></span></br>";
+            if(responseObject[i].tr_ord_tr[j].email){actualTableContent+= "<span style='line-height: 1.8;'>Adres email: <b style='margin-left: 65px;'>"+responseObject[i].tr_ord_tr[j].email+"</b></span></br>";}
+                else{actualTableContent+= "<span style='line-height: 1.8;'>Adres email: <b style='margin-left: 65px;'>Brak danych</b></span></br>";}
             if(responseObject[i].tr_ord_tr[j].phone){
                 actualTableContent+= "<span style='line-height: 1.8;'>Numer telefonu: <b style='margin-left: 38px;'>"+responseObject[i].tr_ord_tr[j].phone.toString().substring(0,3)+"-";
                 actualTableContent+= responseObject[i].tr_ord_tr[j].phone.toString().substring(3,6)+ "-"+ responseObject[i].tr_ord_tr[j].phone.toString().substring(6,9)+"</b></span></br>"
+            } else {
+                actualTableContent+= "<span style='line-height: 1.8;'>Numer telefonu: <b style='margin-left: 38px;'>Brak danych</b></span></br>"
             }
-            actualTableContent+= "<span style='line-height: 1.8;'>Wiadomość:</br> <b>"+responseObject[i].tr_ord_tr[j].comment+"</b></span></br>";
+            if(responseObject[i].tr_ord_tr[j].comment){actualTableContent+= "<span style='line-height: 1.8;'>Wiadomość:</br> <b>"+responseObject[i].tr_ord_tr[j].comment+"</b></span></br>";}
+                else{actualTableContent+= "<span style='line-height: 1.8;'>Wiadomość:</br><b>Brak danych</b></span></br>"; }
             actualTableContent+= "</div></div>"
         }
 
@@ -240,20 +264,39 @@ xhttp2.onreadystatechange = function() {
     var actualTableContent = "<table><tr><th style='width:18%'>Data</th><th style='width:18%'>Godzina</th><th style='width:23%'>Nazwa zajęć</th><th style='width:23%'>Miejsce</th><th style='width:8%'>Status</th><th style='width:10%'></th></tr>"
     for(var i = 0; i < responseObject.length; i++){
         actualTableContent+= "<tr><td>"+responseObject[i].date+"</td>";
-        actualTableContent+= "<td>"+responseObject[i].begin_time.slice(0, -3)+" - "+responseObject[i].end_time.slice(0, -3)+"</td>";
-        actualTableContent+= "<td>"+responseObject[i].name+"</td>";
-        actualTableContent+= "<td>"+responseObject[i].place+"</td>";
+        actualTableContent+= "<td>"+responseObject[i].begin_time.slice(0, -3)+"-"+responseObject[i].end_time.slice(0, -3)+"</td>";
+        if (responseObject[i].name) {actualTableContent+= "<td>"+responseObject[i].name+"</td>";}
+            else{actualTableContent+= "<td>Brak danych</td>";}
+        if (responseObject[i].place) {actualTableContent+= "<td>"+responseObject[i].place+"</td>";}
+            else{actualTableContent+= "<td>Brak danych</td>";}
         actualTableContent+= "<td>"+responseObject[i].status+"</td>";
         actualTableContent+= "<td style='text-align: center;font-size: 30px;'><span style='cursor:pointer;' id='2expand"+i+"'>+</span></td>";
         actualTableContent+="</tr><tr style='background-color:#e4f6fb;'><td id='2slide"+i+"' colspan='6'>"
         actualTableContent+="<div  id='2single-event"+responseObject[i].id+"'><i style='bottom:30px;' class='far edit-icon fa-calendar-alt'></i>";
         actualTableContent+="<div style='display:inline-block; width: 555px;height: 137px;' class='single-cer'>"
         actualTableContent+="<span style='line-height: 1.8;'>Data i godzina: <b> "+responseObject[i].date+" ";
-        actualTableContent+=" "+responseObject[i].begin_time.slice(0, -3)+ " - "+responseObject[i].end_time.slice(0, -3)+"</b></span></br>";
-        actualTableContent+="<span style='line-height: 1.8;'><b>"+responseObject[i].name+"</b> w miejscu <b>"+ responseObject[i].place+"</b></span></br>";
-        actualTableContent+="<span style='line-height: 1.8;'>Liczba zapisanych osób: <b>"+responseObject[i].actual_client_number+"/"+ responseObject[i].client_limit +"</b></span></br>"
-        actualTableContent+='<span style="line-height: 1.8;">Cena: <b>'+ responseObject[i].price +"zł.</b></span>";
+        actualTableContent+=" "+responseObject[i].begin_time.slice(0, -3)+ "-"+responseObject[i].end_time.slice(0, -3)+"</b></span></br>";
+
+
+
+        if(responseObject[i].name){actualTableContent+="<span style='line-height: 1.8;'><b>"+responseObject[i].name+"</b> w miejscu <b>"}
+            else{actualTableContent+="<span style='line-height: 1.8;'><b>Brak danych</b> w miejscu <b>" }
+
+            if(responseObject[i].place){actualTableContent+= responseObject[i].place+"</b></span></br>";}
+                else{actualTableContent+= "Brak danych</b></span></br>";}
+
+
+
+        if(responseObject[i].actual_client_number >= 0) {actualTableContent+="<span style='line-height: 1.8;'>Liczba zapisanych osób: <b>"+responseObject[i].actual_client_number;}
+            else{actualTableContent+="<span style='line-height: 1.8;'>Liczba zapisanych osób: <b>Brak danych";}
+        if(responseObject[i].client_limit){actualTableContent+="/"+ responseObject[i].client_limit +"</b></span></br>"}
+            else{ actualTableContent+="/ Brak danych</b></span></br>" }
+
+
+        if(responseObject[i].price){ actualTableContent+='<span style="line-height: 1.8;">Cena: <b>'+ responseObject[i].price +'zł.</b></span>';}
+            else { actualTableContent+='<span style="line-height: 1.8;">Cena: <b>0.00   zł</b></span>';}
         actualTableContent+= "</div></div>";
+
 
 
 
@@ -265,12 +308,16 @@ xhttp2.onreadystatechange = function() {
             actualTableContent+= "<div style='min-height: 170px;'><i style='bottom: -21px;right: -74px;' class='edit-icon far fa-address-card'></i><div style='height:100px;width: 470px;display: inline-block;;float: right;'>"
             actualTableContent+= "<span style='line-height: 1.8;'>Imię i nazwisko: <b style='margin-left: 40px;'>"+responseObject[i].tr_ord_tr[j].name;
             actualTableContent+= " "+responseObject[i].tr_ord_tr[j].surname+"</b></span></br>"
-            actualTableContent+= "<span style='line-height: 1.8;'>Adres email: <b style='margin-left: 65px;'>"+responseObject[i].tr_ord_tr[j].email+"</b></span></br>";
+            if(responseObject[i].tr_ord_tr[j].email){actualTableContent+= "<span style='line-height: 1.8;'>Adres email: <b style='margin-left: 65px;'>"+responseObject[i].tr_ord_tr[j].email+"</b></span></br>";}
+                else{actualTableContent+= "<span style='line-height: 1.8;'>Adres email: <b style='margin-left: 65px;'>Brak danych</b></span></br>";}
             if(responseObject[i].tr_ord_tr[j].phone){
                 actualTableContent+= "<span style='line-height: 1.8;'>Numer telefonu: <b style='margin-left: 38px;'>"+responseObject[i].tr_ord_tr[j].phone.toString().substring(0,3)+"-";
                 actualTableContent+= responseObject[i].tr_ord_tr[j].phone.toString().substring(3,6)+ "-"+ responseObject[i].tr_ord_tr[j].phone.toString().substring(6,9)+"</b></span></br>"
+            }else{
+                actualTableContent+= "<span style='line-height: 1.8;'>Numer telefonu: <b style='margin-left: 38px;'>Brak danych</b></span></br>"
             }
-            actualTableContent+= "<span style='line-height: 1.8;'>Wiadomość:</br> <b>"+responseObject[i].tr_ord_tr[j].comment+"</b></span></br>";
+            if(responseObject[i].tr_ord_tr[j].comment){actualTableContent+= "<span style='line-height: 1.8;'>Wiadomość:</br> <b>"+responseObject[i].tr_ord_tr[j].comment+"</b></span></br>";}
+                else{actualTableContent+= "<span style='line-height: 1.8;'>Wiadomość:</br> <b>Brak danych</b></span></br>";}
             actualTableContent+= "</div></div>"
         }
 
