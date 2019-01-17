@@ -325,7 +325,7 @@
                                     <input form="addTrainersPlace" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                     <input form="addTrainersPlace" type='hidden' value='{{ csrf_token() }}' name='_token'/>
                                     <input id="location-name" name="location-name" form="addTrainersPlace" type='hidden'/>
-                                    <input id="location-latitude" name=location-latitude" form="addTrainersPlace" type='hidden'/>
+                                    <input id="location-latitude" name="location-latitude" form="addTrainersPlace" type='hidden'/>
                                     <input id="location-longitude" name="location-longitude" form="addTrainersPlace" type='hidden'/>
                                     <div style="margin-bottom: 70px;">
                                         <input class="add-button" type="submit" value="Dodaj lokalizację" form="addTrainersPlace">

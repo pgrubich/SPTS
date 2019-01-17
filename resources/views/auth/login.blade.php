@@ -56,7 +56,7 @@
                                 </button>
                                 <a class="btn btn-primary" href="/login/facebook">
                                     Facebook
-                                </a>s
+                                </a>
 
                                 <a class="btn btn-primary" href="/login/google">
                                     Google
