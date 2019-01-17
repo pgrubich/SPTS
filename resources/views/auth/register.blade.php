@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -29,6 +30,87 @@
             @if (Auth::check())
             <div class="container-fluid" id="logBar">
             <div class="logo">
+=======
+@extends('layouts.app')
+
+@section('content')
+
+    <link rel="stylesheet" href="{{asset('css/register.css')}}" type="text/css" />
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Rejestracja') }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Adres email') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Hasło') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Potwierdź hasło') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+                        <div id="checkbox-container">
+                            <input type="checkbox" name="policy" id="policy" class="form-control{{ $errors->has('policy') ? ' is-invalid' : '' }}">
+                            <span>
+                                Potwierdzam, że zapoznałam(em) się z treścią <a href="/privacy">Polityki Prywatności</a> i akceptuję jej postanowienia.<br>
+                            </span>
+                            @if ($errors->has('policy'))
+                                <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('policy') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Zarejestruj się') }}
+                                </button>
+                                <a class="btn btn-primary" href="/login/facebook">
+                                    Facebook
+                                </a>
+
+                                <a class="btn btn-primary" href="/login/google">
+                                    Google
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+>>>>>>> e4e3b58495be211db1e5ef9bf5ab2df8ac48f4e7
                 </div>
                 <span>
                 
@@ -57,10 +139,10 @@
         
         <div style="width:50%; padding-right:10%;padding-left:10%">
         <div style="width: 270px;height: 64px;">
-        <a href="#"><div class="facebookR"></div></a>
+        <a href="/login/facebook"><div class="facebookR"></div></a>
         </div>
         <div style="width: 270px;height: 64px;">
-        <a href="#"><div class="google"></div></a>
+        <a href="/login/google"><div class="google"></div></a>
         </div>
         <div style="width: 100%;    margin-top: 16px; height: 20px;border-bottom: 2px solid lightgrey; text-align: center">
     <span style=" font-size: 15px;;color: lightgrey;background-color: white;padding: 2px 10px;line-height: 36px;">

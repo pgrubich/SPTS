@@ -13,6 +13,8 @@
 
 Auth::routes();
 
+Route::view('privacy', 'privacyPolicy');
+
 Route::view('','searching');
 
 Route::view('editProfile','editProfile')->middleware('auth');

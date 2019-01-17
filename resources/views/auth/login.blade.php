@@ -57,10 +57,10 @@
         
         <div style="width:50%; padding-right:10%;padding-left:10%">
         <div style="width: 270px;height: 64px;">
-        <a href="#"><div class="facebook"></div></a>
+        <a href="/login/facebook"><div class="facebook"></div></a>
         </div>
         <div style="width: 270px;height: 64px;">
-        <a href="#"><div class="google"></div></a>
+        <a href="/login/google"><div class="google"></div></a>
         </div>
         <div style="width: 100%;    margin-top: 16px; height: 20px;border-bottom: 2px solid lightgrey; text-align: center">
     <span style=" font-size: 15px;;color: lightgrey;background-color: white;padding: 2px 10px;line-height: 36px;">
@@ -78,9 +78,3 @@
     
 </body>
 </html>
-
-
-
-
-
-
