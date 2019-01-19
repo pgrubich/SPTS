@@ -182,7 +182,7 @@
                                 <p>
                                         <label >
                                         Opis:
-                                        <br />
+                                        <span class="optional">(Opcjonalnie)</span>
                                         <textarea form="editSpecificInfo" class="edit-text" form="editSpecificInfo" name="description" cols="90" rows="10" maxlength="2048" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 2000 ">{{ Auth::user()->description }}</textarea>                                        <input form="editSpecificInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                         <input form="editSpecificInfo" type='hidden' value='{{ csrf_token() }}' name='_token'/>
                                         <input class="add-button" type="submit" value="Aktualizuj opis" form="editSpecificInfo" >
@@ -316,45 +316,6 @@
                                     </div>
                                 </label>
 
-                            <br/>
-                            <label>
-                                Miejsca treningu:
-                                <div>
-                                    </br>
-                                    <input id="locationSearch" form="addTrainersPlace" name='numbers_of_members' type="text" placeholder="Wpisz adres" required>
-                                    <input form="addTrainersPlace" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
-                                    <input form="addTrainersPlace" type='hidden' value='{{ csrf_token() }}' name='_token'/>
-                                    <input id="location-name" name="location-name" form="addTrainersPlace" type='hidden'/>
-                                    <input id="location-latitude" name="location-latitude" form="addTrainersPlace" type='hidden'/>
-                                    <input id="location-longitude" name="location-longitude" form="addTrainersPlace" type='hidden'/>
-                                    <div style="margin-bottom: 70px;">
-                                        <input class="add-button" type="submit" value="Dodaj lokalizację" form="addTrainersPlace">
-                                        <script>
-                                            function initMap() {
-                                                var address = document.getElementById('locationSearch');
-                                                var options = {
-                                                        componentRestrictions: {country: "pl"}
-                                                    };
-                                                var autocomplete = new google.maps.places.Autocomplete(address, options);
-
-                                                autocomplete.addListener('place_changed', function() {
-                                                    var place = autocomplete.getPlace();
-                                                    document.getElementById('location-name').value = place.name;
-                                                    document.getElementById('location-latitude').value = place.geometry.location.lat();
-                                                    document.getElementById('location-longitude').value = place.geometry.location.lng();
-                                                });
-                                            }
-                                        </script>
-                                        <script  type="text/javascript" async defer
-                                                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnYmBavIuXOjKrQflq-_CkuyIrmLpaD1Y&libraries=places&callback=initMap">
-                                        </script>
-                                    </div>
-
-                                </div>
-                            </label>
-
-                                <br />
-                                <br />
                         </fieldset>
                     </div>
 
@@ -425,6 +386,152 @@
                         </fieldset>
                         
                     </div>
+
+
+
+
+
+                    <div id="place-edit">
+                        <fieldset>
+                            <legend>Lokalizacja</legend>
+
+
+                            <!-- <label>
+                                Miejsca treningu:
+                                <div>
+                                    </br>
+                                 
+                                    <div style="margin-bottom: 70px;">
+
+                                        <script>
+                                            function initMap() {
+                                                var address = document.getElementById('locationSearch');
+                                                var options = {
+                                                        componentRestrictions: {country: "pl"}
+                                                    };
+                                                var autocomplete = new google.maps.places.Autocomplete(address, options);
+
+                                                autocomplete.addListener('place_changed', function() {
+                                                    var place = autocomplete.getPlace();
+                                                    document.getElementById('location-name').value = place.name;
+                                                    document.getElementById('location-latitude').value = place.geometry.location.lat();
+                                                    document.getElementById('location-longitude').value = place.geometry.location.lng();
+                                                });
+                                            }
+                                        </script>
+                                        <script  type="text/javascript" async defer
+                                                 src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBnYmBavIuXOjKrQflq-_CkuyIrmLpaD1Y&libraries=places&callback=initMap">
+                                        </script>
+                                    </div>
+
+                                </div>
+                            </label> -->
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="categories-content">
+                            <h2>Dodaj lokalizację</h2>
+                            <input id="locationSearch" class="place-search" type="text" size="50" />
+                            <input form="addTrainersPlace" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                            <input form="addTrainersPlace" type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                            <input id="location-name" name="location-name" form="addTrainersPlace" type='hidden'/>
+                            <input id="location-latitude" name="location-latitude" form="addTrainersPlace" type='hidden'/>
+                            <input id="location-longitude" name="location-longitude" form="addTrainersPlace" type='hidden'/>
+                            <input class="add-button" type="submit" value="Dodaj lokalizację" form="addTrainersPlace">
+                            <div id="map" style="    width: 100%; height: 500px;"></div>
+                            <script>
+                            function initMap() {
+                                var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+                                var xhttp = new XMLHttpRequest();
+                                xhttp.onreadystatechange = function() {
+                                    if (this.readyState == 4 && this.status == 200) {
+                                    responseObject = JSON.parse(xhttp.responseText); 
+                                    console.log(responseObject)
+                                    }
+                                };
+                                xhttp.open("GET", 'http://pri.me/api/profiles/'+id, true);
+                                xhttp.send();
+                                var options = {
+                                    zoom: 12,
+                                    center: {lat: 52.237049, lng: 21.017532}
+                                }
+                                var map = new google.maps.Map(
+                                    document.getElementById('map'), options);
+
+                                 var marker = new google.maps.Marker({position: options.center,
+                                     map: map,
+                                     draggable: true});
+                                var options2 = {
+                                                componentRestrictions: {country: "pl"}
+                                            };
+
+                                var searchBox = new google.maps.places.Autocomplete(document.getElementById('locationSearch'), {componentRestrictions: {country: "pl"}})
+                                google.maps.event.addListener(searchBox, 'place_changed', function(){
+                                    var places = searchBox.getPlace()
+                                    console.log(places)
+                                    document.getElementById('location-name').value = places.name;
+                                    document.getElementById('location-latitude').value = places.geometry.location.lat();
+                                    document.getElementById('location-longitude').value = places.geometry.location.lng();
+                                    var bounds = new google.maps.LatLngBounds();
+                                    // var i, place;
+
+                                    // for(i=0; i < places.length; i++){
+                                    //     place = places[i]
+                                        console.log(places.geometry.location);
+                                        bounds.extend(places.geometry.location);
+                                        marker.setPosition(places.geometry.location)
+                                    // }
+
+                                    map.fitBounds(bounds);
+                                    map.setZoom(15);
+                                })
+                            }
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            </script>
+                            <script async defer
+                                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnYmBavIuXOjKrQflq-_CkuyIrmLpaD1Y&libraries=places&callback=initMap">
+                            </script>
+                            <h2>Dodane miejsca</h2>
+                            <div id="added-places"></div>
+                        </div>
+
+
+
+                        </fieldset>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <div id="gallery-edit">
                         <fieldset>
                             <legend>Galeria zdjęć</legend>

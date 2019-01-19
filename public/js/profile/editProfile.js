@@ -6,6 +6,7 @@ var option3 = document.getElementById("editMenu-option3");
 var option4 = document.getElementById("editMenu-option4");
 var option5 = document.getElementById("editMenu-option5");
 var option6 = document.getElementById("editMenu-option6");
+var option7 = document.getElementById("editMenu-option7");
 
 var block1 = document.getElementById("basic-edit");
 var block2 = document.getElementById("specific-edit");
@@ -13,6 +14,7 @@ var block3 = document.getElementById("calendar-edit");
 var block4 = document.getElementById("gallery-edit");
 var block5 = document.getElementById("email-edit");
 var block6 = document.getElementById("password-edit");
+var block7 = document.getElementById("place-edit");
 
 option1.addEventListener('click',function(){show(1);},false)
 option2.addEventListener('click',function(){show(2);},false)
@@ -20,6 +22,7 @@ option3.addEventListener('click',function(){show(3);},false)
 option4.addEventListener('click',function(){show(4);},false)
 option5.addEventListener('click',function(){show(5);},false)
 option6.addEventListener('click',function(){show(6);},false)
+option7.addEventListener('click',function(){show(7);},false)
 
 csrfToken = document.getElementById('token').value
 
@@ -33,12 +36,14 @@ function show(a){
             option4.classList.remove("editMenu-option-checked");
             option5.classList.remove("editMenu-option-checked");
             option6.classList.remove("editMenu-option-checked");
+            option7.classList.remove("editMenu-option-checked");
             block1.style.display = "block";
             block2.style.display = "none";
             block3.style.display = "none";
             block4.style.display = "none";
             block5.style.display = "none";
             block6.style.display = "none";
+            block7.style.display = "none";
             break;
         case 2:
             option1.classList.remove("editMenu-option-checked");
@@ -46,6 +51,7 @@ function show(a){
             option4.classList.remove("editMenu-option-checked");
             option5.classList.remove("editMenu-option-checked");
             option6.classList.remove("editMenu-option-checked");
+            option7.classList.remove("editMenu-option-checked");
             option2.classList.add("editMenu-option-checked");
             block1.style.display = "none";
             block2.style.display = "block";
@@ -53,6 +59,7 @@ function show(a){
             block4.style.display = "none";
             block5.style.display = "none";
             block6.style.display = "none";
+            block7.style.display = "none";
             break;
         case 3:
             option1.classList.remove("editMenu-option-checked");
@@ -60,6 +67,7 @@ function show(a){
             option4.classList.remove("editMenu-option-checked");
             option5.classList.remove("editMenu-option-checked");
             option6.classList.remove("editMenu-option-checked");
+            option7.classList.remove("editMenu-option-checked");
             option3.classList.add("editMenu-option-checked");
             block1.style.display = "none";
             block2.style.display = "none";
@@ -67,6 +75,7 @@ function show(a){
             block4.style.display = "none";
             block5.style.display = "none";
             block6.style.display = "none";
+            block7.style.display = "none";
         break;
         case 4:
             option1.classList.remove("editMenu-option-checked");
@@ -74,6 +83,7 @@ function show(a){
             option3.classList.remove("editMenu-option-checked");
             option5.classList.remove("editMenu-option-checked");
             option6.classList.remove("editMenu-option-checked");
+            option7.classList.remove("editMenu-option-checked");
             option4.classList.add("editMenu-option-checked");
             block1.style.display = "none";
             block2.style.display = "none";
@@ -81,6 +91,7 @@ function show(a){
             block4.style.display = "block";
             block5.style.display = "none";
             block6.style.display = "none";
+            block7.style.display = "none";
         break;
         case 5:
             option1.classList.remove("editMenu-option-checked");
@@ -88,6 +99,7 @@ function show(a){
             option3.classList.remove("editMenu-option-checked");
             option4.classList.remove("editMenu-option-checked");
             option6.classList.remove("editMenu-option-checked");
+            option7.classList.remove("editMenu-option-checked");
             option5.classList.add("editMenu-option-checked");
             block1.style.display = "none";
             block2.style.display = "none";
@@ -95,6 +107,7 @@ function show(a){
             block4.style.display = "none";
             block5.style.display = "block";
             block6.style.display = "none";
+            block7.style.display = "none";
             break;
         case 6:
             option1.classList.remove("editMenu-option-checked");
@@ -102,6 +115,7 @@ function show(a){
             option3.classList.remove("editMenu-option-checked");
             option4.classList.remove("editMenu-option-checked");
             option5.classList.remove("editMenu-option-checked");
+            option7.classList.remove("editMenu-option-checked");
             option6.classList.add("editMenu-option-checked");
             block1.style.display = "none";
             block2.style.display = "none";
@@ -109,6 +123,23 @@ function show(a){
             block4.style.display = "none";
             block5.style.display = "none";
             block6.style.display = "block";
+            block7.style.display = "none";
+            break;
+        case 7:
+            option1.classList.remove("editMenu-option-checked");
+            option2.classList.remove("editMenu-option-checked");
+            option3.classList.remove("editMenu-option-checked");
+            option4.classList.remove("editMenu-option-checked");
+            option5.classList.remove("editMenu-option-checked");
+            option6.classList.remove("editMenu-option-checked");
+            option7.classList.add("editMenu-option-checked");
+            block1.style.display = "none";
+            block2.style.display = "none";
+            block3.style.display = "none";
+            block4.style.display = "none";
+            block5.style.display = "none";
+            block7.style.display = "block";
+            block6.style.display = "none";
             break;
     }
 
@@ -241,6 +272,51 @@ var loggedUserId = document.getElementById("username-id").value;
 xhr2.onload = function() {
     if(xhr2.status === 200) {
       responseObject2 = JSON.parse(xhr2.responseText);
+
+
+
+    // 
+    var containerPlaces = document.getElementById('added-places');
+    var placesContent = '<table>';
+    for(var w=0; w<responseObject2[0].tr_pl.length; w++){
+        placesContent += '<tr class="placeRow"><td><b>'+responseObject2[0].tr_pl[w].place+'</b></td><td style="text-align:center;">Usuń</td></tr>';
+
+    }
+    placesContent += '</table>';
+    console.log(placesContent, containerPlaces )
+    containerPlaces.innerHTML = placesContent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       for(var i = 0; i < responseObject2[0].tr_disc.length; i++ ){
 
           var dysciplineName = responseObject2[0].tr_disc[i].discipline_name.replace(" ","_");
@@ -673,7 +749,7 @@ document.getElementById('setProfilePic').addEventListener('click',function(){
 var cers = '';
 for(var i = 0; i<responseObject2[0].tr_cert.length; i++){
     cers += '<div id="single-cer'+responseObject2[0].tr_cert[i].id+'"><i class="far fa-file-alt edit-icon" ></i>'
-    cers +=  "<div class='single-cer'><div>";
+    cers +=  "<div class='single-cer single-cer-count'><div>";
     cers +=  responseObject2[0].tr_cert[i].name_of_institution+"</br><div style='font-size: 13px;'>"+ responseObject2[0].tr_cert[i].name_of_course;
     cers +=  "</br>"+responseObject2[0].tr_cert[i].begin_date;
     cers += " - "+responseObject2[0].tr_cert[i].end_date+"</div></div><div class='edit-delete-section'>"
@@ -737,9 +813,11 @@ if(responseObject2[0].gender == "K"){
 }
 
 //hide edit cer
-var yyy = document.getElementsByClassName("single-cer");
+var yyy = document.getElementsByClassName("single-cer-count");
+console.log(yyy)
 
 for(var i=0; i<yyy.length;i++){
+    console.log(document.getElementsByClassName("edit-single-cer"))
  document.getElementsByClassName("edit-single-cer")[i].style.display="none";
 }
 //show edit cer
@@ -748,6 +826,7 @@ for(var i=0; i<yyy.length;i++){
 for(var i=0; i<yyy.length;i++){
  document.getElementById("single-cer-"+responseObject2[0].tr_cert[i].id).addEventListener('click',function(){
          var idSplitCer = event.target.id.split("-");
+
          if(document.getElementById("edit-single-cer-"+idSplitCer[2])){
             if(document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display == "none"){
                 document.getElementById("edit-single-cer-"+idSplitCer[2]).style.display = "block";
