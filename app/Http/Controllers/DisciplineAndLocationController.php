@@ -62,88 +62,43 @@ class DisciplineAndLocationController extends Controller
         
         $parameters = request()->only(['place', 'minAge', 'maxAge', 'gender', 'minPrice', 'maxPrice']);
         $place = request()->get('place');
-        $minAgeD = request()->get('minAge');
-        $maxAgeD = request()->get('maxAge');
+        $minAge = request()->get('minAge');
+        $maxAge = request()->get('maxAge');
         $gender = request()->get('gender');
+        $minPrice = request()->get('minPrice');
+        $maxPrice = request()->get('maxPrice');
 
-        $minPrice = (int)request()->get('minPrice');
-        $maxPrice = (int)request()->get('maxPrice');
+        /* http://pri.me/api/joga/poznań/?place=&minAge=&maxAge=&gender=&minPrice=&maxPrice= */
 
-
-
-        /*http://pri.me/api/joga/poznań/?place=&minAge=&maxAge=&gender=&minPrice=&maxPrice=*/
-
-        
-
-        if ($place != '')
-        {
-            $trainer = Trainer::
-            where(function($query) use ($gender)
-            {
-                if($gender != '' )
-                {
-                    $query->where('gender', $gender);
-                }
-            })
-            ->where(function($query) use ($minAgeD, $maxAgeD)
-            {
-                if($minAgeD != '' or $maxAgeD != '')
-                {
-                    $minAge = (int)request()->get('minAge');
-                    $maxAge = (int)request()->get('maxAge');
-                    if( $maxAge == 0 )  { $maxAge = 99; }
-                    $maxDate = Carbon::today()->addYears((-1)*(int)$minAge);
-                    $minDate = Carbon::today()->addYears((-1)*(int)$maxAge);
-                    $query->whereBetween('bdate', [$minDate, $maxDate]);
-                }
-            })
-            ->whereHas('TrDisc',function($query) use($discipline)
-            { 
-                $query->where('discipline_url_name', '=', $discipline);
-            })
-            ->whereHas('trLoc',function($query) use($location)
-            {
-                $query->where('city', '=', $location);
-            })
-            ->whereHas('trPl',function($query) use($place)
-            {   
-                $query->where('place', '=', $place);
-            }
-            )
-            ->with('TrDisc','trLoc','trPl','trPh')->get();
-        }
-        else
-        {
-            $trainer = Trainer::
-            where(function($query) use ($gender)
-            {
-                if($gender != '' )
-                {
-                    $query->where('gender', $gender);
-                }
-            })
-            ->where(function($query) use ($minAgeD, $maxAgeD)
-            {
-                if($minAgeD != '' or $maxAgeD != '')
-                {
-                    $minAge = (int)request()->get('minAge');
-                    $maxAge = (int)request()->get('maxAge');
-                    if( $maxAge == 0 )  { $maxAge = 99; }
-                    $maxDate = Carbon::today()->addYears((-1)*(int)$minAge);
-                    $minDate = Carbon::today()->addYears((-1)*(int)$maxAge);
-                    $query->whereBetween('bdate', [$minDate, $maxDate]);
-                }
-            })
-            ->whereHas('TrDisc',function($query) use($discipline)
-            { 
-                $query->where('discipline_url_name', '=', $discipline);
-            })
-            ->whereHas('trLoc',function($query) use($location)
-            {
-                $query->where('city', '=', $location);
-            })
-            ->with('TrDisc','trLoc','trPl','trPh')->get();
-        }
+        $trainer = Trainer::when($gender != "", function($query) use ($gender){
+            $query->where('gender', $gender); 
+        })
+        ->when($minAge != "" or $maxAge != "", function($query) use ($minAge, $maxAge){
+            if( $maxAge == "" )  { $maxAge = 99; }
+            if( $minAge == "" )  { $minAge = 0; }
+            $maxDate = Carbon::today()->addYears((-1)*$minAge);
+            $minDate = Carbon::today()->addYears((-1)*$maxAge);
+            $query->whereBetween('bdate', [$minDate, $maxDate]);
+        })
+        ->when($place != "", function($query) use ($place){
+            $query->whereHas('trPl',function($queryy) use ($place){
+                $queryy->where('place', $place);
+            });
+        })
+        ->when($minPrice != "" or $maxPrice != "", function($query) use ($minPrice, $maxPrice){
+            if( $minPrice == "" )  { $minPrice = 0; }
+            if( $maxPrice == "" )  { $maxPrice = 1000; }
+            $query->whereHas('trOff',function($queryy) use ($minPrice, $maxPrice){
+                $queryy->whereBetween('price', [$minPrice, $maxPrice]);
+            });
+        })
+        ->whereHas('TrDisc',function($query) use($discipline){ 
+            $query->where('discipline_url_name', $discipline);
+        })
+        ->whereHas('trLoc',function($query) use($location){
+            $query->where('city', $location);
+        })
+        ->with('TrDisc','trLoc','trPl','trPh','trOff')->get();  
 
         return $trainer;
         
