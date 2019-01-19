@@ -89,7 +89,7 @@ class CalendarController extends Controller
     {
 
         $trTraining = TrTraining::findOrFail($id);
-        if ($trTraining->status == 'zajęte')  return ("Nie można usunąć treningu.");
+        if ($trTraining->actual_client_number > 0)  return ("Nie można usunąć treningu.");
         else $trTraining->delete();
             
         return redirect('/editProfile');
@@ -103,11 +103,6 @@ class CalendarController extends Controller
             {
                 $query->where('training_id', $request['id'])
                       ->where('email', $request['email']);
-            })
-            ->orWhere(function($query) use ($request)
-            {   
-                $query->where('training_id', $request['id'])
-                      ->where('phone', $request['phone']);	
             })
             ->exists())
         {
@@ -142,11 +137,14 @@ class CalendarController extends Controller
                 $training->actual_client_number = $training->actual_client_number + 1;
                 if($training->client_limit == $training->actual_client_number) $training->status = "zajęte";
                 $training->save();
-
-
+                
+                $trainer_mail = Trainer::find($training->trainer_id)->email;
+                
                 // Wysłanie maila do klienta
-                // Wysłanie maila do trenera
+                app('App\Http\Controllers\MailController')->calendar_register_client_email($training, $request, $delete_token);
 
+                // Wysłanie maila do trenera
+                app('App\Http\Controllers\MailController')->calendar_register_trainer_email($training, $request, $trainer_mail);
 
                 return redirect('/profiles/'.$training->trainer_id);
             }
@@ -157,20 +155,30 @@ class CalendarController extends Controller
 
     protected function deleteOrder($id)
     {
+        $parameters = request()->only(['delete_token']);
+        $delete_token = request()->get('delete_token');
 
         $orderedTraining = TrOrderedTrainings::findOrFail($id);
-        $training_id = $orderedTraining->training_id;
-        $orderedTraining->delete();
 
-        $training = TrTraining::findOrFail($training_id);
-        $training->actual_client_number = $training->actual_client_number - 1;
-        if( $training->client_limit > $training->actual_client_number) $training->status = "wolne";
-        $training->save();
+        if (Hash::check($delete_token, $orderedTraining->delete_token))
+        {
+        
+            $training_id = $orderedTraining->training_id;
 
-        // Wysłanie maila do klienta
-        // Wysłanie maila do trenera
-            
-        return redirect('/editProfile');
+            $training = TrTraining::findOrFail($training_id);
+            $training->actual_client_number = $training->actual_client_number - 1;
+            if( $training->client_limit > $training->actual_client_number) $training->status = "wolne";
+            $training->save();
+
+            // Wysłanie maila do klienta
+            app('App\Http\Controllers\MailController')->calendar_resignation_client_email($training, $orderedTraining);
+
+            // Wysłanie maila do trenera
+            app('App\Http\Controllers\MailController')->calendar_resignation_trainer_email($training, $orderedTraining);
+
+            $orderedTraining->delete();
+        }
+
     }
 
 
@@ -179,7 +187,8 @@ class CalendarController extends Controller
 
         $findstatus = Trainer::findOrFail($id);
 
-        return TrTraining::with('trOrdTr')
+        return TrTraining::orderBy('date', 'DESC')
+                        ->with('trOrdTr')
                         ->where('trainer_id','=',$id)
                         ->where('date', '>=', Carbon::today())
                         ->get()->toJson(JSON_PRETTY_PRINT);
@@ -191,7 +200,8 @@ class CalendarController extends Controller
 
         $findstatus = Trainer::findOrFail($id);
 
-        return TrTraining::with('trOrdTr')
+        return TrTraining::orderBy('date', 'DESC')
+                        ->with('trOrdTr')
                         ->where('trainer_id','=',$id)
                         ->where('date', '<', Carbon::today())
                         ->get()->toJson(JSON_PRETTY_PRINT);
