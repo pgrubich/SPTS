@@ -1,0 +1,81 @@
+.mainContainer{
+    display:flex;
+}
+#loginPic{
+    width: 500px;
+    height: 607px;
+    margin-top:70px;
+    background-image: url('images/login.png');
+    -webkit-box-shadow: 10px 14px 35px 1px rgba(0,0,0,0.45);
+    -moz-box-shadow: 10px 14px 35px 1px rgba(0,0,0,0.45);
+    box-shadow: 10px 14px 35px 1px rgba(0,0,0,0.45);
+}
+#registerPic{
+    width: 500px;
+    height: 607px;
+    margin-top:70px;
+    background-image: url('images/Register.png');
+    -webkit-box-shadow: 10px 14px 35px 1px rgba(0,0,0,0.45);
+    -moz-box-shadow: 10px 14px 35px 1px rgba(0,0,0,0.45);
+    box-shadow: 10px 14px 35px 1px rgba(0,0,0,0.45);
+}
+
+.facebook{
+    width: 300px;
+    height: 110px;
+    margin-left: 10px;
+    margin-top: 108px;
+    background-image: url(images/facebook.png);
+}
+.facebookR{
+    width: 300px;
+    height: 110px;
+    margin-left: 10px;
+    margin-top: 85px;
+    background-image: url(images/facebook.png);
+}
+.google{
+    width: 270px;
+    margin-left: 26px;
+    height: 64px;
+    margin-top: 40px;
+    background-image: url(images/google.png);
+
+}
+
+.input-login{
+    width: 100%;
+    border-radius: 5px;
+    border: 1.5px solid #dfdede;
+    height: 41px;
+    margin-top: 33px;
+    padding: 11px 15px 11px 5px;
+}
+.input-loginR{
+    width: 100%;
+    border-radius: 5px;
+    border: 1.5px solid #dfdede;
+    height: 41px;
+    margin-top: 22px;
+    padding: 11px 15px 11px 5px;
+}
+
+.submit-login{
+    padding: 7px 15px;
+    width: 100%;
+    border: 2px solid #dfdede;
+    background-color: white;
+    margin-top: 31px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.forget{
+    margin-top: 20px;
+    /* margin-left: auto; */
+    float: right;
+    /* margin-right: auto; */
+    text-decoration: none;
+    color: grey;
+    display: block;
+}
