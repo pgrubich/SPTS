@@ -386,6 +386,7 @@
                                         <input style="width: 155px;border: 1px solid lightgrey;border-radius: 5px;"  type="date">
                                         <input style="margin:0px;padding: 0px;padding-left: 2px;border-radius: 7px;padding-right: 2px;width: 80px;height: 35px;margin-bottom: 11px;" class="add-button" type="submit" value="Usuń" form="addTraining" >
                                     </form></div>
+</br>
                                     <div id="table-container2"><</div>
 
 
