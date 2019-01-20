@@ -96,6 +96,22 @@ class CalendarController extends Controller
     }
 
 
+    protected function deleteOldTrainings(Request $request)
+    {
+
+        if ($request['begin_date'] > $request['end_date'])  return ("Źle wprowadzono godziny");
+        else
+        {
+            $trTraining = TrTraining::where('trainer_id', Auth::user()->id)
+                                    ->whereBetween('date', [$request['begin_date'], $request['end_date']]);
+        
+            $trTraining->delete();
+
+        }
+            
+        return redirect('/editProfile');
+    }
+
     protected function orderTraining(Request $request)
     {
 

@@ -29,4 +29,12 @@ class TrTraining extends Model
         return Carbon::parse($this->date.('').($this->end_time))->format('Y-m-d\TH:i:s.u'); 
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function($trTraining) {
+             $trTraining->trOrdTr()->delete();
+        });
+    }
+
 }

@@ -82,6 +82,8 @@ Route::post('editTraining', ['uses' =>'CalendarController@editTraining']);
 
 Route::post('deleteTraining/{id}', ['uses' =>'CalendarController@deleteTraining']);
 
+Route::post('deleteOldTrainings', ['uses' =>'CalendarController@deleteOldTrainings']);
+
 Route::post('/profiles/orderTraining', ['uses' =>'CalendarController@orderTraining']);
 
 Route::post('deleteOrder/{id}', ['uses' =>'CalendarController@deleteOrder']);
