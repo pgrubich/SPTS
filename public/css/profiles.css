@@ -125,7 +125,11 @@
     font-size: 15px;
 }
 
-.fa-bookmark, .fa-certificate, .fa-graduation-cap, .fa-calendar-alt, .fa-shopping-bag, .fa-images, .fa-comments{
+.fa-check-square{
+    color:#3cdaa8;
+}
+
+.fa-bookmark, .fa-certificate, .fa-graduation-cap, .fa-calendar-alt, .fa-shopping-bag, .fa-images, .fa-comments, .fa-check-square{
     margin-right:5px;
     font-size: 17px;
 }

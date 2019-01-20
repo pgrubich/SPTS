@@ -24,16 +24,17 @@ $(function(){
             var offert = "";
             var photos = "";
             var profilePic = "";
+            var disciplines = '<p style="margin-top: 25px;"><b>Dyscypliny: </b></p>';
             $.each(data, function(index, element) {
                 console.log(element)
                 //gwiazdki
-                for( var j = 0; j < element.rating ; j++ ){
+                for( var j = 0; j <Math.round(element.rating) ; j++ ){
                   stars += '<span class="fa fa-star green-star-checked"></span>';
                 }
-                for(var k = 0; k < (5-element.rating); k++){
+                for(var k = 0; k < (5-Math.round(element.rating)); k++){
                   stars += '<span class="fa fa-star green-star"></span>';
                 }
-                stars +="<span class='rating-info'><i>("+element.rating+"/5)</i></span>";
+                stars +="<span class='rating-info'><i>("+Math.round(element.rating)+"/5)</i></span>";
 
                 //imię + nazwisko
                 if(element.name && element.surname){
@@ -83,6 +84,14 @@ $(function(){
                     page += "Brak danych";
                 }
 
+
+                for(var i = 0 ; i < element.tr_disc.length; i++){
+                    if(element.tr_disc[i].discipline_name){
+                        disciplines += '<p><i class="fas fa-check-square"></i>'+element.tr_disc[i].discipline_name+'</p>'
+                    }
+                }
+
+                console.log(element)
                 //Doświadczenie i umiejętności
                 if(element.description){
                     description+= element.description;
@@ -189,6 +198,7 @@ $(function(){
             $("#inst-info").html(instagram);
             $("#page-info").html(page);
             $(".categories-content:eq(0)").text(description);
+            $(".categories-content:eq(0)").append(disciplines);
             $(".categories-content:eq(1)").html(certificates);
             $(".categories-content:eq(2)").html(education);
             $(".gallery-content").html(photos);
