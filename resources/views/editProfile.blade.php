@@ -83,21 +83,21 @@
                                 <p>
                                 <label  >
                                         Imię: 
-                                        <input class="edit-name" form="editPrimaryInfo" name='name' type='text' placeholder='{{ Auth::user()->name }}' value='{{ Auth::user()->name }}' pattern="[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,10}" title="Pierwsza litera wielka, maksymalnie 11 znaków">
+                                        <input class="edit-name" form="editPrimaryInfo" name='name' type='text' placeholder='{{ Auth::user()->name }}' value='{{ Auth::user()->name }}' pattern="^[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,10}$" title="Pierwsza litera wielka, maksymalnie 11 liter" minlength="3" maxlength="11">
                                 </label>
                                 </p>
 
                                 <p>
                                 <label  >
                                         Nazwisko: 
-                                        <input class="edit-lastname" form="editPrimaryInfo" name='surname' type='text' placeholder='{{ Auth::user()->surname }}' value='{{ Auth::user()->surname }}' pattern="[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,10}" title="Pierwsza litera wielka, maksymalnie 11 znaków">
+                                        <input class="edit-lastname" form="editPrimaryInfo" name='surname' type='text' placeholder='{{ Auth::user()->surname }}' value='{{ Auth::user()->surname }}' pattern="^[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,14}$" title="Pierwsza litera wielka, maksymalnie 15 liter" maxlength="3" maxlength="15">
                                 </label>
                                 </p>
 
                                 <p>
                                 <label>
                                         Data urodzenia:
-<input  class="edit-date" form="editPrimaryInfo" name='bdate' type="date" placeholder='{{ Auth::user()->bdate }}' value='{{ Auth::user()->bdate }}' max="2000-11-01" min="1920-11-01">
+                                        <input  class="edit-date" form="editPrimaryInfo" name='bdate' type="date" value='{{ Auth::user()->bdate }}' max='{{ Carbon\Carbon::now()->addYears((-1)*18)->toDateString() }}' min='{{ Carbon\Carbon::now()->addYears((-1)*99)->toDateString() }}'>
                                 </label  >
                                 </p>
                                 
@@ -116,14 +116,14 @@
                                 <p>
                                 <label  >
                                     Telefon: 
-                                    <input  class="edit-phone" form="editPrimaryInfo" name='phone' type='tel' placeholder='{{ Auth::user()->phone }}' value='{{ Auth::user()->phone }}' pattern="([0-9]{3}-[0-9]{3}-[0-9]{3})|([0-9]{9})" title="Numer w formacie 123-456-789 lub 123456789.">
+                                    <input  class="edit-phone" form="editPrimaryInfo" name='phone' type='tel' value='{{ Auth::user()->phone }}' pattern="^(?:\(?\+?48)?(?:[-\.\(\)\s]*(\d)){9}\)?$" title="Numer w formacie 123-456-789 lub 123456789." minlength="9" maxlength="18">
                                 </label>
                                 </p>
                                 
                                 <p>
                                 <label  >
                                     Instagram: 
-                                    <input  class="edit-insta" form="editPrimaryInfo" name='instagram' type='text' placeholder='{{ Auth::user()->instagram }}' value='{{ Auth::user()->instagram }}' pattern="^[a-z\d\.]{5,}$" title="Nazwa użytkownika. Minimum 5 znaków">
+                                    <input  class="edit-insta" form="editPrimaryInfo" name='instagram' type='text' value='{{ Auth::user()->instagram }}' pattern="^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){2,14}))$" title="Nazwa użytkownika powinna zawierac jedynie liczby, litery, znaki: _ i ." minlength ="3" maxlength="15">
                                 </label>
                                 </p>
 
@@ -137,7 +137,7 @@
                                 <p>
                                 <label  >
                                     Strona WWW: 
-                                    <input class="edit-page"  form="editPrimaryInfo" name='page' type='text' placeholder='{{ Auth::user()->page }}' value='{{ Auth::user()->page }}' pattern="^(https?://)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$" >
+                                    <input class="edit-page"  form="editPrimaryInfo" name='page' type='text' value='{{ Auth::user()->page }}' pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" minlength ="4" maxlength="150">
                                 </label>
                                 </p>
 
@@ -639,14 +639,14 @@
                                 <p>
                                 <label>
                                         Aktualny adres email: 
-                                        <input class="edit-email-actual" name='current_email' type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+                                        <input class="edit-email-actual" name='current_email' type='email' pattern="^[a-zA-Z0-9.!#$%’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="5" maxlength="45" required>
                                 </label>
                                 </p>
 
                                 <p>
                                 <label>
                                         Nowy adres email: 
-                                        <input class="edit-email" name='new_email' type='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+                                        <input class="edit-email" name='new_email' type='email' pattern="^[a-zA-Z0-9.!#$%’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="5" maxlength="45" required>
                                 </label>
                                 </p>
 
