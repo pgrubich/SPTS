@@ -279,11 +279,11 @@ xhr2.onload = function() {
     var containerPlaces = document.getElementById('added-places');
     var placesContent = '<table>';
     for(var w=0; w<responseObject2[0].tr_pl.length; w++){
-        placesContent += '<tr class="placeRow"><td><b>'+responseObject2[0].tr_pl[w].place+'</b></td><td style="text-align:center;">Usuń</td></tr>';
+        placesContent += '<tr class="placeRow"><td><b>'+responseObject2[0].tr_pl[w].place+'</b></td>';
+        placesContent += '<td style="text-align:center;"><a>Usuń</a></td></tr>';
 
     }
     placesContent += '</table>';
-    console.log(placesContent, containerPlaces )
     containerPlaces.innerHTML = placesContent
 
 

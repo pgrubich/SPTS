@@ -71,21 +71,20 @@ xhr.onload = function() {
       // }
       content += "</p></div><div class='right-segment'><div class='stars'>";
 
-      for( var j = 0; j < responseObject[i].rating ; j++ ){
+      for( var j = 0; j < Math.round(responseObject[i].rating) ; j++ ){
         content += '<span class="fa fa-star green-star-checked"></span>';
       }
-      for(var k = 1; k <= (5-responseObject[i].rating); k++){
+      for(var k = 1; k <= (5-Math.round(responseObject[i].rating)); k++){
         content += '<span class="fa fa-star green-star"></span>';
       }
       content += "</div><button id='trainer_record_"+responseObject[i].id+"' type='button' class='btn green-button'>Zobacz profil</button></div></div>";
 
-      if(responseObject[i].profile_picture_id){
         for(var j = 0; j < responseObject[i].tr_ph.length; j++){
-          if(responseObject[i].profile_picture_id == responseObject[i].tr_ph[j].id ){
+          if(responseObject[i].tr_ph[j].only_for_avatar === "YES" ){
             profilePic.push([" <img src=\"\/storage/trainers_photos\/"+responseObject[i].id+"\/"+responseObject[i].tr_ph[j].photo_name+"\" \/>", i]);
           }
         }
-    }
+
     
     }
     var trainerBox = document.getElementById("trainers-container");
@@ -199,8 +198,8 @@ document.getElementById('filter-button').addEventListener('click', function(){
   project.style.opacity = 0;
 
     let url  = "http://pri.me/api/";
-    url  += dysc+"/";
-    url  += city+"?place=";
+    url  += dysc.replace(" ", "_")+"/";
+    url  += city.replace(" ", "_")+"?place=";
     url  += "&minAge=";
     url  += ageMin+"&maxAge=";
     url  += ageMax+"&gender=";
@@ -231,21 +230,19 @@ document.getElementById('filter-button').addEventListener('click', function(){
           //   content += '...'
           // }
           content += "</p></div><div class='right-segment'><div class='stars'>";
-    
-          for( var j = 0; j < responseObject[i].rating ; j++ ){
+          for( var j = 0; j < Math.round(responseObject[i].rating) ; j++ ){
             content += '<span class="fa fa-star green-star-checked"></span>';
           }
-          for(var k = 0; k < (5-responseObject[i].rating); k++){
+          for(var k = 0; k < (5-Math.round(responseObject[i].rating)); k++){
             content += '<span class="fa fa-star green-star"></span>';
           }
           content += "</div><button type='button' id='trainer_record_"+responseObject[i].id+"' class='btn green-button'>Zobacz profil</button></div></div>";
     
-          if(responseObject[i].profile_picture_id){
-            for(var j = 0; j < responseObject[i].tr_ph.length; j++){
-              if(responseObject[i].profile_picture_id == responseObject[i].tr_ph[j].id ){
-                profilePic.push([" <img src=\"\/storage/trainers_photos\/"+responseObject[i].id+"\/"+responseObject[i].tr_ph[j].photo_name+"\" \/>", i]);
-              }
-            }
+
+        for(var j = 0; j < responseObject[i].tr_ph.length; j++){
+          if(responseObject[i].tr_ph[j].only_for_avatar === "YES" ){
+            profilePic.push([" <img src=\"\/storage/trainers_photos\/"+responseObject[i].id+"\/"+responseObject[i].tr_ph[j].photo_name+"\" \/>", i]);
+          }
         }
         
         }
