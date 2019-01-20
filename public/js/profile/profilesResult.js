@@ -274,6 +274,7 @@ document.getElementById('filter-button').addEventListener('click', function(){
         let resultValue = document.getElementsByClassName('result-value');
         resultValue[0].textContent = '(0 wyników)';
       }
+      console.log(profilePic)
       if(profilePic){
         for(var k = 0; k < profilePic.length; k++ ){
           document.getElementsByClassName('profile-picture')[profilePic[k][1]].innerHTML = profilePic[k][0];
@@ -281,6 +282,7 @@ document.getElementById('filter-button').addEventListener('click', function(){
     
       }
       project.style.opacity = 1;
+      profilePic = [];
 }
 xhr5.send(null);
 
