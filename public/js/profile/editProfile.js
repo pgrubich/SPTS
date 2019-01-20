@@ -323,7 +323,6 @@ xhr2.onload = function() {
           if(document.getElementById(dysciplineName)){
             document.getElementById(dysciplineName).checked = true;
           }
-          console.log(responseObject2)
             if(responseObject2[0].avatar){
             for(j=0; j < responseObject2[0].tr_ph.length; j++){
                 if(responseObject2[0].tr_ph[j].only_for_avatar == "YES"){
@@ -621,7 +620,6 @@ for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
  }
  for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
     if(responseObject2[0].tr_ph[i].only_for_avatar == "NO"){
-        console.log('halo')
         delUrl.push("/public/"+responseObject2[0].id+'/'+responseObject2[0].tr_ph[i].photo_name);
         photos += "<div class='gallery-photo'><span class='delete'><i id='pho"+responseObject2[0].tr_ph[i].id+"'class='far fa-trash-alt'></i></span><a href=\"";
         photos += "\/storage/trainers_photos\/"+responseObject2[0].id+"\/"+ responseObject2[0].tr_ph[i].photo_name+"\" data-lightbox=\"my-gallery\" >"
@@ -636,7 +634,6 @@ var pickProfilePic = document.getElementById('profilePicPick');
 pickProfilePic.innerHTML = photosForProfilePic;
 for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
     if(responseObject2[0].tr_ph[i].only_for_avatar == "NO"){
-        console.log(responseObject2[0].tr_ph[i].id)
         document.getElementById('pic'+responseObject2[0].tr_ph[i].id).addEventListener('click',function(e){
             var target = e.target;
             var x = document.getElementsByClassName('gallery-photo');
@@ -651,7 +648,6 @@ for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
 
 
 var photContainer = document.getElementsByClassName("gallery-content")[0];
-console.log(photContainer)
 photContainer.innerHTML = photos;
 
 for(var i = 0; i<responseObject2[0].tr_ph.length; i++){
@@ -814,10 +810,8 @@ if(responseObject2[0].gender == "K"){
 
 //hide edit cer
 var yyy = document.getElementsByClassName("single-cer-count");
-console.log(yyy)
 
 for(var i=0; i<yyy.length;i++){
-    console.log(document.getElementsByClassName("edit-single-cer"))
  document.getElementsByClassName("edit-single-cer")[i].style.display="none";
 }
 //show edit cer

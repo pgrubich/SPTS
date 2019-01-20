@@ -212,8 +212,6 @@ document.getElementById('filter-button').addEventListener('click', function(){
     }
     url  += priceMin+"&maxPrice=";
     url  += priceMax;
-    console.log(url)
-    console.log($( "#age-slider-range" ).slider( "values", 0 ))
     var xhr5  = new XMLHttpRequest()
     xhr5.open('GET', url, true)
     xhr5.onload = function () {

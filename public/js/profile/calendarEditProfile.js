@@ -17,7 +17,6 @@ var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
     responseObject = JSON.parse(xhttp.responseText);
-    console.log(responseObject)
     var actualTableContent = "<table><tr><th style='width:18%'>Data</th><th style='width:18%'>Godzina</th><th style='width:23%'>Nazwa zajęć</th><th style='width:23%'>Miejsce</th><th style='width:8%'>Status</th><th style='width:10%'></th></tr>"
     for(var i = 0; i < responseObject.length; i++){
         actualTableContent+= "<tr><td>"+responseObject[i].date+"</td>";
@@ -260,7 +259,6 @@ var xhttp2 = new XMLHttpRequest();
 xhttp2.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
     responseObject = JSON.parse(xhttp2.responseText);
-    console.log(responseObject)
     var actualTableContent = "<table><tr><th style='width:18%'>Data</th><th style='width:18%'>Godzina</th><th style='width:23%'>Nazwa zajęć</th><th style='width:23%'>Miejsce</th><th style='width:8%'>Status</th><th style='width:10%'></th></tr>"
     for(var i = 0; i < responseObject.length; i++){
         actualTableContent+= "<tr><td>"+responseObject[i].date+"</td>";
