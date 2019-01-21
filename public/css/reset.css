@@ -1,0 +1,23 @@
+.card{
+    background-color: rgba(255,255,255,0.8);
+}
+
+.form-group.row.mb-0 button{
+    height: 25px;
+    width: 150px;
+    font-size: 10px;
+    box-shadow: 3px 2px 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    background-image: url("images/resetBG.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-size: 16px;
+}
+.btn-primary{
+    background-color: #4bc0e3;
+    border-color: #4bc0e3;
+}
+
