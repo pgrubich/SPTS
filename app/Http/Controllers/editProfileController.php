@@ -338,7 +338,6 @@ class editProfileController extends Controller
         $trOffer->delete();
 
         return redirect('/editProfile');
-
     }
 
     protected function addTrainersPlace(Request $request)
@@ -361,6 +360,17 @@ class editProfileController extends Controller
             return redirect('/editProfile');
         }
     }
+
+    protected function destroyTrainersPlace($id)
+    {
+
+        $trPlace = TrPlace::findOrFail($id);
+        $trPlace->delete();
+
+        return redirect('/editProfile');
+
+    }
+
 
     protected function updateEmailInfo(Request $request)
     {

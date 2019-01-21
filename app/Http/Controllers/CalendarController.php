@@ -88,7 +88,7 @@ class CalendarController extends Controller
     protected function deleteTraining($id)
     {
 
-        $trTraining = TrTraining::findOrFail($id);
+        /*$trTraining = TrTraining::findOrFail($id);
         if ($trTraining->actual_client_number > 0)
         {  
             return ("Nie można usunąć treningu.");
@@ -96,9 +96,8 @@ class CalendarController extends Controller
         else 
         {
         $trTraining->destroy();
-        }
-
-        return ("To sie ma wyswietlic");
+            */
+        return redirect('/profiles/6');
 
     }
 

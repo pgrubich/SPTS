@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/css/fontello.css')}}" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/searching.css')}}" type="text/css" />
+    <link rel="stylesheet" href="{{asset('css/privacyPolicy.css')}}" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{asset('js/profile/jquery.scrollTo.min.js')}}"></script>
 
@@ -19,7 +20,7 @@
     <nav>
 
         <div class="container-fluid" id="logBar" style="background: #fbfafa;">
-            <a href="/">
+            <a href="/" id="privacyNavBar">
             <div class="logo"></div>
             </a>
             <span>
