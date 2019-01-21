@@ -60,6 +60,9 @@ Route::post('destroyOffer/{id}', ['uses' =>'editProfileController@destroyOffer']
 
 Route::post('addTrainersPlace', ['uses' =>'editProfileController@addTrainersPlace']);
 
+Route::post('destroyTrainersPlace/{id}', ['uses' =>'editProfileController@destroyTrainersPlace']);
+
+
 
 // Photo management
 
