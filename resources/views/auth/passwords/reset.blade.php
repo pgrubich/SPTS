@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <link rel="stylesheet" href="{{asset('css/reset.css')}}" type="text/css"/>
-
-    <div class="container">
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

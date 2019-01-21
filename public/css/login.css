@@ -1,48 +1,81 @@
-#passwdResetButton{
-    margin-left: 68%;
+.mainContainer{
+    display:flex;
+}
+#loginPic{
+    width: 500px;
+    height: 607px;
+    margin-top:70px;
+    background-image: url('images/login.png');
+    -webkit-box-shadow: 10px 14px 35px 1px rgba(0,0,0,0.45);
+    -moz-box-shadow: 10px 14px 35px 1px rgba(0,0,0,0.45);
+    box-shadow: 10px 14px 35px 1px rgba(0,0,0,0.45);
+}
+#registerPic{
+    width: 500px;
+    height: 607px;
+    margin-top:70px;
+    background-image: url('images/Register.png');
+    -webkit-box-shadow: 10px 14px 35px 1px rgba(0,0,0,0.45);
+    -moz-box-shadow: 10px 14px 35px 1px rgba(0,0,0,0.45);
+    box-shadow: 10px 14px 35px 1px rgba(0,0,0,0.45);
 }
 
-.card{
-    background-color: rgba(255,255,255,0.8);
+.facebook{
+    width: 300px;
+    height: 110px;
+    margin-left: 10px;
+    margin-top: 108px;
+    background-image: url(images/facebook.png);
+}
+.facebookR{
+    width: 300px;
+    height: 110px;
+    margin-left: 10px;
+    margin-top: 85px;
+    background-image: url(images/facebook.png);
+}
+.google{
+    width: 270px;
+    margin-left: 26px;
+    height: 64px;
+    margin-top: 40px;
+    background-image: url(images/google.png);
 
 }
 
-.checkbox{
-    float: left;
+.input-login{
+    width: 100%;
+    border-radius: 5px;
+    border: 1.5px solid #dfdede;
+    height: 41px;
+    margin-top: 33px;
+    padding: 11px 15px 11px 5px;
+}
+.input-loginR{
+    width: 100%;
+    border-radius: 5px;
+    border: 1.5px solid #dfdede;
+    height: 41px;
+    margin-top: 22px;
+    padding: 11px 15px 11px 5px;
 }
 
-.form-group{
-    margin-bottom: 0px !important;
+.submit-login{
+    padding: 7px 15px;
+    width: 100%;
+    border: 2px solid #dfdede;
+    background-color: white;
+    margin-top: 31px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-body{
-    background-image: url("images/logBG.jpeg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100%;
-    font-size: 16px;
+.forget{
+    margin-top: 20px;
+    /* margin-left: auto; */
+    float: right;
+    /* margin-right: auto; */
+    text-decoration: none;
+    color: grey;
+    display: block;
 }
-
-.btn-primary{
-    background-color: #4bc0e3;
-    border-color: #4bc0e3;
-}
-
-.btn-fb{
-    background-color: #3b5998;
-    border-color: #3b5998;
-}
-
-.btn-gplus{
-    background-color: #dd4b39;
-    border-color: #dd4b39;
-}
-
-.btn-gplus i{
-    color: white;
-}
-
-.btn-fb i{
-    color: white;
-}
-
