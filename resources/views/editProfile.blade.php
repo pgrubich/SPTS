@@ -113,6 +113,16 @@
                                         mężczyzna  <span class="checkmark-radio"></span></label>
 </span>
                                 </p>
+                                <label  >
+                                    <p>
+                                        Miasto:
+                                        <input class="edit-city" form="addCity" name='city' minlength="2" maxlength="40" type="text" pattern="^[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]+(?:[\s-][a-ząęźżśóćńłA-ZĄĘŹŻŚÓĆNŁ]+)*$" required>
+                                        <input form="addCity" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                                        <input form="addCity" type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                        <input class="add-city" type="submit" value="Dodaj" form="addCity">
+                                    </p>
+                                </label>
+                                <div id="citiesContainer"></div>
                                 <p>
                                 <label  >
                                     Telefon: 
@@ -141,22 +151,6 @@
                                 </label>
                                 </p>
 
-                                <label  >
-                                    <span id="show-cities">+ Dodaj miasto: </span>
-                                    <div id="edit-cities">
-                                    <p>
-                                            Miasto:
-                                            <input class="edit-city" form="addCity" name='city' minlength="2" maxlength="40" type="text" pattern="^[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]+(?:[\s-][a-ząęźżśóćńłA-ZĄĘŹŻŚÓĆNŁ]+)*$" required>
-                                        </p>
-                                        <p>
-                                            Województwo:
-                                            <input class="edit-voi" form="addCity" name='voivodeship' minlength="2" maxlength="40" type="text" pattern="^[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]+(?:[\s-][a-ząęźżśóćńłA-ZĄĘŹŻŚÓĆNŁ]+)*$" required>
-                                        </p>
-                                        <input form="addCity" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
-                                        <input form="addCity" type='hidden' value='{{ csrf_token() }}' name='_token'/>
-                                        <input class="city-add-button" type="submit" value="Dodaj miasto" form="addCity">
-                                    </div>
-                                </label>
 
 
                                 <div>

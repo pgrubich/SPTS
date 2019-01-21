@@ -168,6 +168,7 @@ xhttp.onreadystatechange = function() {
 	    for(var x=0; x<responseObject.length; x++){
     document.getElementById('deleteEvent-'+responseObject[x].id).addEventListener('click',function(e) {
         let idSplit2 = event.target.id.split("-");
+        var splited = idSplit2[1];
         $.confirm({
             boxWidth: '30%',
             useBootstrap: false,
@@ -183,7 +184,7 @@ xhttp.onreadystatechange = function() {
                             "_token": $('#token').val()
                             },
                         method: "POST",
-                        url: "/deleteTraining/"+idSplit2[1],
+                        url: "/deleteTraining/"+ splited,
                         }).done(function( msg ) {
                         if(msg.error == 0){
                             window.location.reload()

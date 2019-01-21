@@ -315,11 +315,21 @@ fieldset{
 
 .edit-city{
     margin-left: 101px;
-    width: 250px;
+    width: 165px;
     border-radius: 2px;
     border: 1.5px solid #dfdede;
     height: 20px;
-    padding: 3px
+    padding: 11px 15px 11px 5px;
+}
+.add-city{
+    width: 82px;
+    height: 30px;
+    color: white;
+    background-color: #3cdaa8;
+    border: none;
+    /* float: right; */
+    /* margin-right: 200px; */
+    border-radius: 3px;
 }
 .edit-voi{
     margin-left: 43px;

@@ -154,12 +154,10 @@ function show(a){
 var course = document.getElementById("edit-course");
 var uni = document.getElementById("edit-uni");
 var price = document.getElementById("edit-price");
-var cities = document.getElementById("edit-cities");
 
 course.style.display = "none";
 uni.style.display = "none";
 price.style.display = "none";
-cities.style.display = "none";
 
 var click1 = document.getElementById("show-course");
 var click2 = document.getElementById("show-uni");
@@ -169,7 +167,6 @@ var click4 = document.getElementById("show-cities");
 click1.addEventListener('click',function(){showHide(1);},false);
 click2.addEventListener('click',function(){showHide(2);},false);
 click3.addEventListener('click',function(){showHide(3);},false);
-click4.addEventListener('click',function(){showHide(4);},false);
 
 function showHide(a){
     switch(a){
@@ -290,17 +287,54 @@ xhr2.onload = function() {
 
 
 
+    var contCities = document.getElementById('citiesContainer');
+    var contSwap = '';
+    console.log(responseObject2)
+    for(var i=0 ; i < responseObject2[0].tr_loc.length; i++){
+        contSwap += "<div style='margin-bottom: 7px;margin-left: 163px;font-size: 15px;width: 251px;'>"
+        contSwap += responseObject2[0].tr_loc[i].city;
+        contSwap += "<a id='deleteCity-"+responseObject2[0].tr_loc[i].id+"' style='text-decoration: none;cursor: pointer;float: right;font-size: 15px;'>Usuń</a></div>"
+    }
+
+    contCities.innerHTML = contSwap;
 
 
-
-
-
-
-
-
-
-
-
+    for(var x=0; x<responseObject2[0].tr_loc.length; x++){
+        document.getElementById('deleteCity-'+responseObject2[0].tr_loc[x].id).addEventListener('click',function(e) {
+            let idSplit2 = event.target.id.split("-");
+            var splited = idSplit2[1];
+            $.confirm({
+                boxWidth: '30%',
+                useBootstrap: false,
+                title: 'Usuwanie',
+                content: 'Czy na pewno chcesz usunąć miasto ?',
+                buttons: {
+                    usuń: {
+                        btnClass: 'btn-blue',
+                        action: function () {
+                        var t = e.target;
+                        $.ajax({
+                            data: {
+                                "_token": $('#token').val()
+                                },
+                            method: "POST",
+                            url: "/destroyCity/"+ splited,
+                            }).done(function( msg ) {
+                            if(msg.error == 0){
+                                window.location.reload()
+                            }else{
+                                window.location.reload()
+                            }
+                        });
+                    }},
+                    cofnij: function () {
+                    }
+                }
+            })
+    
+    }
+    ,false );
+    }
 
 
 
