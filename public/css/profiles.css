@@ -125,7 +125,11 @@
     font-size: 15px;
 }
 
-.fa-bookmark, .fa-certificate, .fa-graduation-cap, .fa-calendar-alt, .fa-shopping-bag, .fa-images, .fa-comments{
+.fa-check-square{
+    color:#3cdaa8;
+}
+
+.fa-bookmark, .fa-certificate, .fa-graduation-cap, .fa-calendar-alt, .fa-shopping-bag, .fa-images, .fa-comments, .fa-check-square{
     margin-right:5px;
     font-size: 17px;
 }
@@ -352,4 +356,27 @@
     float: right;
     padding: 7px;
     border-radius: 3px;
+}
+.eventPlace{
+    text-align: center;
+    padding-top: 15px;
+    background-color: #e4f6fb;
+    border: 1px solid grey;
+    margin-top: 5px;
+    border-radius: 4px;
+    padding-bottom: 15px;
+    cursor: pointer;
+    /* height: 20px; */
+}
+
+.eventPlaceCheked{
+    text-align: center;
+    padding-top: 15px;
+    background-color: #4bc0e3;
+    border: 1px solid grey;
+    margin-top: 5px;
+    border-radius: 4px;
+    padding-bottom: 15px;
+    cursor: pointer;
+    /* height: 20px; */
 }

@@ -153,32 +153,68 @@
                         <div class="categories-header">
                             <i class="fas fa-map-marker"></i>
                             Lokalizacja</div>
-                        <div class="categories-content">
-                            <div id="map" style="width: 500px; height: 500px;"></div>
+                        <div class="categories-content" style="display:flex">
+                            <div id="map" style=" display:inline-block;width: 75%; height: 500px;"></div>
+                            <div id="places" style=" display:inline-block;width: 25%; height: 500px;"></div>
                             <script>
+                  
                             function initMap() {
+                                var options = {
+                                    zoom: 12,
+                                    center: {lat: 52.237049, lng: 21.017532}
+                                }
+                            var map = new google.maps.Map(
+                                document.getElementById('map'), options);
+
+                            var marker = new google.maps.Marker({position: options.center, map: map});
                                 var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
                                 var xhttp = new XMLHttpRequest();
                                 xhttp.onreadystatechange = function() {
                                     if (this.readyState == 4 && this.status == 200) {
-                                    responseObject = JSON.parse(xhttp.responseText); 
-                                    console.log(responseObject)
+                                    responseObject = JSON.parse(xhttp.responseText);
+                                    var placesTab = [];
+                                    var content = '<ul style=" list-style-type: none;padding: 0px;    margin: 0px;">';
+                                     for(var i=0 ; i < responseObject[0].tr_pl.length; i++){
+                                        placesTab.push(responseObject[0].tr_pl[i])
+                                        content +="<li class='eventPlace' id='eventplace-"+i+"'>"+responseObject[0].tr_pl[i].place+"</li>";
+                                        
+                                     }
+                                     content+="</ul>"
+                                     document.getElementById('places').innerHTML = content
+                                     console.log(placesTab)
+                                     if(placesTab[0].latitude && document.getElementById('eventplace-0')){
+                                        document.getElementById('eventplace-0').classList.remove("eventPlace");
+                                        document.getElementById('eventplace-0').classList.add("eventPlaceCheked");
+
+                                        pointToMoveTo = new google.maps.LatLng(parseFloat(placesTab[0].latitude), parseFloat(placesTab[0].longitude));
+                                        marker.setPosition( new google.maps.LatLng( parseFloat(placesTab[0].latitude), parseFloat(placesTab[0].longitude) ) );
+                                        map.panTo(pointToMoveTo);
+                                     }
+
+                                     for(var i=0 ; i < responseObject[0].tr_pl.length; i++){
+                                        document.getElementById('eventplace-'+i).addEventListener('click',function(e){
+                                            var idTable = e.target.id.split("-")[1]
+                                            for(var j=0 ; j < placesTab.length; j++){
+                                                document.getElementById('eventplace-'+j).classList.remove("eventPlaceCheked");
+                                                document.getElementById('eventplace-'+j).classList.add("eventPlace");
+                                            }
+                                            document.getElementById(e.target.id).classList.add("eventPlaceCheked");
+                                            pointToMoveTo = new google.maps.LatLng(parseFloat(placesTab[idTable].latitude), parseFloat(placesTab[idTable].longitude));
+                                            marker.setPosition( new google.maps.LatLng( parseFloat(placesTab[idTable].latitude), parseFloat(placesTab[idTable].longitude) ) );
+                                            map.panTo(pointToMoveTo);
+                                        },false)
+                                        
+                                     }
                                     }
                                 };
                                 xhttp.open("GET", 'http://pri.me/api/profiles/'+id, true);
                                 xhttp.send();
-                                var options = {
-                                    zoom: 12,
-                                    center: {lat: 53.4837486, lng: 18.753565}
-                                }
-                                var map = new google.maps.Map(
-                                    document.getElementById('map'), options);
 
-                                 var marker = new google.maps.Marker({position: options.center, map: map});
                             }</script>
                             <script async defer
                                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnYmBavIuXOjKrQflq-_CkuyIrmLpaD1Y&callback=initMap">
                             </script>
+                         
                         </div>
                     </div>
 

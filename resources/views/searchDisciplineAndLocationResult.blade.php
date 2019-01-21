@@ -123,6 +123,6 @@
     </main>
     
     <script type="text/javascript" src="{{asset('js/profile/profilesResult.js')}}"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASwYHL3afDu086oPLiCJ_S-3lfh2GGTMA&libraries=places&callback=inputSearchCities&region=PL"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnYmBavIuXOjKrQflq-_CkuyIrmLpaD1Y&libraries=places&callback=inputSearchCities&region=PL"></script>
 </body>
 </html>

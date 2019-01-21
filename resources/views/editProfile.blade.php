@@ -87,28 +87,25 @@
                                         <input class="edit-name" form="editPrimaryInfo" name='name' type='text'
                                                placeholder='{{ Auth::user()->name }}' value='{{ Auth::user()->name }}'
                                                pattern="[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,10}"
-                                               title="Pierwsza litera wielka, maksymalnie 11 znaków">
+                                               title="Pierwsza litera wielka, maksymalnie 11 znaków"
+                                               minlength="3" maxlength="11">
                                     </label>
                                 </p>
 
                                 <p>
                                     <label>
                                         Nazwisko:
-                                        <input class="edit-lastname" form="editPrimaryInfo" name='surname' type='text'
-                                               placeholder='{{ Auth::user()->surname }}'
-                                               value='{{ Auth::user()->surname }}'
-                                               pattern="[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,10}"
-                                               title="Pierwsza litera wielka, maksymalnie 11 znaków">
+                                        <input class="edit-lastname" form="editPrimaryInfo" name='surname' type='text' placeholder='{{ Auth::user()->surname }}' value='{{ Auth::user()->surname }}' pattern="^[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]{2,14}$" title="Pierwsza litera wielka, maksymalnie 15 liter" maxlength="3" maxlength="15">
+
                                     </label>
                                 </p>
 
                                 <p>
                                     <label>
                                         Data urodzenia:
-                                        <input class="edit-date" form="editPrimaryInfo" name='bdate' type="date"
-                                               placeholder='{{ Auth::user()->bdate }}' value='{{ Auth::user()->bdate }}'
-                                               max="2000-11-01" min="1920-11-01">
-                                    </label>
+                                        <input  class="edit-date" form="editPrimaryInfo" name='bdate' type="date" value='{{ Auth::user()->bdate }}' max='{{ Carbon\Carbon::now()->addYears((-1)*18)->toDateString() }}' min='{{ Carbon\Carbon::now()->addYears((-1)*99)->toDateString() }}'>
+                                </label  >
+
                                 </p>
 
                                 <p>
@@ -124,24 +121,28 @@
                                         mężczyzna  <span class="checkmark-radio"></span></label>
                                     </span>
                                 </p>
+                                <label  >
+                                    <p>
+                                        Miasto:
+                                        <input class="edit-city" form="addCity" name='city' minlength="2" maxlength="40" type="text" pattern="^[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]+(?:[\s-][a-ząęźżśóćńłA-ZĄĘŹŻŚÓĆNŁ]+)*$" required>
+                                        <input form="addCity" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                                        <input form="addCity" type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                        <input class="add-city" type="submit" value="Dodaj" form="addCity">
+                                    </p>
+                                </label>
+                                <div id="citiesContainer"></div>
                                 <p>
-                                    <label>
-                                        Telefon:
-                                        <input class="edit-phone" form="editPrimaryInfo" name='phone' type='tel'
-                                               placeholder='{{ Auth::user()->phone }}' value='{{ Auth::user()->phone }}'
-                                               pattern="([0-9]{3}-[0-9]{3}-[0-9]{3})|([0-9]{9})"
-                                               title="Numer w formacie 123-456-789 lub 123456789.">
-                                    </label>
+                                <label>
+                                    Telefon: 
+                                    <input  class="edit-phone" form="editPrimaryInfo" name='phone' type='tel' value='{{ Auth::user()->phone }}' pattern="^(?:\(?\+?48)?(?:[-\.\(\)\s]*(\d)){9}\)?$" title="Numer w formacie 123-456-789 lub 123456789." minlength="9" maxlength="18">
+                                </label>
                                 </p>
 
                                 <p>
-                                    <label>
-                                        Instagram:
-                                        <input class="edit-insta" form="editPrimaryInfo" name='instagram' type='text'
-                                               placeholder='{{ Auth::user()->instagram }}'
-                                               value='{{ Auth::user()->instagram }}' pattern="^[a-z\d\.]{5,}$"
-                                               title="Nazwa użytkownika. Minimum 5 znaków">
-                                    </label>
+                                <label>
+                                    Instagram: 
+                                    <input  class="edit-insta" form="editPrimaryInfo" name='instagram' type='text' value='{{ Auth::user()->instagram }}' pattern="^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){2,14}))$" title="Nazwa użytkownika powinna zawierac jedynie liczby, litery, znaki: _ i ." minlength ="3" maxlength="15">
+                                </label>
                                 </p>
 
                                 <p>
@@ -155,37 +156,11 @@
                                 </p>
 
                                 <p>
-                                    <label>
-                                        Strona WWW:
-                                        <input class="edit-page" form="editPrimaryInfo" name='page' type='text'
-                                               placeholder='{{ Auth::user()->page }}' value='{{ Auth::user()->page }}'
-                                               pattern="^(https?://)?([a-zA-Z0-9]([a-zA-ZäöüÄÖÜ0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$">
-                                    </label>
-                                </p>
-
-                                <label>
-                                    <span id="show-cities">+ Dodaj miasto: </span>
-                                    <div id="edit-cities">
-                                        <p>
-                                            Miasto:
-                                            <input class="edit-city" form="addCity" name='city' minlength="2"
-                                                   maxlength="40" type="text"
-                                                   pattern="^[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]+(?:[\s-][a-ząęźżśóćńłA-ZĄĘŹŻŚÓĆNŁ]+)*$"
-                                                   required>
-                                        </p>
-                                        <p>
-                                            Województwo:
-                                            <input class="edit-voi" form="addCity" name='voivodeship' minlength="2"
-                                                   maxlength="40" type="text"
-                                                   pattern="^[A-ZĄĘŹŻŚÓĆNŁ][a-ząęźżśóćńł]+(?:[\s-][a-ząęźżśóćńłA-ZĄĘŹŻŚÓĆNŁ]+)*$"
-                                                   required>
-                                        </p>
-                                        <input form="addCity" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
-                                        <input form="addCity" type='hidden' value='{{ csrf_token() }}' name='_token'/>
-                                        <input class="city-add-button" type="submit" value="Dodaj miasto"
-                                               form="addCity">
-                                    </div>
+                                <label  >
+                                    Strona WWW: 
+                                    <input class="edit-page"  form="editPrimaryInfo" name='page' type='text' value='{{ Auth::user()->page }}' pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" minlength ="4" maxlength="150">
                                 </label>
+                                </p>
 
 
                                 <div>
@@ -210,7 +185,38 @@
 
                         <fieldset>
                             <legend>Dane szczegółowe</legend>
-                            <p>
+                                <p>
+                                        <label >
+                                        Opis:
+                                        <span class="optional">(Opcjonalnie)</span>
+                                        <textarea form="editSpecificInfo" class="edit-text" form="editSpecificInfo" name="description" cols="90" rows="10" maxlength="2000" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 2000 ">{{ Auth::user()->description }}</textarea>                                        <input form="editSpecificInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                                        <input form="editSpecificInfo" type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                        <input class="add-button" type="submit" value="Aktualizuj opis" form="editSpecificInfo" >
+                                        </label>
+                                </p>
+                                <p style="margin-top:45px;">
+                                        Dyscypliny:
+                                        <div id="dyscypline-list-editprofile" >
+                                            <form id='updateDisciplines' action='updateDisciplines' method='POST'>
+                                            <div style="width:27%" class="dyscypline-column-editprofile">
+                                            </div>
+                                            <div class="dyscypline-column-editprofile">
+                                            </div>
+                                            <div style="width:28%" class="dyscypline-column-editprofile">
+                                            </div>
+                                            <div style="width:20%" class="dyscypline-column-editprofile">
+                                            </div>
+                                            <div class="dyscypline-column-editprofile">
+                                            </div>
+                                            <div style="clear:both;"></div>
+                                            <input type='hidden' name='trainer_id' value='{{ Auth::user()->id }}'/>
+                                            <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                            <input class="add-button" type="submit" value="Zmień dyscypliny" >
+                                            </form>
+                                        </div>
+                                </p>
+                                <br />
+
                                 <label>
                                     Opis:
                                     <br/>
@@ -372,124 +378,63 @@
 
                                 </div>
                             </label>
-
-                            <br/>
-                            <label>
-                                Miejsca treningu:
-                                <div>
-                                    </br>
-                                    <input id="locationSearch" form="addTrainersPlace" name='numbers_of_members'
-                                           type="text" placeholder="Wpisz adres" required>
-                                    <input form="addTrainersPlace" type='hidden' name='id'
-                                           value='{{ Auth::user()->id }}'/>
-                                    <input form="addTrainersPlace" type='hidden' value='{{ csrf_token() }}'
-                                           name='_token'/>
-                                    <input id="location-name" name="location-name" form="addTrainersPlace"
-                                           type='hidden'/>
-                                    <input id="location-latitude" name="location-latitude" form="addTrainersPlace"
-                                           type='hidden'/>
-                                    <input id="location-longitude" name="location-longitude" form="addTrainersPlace"
-                                           type='hidden'/>
-                                    <div style="margin-bottom: 70px;">
-                                        <input class="add-button" type="submit" value="Dodaj lokalizację"
-                                               form="addTrainersPlace">
-                                        <script>
-                                            function initMap() {
-                                                var address = document.getElementById('locationSearch');
-                                                var options = {
-                                                    componentRestrictions: {country: "pl"}
-                                                };
-                                                var autocomplete = new google.maps.places.Autocomplete(address, options);
-
-                                                autocomplete.addListener('place_changed', function () {
-                                                    var place = autocomplete.getPlace();
-                                                    document.getElementById('location-name').value = place.name;
-                                                    document.getElementById('location-latitude').value = place.geometry.location.lat();
-                                                    document.getElementById('location-longitude').value = place.geometry.location.lng();
-                                                });
-                                            }
-                                        </script>
-                                        <script type="text/javascript" async defer
-                                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnYmBavIuXOjKrQflq-_CkuyIrmLpaD1Y&libraries=places&callback=initMap">
-                                        </script>
-                                    </div>
-
-                                </div>
-                            </label>
-
-                            <br/>
-                            <br/>
                         </fieldset>
                     </div>
 
                     <div id="calendar-edit">
                         <fieldset>
                             <legend>Mój kalendarz</legend>
-                            <form id="addTraining" action='addTraining' method='POST'>
-                                <br>
-                                <span id="show-loc">+ Dodaj trening</span></br></br>
 
-                                <div id="edit-loc" style='display: none; font-size:14px; margin-left: 20px;'>
-                                    <p>
-                                        Nazwa zajęć:
-                                        <input placeholder="Podaj nazwę zajęć..." class="edit-uni" form="addTraining"
-                                               name='name' type="text" pattern=".{3,}">
-                                    </p>
-                                    <p style="display: inline-block;">
-                                        Miejsce:
-                                        <input placeholder="Podaj miejsce zajęć..." class="edit-loc-place"
-                                               form="addTraining" name='place' type="text" pattern=".{3,}" required>
-                                    </p>
-                                    <p style="display:inline-block">
-                                        Data:
-                                        <input class="edit-startdate-loc" form="addTraining" name='date' type="date"
-                                               max='{{ Carbon\Carbon::now()->addMonths(1)->addWeeks(2)->toDateString() }}'
-                                               min='{{ Carbon\Carbon::now()->addDays(1)->toDateString() }}' required>
-                                    </p>
-                                    <p style="display:inline-block;margin-left: 10px;">
-                                        Godzina od:
-                                        <input class="edit-time" form="addTraining" name='begin_time' type="time"
-                                               required>
-                                    </p>
-                                    <p style="display:inline-block;margin-left: 13px;">
-                                        do:
-                                        <input class="edit-time" form="addTraining" name='end_time' type="time"
-                                               required>
-                                    </p>
-                                    <p style="display:inline-block;">
-                                        Maks. liczba osób:
-                                        <input class="edit-number" value="1" form="addTraining" name='client_limit'
-                                               type="number" min="1" max="15" required>
-                                    </p>
-                                    <p style="display:inline-block;margin-left: 64px;">
-                                        Cena zł (1 os.):
-                                        <input class="edit-time" placeholder="0" style="width:83px" form="addTraining"
-                                               name='price' type="number">
-                                    </p><br>
-                                    <span style="display:inline-block;position: relative;bottom: 182px;
+                            <form id="addTraining" action='addTraining' method = 'POST'>
+                            <br>
+                                    <span id="show-loc">+ Dodaj trening</span></br></br>
+                                   
+                                    <div id="edit-loc" style='display: none; font-size:14px; margin-left: 20px;'>
+                                        <p>
+                                            Nazwa zajęć:
+                                            <input placeholder="Podaj nazwę zajęć..." class="edit-uni" form="addTraining" name='name' type="text" minlength="3" maxlength="45">
+                                        </p>
+                                        <p style="display: inline-block;">
+                                            Miejsce:
+                                            <input placeholder="Podaj miejsce zajęć..." class="edit-loc-place" form="addTraining" name='place' type="text" pattern=".{3,}" required minlength="3" maxlength="45">
+                                        </p>
+                                        <p style="display:inline-block">
+                                            Data:
+                                            <input class="edit-startdate-loc" form="addTraining" name='date' type="date" max='{{ Carbon\Carbon::now()->addMonths(6)->toDateString() }}' min='{{ Carbon\Carbon::now()->toDateString() }}' required>
+                                        </p>
+                                        <p style="display:inline-block;margin-left: 10px;"> 
+                                            Godzina od:
+                                            <input class="edit-time" form="addTraining" name='begin_time' type="time" required>
+                                        </p>
+                                        <p style="display:inline-block;margin-left: 13px;">
+                                            do:
+                                            <input class="edit-time" form="addTraining" name='end_time' type="time" required>
+                                        </p>
+                                        <p style="display:inline-block;">
+                                            Maks. liczba osób:
+                                            <input class="edit-number" value="1" form="addTraining" name='client_limit' type="number" min="1" max="15" required>
+                                        </p>
+                                        <p style="display:inline-block;margin-left: 64px;">
+                                            Cena zł (1 os.):
+                                            <input class="edit-time" placeholder="0" style="width:83px" form="addTraining" name='price' type="number">
+                                        </p><br>
+                                        <span style="display:inline-block;position: relative;bottom: 182px;
 ">
                                             Opis:
-                                        </span>
-                                    <p style="display:inline-block;"><textarea placeholder="Podaj opis treningu..."
-                                                                               style="width:480px; margin-left:100px; border: 1.5px solid #dfdede;"
-                                                                               class="edit-text" name="description"
-                                                                               cols="90" rows="10" maxlength="2048"
-                                                                               minlength="5"
-                                                                               title="Minimalna liczba znaków to 5, a maksymalna 2000 "></textarea>
-                                    </p>
-                                    <p>
-                                        Powtórz:
-                                        <input style="margin-left: 73px;" class="edit-number" value="0"
-                                               form="addTraining" name='repeat' type="number" min="0" max="4">
-                                        razy
-                                    </p>
-                                    <input type='hidden' form="addTraining" name='id' value='{{ Auth::user()->id }}'/>
-                                    <input form="addTraining" type='hidden' value='{{ csrf_token() }}' name='_token'/>
-                                    <div style="margin-bottom: 70px;">
-                                        <input class="add-button" type="submit" value="Dodaj trening"
-                                               style="margin-right:36px" form="addTraining">
+                                        </span><p style="display:inline-block;"><textarea placeholder="Podaj opis treningu..." style="width:480px; margin-left:100px; border: 1.5px solid #dfdede;" class="edit-text" name="description" cols="90" rows="10" maxlength="500" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 500 "></textarea>                                        </p>
+                                        <p>
+                                            Powtórz:
+                                            <input style="margin-left: 73px;" class="edit-number" value="0" form="addTraining" name='repeat' type="number" min="0" max="4">
+                                            razy
+                                        </p>
+                                        <input type='hidden' form="addTraining" name='id' value='{{ Auth::user()->id }}'/>
+                                        <input form="addTraining" type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                        <div style="margin-bottom: 70px;">
+                                        <input class="add-button" type="submit" value="Dodaj trening" style="margin-right:36px" form="addTraining" >
+                                        </div>
+
                                     </div>
-                                </div>
+
                             </form>
                             </br>
                             <h2>Zarządzaj przyszłymi treningami</h2>
@@ -498,14 +443,136 @@
                             <div id="table-container"></div>
                             </br>
                             <h2>Zakończone treningi</h2>
-                            </br>
 
-                            <div id="table-container2"></div>
+                                    </br>
+                                    <div><form action='deleteOldTrainings' method = 'POST'>
+                                        <b style="font-size: 15px;">Usuń zakończone treningi od</b> 
+                                        <input style="width: 155px;border: 1px solid lightgrey;border-radius: 5px;" type="date" name='begin_date' value='{{ Carbon\Carbon::now()->addMonths((-1)*3)->toDateString() }}' max='{{ Carbon\Carbon::now()->addDays((-1)*1)->toDateString() }}' min='{{ Carbon\Carbon::now()->addMonths((-1)*3)->toDateString() }}' required>
+                                        <b style="font-size: 15px;">do</b>
+                                        <input style="width: 155px;border: 1px solid lightgrey;border-radius: 5px;"  type="date" name='end_date' value='{{ Carbon\Carbon::now()->addDays((-1)*1)->toDateString() }}' max='{{ Carbon\Carbon::now()->addDays((-1)*1)->toDateString() }}' min='{{ Carbon\Carbon::now()->addMonths((-1)*3)->addDays(1)->toDateString() }}' required>
+                                        <input type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                                        <input style="margin:0px;padding: 0px;padding-left: 2px;border-radius: 7px;padding-right: 2px;width: 80px;height: 35px;margin-bottom: 11px;" class="add-button" type="submit" value="Usuń">
+                                    </form></div>
+</br>
+                                    <div id="table-container2"><</div>
 
 
                         </fieldset>
 
                     </div>
+
+
+                    <div id="place-edit">
+                        <fieldset>
+                            <legend>Lokalizacja</legend>
+
+
+                            <!-- <label>
+                                Miejsca treningu:
+                                <div>
+                                    </br>
+                                 
+                                    <div style="margin-bottom: 70px;">
+
+                                        <script>
+                                            function initMap() {
+                                                var address = document.getElementById('locationSearch');
+                                                var options = {
+                                                        componentRestrictions: {country: "pl"}
+                                                    };
+                                                var autocomplete = new google.maps.places.Autocomplete(address, options);
+
+                                                autocomplete.addListener('place_changed', function() {
+                                                    var place = autocomplete.getPlace();
+                                                    document.getElementById('location-name').value = place.name;
+                                                    document.getElementById('location-latitude').value = place.geometry.location.lat();
+                                                    document.getElementById('location-longitude').value = place.geometry.location.lng();
+                                                });
+                                            }
+                                        </script>
+                                        <script  type="text/javascript" async defer
+                                                 src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBnYmBavIuXOjKrQflq-_CkuyIrmLpaD1Y&libraries=places&callback=initMap">
+                                        </script>
+                                    </div>
+
+                                </div>
+                            </label> -->
+
+
+
+
+                            <div class="categories-content">
+                            <h2>Dodaj lokalizację</h2>
+                            <input id="locationSearch" class="place-search" type="text" size="50" />
+                            <input form="addTrainersPlace" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                            <input form="addTrainersPlace" type='hidden' value='{{ csrf_token() }}' name='_token'/>
+                            <input id="location-name" name="location-name" form="addTrainersPlace" type='hidden'/>
+                            <input id="location-latitude" name="location-latitude" form="addTrainersPlace" type='hidden'/>
+                            <input id="location-longitude" name="location-longitude" form="addTrainersPlace" type='hidden'/>
+                            <input class="add-button" type="submit" value="Dodaj lokalizację" form="addTrainersPlace">
+                            <div id="map" style="    width: 100%; height: 500px;"></div>
+                            <script>
+                            function initMap() {
+                                var id = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+                                var xhttp = new XMLHttpRequest();
+                                xhttp.onreadystatechange = function() {
+                                    if (this.readyState == 4 && this.status == 200) {
+                                    responseObject = JSON.parse(xhttp.responseText); 
+                                    console.log(responseObject)
+                                    }
+                                };
+                                xhttp.open("GET", 'http://pri.me/api/profiles/'+id, true);
+                                xhttp.send();
+                                var options = {
+                                    zoom: 12,
+                                    center: {lat: 52.237049, lng: 21.017532}
+                                }
+                                var map = new google.maps.Map(
+                                    document.getElementById('map'), options);
+
+                                 var marker = new google.maps.Marker({position: options.center,
+                                     map: map,
+                                     draggable: true});
+                                var options2 = {
+                                                componentRestrictions: {country: "pl"}
+                                            };
+
+                                var searchBox = new google.maps.places.Autocomplete(document.getElementById('locationSearch'), {componentRestrictions: {country: "pl"}})
+                                google.maps.event.addListener(searchBox, 'place_changed', function(){
+                                    var places = searchBox.getPlace()
+                                    console.log(places)
+                                    document.getElementById('location-name').value = places.name;
+                                    document.getElementById('location-latitude').value = places.geometry.location.lat();
+                                    document.getElementById('location-longitude').value = places.geometry.location.lng();
+                                    var bounds = new google.maps.LatLngBounds();
+                                    // var i, place;
+
+                                    // for(i=0; i < places.length; i++){
+                                    //     place = places[i]
+                                        console.log(places.geometry.location);
+                                        bounds.extend(places.geometry.location);
+                                        marker.setPosition(places.geometry.location)
+                                    // }
+
+                                    map.fitBounds(bounds);
+                                    map.setZoom(15);
+                                })
+                            }
+
+                            
+                            </script>
+                            <script async defer
+                                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnYmBavIuXOjKrQflq-_CkuyIrmLpaD1Y&libraries=places&callback=initMap">
+                            </script>
+                            <h2>Dodane miejsca</h2>
+                            <div id="added-places"></div>
+                        </div>
+
+
+
+                        </fieldset>
+                    </div>
+
                     <div id="gallery-edit">
                         <fieldset>
                             <legend>Galeria zdjęć</legend>
@@ -621,25 +688,23 @@
 
                     <div id="email-edit">
 
-                        <form action='editEmailInfo' method='POST'>
-                            <fieldset>
-                                <legend>Zmiana email</legend>
-                                <div style="margin-left: 100px;">
-                                    <p>
-                                        <label>
-                                            Aktualny adres email:
-                                            <input class="edit-email-actual" name='current_email' type='email'
-                                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
-                                        </label>
-                                    </p>
+                    <form action='editEmailInfo' method = 'POST'>
+                         <fieldset>
+                            <legend>Zmiana email</legend>
+                            <div style="margin-left: 100px;">
+                                <p>
+                                <label>
+                                        Aktualny adres email: 
+                                        <input class="edit-email-actual" name='current_email' type='email' pattern="^[a-zA-Z0-9.!#$%’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="5" maxlength="45" required>
+                                </label>
+                                </p>
 
-                                    <p>
-                                        <label>
-                                            Nowy adres email:
-                                            <input class="edit-email" name='new_email' type='email'
-                                                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
-                                        </label>
-                                    </p>
+                                <p>
+                                <label>
+                                        Nowy adres email: 
+                                        <input class="edit-email" name='new_email' type='email' pattern="^[a-zA-Z0-9.!#$%’*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" minlength="5" maxlength="45" required>
+                                </label>
+                                </p>
 
                                     <input type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                     <input type='hidden' value='{{ csrf_token() }}' name='_token'/>

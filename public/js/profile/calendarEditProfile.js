@@ -17,7 +17,6 @@ var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
     responseObject = JSON.parse(xhttp.responseText);
-    console.log(responseObject)
     var actualTableContent = "<table><tr><th style='width:18%'>Data</th><th style='width:18%'>Godzina</th><th style='width:23%'>Nazwa zajęć</th><th style='width:23%'>Miejsce</th><th style='width:8%'>Status</th><th style='width:10%'></th></tr>"
     for(var i = 0; i < responseObject.length; i++){
         actualTableContent+= "<tr><td>"+responseObject[i].date+"</td>";
@@ -169,6 +168,7 @@ xhttp.onreadystatechange = function() {
 	    for(var x=0; x<responseObject.length; x++){
     document.getElementById('deleteEvent-'+responseObject[x].id).addEventListener('click',function(e) {
         let idSplit2 = event.target.id.split("-");
+        var splited = idSplit2[1];
         $.confirm({
             boxWidth: '30%',
             useBootstrap: false,
@@ -184,7 +184,7 @@ xhttp.onreadystatechange = function() {
                             "_token": $('#token').val()
                             },
                         method: "POST",
-                        url: "/deleteTraining/"+idSplit2[1],
+                        url: "/deleteTraining/"+ splited,
                         }).done(function( msg ) {
                         if(msg.error == 0){
                             window.location.reload()
@@ -260,7 +260,6 @@ var xhttp2 = new XMLHttpRequest();
 xhttp2.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
     responseObject = JSON.parse(xhttp2.responseText);
-    console.log(responseObject)
     var actualTableContent = "<table><tr><th style='width:18%'>Data</th><th style='width:18%'>Godzina</th><th style='width:23%'>Nazwa zajęć</th><th style='width:23%'>Miejsce</th><th style='width:8%'>Status</th><th style='width:10%'></th></tr>"
     for(var i = 0; i < responseObject.length; i++){
         actualTableContent+= "<tr><td>"+responseObject[i].date+"</td>";

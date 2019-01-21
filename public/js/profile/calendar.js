@@ -6,7 +6,6 @@ $(function() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
         var responseObject = JSON.parse(xhttp.responseText);
-        console.log(responseObject)
         for(var i = 0; i < responseObject[0].tr_tr.length; i++){
           var oneEvent = {
           title: responseObject[0].tr_tr[i].name,
