@@ -88,18 +88,24 @@ class CalendarController extends Controller
     protected function deleteTraining($id)
     {
 
-        $trTraining = TrTraining::findOrFail($id);
-        if ($trTraining->actual_client_number > 0)  return ("Nie można usunąć treningu.");
-        else $trTraining->delete();
-            
-        return redirect('/editProfile');
+        /*$trTraining = TrTraining::findOrFail($id);
+        if ($trTraining->actual_client_number > 0)
+        {  
+            return ("Nie można usunąć treningu.");
+        }
+        else 
+        {
+        $trTraining->destroy();
+            */
+        return redirect('/profiles/6');
+
     }
 
 
     protected function deleteOldTrainings(Request $request)
     {
 
-        if ($request['begin_date'] > $request['end_date'])  return ("Źle wprowadzono godziny");
+        if ($request['begin_date'] > $request['end_date'])  return ("Źle wprowadzono dni");
         else
         {
             $trTraining = TrTraining::where('trainer_id', Auth::user()->id)
@@ -203,7 +209,7 @@ class CalendarController extends Controller
 
         $findstatus = Trainer::findOrFail($id);
 
-        return TrTraining::orderBy('date', 'DESC')
+        return TrTraining::orderBy('date', 'ASC')
                         ->with('trOrdTr')
                         ->where('trainer_id','=',$id)
                         ->where('date', '>=', Carbon::today())

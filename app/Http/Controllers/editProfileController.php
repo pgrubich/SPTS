@@ -92,14 +92,16 @@ class editProfileController extends Controller
 
     protected function updateDisciplines(Request $request)
     {
+
         $deletedRows = TrDiscipline::where('trainer_id', $request['trainer_id'])->delete();
 
         $data = $request->except('trainer_id', '_token');
         foreach($data as $discipline_url_name => $value)
         {
-            $discipline_url_name = Str::lower($discipline_url_name);
+            if ($discipline_url_name != "MMA") {$discipline_url_name = Str::lower($discipline_url_name);};
             $discipline_name = str_replace('_', ' ', $discipline_url_name);
-            $discipline_name = ucfirst($discipline_name);
+            if ($discipline_name != "MMA" || $discipline_name != "łyżwiarstwo") { $discipline_name = ucfirst($discipline_name); };
+            if ($discipline_name == "łyżwiarstwo") { $discipline_name = "Łyżwiarstwo"; };
 
 
             TrDiscipline::create([

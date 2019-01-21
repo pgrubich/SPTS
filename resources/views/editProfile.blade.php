@@ -183,7 +183,7 @@
                                         <label >
                                         Opis:
                                         <span class="optional">(Opcjonalnie)</span>
-                                        <textarea form="editSpecificInfo" class="edit-text" form="editSpecificInfo" name="description" cols="90" rows="10" maxlength="2048" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 2000 ">{{ Auth::user()->description }}</textarea>                                        <input form="editSpecificInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
+                                        <textarea form="editSpecificInfo" class="edit-text" form="editSpecificInfo" name="description" cols="90" rows="10" maxlength="2000" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 2000 ">{{ Auth::user()->description }}</textarea>                                        <input form="editSpecificInfo" type='hidden' name='id' value='{{ Auth::user()->id }}'/>
                                         <input form="editSpecificInfo" type='hidden' value='{{ csrf_token() }}' name='_token'/>
                                         <input class="add-button" type="submit" value="Aktualizuj opis" form="editSpecificInfo" >
                                         </label>
@@ -329,15 +329,15 @@
                                     <div id="edit-loc" style='display: none; font-size:14px; margin-left: 20px;'>
                                         <p>
                                             Nazwa zajęć:
-                                            <input placeholder="Podaj nazwę zajęć..." class="edit-uni" form="addTraining" name='name' type="text" pattern=".{3,}" >
+                                            <input placeholder="Podaj nazwę zajęć..." class="edit-uni" form="addTraining" name='name' type="text" minlength="3" maxlength="45">
                                         </p>
                                         <p style="display: inline-block;">
                                             Miejsce:
-                                            <input placeholder="Podaj miejsce zajęć..." class="edit-loc-place" form="addTraining" name='place' type="text" pattern=".{3,}" required >
+                                            <input placeholder="Podaj miejsce zajęć..." class="edit-loc-place" form="addTraining" name='place' type="text" pattern=".{3,}" required minlength="3" maxlength="45">
                                         </p>
                                         <p style="display:inline-block">
                                             Data:
-                                            <input class="edit-startdate-loc" form="addTraining" name='date' type="date" max='{{ Carbon\Carbon::now()->addMonths(1)->addWeeks(2)->toDateString() }}' min='{{ Carbon\Carbon::now()->addDays(1)->toDateString() }}' required>
+                                            <input class="edit-startdate-loc" form="addTraining" name='date' type="date" max='{{ Carbon\Carbon::now()->addMonths(6)->toDateString() }}' min='{{ Carbon\Carbon::now()->toDateString() }}' required>
                                         </p>
                                         <p style="display:inline-block;margin-left: 10px;"> 
                                             Godzina od:
@@ -358,7 +358,7 @@
                                         <span style="display:inline-block;position: relative;bottom: 182px;
 ">
                                             Opis:
-                                        </span><p style="display:inline-block;"><textarea placeholder="Podaj opis treningu..." style="width:480px; margin-left:100px; border: 1.5px solid #dfdede;" class="edit-text" name="description" cols="90" rows="10" maxlength="2048" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 2000 "></textarea>                                        </p>
+                                        </span><p style="display:inline-block;"><textarea placeholder="Podaj opis treningu..." style="width:480px; margin-left:100px; border: 1.5px solid #dfdede;" class="edit-text" name="description" cols="90" rows="10" maxlength="500" minlength="5" title="Minimalna liczba znaków to 5, a maksymalna 500 "></textarea>                                        </p>
                                         <p>
                                             Powtórz:
                                             <input style="margin-left: 73px;" class="edit-number" value="0" form="addTraining" name='repeat' type="number" min="0" max="4">
