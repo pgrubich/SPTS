@@ -1,1 +1,2 @@
-This project can be found on https://najlepszytrener.com.pl/
+A web application developed in Laravel. <br>
+Created to help sports trainers find their customers and support their communication. 
